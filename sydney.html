@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lost & Found — Caught in the Current</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Averia+Libre:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:  #02645A;
+  --navy:  #224050;
+  --amber: #D4874C;
+  --rust:  #C45D3A;
+  --cream: #F7F3ED;
+  --white: #ffffff;
+  --font-display: 'Averia Libre', serif;
+  --font-body:    'Lora', Georgia, serif;
+  --nav-h: 70px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--font-body); background: var(--cream); color: var(--navy); overflow-x: hidden; line-height: 1.7; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ── NAV ── */
+.story-nav {
+  position: sticky; top: 0; z-index: 300;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem; height: var(--nav-h);
+  background: rgba(34,64,80,.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.nav-logo-img { height: 100px; width: 85px; object-fit: contain; border-radius: 50%; }
+.back-btn {
+  background: none; border: 1.5px solid rgba(247,243,237,.38);
+  color: var(--cream); font-family: var(--font-body);
+  font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
+  padding: .4rem 1.1rem; border-radius: 50px; cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.back-btn:hover { background: var(--amber); border-color: var(--amber); }
+
+
+
+/* ── HERO ── */
+.story-hero {
+  position: relative; padding: 4rem 2.5rem 3rem;
+  text-align: center; overflow: hidden; background: var(--navy);
+}
+.story-hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('images/story/sydney/3.png');
+  background-size: cover; background-position: center;
+  transform: scale(1.06);
+  animation: heroZoom 12s ease-out forwards;
+}
+.story-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.4) 60%, rgba(0,0,0,.6));
+}
+@keyframes heroZoom { from { transform: scale(1.06); } to { transform: scale(1); } }
+@keyframes fadeUp   { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.story-hero > *:not(.story-hero-bg):not(.story-hero-overlay) { position: relative; z-index: 2; }
+
+.story-kicker {
+  display: inline-block; font-size: .62rem; letter-spacing: .28em;
+  text-transform: uppercase; color: var(--amber); margin-bottom: 1.2rem;
+  opacity: 0; animation: fadeUp .8s ease .4s forwards;
+}
+.story-headline {
+  font-family: var(--font-body); font-weight: 700;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  color: var(--cream); line-height: 1.1;
+  max-width: 760px; margin: 0 auto .8rem;
+  opacity: 0; animation: fadeUp .9s ease .6s forwards;
+}
+.headline-lost { display: block; color: var(--cream); }
+.headline-found { display: block; color: var(--amber); font-style: italic; font-size: clamp(1.9rem, 4.5vw, 3.2rem); }
+.story-byline {
+  font-size: .78rem; color: rgba(247,243,237,.55);
+  letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1.6rem;
+  opacity: 0; animation: fadeUp .9s ease .8s forwards;
+}
+.story-byline span { color: rgba(247,243,237,.85); font-weight: 700; }
+.story-dek {
+  max-width: 640px; margin: 0 auto;
+  font-size: 1rem; font-style: italic;
+  color: rgba(247,243,237,.78); line-height: 1.75;
+  opacity: 0; animation: fadeUp .9s ease 1s forwards;
+}
+
+/* ── INTRO ── */
+.story-intro { max-width: 860px; margin: 0 auto; padding: 4rem 3rem 3rem; }
+.story-intro p { font-size: .80rem; line-height: 1.9; color: rgba(34,64,80,.85); margin-bottom: 1.3rem; }
+.story-intro p:first-child::first-letter {
+  float: left; font-size: 3.8rem; font-weight: 700;
+  line-height: .82; margin: .06em .12em 0 0; color: var(--teal);
+}
+
+/* ── DIVIDER ── */
+.section-divider {
+  display: flex; align-items: center; gap: 1rem;
+  max-width: 860px; margin: 0 auto 2rem; padding: 0 3rem;
+}
+.section-divider span { font-size: .6rem; letter-spacing: .28em; text-transform: uppercase; color: var(--rust); white-space: nowrap; }
+.section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: rgba(34,64,80,.15); }
+
+/* ── HORIZONTAL VIEWER ── */
+.stories-viewer {
+  margin: 0 2rem 4rem; border-radius: 16px;
+  overflow: hidden; box-shadow: 0 12px 48px rgba(34,64,80,.18);
+  background: var(--white);
+}
+.stories-track {
+  display: flex; overflow-x: auto;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  height: calc(100vh - var(--nav-h) - 6rem); min-height: 500px;
+}
+.stories-track::-webkit-scrollbar { display: none; }
+
+/* ── STORY PANEL ── */
+.story-panel { flex: 0 0 100%; scroll-snap-align: start; display: flex; overflow: hidden; }
+
+.panel-photos {
+  flex: 0 0 40%; background: var(--white);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 1rem; padding: 2rem 1.8rem; overflow-y: auto;
+}
+.panel-photos img {
+  width: 80%; height: auto; object-fit: contain;
+  border-radius: 8px; box-shadow: 0 6px 20px rgba(34,64,80,.14);
+}
+
+.placeholder-photos {
+  flex: 0 0 40%; background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+}
+.placeholder-photos span { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(247,243,237,.25); }
+
+.panel-text {
+  flex: 1; background: var(--white); padding: 3rem 3.5rem;
+  overflow-y: auto; border-left: 1px solid rgba(34,64,80,.07);
+}
+.panel-text::-webkit-scrollbar { width: 4px; }
+.panel-text::-webkit-scrollbar-thumb { background: rgba(34,64,80,.15); border-radius: 4px; }
+
+.panel-status {
+  font-size: .58rem; letter-spacing: .24em; text-transform: uppercase;
+  margin-bottom: .8rem; display: inline-flex; align-items: center; gap: .4rem;
+}
+.panel-status.returned { color: var(--teal); }
+.panel-status.unclaimed { color: var(--rust); }
+.status-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.panel-status.returned .status-dot { background: var(--teal); }
+.panel-status.unclaimed .status-dot { background: var(--rust); }
+
+.panel-title { font-size: clamp(1.3rem, 2vw, 1.9rem); font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 1.4rem; }
+.panel-body { font-size: .85rem; line-height: 1.85; color: rgba(34,64,80,.78); }
+.panel-body p { margin-bottom: 1rem; }
+.panel-body p:last-child { margin-bottom: 0; }
+
+/* ── NAV BAR ── */
+.stories-nav-bar {
+  display: flex; align-items: center; justify-content: center; gap: 1.2rem;
+  padding: 1rem 0 1.2rem; background: var(--white);
+  border-top: 1px solid rgba(34,64,80,.07);
+}
+.nav-arrow {
+  background: none; border: 1.5px solid rgba(34,64,80,.2);
+  color: var(--navy); width: 32px; height: 32px; border-radius: 50%;
+  font-size: .9rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s;
+}
+.nav-arrow:hover { background: var(--amber); border-color: var(--amber); color: var(--white); }
+.nav-dots { display: flex; gap: .5rem; align-items: center; }
+.nav-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: rgba(34,64,80,.18); cursor: pointer;
+  transition: all .2s; border: none;
+}
+.nav-dot.active { background: var(--amber); transform: scale(1.3); }
+
+/* ── FOOTER ── */
+footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
+.footer-title { font-family: var(--font-display); font-size: 1rem; color: var(--cream); letter-spacing: .1em; margin-bottom: .35rem; }
+.footer-sub { font-size: .75rem; color: rgba(247,243,237,.48); letter-spacing: .08em; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .story-panel { flex-direction: column; }
+  .panel-photos, .placeholder-photos { flex: 0 0 280px; }
+  .stories-track { height: auto; max-height: 80vh; }
+  .stories-viewer { margin: 0 1rem 3rem; }
+
+}
+</style>
+</head>
+<body>
+
+<!-- SOUNDSCAPE -->
+<audio id="soundscape" src="audio/soundscape/sydney.wav" preload="auto"></audio>
+
+
+
+<nav class="story-nav">
+  <a href="index.html">
+    <img src="images/logos/main.png" alt="Caught in the Current" class="nav-logo-img">
+  </a>
+  <button class="back-btn" onclick="history.back()">← All Stories</button>
+</nav>
+
+<header class="story-hero">
+  <div class="story-hero-bg"></div>
+  <div class="story-hero-overlay"></div>
+  <span class="story-kicker">Lost & Found</span>
+  <h1 class="story-headline">
+    <span class="headline-lost">Lost</span>
+    <span class="headline-found">&amp; Found</span>
+  </h1>
+  <p class="story-byline">By <span>Sydney Woogerd</span></p>
+  <p class="story-dek">After the floodwaters receded, the debris that remained wasn't just wreckage — it was the scattered contents of people's lives. A few have made it their mission to give it all back.</p>
+</header>
+
+<section class="story-intro">
+  <p>It was two months after floodwaters swelled by 27 feet along the Swannanoa River that Jill Holtz, an Army National Guard member, stepped onto a debris-strewn football field 600 feet north of the riverbed and made a decision that would change her life.</p>
+  <p>And the lives of countless victims of Tropical Storm Helene.</p>
+  <p>In the middle of the field was a toddler bed displaced by the storm. A Batman comforter was draped across the mattress, trapped in place by the blue metal frame. Two mud-caked stuffed animals, an orange monkey and a gorilla, were tucked into the headboard.</p>
+  <p>Scattered across the landscape, all around her, were the contents of people's homes. Whole closets worth of clothes still on their hangers lay atop a puree of grass and mud. Trailer homes sat on their sides in the rubble. Glass dishes and pots, some undamaged by the violence of the rushing river, peeped out from upturned chunks of ground.</p>
+  <p>Holtz didn't see piles of unsavageable wreckage. She didn't consider the task of cleaning and fixing the mountains of momentos to be impossible. Instead, Holtz, 45, knew she had to do everything she could to return the items she found to the people who lost them in the greater Swannanoa area.</p>
+  <p>"[Imagine], you've lost everything, and you're surrounded by all this stuff that is not yours. You're surrounded by brand new stuff, sure, you're surrounded by donations, sure, but you've lost a piece of home," Holtz said. "If I can give that one little thing back to somebody, man, it means the world."</p>
+  <p>And so she launched Out the Mud, a volunteer group designed to reunite lost items with their owners. Eighteen months after Helene's floodwaters rushed through this 5,000-person community about 12 minutes east of Asheville, Holtz is still returning precious items to their owners.</p>
+  <p>And she is not the only one. Mandy Wallace is the artifact recovery technician for MountainTrue, a non-profit organization that has been working to clean debris from the French Broad and Swannanoa rivers since the storm. Since March 2025, she and her team have returned roughly 120 items through postings on their lost and found Facebook page. "It turns into a Nancy Drew mystery," Wallace said in early March from her office in Weaverville, North Carolina. "Who's this belong to? Who's missing this?...I need to get it back."</p>
+  <p>Alice Wright, an associate professor of anthropology at Appalachian State University who studies the relationship between people and material objects, says that returning even a single valued possession can mean everything to someone who has lost everything. "Having that material connection has the potential to provide that tangible, I mean, the literal touchstone to safety, to comfort, to your identity and who you are," she said. "There's something so human [about] our connections to these objects that really encourages us to empathize with each other and to extend that neighborliness that the storm brought to the surface."</p>
+  <p>Standing at the end of the same field on a sunny March morning more than a year later, Holtz looks over the now-tidy grass and nearby beds of spring daffodils that are just beginning to bloom. There is no trace of the damage the river once wrought. Except only minutes before, Holtz bent down and dug up a pair of earrings and a photograph in the back yard of a nearby abandoned home. She carefully placed them in the back of her trailer, which was filled to the roof with multicolored plastic boxes of found objects, waiting to be returned.</p>
+  <p>"There is still so much stuff out here," said Holtz, dressed in a tee shirt and jeans, a silver necklace with "fearless" engraved on it tucked under her collar. She's not planning to stop looking anytime soon.</p>
+  <p>As of March, Holtz has returned over 400 possessions to their rightful owners. But roughly 800 items — toy trains, Christmas ornaments, baseball trophies, heaps of photos, a drum set, jewelry, on and on — remain unclaimed in a 6 by 12 foot trailer she transports back and forth from her home in Raleigh, four hours away. What follows is a spotlight on just a few of those worldly possessions — three that have been successfully returned and two that are still lost.</p>
+</section>
+
+<div class="section-divider"><span>Five objects</span></div>
+
+<div class="stories-viewer">
+  <div class="stories-track" id="storiesTrack">
+
+    <div class="story-panel">
+      <div class="panel-photos">
+        <img src="images/story/sydney/1.jpg" alt="Denise and Greg Carraux holding recovered postcards">
+        <img src="images/story/sydney/2.jpg" alt="Close-up of the handwritten postcards">
+      </div>
+      <div class="panel-text">
+        <span class="panel-status returned"><span class="status-dot"></span>Returned</span>
+        <h2 class="panel-title">Denise and Greg Carraux — 28-Year-Old Love Letters</h2>
+        <div class="panel-body">
+          <p>In December 2024, while searching for lost objects in the area in and around the football field, Holtz and her volunteers found three postcards, still intact and readable. Based on information visible on the cards, each was sent from Switzerland to Houston, Texas, within the same two weeks during the spring of 1998. Holtz cleaned the cards, took photos of them and posted her find online in the hopes of hearing from the owners.</p>
+          <p>Nine months later in September 2025, Greg Carraux, 67, received a message on his phone from an unknown number with a photo of the postcards and a note asking if they belonged to him. At the time, one of Holtz's volunteers, Jill Alexander, was going through any items with names on them and trying to find their information via Google.</p>
+          <p>He showed the images to his wife, Denise Carraux, 66, who immediately recognized what they were.</p>
+          <p>"People say 'it's only material things,' but when you look at it, it's like, you lost the light, you lost everything. So basically, at 67 I'm starting over again," said Greg Carraux, who explained the couple moved to the area only four months before the storm. The floods washed away many of the valuable items they had brought with them from Houston, Texas, valuables collected over years and generations.</p>
+          <p>The postcards were keepsakes from the very beginning of their relationship. Right after the two met in early May 1998, Greg went away on vacation for 10 days. Each day he wrote a letter to Denise about his travels. From those letters their romance blossomed. To Denise and Greg, the sentimental value and history of the postcards make them irreplaceable.</p>
+          <p>"Things are very important because they capture your history," Denise said. "I'm just so happy to have them."</p>
+          <p>Luckily, two more postcards were found and returned to the couple this March.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-panel">
+      <div class="panel-photos">
+        <img src="images/story/sydney/mandy1.jpg" alt="Mandy Wallace with the 1976 Jim Beam Decanter">
+        <img src="images/story/sydney/mandy2.jpg" alt="The orange fox Jim Beam Decanter on the office windowsill">
+      </div>
+      <div class="panel-text">
+        <span class="panel-status unclaimed"><span class="status-dot"></span>Found — Still Lost</span>
+        <h2 class="panel-title">Mandy Wallace — A 1976 Jim Beam Decanter</h2>
+        <div class="panel-body">
+          <p>In March 2025, while cleaning up debris along the French Broad River as a part of her work for MountainTrue, Mandy Wallace, 55, came across a tiny piece of ceramic glass poking out of the mud. She bent over to pull it out, expecting a fragment, and was surprised to see a fully intact ceramic Jim Beam Decanter emerge in the shape of a small orange fox.</p>
+          <p>"It was the very first found item for our organization," Wallace said. "The beginning of all of this."</p>
+          <p>Earlier that month, Wallace along with 10 other full-time workers had been hired by MountainTrue to handle debris cleanup along the rivers after the storm. Including Wallace, all of the new hires had lost their jobs due to damage from the storm. The non-profit had received a small grant from the Land of Sky Regional Council, a multi-county, local government, planning and development organization, to support the cleanup initiative.</p>
+          <p>Since onboarding what Wallace calls the "OG Debris Team," 92 workers have been added to the organization's cleanup crew thanks to another $10 million grant MountainTrue received in July 2025 from North Carolina Department of Environmental Quality.</p>
+          <p>As their team grew and more items were collected, Wallace was officially given the title of Artifact Recovery Technician in September 2025. She now has her own office in Weaverville, North Carolina, with shelves full of items including quilts, old china, photo albums and a recently found 3-foot-tall handcarved wooden statue of a female form.</p>
+          <p>The Jim Beam Decanter sits on her office windowsill slightly away from the shelves of other objects across the room. It is joined by various other items she has collected, none of which look like they could have survived tumbling through roiling floodwaters.</p>
+          <p>"My favorite items are the ones that are just so delicate," Wallace said.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-panel">
+      <div class="panel-photos">
+        <img src="images/story/sydney/jack1.jpg" alt="Jack Wright with recovered baseball cards">
+        <img src="images/story/sydney/jack2.jpg" alt="Baseball cards found along Sweeten Creek">
+      </div>
+      <div class="panel-text">
+        <span class="panel-status returned"><span class="status-dot"></span>Returned</span>
+        <h2 class="panel-title">Jack and Caitlin Wright — Baseball Cards</h2>
+        <div class="panel-body">
+          <p>In April 2025, alongside Wallace, a team of MountainTrue volunteers were working along Sweeten Creek right off the Swannanoa River in Biltmore Village, an historic and flood-prone neighborhood on the southern edge of Asheville. Amid the debris were multiple sleeves of old baseball cards scattered along the riverbank.</p>
+          <p>In September 2025, Wallace posted the cards along with other found objects — crumpled photographs, military pins, award plaques, vases and CDs — on the group's Facebook page.</p>
+          <p>In February 2026, Jack Wright, 43, who is of no relation to Alice Wright, reached out to claim many of the baseball cards. Back in April, his wife, Caitlin Wright, 37, had claimed their daughter's baby photo album collected from roughly the same location the cards were found.</p>
+          <p>Even after the album was returned to the couple, however, Jack doubted that any of the other items they lost in the flood would have survived. When the storm hit, Jack's generational family paint business, which was located roughly a mile away from Sweeten Creek and along the river, had been completely washed away. The cards along with the baby album had been about 30 feet above the ground level in storage when the river water started to rise.</p>
+          <p>"There were probably 40 to 50 cards, big three-ring binder books up there that had multiple sleeves of cards in them," Jack said. "They're just old cardboard from, you know, back in the '80s and '90s. I never would have thought they would have survived."</p>
+          <p>But when Jack finally decided to look through the Facebook page, he was surprised to see the baseball cards that he grew up with and collected with his father.</p>
+          <p>"You never know what's going to pop up that you thought was gone forever," Jack said. "So it's kind of helped me make peace with it, getting some of them back so I can move along from the storm."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-panel">
+      <div class="panel-photos">
+        <img src="images/story/sydney/jill1.jpg" alt="Stuffed animals found in the football field after Hurricane Helene">
+        <img src="images/story/sydney/jill2.jpg" alt="Jill Holtz cleaning a stuffed bear found in the debris">
+      </div>
+      <div class="panel-text">
+        <span class="panel-status unclaimed"><span class="status-dot"></span>Found — Still Lost</span>
+        <h2 class="panel-title">Jill Holtz — Children's Stuffed Animals</h2>
+        <div class="panel-body">
+          <p>The stuffed monkeys Holtz found at the center of a football field in Swannanoa two Decembers ago were the first objects she recovered after the storm.</p>
+          <p>"That's what started it. I saw these stuffed animals, and was like, 'I'm gonna find the little kid that this belongs to,'" Holtz said.</p>
+          <p>Despite posting photos of them on Facebook, Holtz still has not been able to connect with the original owner, but she hasn't given up hope. She has, however, been able to return numerous other stuffed animals to locals around the area.</p>
+          <p>While cleaning up the field later that December, Holtz found a giant, roughly 2-foot-tall white teddy bear with a red bowtie caked with dirt. It took over a week of multiple scrubbings before it regained its original coloring.</p>
+          <p>"I think that I found it and I thought I wasn't going to hold on to it at first because it was just so, so beyond dirty," Holtz said. "I remember setting it out, and then I just was like, 'I can't leave that. I can't do it.'"</p>
+          <p>Her perseverance paid off because shortly after posting the bear to Facebook, a woman came to claim it. The bear had been a Valentine's gift from her husband years ago. "It was so worth it. It was full circle, complete closure," Holtz said. "I was so thankful that it belonged to her."</p>
+          <p>In June 2025, Holtz found another stuffed animal, a medium-sized reindeer wedged between two logs behind a nearby cornfield, where it had been stuck for nearly eight months. After she retrieved and cleaned it, she posted the image to Facebook. Not long after, a mother messaged Holtz saying it belonged to her young daughter and they set up a time to meet. "She met me with her daughter, and I was able to give it back to her," Holtz said. "It was very emotional."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="story-panel">
+      <div class="panel-photos">
+        <img src="images/story/sydney/joel1.jpg" alt="Joel Friedman with the recovered hand-painted tabletop">
+        <img src="images/story/sydney/joel2.jpg" alt="The hand-painted tabletop back inside Zuma Coffee">
+      </div>
+      <div class="panel-text">
+        <span class="panel-status returned"><span class="status-dot"></span>Returned</span>
+        <h2 class="panel-title">Joel Friedman — A Hand-Painted Tabletop</h2>
+        <div class="panel-body">
+          <p>Nearly four weeks after the storm, Ciro Pena, a local water guide and owner of Blue Heron Whitewater Rafting, was hiking alongside the river north of Asheville looking through debris for lost items when he stumbled upon something he recognized.</p>
+          <p>Five miles north of Marshall, North Carolina, a small town of only 800 residents, he pulled a 4-foot-tall hand-painted tabletop from the mud. The tabletop, he knew, belonged in one of only two nearby coffee shops, Zuma Coffee, owned by Joel Friedman, 65. The business, which has been open for 25 years, was known to have had four tabletops painted and gifted to the establishment by local artist Lois Simbach. When the storm hit, the river filled the shop with more than 9 feet of water, washing away three of the four tables.</p>
+          <p>Months later, in late April 2025, Friedman had a grand re-opening of Zuma Coffee and Pena showed up with the painted tabletop. Both Friedman and the community were overjoyed.</p>
+          <p>"At that point, we needed anything to lift us up. Any little victories were big victories," Friedman said.</p>
+          <p>Only a few months before, another one of the tabletops had been found by a different local who was hiking in Del Rio, Tennessee, 30 miles downriver from Marshall. "It felt like an old friend had come back to visit. It felt like anything's possible," Friedman said.</p>
+          <p>Today, both of the two lost tabletops remain in the shop. One is used regularly for its original purpose while the other Friedman has slightly different plans for. "We're gonna hang it on the wall, sort of a symbol of resiliency," Friedman said. "Things, even if they're in your memory, are never really lost."</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="stories-nav-bar">
+    <button class="nav-arrow" id="prevBtn">&#8592;</button>
+    <div class="nav-dots" id="navDots"></div>
+    <button class="nav-arrow" id="nextBtn">&#8594;</button>
+  </div>
+</div>
+
+<footer>
+  <p class="footer-title">Caught in the Current</p>
+  <p class="footer-sub">Helene Recovery in Asheville and Beyond · Northeastern University · 2026</p>
+</footer>
+
+<script>
+/* ── PANELS NAV ── */
+const track = document.getElementById('storiesTrack');
+const panels = track.querySelectorAll('.story-panel');
+const dotsContainer = document.getElementById('navDots');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+let current = 0;
+
+panels.forEach((_, i) => {
+  const dot = document.createElement('button');
+  dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+  dot.addEventListener('click', () => goTo(i));
+  dotsContainer.appendChild(dot);
+});
+
+function goTo(i) {
+  current = Math.max(0, Math.min(i, panels.length - 1));
+  track.scrollTo({ left: track.clientWidth * current, behavior: 'smooth' });
+  dotsContainer.querySelectorAll('.nav-dot').forEach((d, idx) => {
+    d.classList.toggle('active', idx === current);
+  });
+}
+
+prevBtn.addEventListener('click', () => goTo(current - 1));
+nextBtn.addEventListener('click', () => goTo(current + 1));
+
+track.addEventListener('scroll', () => {
+  const idx = Math.round(track.scrollLeft / track.clientWidth);
+  if (idx !== current) {
+    current = idx;
+    dotsContainer.querySelectorAll('.nav-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+});
+const audio = document.getElementById('soundscape');
+audio.loop = false;
+audio.volume = 0.5;
+
+function tryPlayAudio() {
+  audio.play().catch(() => {
+    const resumeAudio = () => {
+      audio.play().catch(() => {});
+      document.removeEventListener('click', resumeAudio);
+      document.removeEventListener('touchstart', resumeAudio);
+      document.removeEventListener('keydown', resumeAudio);
+    };
+
+    document.addEventListener('click', resumeAudio, { once: true });
+    document.addEventListener('touchstart', resumeAudio, { once: true });
+    document.addEventListener('keydown', resumeAudio, { once: true });
+  });
+}
+
+window.addEventListener('load', tryPlayAudio, { once: true });
+</script>
+
+</body>
+</html>

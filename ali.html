@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FEMA Funding — Caught in the Current</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Averia+Libre:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:  #02645A;
+  --navy:  #224050;
+  --amber: #D4874C;
+  --rust:  #C45D3A;
+  --cream: #F7F3ED;
+  --white: #ffffff;
+  --font-display: 'Averia Libre', serif;
+  --font-body: 'Lora', Georgia, serif;
+  --nav-h: 70px;
+  --max-w: 760px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--navy);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+.story-nav {
+  position: sticky; top: 0; z-index: 300;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem; height: var(--nav-h);
+  background: rgba(34,64,80,.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.nav-logo-img { height: 100px; width: 85px; object-fit: contain; border-radius: 50%; }
+.back-btn {
+  background: none; border: 1.5px solid rgba(247,243,237,.38);
+  color: var(--cream); font-family: var(--font-body);
+  font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
+  padding: .4rem 1.1rem; border-radius: 50px; cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.back-btn:hover { background: var(--amber); border-color: var(--amber); }
+
+.story-hero {
+  position: relative;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--navy);
+}
+.story-hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('images/fotos/fema.jpg');
+  background-size: cover; background-position: center;
+  transform: scale(1.05);
+  animation: heroZoom 12s ease-out forwards;
+}
+.story-hero-overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,.10), rgba(0,0,0,.30) 38%, rgba(0,0,0,.70) 100%),
+    linear-gradient(to right, rgba(34,64,80,.40), rgba(34,64,80,.08));
+}
+@keyframes heroZoom { from { transform: scale(1.05); } to { transform: scale(1); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.story-hero > *:not(.story-hero-bg):not(.story-hero-overlay) { position: relative; z-index: 2; }
+
+.hero-inner {
+  width: 100%; max-width: 1180px;
+  margin: 0 auto; padding: 5rem 2.5rem 4rem;
+  text-align: center;
+}
+.story-kicker {
+  display: inline-block; font-size: .62rem; letter-spacing: .28em;
+  text-transform: uppercase; color: var(--amber); margin-bottom: 1rem;
+  opacity: 0; animation: fadeUp .8s ease .3s forwards;
+}
+.story-headline {
+  max-width: 860px; margin: 0 auto .9rem;
+  font-family: var(--font-body);
+  font-size: clamp(1.8rem, 4vw, 3.4rem);
+  line-height: 1.05; color: var(--cream);
+  opacity: 0; animation: fadeUp .9s ease .45s forwards;
+}
+.story-dek {
+  max-width: 640px; margin: 0 auto 1.2rem;
+  font-size: 1.05rem; line-height: 1.8;
+  color: rgba(247,243,237,.84); font-style: italic;
+  opacity: 0; animation: fadeUp .9s ease .6s forwards;
+}
+.story-byline {
+  font-size: .75rem; color: rgba(247,243,237,.62);
+  letter-spacing: .1em; text-transform: uppercase;
+  opacity: 0; animation: fadeUp .9s ease .75s forwards;
+}
+.story-byline span { color: rgba(247,243,237,.88); font-weight: 700; }
+
+.article-shell {
+  max-width: 1180px; margin: 0 auto;
+  padding: 3.2rem 1.5rem 4rem;
+}
+
+.article-topper { max-width: var(--max-w); margin: 0 auto 2.2rem; }
+.article-topper p { font-size: .88rem; line-height: 1.95; color: rgba(34,64,80,.82); font-style: italic; }
+
+.article-grid {
+  display: grid; grid-template-columns: minmax(0, 1fr) 260px;
+  gap: 3rem; align-items: start;
+}
+.article-main { max-width: var(--max-w); width: 100%; margin: 0 auto; }
+.article-main p { font-size: .84rem; line-height: 1.98; color: rgba(34,64,80,.86); margin-bottom: 1.35rem; }
+.article-main p:first-child::first-letter {
+  float: left; font-size: 3.9rem; font-weight: 700;
+  line-height: .82; margin: .06em .14em 0 0; color: var(--teal);
+}
+.article-main a, .article-aside a { color: var(--teal); text-decoration: underline; text-underline-offset: 2px; }
+.article-main a:hover, .article-aside a:hover { color: var(--rust); }
+
+.section-heading {
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  font-weight: 700; color: var(--navy);
+  margin: 2.8rem 0 1rem;
+  padding-bottom: .5rem;
+  border-bottom: 2px solid var(--amber);
+}
+
+.section-divider {
+  display: flex; align-items: center; gap: 1rem;
+  margin: 3rem 0 1.9rem;
+}
+.section-divider::after { content: ''; flex: 1; height: 1px; background: rgba(34,64,80,.15); }
+.section-divider span {
+  font-size: .72rem; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--rust); white-space: normal;
+}
+
+.article-aside { position: sticky; top: calc(var(--nav-h) + 1.25rem); }
+.aside-card {
+  background: rgba(255,255,255,.75); border: 1px solid rgba(34,64,80,.08);
+  border-radius: 14px; padding: 1.2rem 1.1rem;
+  box-shadow: 0 10px 26px rgba(34,64,80,.05); backdrop-filter: blur(4px);
+}
+.aside-label { font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; color: var(--rust); margin-bottom: .8rem; }
+.aside-card ul { list-style: none; }
+.aside-card li { font-size: .73rem; line-height: 1.7; color: rgba(34,64,80,.78); padding: .72rem 0; border-top: 1px solid rgba(34,64,80,.08); }
+.aside-card li:first-child { border-top: none; padding-top: 0; }
+.aside-card strong { display: block; color: var(--navy); font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .2rem; }
+
+footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; margin-top: 2rem; }
+.footer-title { font-family: var(--font-display); font-size: 1rem; color: var(--cream); letter-spacing: .1em; margin-bottom: .35rem; }
+.footer-sub { font-size: .75rem; color: rgba(247,243,237,.48); letter-spacing: .08em; }
+
+@media (max-width: 980px) {
+  .article-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .article-aside { position: static; max-width: var(--max-w); margin: 0 auto; }
+}
+@media (max-width: 680px) {
+  .story-nav { padding: 0 1rem; }
+  .hero-inner { padding: 4rem 1.2rem 3rem; }
+  .story-hero { min-height: 45vh; }
+  .article-shell { padding: 2.4rem 1.05rem 3rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="story-nav">
+  <a href="index.html">
+    <img src="images/logos/main.png" alt="Caught in the Current" class="nav-logo-img">
+  </a>
+  <button class="back-btn" onclick="history.back()">← All Stories</button>
+</nav>
+
+<header class="story-hero">
+  <div class="story-hero-bg"></div>
+  <div class="story-hero-overlay"></div>
+  <div class="hero-inner">
+    <p class="story-kicker">Political</p>
+    <h1 class="story-headline">FEMA Funding Presents a Fractured Landscape for Storm Victims</h1>
+    <p class="story-byline">By <span>Ali Caudle</span></p>
+  </div>
+</header>
+
+<main class="article-shell">
+  <div class="article-topper">
+    <p>Between the DHS government shutdown, leadership changes and an uncertain political future, FEMA assistance for Helene survivors is deeply complicated — and largely stalled.</p>
+  </div>
+
+  <div class="article-grid">
+    <article class="article-main">
+
+      <p>When the flood waters ravaged Micaville Presbyterian Church, lifting pews and washing a house into the back of the building, the water level stopped just below the base of the stained glass windows. Saving the windows was one of many blessings for pastors Beth and Tom Hall, alongside receiving an initial sum of $140,000 to rebuild in April of last year.</p>
+
+      <p>This money came through the Public Assistance program for Houses of Worship damaged by declared disasters through the Federal Emergency Management Agency, or FEMA.</p>
+
+      <p>Micaville, an unincorporated community in Yancey County, about 45 miles northeast of Asheville, lies at the intersection of two creeks. When Tropical Storm Helene blew through western North Carolina in October 2024, causing catastrophic flooding, much of Micaville was washed away. Today, Micaville Presbyterian Church stands partially rebuilt in the middle of destruction. What was once a gym, a coffee shop, a thrift store, a post office and a water tower, is now an abandoned lot, filled with debris and stacks of wood.</p>
+
+      <p>"You wouldn't believe how much water came from such a little creek," said Beth Hall. "I've never seen anything like that in my life."</p>
+
+      <p>With the initial funding from FEMA, debris removal by the National Guard, as well as donations and aid from community members and Amish volunteers, the Halls were able to reopen their church last fall. The basement remains unfinished, though, and much of the planned work to fortify the structure against future storms and flooding remains on hold.</p>
+
+      <p>The Halls are waiting on approximately $300,000 in aid from FEMA that they have already been approved for, said Tom. This mitigation money would be used to rebuild a flood wall to protect the church if the creek floods again. It would also be used to waterproof the doors and windows, and replace supplies in the basement for ones that could be easily cleaned.</p>
+
+      <p>"We've got over $300,000 that is approved for mitigation," said Beth Hall. "And we'll never get that. But I'm just thankful we got what we did."</p>
+
+      <h2 class="section-heading">What is FEMA?</h2>
+
+      <p>FEMA is a government agency under the U.S. Department of Homeland Security, or DHS. The primary purpose of FEMA is to support disaster response when recovery efforts overwhelm the resources of state and local authorities.</p>
+
+      <p>There are two primary categories of aid dispersed by FEMA after a disaster declaration: individual assistance, known as IA, and public assistance, referred to as PA.</p>
+
+      <p>"FEMA does two major things after a disaster. One of them is helping individuals, IA, so that's helping people, tree on the house, bridge washed out, that kind of thing," said Rachael Sawyer, the strategic partnerships director for Buncombe County, and Helene recovery coordinator. "And then PA is help government to government. So if we sustained any damages that need to be repaired, they help with that, and they also help reimburse us for our, they call it emergency protective measures."</p>
+
+      <p>FEMA funding involves a fractured landscape, shifting constantly. Between the DHS government shutdown, leadership changes and an uncertain political future, FEMA assistance is deeply complicated. As of March, both public and individual assistance remains stalled.</p>
+
+      <p>As of March 19, North Carolina state officials estimate that there are roughly 1,800 Helene-related projects in progress within the FEMA public assistance program, accounting for an estimated $2.6 billion in need.</p>
+
+      <p>According to FEMA's website, public assistance is FEMA's "largest grant program providing funds to assist communities responding to and recovering from major disasters or emergencies declared by the president." Eligible applicants for PA include states, U.S. territories, federally recognized tribal governments, local governments, and certain private non-profit organizations. The houses of worship provision falls under the umbrella of private non-profit groups.</p>
+
+      <p>As a result of the DHS shutdown, FEMA is operating at limited capacity. This means that the agency has only been able to make progress on processing grant funding for public assistance category A, or debris removal, and category B, emergency protective actions. Categories C through G, considered "permanent work," include rebuilding roads and bridges, water control facilities, public utilities, parks and other facilities — and remain largely frozen.</p>
+
+      <div class="section-divider"><span>The secretary's approval</span></div>
+
+      <p>Within PA categories A and B alone, senior North Carolina state officials report that there are approximately 21 projects waiting approval by the DHS secretary, representing an obligation of approximately $28.6 million.</p>
+
+      <p>This is due, in part, to a rule implemented by former DHS Secretary Kristi Noem last June that the secretary must personally approve any expenditures greater than $100,000. Widely criticized for causing delays and putting a burden on FEMA's disaster response, this policy was rescinded by Noem's successor, Secretary Markwayne Mullin, on April 2. While this move is expected to ease the bottlenecks, the effects of this change are unlikely to be felt until the end of the DHS shutdown.</p>
+
+      <p>According to North Carolina state officials, Noem's policy definitely slowed down progress on awards reaching the state for reimbursement through public assistance. State officials have turned to liaising with legislative partners at the federal level to try to get funds freed up.</p>
+
+      <p>In a March 3 Senate Judiciary Committee hearing two days before Noem was fired, North Carolina Sen. Thom Tillis questioned then-Secretary Noem, criticizing her leadership of DHS, especially in regards to immigration enforcement and FEMA.</p>
+
+      <p>"You have a policy right now that anything over $100,000 has to go through your desk for approval," Sen. Tillis said in the committee hearing. "If you're requesting a review of $100,000 and up, then it begs the question why? Why would you be involved in that? Why would that be a policy?"</p>
+
+      <p>In a study released March 4 by the minority staff of the U.S. Senate Committee on Homeland Security and Governmental Affairs, ranking members Gary Peters (D-MI) and Andy Kim (D-NJ) laid out real-world impacts of this DHS directive for disaster survivors. The study found that minority staff identified 1,034 contracts, grants or disaster assistance awards that were delayed or left pending as a result of this directive.</p>
+
+      <p>"The Homeland Security Act of 2002 expressly prohibits the Secretary of Homeland Security from restricting or diverting FEMA resources from the agency's mission. Based on your disaster response," said Sen. Tillis in the committee hearing, "I have reason to believe that you're violating the law, either knowingly or unknowingly."</p>
+
+      <p>On the ground in North Carolina, individuals cited DHS policies and the Trump administration when assessing FEMA's response to Helene.</p>
+
+      <p>"If we got the rest of the FEMA money, we'd be wonderful. But Kristi Noem has to approve it personally, anything over $100,000," said Tom Hall. "Donald Trump came in here and said, 'I'll build it back better than ever.' … FEMA was here right from the start helping us. They were the ones that did the job. They came and found us. …The administration change just…it came to a screeching halt."</p>
+
+      <div class="section-divider"><span>Navigating the FEMA landscape</span></div>
+
+      <p>With constant changes at the federal level, it becomes complicated for individuals to track the status of their assistance applications.</p>
+
+      <p>"In terms of the day-to-day operation of the Individual Assistance Program that we see, I would say the only change that we have seen at this level has been that FEMA responses have slowed down," said Emma Smiley, a supervising attorney for the Disaster Relief Project at Legal Aid of North Carolina. "The time to get a decision on an appeal has crept longer and longer. … We're talking like three months, but it's at this point at least four before people get their decisions made on appeals."</p>
+
+      <p>In September 2025, the U.S. Government Accountability Office published a report finding that from Jan. 1, 2025, to June 1, 2025, the active number of FEMA employees decreased from 25,800 to 23,350 — a loss of 2,446 employees, including 1,465 who participated in a workforce reduction program directly tied to the Trump administration's efforts to reduce the size of the government workforce.</p>
+
+      <p>"I think that it's important for FEMA to have the staffing levels where they can make decisions on appeals in a timely manner, because when people are in a disaster situation, they tend to have a lot of emergency needs," said Smiley. "So if they have to wait four months for an appeal decision, just because there isn't the staffing to be able to do that, that can make somebody homeless."</p>
+
+      <p>In January 2026, the American Federation of Government Employees led a coalition in a lawsuit challenging the Trump administration's "unlawful and drastic" staffing cuts at FEMA. The complaint alleges that attempts to dismantle FEMA through workforce reductions take direct aim at FEMA's mandate as laid out in U.S. law.</p>
+
+      <p>"We had to hunt through so much red tape. And we're educated people, so we were able to persevere and not give up," said Beth Hall. "So if we had that much trouble, I think a lot of people, they don't try and get it filled out. They just don't believe that they can."</p>
+
+      <div class="section-divider"><span>Impacts on organizations</span></div>
+
+      <p>MANNA FoodBank is a private, nonprofit regional organization that works to end food insecurity in Western North Carolina. Their Asheville headquarters and warehouse, then-located on Swannanoa River Road, were completely destroyed by Helene.</p>
+
+      <p>Claire Neal, MANNA's CEO, credited FEMA with providing crucial support in the immediate aftermath of Helene by providing significant amounts of food to be distributed to people in need. But 18 months later, the organization is still trying to piece together funding from various sources, including FEMA, on a relocation project to rebuild.</p>
+
+      <p>The Swannanoa River completely changed course as a result of the flooding. What used to be MANNA's parking lot is now the river — meaning the organization cannot rebuild on the old site. To fund this relocation, MANNA is coordinating with FEMA on a daily basis, contracting with an outside consultant and dedicating substantial staff time.</p>
+
+      <p>MANNA is also working with FEMA through the Hazard Mitigation Grant Program, or HMGP, which provides funding to state, tribal and local governments to reduce or mitigate future disaster losses. In Buncombe County, there are four groups of applicants. The first group involves 23 properties with funding already awarded by FEMA. Groups three and four, involving 157 and 72 properties respectively, are listed as "application submitted to FEMA."</p>
+
+      <p>MANNA has been approved through the county and state level for this program, so the state has agreed to buy back the original land to be converted to green space, at fair market value, using FEMA funds, once approved.</p>
+
+      <p>Over in Black Mountain, a Quaker meeting house was damaged beyond repair. The Swannanoa Valley Friends Meeting are now gathering at a host church on the Warren Wilson College campus. The group's leadership recently learned that their old property has been approved in the first group of HMGP funding in Buncombe County.</p>
+
+      <p>MJ Hogan, the group's assistant treasurer, recalled the state of the meeting house after the floods. "We salvaged what we felt like was salvageable, and it was a mess. I mean, it was disgusting. Everything was just caked in mud," she said.</p>
+
+      <p>In Hogan's initial correspondence with FEMA, she was redirected to different programs and led to believe that there was no support the agency could offer the group. "All my efforts to get FEMA help or help anywhere prior to this moment of this hazard mitigation was, 'We can't help you because you're not residential,'" said Hogan. "It's a weird situation. We're not commercial, we're not a business. But we're not a family owning a property."</p>
+
+      <p>"Then you add on top of it government shutdowns, and you add on top of it the current administration, and you add on top of it, all the things. And the program as a whole takes a while," said Hogan. "The whole time we've been kind of in the dark. We found out maybe a year in that we were one of the first 23 properties approved for this buyout program, which was great news. That still might mean that it'll be years from now before anything happens. We don't know."</p>
+
+    </article>
+
+    <aside class="article-aside">
+      <div class="aside-card">
+        <div class="aside-label">At a glance</div>
+        <ul>
+          <li><strong>FEMA aid stalled</strong> As of March 2026, both public and individual assistance for Helene survivors remains largely frozen due to the DHS shutdown.</li>
+          <li><strong>$2.6B in need</strong> North Carolina officials estimate roughly 1,800 Helene-related projects in the FEMA public assistance program.</li>
+          <li><strong>Staffing cuts</strong> FEMA lost 2,446 employees between January and June 2025, slowing appeal decisions to four months or more.</li>
+          <li><strong>$100K rule</strong> Former DHS Secretary Noem's policy requiring personal approval of expenditures over $100,000 delayed millions in aid — rescinded April 2, 2026.</li>
+          <li><strong>HMGP</strong> The Hazard Mitigation Grant Program remains a key but slow path for nonprofits and homeowners in Buncombe County.</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <p class="footer-title">Caught in the Current</p>
+  <p class="footer-sub">Helene Recovery in Asheville and Beyond · Northeastern University · 2026</p>
+</footer>
+
+</body>
+</html>

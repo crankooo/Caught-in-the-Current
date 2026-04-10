@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Still Playing — Caught in the Current</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Averia+Libre:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal: #02645A; --navy: #224050; --amber: #D4874C;
+  --rust: #C45D3A; --cream: #F7F3ED; --white: #ffffff;
+  --font-display: 'Averia Libre', serif;
+  --font-body: 'Lora', Georgia, serif;
+  --nav-h: 70px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--font-body); background: var(--cream); color: var(--navy); overflow-x: hidden; line-height: 1.7; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+.story-nav {
+  position: sticky; top: 0; z-index: 300;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem; height: var(--nav-h);
+  background: rgba(34,64,80,.95); backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.nav-logo-img { height: 100px; width: 85px; object-fit: contain; border-radius: 50%; }
+.back-btn {
+  background: none; border: 1.5px solid rgba(247,243,237,.38);
+  color: var(--cream); font-family: var(--font-body);
+  font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
+  padding: .4rem 1.1rem; border-radius: 50px; cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.back-btn:hover { background: var(--amber); border-color: var(--amber); }
+
+.story-hero {
+  position: relative; padding: 5rem 2.5rem 4.5rem;
+  text-align: center; overflow: hidden; background: var(--navy);
+  min-height: 20px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.story-hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('images/fotos/music1.jpg');
+  background-size: cover; background-position: center 30%;
+  opacity: 0;
+  animation: heroFadeIn 2.5s ease forwards;
+}
+.story-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.45) 60%, rgba(0,0,0,.65));
+}
+@keyframes heroFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.story-hero > *:not(.story-hero-bg):not(.story-hero-overlay) { position: relative; z-index: 2; }
+
+.story-kicker {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: .62rem; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 1.2rem;
+  opacity: 0; animation: fadeUp .8s ease .4s forwards;
+}
+.kicker-icon { width: 16px; height: 16px; fill: var(--amber); }
+
+.story-headline {
+  font-family: var(--font-body); font-weight: 700;
+  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+  color: var(--cream); line-height: 1.12;
+  max-width: 760px; margin: 0 auto .8rem;
+  opacity: 0; animation: fadeUp .9s ease .6s forwards;
+}
+.headline-main { display: block; color: var(--cream); }
+.headline-sub { display: block; color: var(--amber); font-style: italic; font-size: clamp(2rem, 5vw, 3.6rem); }
+
+.story-byline {
+  font-size: .78rem; color: rgba(247,243,237,.55);
+  letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1.6rem;
+  opacity: 0; animation: fadeUp .9s ease .8s forwards;
+}
+.story-byline span { color: rgba(247,243,237,.85); font-weight: 700; }
+
+.story-dek {
+  max-width: 600px; margin: 0 auto;
+  font-size: 1rem; font-style: italic;
+  color: rgba(247,243,237,.75); line-height: 1.75;
+  opacity: 0; animation: fadeUp .9s ease 1s forwards;
+}
+
+/* AUDIO PLAYER */
+.audio-section {
+  max-width: 720px; margin: -2.5rem auto 0; padding: 0 2rem;
+  position: relative; z-index: 10;
+}
+.audio-card {
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 12px 48px rgba(34,64,80,.18);
+  padding: 2.5rem 2.5rem 2rem;
+  text-align: center;
+}
+.audio-card-label {
+  font-size: .58rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 1.6rem; font-weight: 700;
+}
+.waveform-deco {
+  display: flex; align-items: center; justify-content: center;
+  gap: 3px; margin-bottom: 1.2rem; height: 30px;
+}
+.waveform-deco .bar {
+  width: 3px; border-radius: 2px; background: var(--teal); opacity: .18;
+  animation: waveIdle 1.4s ease-in-out infinite alternate;
+}
+.waveform-deco .bar.active { opacity: .6; }
+@keyframes waveIdle {
+  0% { transform: scaleY(1); }
+  100% { transform: scaleY(.4); }
+}
+.play-btn {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: var(--teal); border: none; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 24px rgba(2,100,90,.35);
+  transition: transform .2s, box-shadow .2s, background .2s;
+  margin-bottom: 1.4rem;
+}
+.play-btn:hover { transform: scale(1.08); box-shadow: 0 8px 32px rgba(2,100,90,.45); background: #037a6d; }
+.play-btn:active { transform: scale(.97); }
+.play-btn svg { width: 32px; height: 32px; fill: var(--cream); margin-left: 4px; }
+.play-btn.playing svg { margin-left: 0; }
+
+.progress-wrap { display: flex; align-items: center; gap: .8rem; margin-bottom: 1rem; }
+.time-label { font-size: .7rem; color: var(--navy); opacity: .5; font-variant-numeric: tabular-nums; min-width: 38px; }
+.progress-bar {
+  flex: 1; height: 6px; background: rgba(34,64,80,.1);
+  border-radius: 3px; cursor: pointer; position: relative; overflow: hidden;
+}
+.progress-fill { height: 100%; background: var(--teal); border-radius: 3px; width: 0%; transition: width .1s linear; }
+.progress-bar:hover .progress-fill { background: var(--amber); }
+
+.volume-row { display: flex; align-items: center; justify-content: center; gap: .5rem; }
+.vol-icon { width: 16px; height: 16px; fill: var(--navy); opacity: .4; cursor: pointer; }
+.vol-slider {
+  -webkit-appearance: none; appearance: none;
+  width: 80px; height: 4px; background: rgba(34,64,80,.12);
+  border-radius: 2px; outline: none;
+}
+.vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 12px; height: 12px;
+  background: var(--teal); border-radius: 50%; cursor: pointer;
+}
+.vol-slider::-moz-range-thumb {
+  width: 12px; height: 12px;
+  background: var(--teal); border-radius: 50%; cursor: pointer; border: none;
+}
+
+.story-intro { max-width: 860px; margin: 0 auto; padding: 4rem 3rem 3rem; }
+.story-intro p { font-size: .80rem; line-height: 1.9; color: rgba(34,64,80,.85); margin-bottom: 1.3rem; }
+.story-intro p:first-child::first-letter {
+  float: left; font-size: 3.8rem; font-weight: 700;
+  line-height: .82; margin: .06em .12em 0 0; color: var(--teal);
+}
+
+.section-divider {
+  display: flex; align-items: center; gap: 1rem;
+  max-width: 860px; margin: 0 auto; padding: 0 3rem;
+}
+.section-divider span { font-size: .58rem; letter-spacing: .28em; text-transform: uppercase; color: var(--rust); white-space: nowrap; }
+.section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: rgba(34,64,80,.12); }
+
+.transcript-section { max-width: 860px; margin: 0 auto; padding: 2.5rem 3rem 5rem; }
+.transcript-toggle {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; background: none; border: 1.5px solid rgba(34,64,80,.15);
+  border-radius: 10px; padding: 1rem 1.4rem;
+  font-family: var(--font-body); font-size: .85rem; font-weight: 700;
+  color: var(--navy); cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+.transcript-toggle:hover { border-color: var(--teal); background: rgba(2,100,90,.04); }
+.transcript-toggle .chevron { width: 18px; height: 18px; fill: var(--navy); opacity: .4; transition: transform .3s; }
+.transcript-toggle.open .chevron { transform: rotate(180deg); }
+.transcript-body { max-height: 0; overflow: hidden; transition: max-height .5s ease; }
+.transcript-body.open { max-height: 8000px; }
+.transcript-inner { padding: 2rem 0; }
+.transcript-inner p { font-size: .80rem; line-height: 1.9; color: rgba(34,64,80,.75); margin-bottom: 1rem; }
+.transcript-inner .speaker { font-weight: 700; color: var(--navy); text-transform: uppercase; font-size: .68rem; letter-spacing: .08em; display: block; margin-bottom: .2rem; }
+.transcript-placeholder { text-align: center; padding: 2.5rem 1rem; color: rgba(34,64,80,.35); font-style: italic; font-size: .9rem; }
+
+footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
+.footer-title { font-family: var(--font-display); font-size: 1rem; color: var(--cream); letter-spacing: .1em; margin-bottom: .35rem; }
+.footer-sub { font-size: .75rem; color: rgba(247,243,237,.48); letter-spacing: .08em; }
+
+@media (max-width: 600px) {
+  .story-nav { padding: 0 1.2rem; }
+  .nav-logo-img { height: 70px; width: 60px; }
+  .story-hero { padding: 3.5rem 1.4rem 3rem; min-height: 340px; }
+  .audio-section { padding: 0 1rem; margin-top: -2rem; }
+  .audio-card { padding: 2rem 1.4rem 1.6rem; }
+  .play-btn { width: 68px; height: 68px; }
+  .play-btn svg { width: 26px; height: 26px; }
+  .story-intro, .transcript-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .section-divider { padding: 0 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="story-nav">
+  <a href="index.html">
+    <img src="images/logos/main.png" alt="Caught in the Current" class="nav-logo-img">
+  </a>
+  <button class="back-btn" onclick="history.back()">← All Stories</button>
+</nav>
+
+<header class="story-hero">
+  <div class="story-hero-bg"></div>
+  <div class="story-hero-overlay"></div>
+  <span class="story-kicker">
+    <svg class="kicker-icon" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zM19 10v2a7 7 0 0 1-14 0v-2H3v2a9 9 0 0 0 8 8.94V23h2v-2.06A9 9 0 0 0 21 12v-2h-2z"/></svg>
+    Audio Documentary
+  </span>
+  <h1 class="story-headline">
+    <span class="headline-main">Still</span>
+    <span class="headline-sub">Playing</span>
+  </h1>
+  <p class="story-byline">By <span>Valentina Gutierrez</span></p>
+  <p class="story-dek">Eighteen months after Hurricane Helene, Asheville's music scene is rebuilding through community and resilience — maintaining the vibrant essence of what it once was, even as it grapples with long-standing inequities.</p>
+</header>
+
+<section class="audio-section">
+  <div class="audio-card">
+    <p class="audio-card-label">Listen to the Documentary</p>
+    <div class="waveform-deco" id="waveform"></div>
+    <button class="play-btn" id="playBtn" aria-label="Play">
+      <svg id="playIcon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+    </button>
+    <div class="progress-wrap">
+      <span class="time-label" id="timeCurrent">0:00</span>
+      <div class="progress-bar" id="progressBar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <span class="time-label" id="timeDuration">0:00</span>
+    </div>
+    <div class="volume-row">
+      <svg class="vol-icon" id="volIcon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8.5v7a4.47 4.47 0 0 0 2.5-3.5zM14 3.23v2.06a6.51 6.51 0 0 1 0 13.42v2.06A8.51 8.51 0 0 0 14 3.23z"/></svg>
+      <input type="range" class="vol-slider" id="volSlider" min="0" max="1" step="0.05" value="0.8">
+    </div>
+  </div>
+</section>
+
+<section class="story-intro">
+  <p>Before Hurricane Helene, Asheville was already one of America's most celebrated music cities — a place where bluegrass spilled out of mountain bars, where jazz and hip-hop and indie rock coexisted on the same block, where musicians from across the country came to plant roots and find community.</p>
+  <p>Then the floodwaters came. Studios were destroyed. Venues were gutted. Musicians lost instruments, equipment, recordings — the physical infrastructure of entire careers. The city's music economy, never easy to sustain, was suddenly hanging by a thread.</p>
+  <p>Eighteen months later, the music is coming back. But it is not coming back the same way, or for everyone equally. This documentary follows Asheville musicians navigating the slow, uneven recovery — and examines what the scene's resilience reveals about the deeper inequities that Helene exposed.</p>
+</section>
+
+<div class="section-divider"><span>Transcript</span></div>
+
+<section class="transcript-section">
+  <button class="transcript-toggle" id="transcriptToggle">
+    Read the Full Transcript
+    <svg class="chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+  </button>
+  <div class="transcript-body" id="transcriptBody">
+    <div class="transcript-inner">
+      <p class="transcript-placeholder">Transcript coming soon.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-title">Caught in the Current</p>
+  <p class="footer-sub">Helene Recovery in Asheville and Beyond · Northeastern University · 2026</p>
+</footer>
+
+<audio id="audio" preload="metadata">
+  <source src="audio/val.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const audio = document.getElementById('audio');
+const playBtn = document.getElementById('playBtn');
+const playIcon = document.getElementById('playIcon');
+const progressBar = document.getElementById('progressBar');
+const progressFill = document.getElementById('progressFill');
+const timeCurrent = document.getElementById('timeCurrent');
+const timeDuration = document.getElementById('timeDuration');
+const volSlider = document.getElementById('volSlider');
+const volIcon = document.getElementById('volIcon');
+const transcriptToggle = document.getElementById('transcriptToggle');
+const transcriptBody = document.getElementById('transcriptBody');
+const waveform = document.getElementById('waveform');
+
+const barCount = 40;
+const heights = [12,18,8,22,14,26,10,20,16,28,9,24,13,19,27,11,23,15,30,7,
+                 25,17,21,10,28,14,20,8,26,12,22,16,30,9,18,24,13,27,11,19];
+for (let i = 0; i < barCount; i++) {
+  const bar = document.createElement('div');
+  bar.className = 'bar';
+  bar.style.height = heights[i % heights.length] + 'px';
+  bar.style.animationDelay = (i * 0.05) + 's';
+  waveform.appendChild(bar);
+}
+
+function fmt(s) {
+  if (isNaN(s)) return '0:00';
+  const m = Math.floor(s / 60);
+  const sec = Math.floor(s % 60);
+  return m + ':' + (sec < 10 ? '0' : '') + sec;
+}
+
+function setWaveActive(active) {
+  waveform.querySelectorAll('.bar').forEach(b => b.classList.toggle('active', active));
+}
+
+playBtn.addEventListener('click', () => {
+  if (audio.paused) {
+    audio.play();
+    playIcon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+    playBtn.classList.add('playing');
+    setWaveActive(true);
+  } else {
+    audio.pause();
+    playIcon.innerHTML = '<polygon points="6,3 20,12 6,21"/>';
+    playBtn.classList.remove('playing');
+    setWaveActive(false);
+  }
+});
+
+audio.addEventListener('timeupdate', () => {
+  const pct = (audio.currentTime / audio.duration) * 100;
+  progressFill.style.width = pct + '%';
+  timeCurrent.textContent = fmt(audio.currentTime);
+});
+
+audio.addEventListener('loadedmetadata', () => {
+  timeDuration.textContent = fmt(audio.duration);
+});
+
+audio.addEventListener('ended', () => {
+  playIcon.innerHTML = '<polygon points="6,3 20,12 6,21"/>';
+  playBtn.classList.remove('playing');
+  progressFill.style.width = '0%';
+  setWaveActive(false);
+});
+
+progressBar.addEventListener('click', (e) => {
+  const rect = progressBar.getBoundingClientRect();
+  const pct = (e.clientX - rect.left) / rect.width;
+  audio.currentTime = pct * audio.duration;
+});
+
+volSlider.addEventListener('input', () => { audio.volume = volSlider.value; });
+volIcon.addEventListener('click', () => {
+  audio.muted = !audio.muted;
+  volSlider.value = audio.muted ? 0 : audio.volume;
+});
+
+transcriptToggle.addEventListener('click', () => {
+  transcriptToggle.classList.toggle('open');
+  transcriptBody.classList.toggle('open');
+});
+</script>
+
+</body>
+</html>

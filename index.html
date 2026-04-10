@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Caught in the Current: Helene Recovery in Asheville and Beyond</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Averia+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <audio id="soundscape-main" preload="auto">
+  <source src="audio/soundscape/main.mp3" type="audio/mpeg">
+</audio>
+  <script>
+    if (history.scrollRestoration) history.scrollRestoration = 'manual';
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    window.scrollTo(0, 0);
+  </script>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       ABOUT PAGE (hidden by default)
+  ═══════════════════════════════════════════ -->
+  <div id="about-page" class="inner-page" style="display:none;">
+    <nav class="navbar-inner">
+      <div class="nav-logo">
+        <img src="images/logos/main.png" alt="Caught in the Current" class="nav-logo-img" />
+      </div>
+      <button class="back-btn" id="back-btn">← Back to Home</button>
+    </nav>
+
+    <div class="inner-page-content">
+
+      <div class="inner-page-header">
+        <p class="section-label">About</p>
+        <h1>The Project</h1>
+      </div>
+
+      <div class="about-project">
+        <p><em>Caught in the Current</em> is a multimedia journalism project led by Professor Carlene Hempel and funded by the College of Arts, Media and Design. From January through May 2026, 11 journalism students endeavored to tell the story of a community that experienced a devastating weather event and 18 months later still suffers its effects. What happens when the nation's attention turns to other crises? Through in-depth articles, video/audio reports and photojournalism, our team covered stories of resilience and resignation. This is their work.</p>
+        <p>Please send comments or questions to Professor Hempel (c.hempel@northeastern.edu). We’d love to hear what you think.‍</p>
+        <img src="images/headshots/group.jpg" alt="The team in Asheville" class="group-photo" />
+      </div>
+      <p class="group-caption">Back row, left to right: Azariah Baker, Beck Orten, Grace Sawin, Hayes Botnick. Middle row, left to right: Mia Filler, Ali Caudle, Professor Carlene Hempel, Namira Haris, Claire Ogden. Front row, left to right: Sydney Woogerd, Eva Ciolek Passeri, Valentina Gutierrez.</p>
+    
+      <div class="team-section">
+        <h2 class="team-heading">Meet the Team</h2>
+        <div class="team-grid">
+
+          <div class="team-card">
+            <div class="team-avatar"><img src="images/headshots/baker.jpg" alt="Azariah Baker" onerror="this.parentElement.style.background='var(--teal)'"></div>
+            <div class="team-card-body">
+              <div class="team-name-row">
+                <p class="team-name">Azariah Baker</p>
+                <div class="team-socials">
+                  <a href="https://www.instagram.com/a.baker._" target="_blank" rel="noopener" class="social-link" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                  </a>
+                </div>
+              </div>
+              <p class="team-role">Audio/Video Editor</p>
+              <p class="team-bio">Azariah Baker is a graduate student studying media advocacy at Northeastern University. After earning a bachelor's degree in music industry, she continued her education with concentrations on intellectual properties and advocacy for the rights of creatives from underrepresented communities. She has experience self developing a curriculum for young creatives centered around intellectual properties and copyrights. She is currently working on establishing a music supervision company that provides small independent creatives with low production budgets and free music for their visual media and art. Azariah served as our video and audio producer.</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar"><img src="images/headshots/botnick.jpg" alt="Hayes Botnick" onerror="this.parentElement.style.background='var(--navy)'"></div>
+            <div class="team-card-body">
+              <div class="team-name-row">
+                <p class="team-name">Hayes Botnick</p>
+                <div class="team-socials">
+                  <a href="https://www.instagram.com/hcbotnick" target="_blank" rel="noopener" class="social-link" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                  </a>
+                  <a href="https://www.linkedin.com/in/hayes-botnick" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon-linkedin"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  </a>
+                </div>
+              </div>
+              <p class="team-role">Dataviz Reporter</p>
+              <p class="team-bio">Hayes Botnick is a graduate student at Northeastern University studying media innovation and data communication. Hayes obtained his bachelor's degree in English from Skidmore College in 2023. He is an experienced video editor and sound mixer, having worked on several feature films and independent projects throughout New York, New Jersey and Boston. Currently, he leads a course in the fundamentals of video editing with Adobe Premiere at Northeastern and served as a lead video advisor for the team.</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar"><img src="images/headshots/ali.jpg" alt="Alina Caudle" onerror="this.parentElement.style.background='var(--amber)'"></div>
+            <div class="team-card-body">
+              <div class="team-name-row">
+                <p class="team-name">Alina Caudle</p>
+                <div class="team-socials">
+                  <a href="https://www.instagram.com/ali_caudle" target="_blank" rel="noopener" class="social-link" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                  </a>
+                  <a href="https://www.linkedin.com/in/ali-caudle-021b75246/" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon-linkedin"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  </a>
+                </div>
+              </div>
+              <p class="team-role">Social Media Manager</p>
+              <p class="team-bio">Ali Caudle is a senior at Northeastern University pursuing a bachelor's degree in journalism with minors in law and public policy and women's, gender and sexuality studies. Ali has worked as a digital media assistant at the Massachusetts Attorney General's Office, a communications assistant at My Life My Choice and an editor for The Huntington News. Her reporting interests include legal issues and U.S. politics, with particular emphasis on state and local governance. Raised in San Francisco, she has lived in Montana, and is now based in Boston with her puppy, Willow. Ali served as our social media manager.</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar"><img src="images/headshots/eva.jpg" alt="Eva Ciolek Passeri" onerror="this.parentElement.style.background='var(--rust)'"></div>
+            <div class="team-card-body">
+              <div class="team-name-row">
+                <p class="team-name">Eva Ciolek Passeri</p>
+                <div class="team-socials">
+                  <a href="https://www.instagram.com/evamazing1717" target="_blank" rel="noopener" class="social-link" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                  </a>
+                  <a href="https://www.linkedin.com/in/evaciolekpasseri" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon-linkedin"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  </a>
+                  <a href="mailto:ciolekpasseri.e@northeastern.edu" class="social-link" title="Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-email"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+                  </a>
+                </div>
+              </div>
+              <p class="team-role">Database Editor</p>
+              <p class="team-bio">Eva Ciolek Passeri is a second-year pursuing a degree in journalism and political science with a minor in sociology. She is interested in social justice, history, pop culture, environment and science communication. She serves as the podcast and archival team director for WRBB, the school's radio station, where she also hosts her own show. She writes and photographs for The Huntington News, serves as a content creator and outreach leader for the SEDS Astronomy Club, and is a member of the pre-law fraternity Phi Alpha Delta. Eva served as our social media graphic designer and led our expert's database.</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar"><img src="images/headshots/filler.jpg" alt="Mia Filler" onerror="this.parentElement.style.background='var(--teal)'"></div>
+            <div class="team-card-body">
+              <div class="team-name-row"><p class="team-name">Mia Filler</p></div>
+              <p class="team-role">Dataviz Reporter</p>
+              <p class="team-bio">Mia Filler is a senior at Northeastern University pursuing a bachelor's degree in journalism and interaction design. She brings experience across social media strategy, UX/UI design, writing and video production. She completed two co-ops with the City of Cambridge in the Communications Office, where she produced public-facing content to communicate city values, initiatives and services to Cambridge residents. At Northeastern, she has written for The Huntington News and Tastemakers Magazine and served as a web and data visualization designer for Scout. Mia served as our data visualization editor.</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar"><img src="images/headshots/val.jpg" alt="Valentina Gutierrez" onerror="this.parentElement.style.background='var(--navy)'"></div>
+            <div class="team-card-body">
+              <div class="team-name-row"><p class="team-name">Valentina Gutierrez</p></div>
+              <p class="team-role">Media Partner</p>
+              <p class="team-bio">Valentina Gutierrez is a fourth-year English and journalism combined major. She's the president of Artistry Magazine, a journalistic arts and culture publication at Northeastern University. She's also editor-in-chief of Northeastern's Spectrum Literary Magazine and creative committee co-lead of Spectrum's Creative Committee. In her free time, she enjoys reading, writing, thrifting her next fashion find and being active. Valentina managed our media partnership and public relations team.</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar"><img src="images/headshots/haris.jpg" alt="Namira Haris" onerror="this.parentElement.style.background='var(--amber)'"></div>
+            <div class="team-card-body">
+              <div class="team-name-row">
+                <p class="team-name">Namira Haris</p>
+                <div class="team-socials">
+                  <a href="https://namira.works" target="_blank" rel="noopener" class="social-link" title="Website">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-website"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                  </a>
+                  <a href="https://www.linkedin.com/in/namiraharis" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon-linkedin"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  </a>
+                </div>
+              </div>
+              <p class="team-role">Webmaster</p>
+              <p class="team-bio">Namira Haris is a graduate student at Northeastern University studying media innovation and data communication. She focuses on multimedia and data-driven storytelling, creating interactive web projects, videos, podcasts and visual investigations on social equity, technology and environmental impact. Namira is the assistant editor at Storybench and has experience in digital reporting, data tools and long-form multimedia journalism. She has also worked in editorial, digital content and strategic communications roles where she focused on analytics strategy. Namira served as the webmaster for our project.</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar"><img src="images/headshots/claire.jpg" alt="Claire Ogden" onerror="this.parentElement.style.background='var(--rust)'"></div>
+            <div class="team-card-body">
+              <div class="team-name-row">
+                <p class="team-name">Claire Ogden</p>
+                <div class="team-socials">
+                  <a href="https://www.instagram.com/claireogd" target="_blank" rel="noopener" class="social-link" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                  </a>
+                  <a href="https://www.linkedin.com/in/claireogd/" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon-linkedin"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  </a>
+                </div>
+              </div>
+              <p class="team-role">Logistics Coordinator</p>
+              <p class="team-bio">Claire Ogden is a graduate student in the School of Journalism at Northeastern as well as a freelance journalist, arts writer and nonfiction film producer based in Somerville. She works as the communications specialist for Northeastern's Center for Transformative Media and the Center for the Arts. In her free time, she loves running, rock climbing and watching documentaries. Claire served as our logistics coordinator.</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar"><img src="images/headshots/beck.jpg" alt="Rebecca Orten" onerror="this.parentElement.style.background='var(--teal)'"></div>
+            <div class="team-card-body">
+              <div class="team-name-row">
+                <p class="team-name">Rebecca Orten</p>
+                <div class="team-socials">
+                  <a href="https://www.instagram.com/beckorten" target="_blank" rel="noopener" class="social-link" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                  </a>
+                </div>
+              </div>
+              <p class="team-role">Chief Illustrator</p>
+              <p class="team-bio">Beck Orten is a third-year student pursuing a bachelor's degree in journalism and cultural anthropology with a minor in Arabic. Beck's writing and photography have been featured in Northeastern's Huntington News, the Addison Independent, VT Digger, Blue Marble Review and more. She is passionate about global perspectives and international politics, having traveled to Morocco, Palestine, Jordan and Turkey to volunteer, photograph and report. She enjoys both traditional art and graphic design. Beck served as the chief illustrator for our project.</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar"><img src="images/headshots/grace.jpg" alt="Grace Sawin" onerror="this.parentElement.style.background='var(--navy)'"></div>
+            <div class="team-card-body">
+              <div class="team-name-row">
+                <p class="team-name">Grace Sawin</p>
+                <div class="team-socials">
+                  <a href="https://www.linkedin.com/in/grace-sawin-678b6128b/" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon-linkedin"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  </a>
+                  <a href="https://sawing02.wixsite.com/portfolio" target="_blank" rel="noopener" class="social-link" title="Website">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-website"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                  </a>
+                </div>
+              </div>
+              <p class="team-role">Chief Copy Editor</p>
+              <p class="team-bio">Grace Sawin is a senior at Northeastern studying journalism and environmental science. She is passionate about environmental justice and public service and hopes to amplify community voices through her writing. She has previously completed two co-ops as a press assistant in the Office of Boston Mayor Michelle Wu and as a communications assistant at MIT's Climate Change Engagement Program. At Northeastern, she is the editor-in-chief of Woof Magazine and the media director at WRBB 104.9 FM. Grace served as our chief copy editor and manager of classroom operations.</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="team-avatar"><img src="images/headshots/sydney.jpg" alt="Sydney Woogerd" onerror="this.parentElement.style.background='var(--amber)'"></div>
+            <div class="team-card-body">
+              <div class="team-name-row">
+                <p class="team-name">Sydney Woogerd</p>
+                <div class="team-socials">
+                  <a href="https://www.instagram.com/sydneywoogerd" target="_blank" rel="noopener" class="social-link" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                  </a>
+                  <a href="https://www.linkedin.com/in/sydney-woogerd-a42052341/" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon-linkedin"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  </a>
+                  <a href="https://sydneywoogerd.com" target="_blank" rel="noopener" class="social-link" title="Website">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-website"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                  </a>
+                </div>
+              </div>
+              <p class="team-role">Photo Editor</p>
+              <p class="team-bio">Sydney is a second-year journalism and international affairs student with a focus on multimedia storytelling. She serves as co-photo director for The Avenue Magazine, a student-led fashion publication, where she directs visual strategy and creates editorial content. She has also contributed to The Huntington News and Artistry Magazine as a writer and photographer documenting community stories across Boston. In her free time, she enjoys yoga, baking and photography. Sydney served as our photo editor.</p>
+            </div>
+          </div>
+
+        </div><!-- /team-grid -->
+      </div><!-- /team-section -->
+
+      <div class="dcreport-block">
+        <img src="images/logos/dcr.png" alt="DCReport.org logo" class="dcreport-logo" />
+        <p class="dcreport-text">As part of our special report, <em>Caught in the Current</em> has partnered with <a href="https://www.dcreport.org" target="_blank" rel="noopener">DCReport.org</a>, a not-for-profit news service published by the Next Echo Foundation. The organization, which focuses on the policies, politics and events that affect our everyday lives, allows our work in Asheville to reach a national audience.</p>
+      </div>
+
+      <div class="acknowledgments">
+        <h3>A Special Thanks To</h3>
+        <ul class="ack-list">
+          <li>Jonathan Kaufman, director, School of Journalism</li>
+          <li>R. Benjamin Knapp, dean, College of Arts, Media and Design</li>
+          <li>Andrea Raynor, associate dean, College of Arts, Media and Design</li>
+          <li>Katherine Calzada, assistant dean, faculty development, College of Arts, Media and Design</li>
+          <li>Lisa Thalhamer, teaching assistant</li>
+          <li>Luis Brens, media services manager, College of Arts, Media and Design</li>
+          <li>Susan Conover, academic coordinator, School of Journalism</li>
+          <li>Melissa Newton, assistant director, Faculty-Led Programs, Global Experience Office</li>
+          <li>Professor Jody Santos, School of Journalism, who advised our video reporters</li>
+          <li>Professor Jeb Sharp, School of Journalism, who advised our audio reporters</li>
+          <li>Professor Matt Carroll, School of Journalism, who advised on data visualizations</li>
+          <li>Professor Dan Zedek, School of Journalism, who advised on web solutions</li>
+          <li>Carissa Pfeiffer, librarian, Buncombe County Special Collections</li>
+        </ul>
+        <h3>Our Generous Financial Backers</h3>
+        <ul class="ack-list">
+          <li>The Joe Thomas Explore the World Fund</li>
+          <li>Professor John Wihbey and the XXXX Fund</li>
+          <li>Adam Leipzig, Next Echo Foundation</li>
+          <li>David Cay Johnson, DCReport.org</li>
+        </ul>
+      </div>
+
+    </div><!-- /inner-page-content -->
+
+    <footer>
+      <div class="footer-inner">
+        <p class="footer-title">Caught in the Current</p>
+        <p class="footer-sub">A Northeastern University School of Journalism Project · 2026</p>
+      </div>
+    </footer>
+  </div><!-- /about-page -->
+
+
+  <!-- ═══════════════════════════════════════════
+       MAIN SITE
+  ═══════════════════════════════════════════ -->
+  <div id="main-site">
+
+    <nav id="navbar">
+      <div class="nav-logo">
+        <img src="images/logos/main.png" alt="Caught in the Current" class="nav-logo-img" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#helene">The Storm</a></li>
+        <li><a href="#stories">Stories</a></li>
+        <li><a href="#" id="nav-about-link">About</a></li>
+      </ul>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- ── HERO ── -->
+    <section id="hero">
+      <video id="hero-video" autoplay playsinline>
+        <source src="videos/landing page.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="scroll-hint" aria-hidden="true">
+        <span>Scroll</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </section>
+
+    <!-- solid wrapper covers video as you scroll -->
+    <div id="content-wrap">
+
+      <!-- ── THE STORM / RAINFALL TEASER ── -->
+      <section id="helene">
+        <div class="section-header">
+          <h2>The Storm</h2>
+          <p class="section-intro">In September 2024, torrential rainwater from tropical storm Helene inundated Western North Carolina, catching residents and officials off guard and devastating significant swaths of the landscape. Eighteen months later, many areas have rebounded, but some are still rebuilding, a testament to the long and grueling recovery process following a natural disaster.  This is a special report from the School of Journalism at Northeastern University.</p>
+        </div>
+
+        <div class="rainfall-viz-wrap">
+          <canvas id="rainfallViz"></canvas>
+        </div>
+
+        <div class="rainfall-bottom">
+          <p class="rainfall-note">Helene started as a Category 2 hurricane in the Gulf of Mexico and ended up as a tropical storm in Asheville and beyond. Click <a href="https://hcbotnick.github.io/AshevilleNew/" target="_blank" rel="noopener" style="color:var(--amber);font-weight:700;text-decoration:underline;">here</a> to watch its journey north and west and to see where our students traveled to report on its aftermath.</p>
+        </div>
+      </section>
+
+      <!-- ── STORIES ── -->
+      <section id="stories">
+        <div class="section-header light">
+          <p class="section-label">The Reporting</p>
+          <h2>15 Stories from the Ground</h2>
+          <p class="section-intro">Our team spent seven days embedded in Asheville. These are the stories we found.</p>
+        </div>
+
+        <div class="story-filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="political">Political</button>
+          <button class="filter-btn" data-filter="cultural">Cultural</button>
+          <button class="filter-btn" data-filter="environmental">Environmental</button>
+          <button class="filter-btn" data-filter="audio">Audio</button>
+        </div>
+
+        <div class="stories-grid" id="stories-grid">
+
+<!-- 4 — Grace Sawin: Preview of What's to Come -->
+    <article class="story-card" data-category="environmental" tabindex="0" onclick="window.location.href='grace.html'" style="cursor:pointer;">
+      <div class="card-photo-wrap">
+        <span class="card-pill">Environmental</span>
+        <div class="card-arrow">
+          <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+        <img src="images/fotos/storm.gif" alt="Hurricane Helene satellite imagery" class="card-photo">
+        <div class="card-photo-overlay">
+          <p class="card-excerpt">Residents were not prepared for Helene. Scientists are trying to change that. </p>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-caption-category">Environmental</p>
+        <p class="card-caption-title">Blindsided by the storm</p>
+        <p class="card-caption-author">By Grace Sawin</p>
+      </div>
+    </article>
+    
+     <!-- 1 — The Kids Who Remember -->
+    <article class="story-card" data-category="audio" data-id="1" tabindex="0">
+      <div class="card-photo-wrap">
+        <span class="card-pill">Audio Doc</span>
+        <div class="card-arrow">
+          <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+        <img src="images/fotos/kids.jpg" alt="The Kids Who Remember" class="card-photo">
+        <div class="card-photo-overlay">
+          <p class="card-excerpt">A community struggles to make its youngest storm survivors feel safe again.</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-caption-category">Audio Documentary</p>
+        <p class="card-caption-title">In their own words</p>
+        <p class="card-caption-author">By Namira Haris</p>
+      </div>
+    </article>
+    <article class="story-card" data-category="cultural" tabindex="0" onclick="window.location.href='filler.html'" style="cursor:pointer;">
+  <div class="card-photo-wrap">
+    <span class="card-pill">Cultural</span>
+    <div class="card-arrow">
+      <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </div>
+    <img src="images/fotos/woodworking.jpg" alt="From Out of the Debris" class="card-photo">
+    <div class="card-photo-overlay">
+      <p class="card-excerpt">Fallen trees littered the landscape. One woman chose to make music with them. </p>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-caption-category">Cultural</p>
+    <p class="card-caption-title">From Out of the Debris</p>
+    <p class="card-caption-author">By Mia Filler</p>
+  </div>
+</article>
+<!-- 7 — Housing / Claire Ogden -->
+<article class="story-card" data-category="political" tabindex="0" onclick="window.location.href='ogden.html'" style="cursor:pointer;">
+  <div class="card-photo-wrap">
+    <span class="card-pill">Housing</span>
+    <div class="card-arrow">
+      <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </div>
+    <img src="images/fotos/housing.jpg" alt="Uprooted housing story" class="card-photo">
+    <div class="card-photo-overlay">
+      <p class="card-excerpt">Amid public funding chaos, housing recovery has been slow and community-driven.
+</p>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-caption-category">Housing</p>
+    <p class="card-caption-title">Uprooted</p>
+    <p class="card-caption-author">By Claire Ogden</p>
+  </div>
+</article>
+
+   <article class="story-card" data-category="cultural" tabindex="0" onclick="window.location.href='baker.html'" style="cursor:pointer;">
+  <div class="card-photo-wrap">
+    <span class="card-pill">Cultural</span>
+    <div class="card-arrow">
+      <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </div>
+    <img src="images/fotos/business.jpg" alt="Businesses bounce back" class="card-photo">
+    <div class="card-photo-overlay">
+      <p class="card-excerpt">Businesses continue to mount a comeback, but progress for many is slow.</p>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-caption-category">Cultural</p>
+    <p class="card-caption-title">Businesses Bounce Back</p>
+    <p class="card-caption-author">By Azariah Baker</p>
+  </div>
+</article>
+<article class="story-card" data-category="cultural" tabindex="0" onclick="window.location.href='val.html'" style="cursor:pointer;">
+  <div class="card-photo-wrap">
+    <span class="card-pill">Cultural</span>
+    <div class="card-arrow">
+      <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </div>
+    <img src="images/fotos/music1.jpg" alt="Still Playing" class="card-photo">
+    <div class="card-photo-overlay">
+      <p class="card-excerpt">Musicians are a cornerstone of Asheville. Their voices helped the community pick up and carry on.</p>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-caption-category">Cultural</p>
+    <p class="card-caption-title">Melody replaces malady</p>
+    <p class="card-caption-author">By Valentina Gutierrez</p>
+  </div>
+</article>
+
+   <article class="story-card" data-category="political" tabindex="0" onclick="window.location.href='ali.html'" style="cursor:pointer;">
+  <div class="card-photo-wrap">
+    <span class="card-pill">Political</span>
+    <div class="card-arrow">
+      <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </div>
+    <img src="images/fotos/fema.jpg" alt="FEMA funding story" class="card-photo">
+    <div class="card-photo-overlay">
+      <p class="card-excerpt">Federal funding presents a complex landscape for storm victims who are still waiting for assistance. </p>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-caption-category">Political</p>
+    <p class="card-caption-title">A fractured FEMA</p>
+    <p class="card-caption-author">By Ali Caudle</p>
+  </div>
+</article>
+
+    <!-- 5 — Lost and Found -->
+    <article class="story-card" data-category="cultural" tabindex="0" onclick="window.location.href='sydney.html'" style="cursor:pointer;">
+      <div class="card-photo-wrap">
+        <span class="card-pill">Cultural</span>
+        <div class="card-arrow">
+          <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+        <img src="images/fotos/foundobjects.jpg" alt="Lost and Found" class="card-photo">
+        <div class="card-photo-overlay">
+          <p class="card-excerpt">After the floodwaters receded, volunteers dedicated themselves to returning the scattered remnants of people's lives.</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-caption-category">Cultural</p>
+        <p class="card-caption-title">Lost and Found</p>
+        <p class="card-caption-author">By Sydney Woogerd</p>
+      </div>
+    </article>
+
+    <!-- 6 — Cultural placeholder -->
+    <article class="story-card" data-category="cultural" data-id="6" tabindex="0">
+      <div class="card-photo-wrap">
+        <span class="card-pill">Cultural</span>
+        <div class="card-arrow">
+          <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+        <img src="images/fotos/HAM.jpg" alt="Cultural story" class="card-photo">
+        <div class="card-photo-overlay">
+          <p class="card-excerpt">A cultural story from Asheville — coming soon.</p>
+        </div>
+      </div>
+      <div class="card-body placeholder">
+        <p class="card-caption-category">Cultural</p>
+        <p class="card-caption-title">Coming Soon</p>
+      </div>
+    </article>
+<!-- 6 — Cultural placeholder -->
+    <article class="story-card" data-category="cultural" data-id="6" tabindex="0">
+      <div class="card-photo-wrap">
+        <span class="card-pill">Cultural</span>
+        <div class="card-arrow">
+          <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+        <img src="images/fotos/HAM.jpg" alt="Cultural story" class="card-photo">
+        <div class="card-photo-overlay">
+          <p class="card-excerpt">A cultural story from Asheville — coming soon.</p>
+        </div>
+      </div>
+      <div class="card-body placeholder">
+        <p class="card-caption-category">Cultural</p>
+        <p class="card-caption-title">Coming Soon</p>
+      </div>
+    </article>
+
+    <!-- 8 — Political placeholder -->
+    <article class="story-card" data-category="political" data-id="8" tabindex="0">
+      <div class="card-photo-wrap">
+        <span class="card-pill">Political</span>
+        <div class="card-arrow">
+          <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+        <img src="images/fotos/bipoc.jpg" alt="Political story" class="card-photo">
+        <div class="card-photo-overlay">
+          <p class="card-excerpt">Political reporting from Asheville — coming soon.</p>
+        </div>
+      </div>
+      <div class="card-body placeholder">
+        <p class="card-caption-category">Political</p>
+        <p class="card-caption-title">Coming Soon</p>
+      </div>
+    </article>
+
+   
+
+    <!-- 10 — Audio placeholder -->
+    <article class="story-card" data-category="audio" data-id="10" tabindex="0">
+      <div class="card-photo-wrap">
+        <span class="card-pill">Audio</span>
+        <div class="card-arrow">
+          <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+        <img src="images/fotos/PO.jpg" alt="Audio story" class="card-photo">
+        <div class="card-photo-overlay">
+          <p class="card-excerpt">An audio story from Asheville — coming soon.</p>
+        </div>
+      </div>
+      <div class="card-body placeholder">
+        <p class="card-caption-category">Audio</p>
+        <p class="card-caption-title">Coming Soon</p>
+      </div>
+    </article>
+
+    <!-- 11 — Environmental placeholder -->
+    <article class="story-card" data-category="environmental" data-id="11" tabindex="0">
+      <div class="card-photo-wrap">
+        <span class="card-pill">Environmental</span>
+        <div class="card-arrow">
+          <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+        <img src="images/fotos/wildlife.jpg" alt="Environmental story" class="card-photo">
+        <div class="card-photo-overlay">
+          <p class="card-excerpt">An environmental story from Asheville — coming soon.</p>
+        </div>
+      </div>
+      <div class="card-body placeholder">
+        <p class="card-caption-category">Environmental</p>
+        <p class="card-caption-title">Coming Soon</p>
+      </div>
+    </article>
+
+    <!-- 12 — Political placeholder -->
+    <article class="story-card" data-category="political" data-id="12" tabindex="0">
+      <div class="card-photo-wrap">
+        <span class="card-pill">Political</span>
+        <div class="card-arrow">
+          <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+        <img src="images/fotos/2water.jpg" alt="Political story" class="card-photo">
+        <div class="card-photo-overlay">
+          <p class="card-excerpt">Political reporting from Asheville — coming soon.</p>
+        </div>
+      </div>
+      <div class="card-body placeholder">
+        <p class="card-caption-category">Political</p>
+        <p class="card-caption-title">Coming Soon</p>
+      </div>
+    </article>
+
+    
+
+    
+
+    <!-- 15 — Audio placeholder -->
+    <article class="story-card" data-category="audio" data-id="15" tabindex="0">
+      <div class="card-photo-wrap">
+        <span class="card-pill">Audio</span>
+        <div class="card-arrow">
+          <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+        <img src="images/fotos/PO.jpg" alt="Audio story" class="card-photo">
+        <div class="card-photo-overlay">
+          <p class="card-excerpt">An audio story from Asheville — coming soon.</p>
+        </div>
+      </div>
+      <div class="card-body placeholder">
+        <p class="card-caption-category">Audio</p>
+        <p class="card-caption-title">Coming Soon</p>
+      </div>
+    </article>
+
+  </div><!-- /stories-grid -->
+
+        <footer>
+          <div class="footer-inner">
+            <p class="footer-title">Caught in the Current</p>
+            <p class="footer-sub">A Northeastern University School of Journalism Project · 2026</p>
+          </div>
+        </footer>
+
+      </section>
+
+    </div><!-- /#content-wrap -->
+
+    <!-- ── STORY MODAL ── -->
+    <div id="story-modal" class="modal" role="dialog" aria-modal="true">
+      <div class="modal-backdrop" id="modal-backdrop"></div>
+      <div class="modal-panel">
+        <button class="modal-close" id="modal-close" aria-label="Close story">✕</button>
+        <div class="modal-content" id="modal-content"></div>
+      </div>
+    </div>
+
+  </div><!-- /#main-site -->
+
+  <script src="main.js"></script>
+</body>
+</html>
