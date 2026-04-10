@@ -54,13 +54,13 @@ a { color: inherit; text-decoration: none; }
 /* ── HERO ── */
 .story-hero {
   position: relative;
-  padding: 6rem 2.5rem 4.5rem;
+  padding: 3rem 2.5rem 2rem;
   text-align: left;
   overflow: hidden;
   background: var(--navy);
-  min-height: 10vh;
+  min-height: 70vh;
   display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
+  align-items: center; justify-content: flex-start;
 }
 .story-hero-bg {
   position: absolute; inset: 0;
@@ -84,48 +84,75 @@ a { color: inherit; text-decoration: none; }
   opacity: 0; animation: fadeUp .8s ease .4s forwards;
 }
 .story-headline {
-  font-family: var(--font-body); font-weight: 700;
+  font-family: var(--font-body);
+  font-weight: 700;
   font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-  color: var(--cream); line-height: 1.15;
-  max-width: 780px; margin: 0 auto .8rem;
-  opacity: 0; animation: fadeUp .9s ease .6s forwards;
+  color: var(--cream);
+  line-height: 1.15;
+  max-width: 780px;
+  margin: 0 auto .8rem;
+  text-align: center;
+  opacity: 0;
+  animation: fadeUp .9s ease .6s forwards;
 }
-.headline-em { color: var(--amber); font-style: italic; }
+
+.headline-em {
+  color: var(--amber);
+  font-style: italic;
+}
+
 .story-byline {
-  font-size: .72rem; color: rgba(247,243,237,.55);
-  letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1.6rem;
-  opacity: 0; animation: fadeUp .9s ease .8s forwards;
+  font-size: .72rem;
+  color: rgba(247,243,237,.55);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin: 0 auto 1.6rem;
+  text-align: center;
+  opacity: 0;
+  animation: fadeUp .9s ease .8s forwards;
 }
-.story-byline span { color: rgba(247,243,237,.85); font-weight: 700; }
+
+.story-byline span {
+  color: rgba(247,243,237,.85);
+  font-weight: 700;
+}
+
 .story-dek {
-  max-width: 600px; margin: 0 auto;
-  font-size: 12.8px; font-style: italic;
-  color: rgba(247,243,237,.75); line-height: 1.8;
-  opacity: 0; animation: fadeUp .9s ease 1s forwards;
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 12.8px;
+  font-style: italic;
+  color: rgba(247,243,237,.75);
+  line-height: 1.8;
+  text-align: center;
+  opacity: 0;
+  animation: fadeUp .9s ease 1s forwards;
+}
+.story-hero > *:not(.story-hero-bg):not(.story-hero-overlay):not(.photo-credit) {
+  position: relative;
+  z-index: 2;
 }
 .photo-credit {
-  position: absolute;
-  bottom: 1rem;
-  left: 1.5rem;
-  right: auto; /* 🔥 THIS is important */
+  display: block;
   font-size: .55rem;
-  color: rgba(247,243,237,.5);
+  color: rgba(34,64,80,.45);
   letter-spacing: .06em;
-  z-index: 2;
+  padding: .4rem 1.5rem;
+  text-align: left;
 }
 .photo-credit a {
   color: rgba(247,243,237,.75);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-
 .photo-credit a:hover {
   color: var(--amber);
 }
 
+
 /* ── ARTICLE ── */
 .article-body {
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 3.5rem 1.5rem 4rem;
 }
@@ -219,17 +246,16 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   <div class="story-hero-bg"></div>
   <div class="story-hero-overlay"></div>
   <p class="story-kicker">Environmental</p>
-  <h1 class="story-headline">Fingerprints of Climate Change: <span class="headline-em">Storm Preparedness in a New Climate Change Era
-"</span></h1>
+ <h1 class="story-headline">Fingerprints of climate change: <span class="headline-em">Storm preparedness in a new era</span></h1>
   <p class="story-byline">By <span>Grace Sawin</span></p>
   <p class="story-dek">Hurricane Helene made landfall in Western North Carolina in September 2024. Eighteen months later, residents are still picking up the pieces — but as climate change intensifies storms, Helene was just the beginning.</p>
-  <span class="photo-credit">
+</header>
+<span class="photo-credit">
   Cover Photo: 
   <a href="https://www.aoml.noaa.gov/hurricane-helene-breaking-records-in-hurricane-data-collection/" target="_blank">
     NOAA
   </a>
 </span>
-</header>
 
 <!-- ARTICLE -->
 <article class="article-body">
@@ -295,7 +321,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   <p>"Last spring really wasn't a one-off," Davis, the climatologist, said. "It was a preview of what's to come in these areas."</p>
 
   <!-- ═══ SECTION 2 ═══ -->
-  <div class="section-divider"><span>"Fingerprints" of Climate Change</span></div>
+  <div class="section-divider"><span>"Fingerprints" of climate change</span></div>
 
   <p>Before Tropical Storm Helene hit, the area was already experiencing around eight to 10 inches of what meteorologists call "predecessor rains" caused by an unnamed stationary system that was triggered by the heightened moisture from the Gulf of Mexico. So when Helene made its way to Asheville four days later, it had technically "downgraded" to a tropical storm, signaling a weaker system using the metric of wind conditions.</p>
 
@@ -340,7 +366,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   <p>"Nobody had insurance. And if they did, they didn't talk about it," Gerard said. "People I talked to unilaterally seemed to be saying, 'I lost everything and didn't have insurance.' So I did not hear of anybody other than me."</p>
 
   <!-- ═══ SECTION 3 ═══ -->
-  <div class="section-divider"><span>'Climate Change' Gets an Update in NC</span></div>
+  <div class="section-divider"><span>'Climate change' gets an update in NC</span></div>
 
   <p><a href="https://www.noaa.gov/noaa-atlas-14" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">NOAA Atlas 14</a> is the current standard for measuring precipitation frequency, supplying data on "1-in-N year" events. Government agencies like the <a href="https://www.weather.gov/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">National Weather Service</a> use this language when communicating the strength of the storm to the public.</p>
 
@@ -382,7 +408,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   <p>In 2025, Gov. Stein also delegated development of a new North Carolina Climate Science Report to the State Climate Office. Set to be released in October 2026, the updated report will feature a dedicated section on the ways in which storms are getting worse. These measures will help prepare people for the unexpected. Beyond storms, North Carolina is vulnerable to several climate threats.</p>
 
   <!-- ═══ SECTION 4 ═══ -->
-  <div class="section-divider"><span>Building Resilience Locally</span></div>
+  <div class="section-divider"><span>Building resilience locally</span></div>
 
   <p>Local and county decision makers are also shifting preparedness strategies to make sure the fallout from Helene is never repeated.</p>
 
