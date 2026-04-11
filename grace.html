@@ -21,24 +21,15 @@
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
-body {
-  font-family: var(--font-body);
-  background: var(--cream);
-  color: var(--navy);
-  overflow-x: hidden;
-  line-height: 1.7;
-}
+body { font-family: var(--font-body); background: var(--cream); color: var(--navy); overflow-x: hidden; line-height: 1.7; }
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
-
-/* ── NAV ── */
 
 .story-nav {
   position: sticky; top: 0; z-index: 300;
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 2.5rem; height: var(--nav-h);
-  background: rgba(34,64,80,.95);
-  backdrop-filter: blur(8px);
+  background: rgba(34,64,80,.95); backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(255,255,255,.07);
 }
 .nav-logo-img { height: 100px; width: 85px; object-fit: contain; border-radius: 50%; }
@@ -51,23 +42,17 @@ a { color: inherit; text-decoration: none; }
 }
 .back-btn:hover { background: var(--amber); border-color: var(--amber); }
 
-/* ── HERO ── */
 .story-hero {
-  position: relative;
-  padding: 3rem 2.5rem 2rem;
-  text-align: left;
-  overflow: hidden;
-  background: var(--navy);
-  min-height: 70vh;
-  display: flex; flex-direction: column;
+  position: relative; padding: 3rem 2.5rem 2rem;
+  text-align: left; overflow: hidden; background: var(--navy);
+  min-height: 50vh; display: flex; flex-direction: column;
   align-items: center; justify-content: flex-start;
 }
 .story-hero-bg {
   position: absolute; inset: 0;
   background-image: url('images/fotos/storm.gif');
   background-size: cover; background-position: center;
-  transform: scale(1.06);
-  animation: heroZoom 12s ease-out forwards;
+  transform: scale(1.06); animation: heroZoom 12s ease-out forwards;
 }
 .story-hero-overlay {
   position: absolute; inset: 0;
@@ -75,7 +60,6 @@ a { color: inherit; text-decoration: none; }
 }
 @keyframes heroZoom { from { transform: scale(1.06); } to { transform: scale(1); } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-
 .story-hero > *:not(.story-hero-bg):not(.story-hero-overlay) { position: relative; z-index: 2; }
 
 .story-kicker {
@@ -84,156 +68,102 @@ a { color: inherit; text-decoration: none; }
   opacity: 0; animation: fadeUp .8s ease .4s forwards;
 }
 .story-headline {
-  font-family: var(--font-body);
-  font-weight: 700;
+  font-family: var(--font-body); font-weight: 700;
   font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-  color: var(--cream);
-  line-height: 1.15;
-  max-width: 780px;
-  margin: 0 auto .8rem;
-  text-align: center;
-  opacity: 0;
-  animation: fadeUp .9s ease .6s forwards;
+  color: var(--cream); line-height: 1.15;
+  max-width: 780px; margin: 0 auto .8rem; text-align: center;
+  opacity: 0; animation: fadeUp .9s ease .6s forwards;
 }
-
-.headline-em {
-  color: var(--amber);
-  font-style: italic;
-}
-
+.headline-em { color: var(--amber); font-style: italic; }
 .story-byline {
-  font-size: .72rem;
-  color: rgba(247,243,237,.55);
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  margin: 0 auto 1.6rem;
-  text-align: center;
-  opacity: 0;
-  animation: fadeUp .9s ease .8s forwards;
+  font-size: .72rem; color: rgba(247,243,237,.55);
+  letter-spacing: .1em; text-transform: uppercase;
+  margin: 0 auto 1.6rem; text-align: center;
+  opacity: 0; animation: fadeUp .9s ease .8s forwards;
 }
-
-.story-byline span {
-  color: rgba(247,243,237,.85);
-  font-weight: 700;
-}
-
+.story-byline span { color: rgba(247,243,237,.85); font-weight: 700; }
 .story-dek {
-  max-width: 600px;
-  margin: 0 auto;
-  font-size: 12.8px;
-  font-style: italic;
-  color: rgba(247,243,237,.75);
-  line-height: 1.8;
-  text-align: center;
-  opacity: 0;
-  animation: fadeUp .9s ease 1s forwards;
-}
-.story-hero > *:not(.story-hero-bg):not(.story-hero-overlay):not(.photo-credit) {
-  position: relative;
-  z-index: 2;
+  max-width: 600px; margin: 0 auto; font-size: 12.8px;
+  font-style: italic; color: rgba(247,243,237,.75); line-height: 1.8;
+  text-align: center; opacity: 0; animation: fadeUp .9s ease 1s forwards;
 }
 .photo-credit {
-  display: block;
-  font-size: .55rem;
-  color: rgba(34,64,80,.45);
-  letter-spacing: .06em;
-  padding: .4rem 1.5rem;
-  text-align: left;
+  display: block; font-size: .55rem; color: rgba(34,64,80,.45);
+  letter-spacing: .06em; padding: .4rem 1.5rem; text-align: left;
 }
-.photo-credit a {
-  color: rgba(247,243,237,.75);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-.photo-credit a:hover {
-  color: var(--amber);
-}
+.photo-credit a { color: rgba(235, 96, 10, 0.75); text-decoration: underline; text-underline-offset: 2px; }
+.photo-credit{ color: var(--amber); }
 
-
-/* ── ARTICLE ── */
-.article-body {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 3.5rem 1.5rem 4rem;
-}
-.article-body p {
-  font-size: 12.8px;
-  line-height: 1.95;
-  color: rgba(34,64,80,.85);
-  margin-bottom: 1.35rem;
-}
+.article-body { max-width: 800px; margin: 0 auto; padding: 3.5rem 1.5rem 4rem; }
+.article-body p { font-size: 12.8px; line-height: 1.95; color: rgba(34,64,80,.85); margin-bottom: 1.35rem; }
 .article-body p:first-child::first-letter {
   float: left; font-size: 3.8rem; font-weight: 700;
   line-height: .82; margin: .06em .14em 0 0; color: var(--teal);
 }
 
-/* ── SECTION DIVIDERS ── */
 .section-divider {
   display: flex; align-items: center; gap: 1rem;
-  margin: 3rem 0 2.2rem;
-  justify-content: flex-start;
+  margin: 3rem 0 2.2rem; justify-content: flex-start;
 }
-.section-divider span {
-  font-size: .95rem; letter-spacing: .28em;
-  text-transform: uppercase; color: var(--rust); white-space: nowrap;
-}
-.section-divider::before {
-  display: none;
-}
-.section-divider::after {
-  content: ''; flex: 1; height: 1px; background: rgba(34,64,80,.15);
-}
+.section-divider span { font-size: .95rem; letter-spacing: .28em; text-transform: uppercase; color: var(--rust); white-space: nowrap; }
+.section-divider::before { display: none; }
+.section-divider::after { content: ''; flex: 1; height: 1px; background: rgba(34,64,80,.15); }
 
-/* ── STAT CALLOUTS ── */
 .stat-band {
-  margin: 2.8rem -1.5rem;
-  padding: 2.2rem 2rem;
-  background: var(--navy);
+  margin: 2.8rem -1.5rem; padding: 2.2rem 2rem;
+  background: var(--navy); border-radius: 10px;
+  display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+}
+.stat-item { text-align: center; flex: 1 1 140px; max-width: 200px; }
+.stat-number { font-size: 1.6rem; font-weight: 700; color: var(--amber); line-height: 1.1; margin-bottom: .3rem; }
+.stat-label { font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(247,243,237,.55); line-height: 1.5; }
+
+/* ── STORY IMAGES ── */
+.story-img {
+  margin: 2rem 0;
   border-radius: 10px;
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  flex-wrap: wrap;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(34,64,80,.12);
 }
-.stat-item {
-  text-align: center;
-  flex: 1 1 140px;
-  max-width: 200px;
-}
-.stat-number {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--amber);
-  line-height: 1.1;
-  margin-bottom: .3rem;
-}
-.stat-label {
-  font-size: .58rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: rgba(247,243,237,.55);
-  line-height: 1.5;
+.story-img img { width: 100%; height: auto; display: block; }
+.story-img figcaption {
+  font-size: .75rem; line-height: 1.6;
+  color: rgba(0, 0, 0, 0.5); padding: .65rem .9rem .7rem;
+  background: var(--white); border-top: 1px solid rgba(34,64,80,.06);
+  font-style: italic;
 }
 
+.story-img-float {
+  float: right; width: 42%;
+  margin: .4rem 0 1.2rem 2rem;
+  border-radius: 10px; overflow: hidden;
+  box-shadow: 0 8px 28px rgba(34,64,80,.12); clear: right;
+}
+.story-img-float img { width: 100%; height: auto; display: block; }
+.story-img-float figcaption {
+  font-size: .72rem; line-height: 1.6;
+  color: rgba(0, 0, 0, 0.5); padding: .55rem .8rem .6rem;
+  background: var(--white); border-top: 1px solid rgba(34,64,80,.06);
+  font-style: italic;
+}
+.clearfix::after { content: ''; display: table; clear: both; }
 
-/* ── FOOTER ── */
 footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 .footer-title { font-family: var(--font-display); font-size: 1rem; color: var(--cream); letter-spacing: .1em; margin-bottom: .35rem; }
 .footer-sub { font-size: .75rem; color: rgba(247,243,237,.48); letter-spacing: .08em; }
 
-/* ── RESPONSIVE ── */
 @media (max-width: 600px) {
   .story-nav { padding: 0 1.2rem; }
   .story-hero { padding: 4rem 1.2rem 3rem; min-height: 60vh; }
   .article-body { padding: 2.5rem 1.2rem 3rem; }
   .stat-band { margin: 2rem -.5rem; padding: 1.5rem 1rem; flex-direction: column; align-items: center; }
   .stat-item { max-width: 100%; }
+  .story-img-float { float: none; width: 100%; margin: 1.5rem 0; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="story-nav">
   <a href="index.html">
     <img src="images/logos/main.png" alt="Caught in the Current" class="nav-logo-img">
@@ -241,23 +171,20 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   <button class="back-btn" onclick="history.back()">← All Stories</button>
 </nav>
 
-<!-- HERO -->
 <header class="story-hero">
   <div class="story-hero-bg"></div>
   <div class="story-hero-overlay"></div>
   <p class="story-kicker">Environmental</p>
- <h1 class="story-headline">Fingerprints of climate change: <span class="headline-em">Storm preparedness in a new era</span></h1>
+  <h1 class="story-headline">Fingerprints of climate change: <span class="headline-em">Storm preparedness in a new era</span></h1>
   <p class="story-byline">By <span>Grace Sawin</span></p>
   <p class="story-dek">Hurricane Helene made landfall in Western North Carolina in September 2024. Eighteen months later, residents are still picking up the pieces — but as climate change intensifies storms, Helene was just the beginning.</p>
 </header>
 <span class="photo-credit">
-  Cover Photo: 
+  Cover Photo:
   <a href="https://www.aoml.noaa.gov/hurricane-helene-breaking-records-in-hurricane-data-collection/" target="_blank">
     NOAA
   </a>
 </span>
-
-<!-- ARTICLE -->
 <article class="article-body">
 
   <p>Heather Divoky immediately went into disaster preparation mode when she heard Hurricane Helene was headed for Asheville. In the days leading up to the storm, the artist and poet transported her larger, more expensive art pieces from her studio in the River Arts District, just off the banks of the French Broad River, to her more elevated home in West Asheville.</p>
@@ -276,24 +203,11 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 
   <p>And in between, in September 2024, Hurricane Helene made landfall in Buncombe County and Western North Carolina as a tropical storm, bringing catastrophic inland flooding, extreme winds, devastating storm surges and flash flooding.</p>
 
-  <!-- STAT BAND -->
   <div class="stat-band">
-    <div class="stat-item">
-      <div class="stat-number">27 ft</div>
-      <div class="stat-label">River levels above normal</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">13+"</div>
-      <div class="stat-label">Inches of rain in Asheville</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">30"</div>
-      <div class="stat-label">Rain in mountain areas</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">107</div>
-      <div class="stat-label">Deaths in North Carolina</div>
-    </div>
+    <div class="stat-item"><div class="stat-number">27 ft</div><div class="stat-label">River levels above normal</div></div>
+    <div class="stat-item"><div class="stat-number">13+"</div><div class="stat-label">Inches of rain in Asheville</div></div>
+    <div class="stat-item"><div class="stat-number">30"</div><div class="stat-label">Rain in mountain areas</div></div>
+    <div class="stat-item"><div class="stat-number">107</div><div class="stat-label">Deaths in North Carolina</div></div>
   </div>
 
   <p>As water funneled in from the mountains, the French Broad and Swannanoa rivers — two main waterways that run through the city — swelled to heights of 27 feet over what was typical. Over the next four days, the tropical storm brought more than 13 inches of rain to Asheville and up to 30 inches to the mountainous areas of the greater Buncombe County. To date, it was the worst flooding in the region's history.</p>
@@ -310,6 +224,12 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 
   <p>For more than a year before the storm, she worked happily in Pink Dog Creative, a vibrant collective of studios, coffeehouses and restaurants along the upper portion of the River Arts District, known locally as RAD. Steps away from the river, the district boasted more than 300 artists in what was repurposed in the early 2000s from an industrial corridor to a hip, mixed-use neighborhood that trumpeted river views and easy access to "Asheville's scenic waterway."</p>
 
+  <!-- IMAGE 1 — full width -->
+  <figure class="story-img">
+    <img src="images/story/grace/1.jpg" alt="Deserted building in Asheville's River Arts District">
+    <figcaption>A deserted building sits in Asheville's River Arts District, steps away from the Swannanoa River. Over 18 months after Helene, it's still waiting to be rebuilt. Photo Credit: Sydney Woogerd</figcaption>
+  </figure>
+
   <p>It was that same proximity that led to RAD suffering the most severe damage in the storm. More than 80% of buildings were affected, with two thirds of the district washed away or reduced to rubble. Over 100 artists were displaced, many of whom have yet to return. There is little hope of recovering what they lost, contributing to an estimated $1 billion in property damage in that district alone.</p>
 
   <p>As for Divoky, who was able to save all of her portraits but was displaced from her approximately 300 square foot studio for two months, the 37-year-old says she has learned the hard lesson that climate havens do not actually exist. Divoky admits she should have known better, since her earliest memories were wrought by the terrible storms she survived as a child — hurricanes Florence and Bertha. Between the two, she lost most of her belongings including irreplaceable items like her grandmother's quilts.</p>
@@ -320,7 +240,6 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 
   <p>"Last spring really wasn't a one-off," Davis, the climatologist, said. "It was a preview of what's to come in these areas."</p>
 
-  <!-- ═══ SECTION 2 ═══ -->
   <div class="section-divider"><span>"Fingerprints" of climate change</span></div>
 
   <p>Before Tropical Storm Helene hit, the area was already experiencing around eight to 10 inches of what meteorologists call "predecessor rains" caused by an unnamed stationary system that was triggered by the heightened moisture from the Gulf of Mexico. So when Helene made its way to Asheville four days later, it had technically "downgraded" to a tropical storm, signaling a weaker system using the metric of wind conditions.</p>
@@ -337,6 +256,13 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 
   <p>But the water was already cresting. For many, evacuation was no longer an option.</p>
 
+  <!-- IMAGE 2 — float right -->
+  <div class="clearfix">
+  <figure class="story-img-float">
+    <img src="images/story/grace/2.jpg" alt="Railroad tracks alongside the French Broad River in Marshall, NC">
+    <figcaption>Railroad tracks run alongside the French Broad River in Marshall, North Carolina, with debris and collapsed buildings still visible in March 2026. When the water crested to over 27 feet during Helene, the town experienced catastrophic flooding. Photo Credit: Sydney Woogerd</figcaption>
+  </figure>
+
   <p>Although meteorologists were aware of the likely potential for disaster, the disconnect between residents and state and local authorities had catastrophic ramifications.</p>
 
   <p>Rennie says meteorologists do a "very good job at the physical science" but they "suck at science communication," making it difficult to accurately portray urgency to the public in the face of exacerbated weather conditions.</p>
@@ -346,6 +272,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   <p>This forecasting knowledge is invaluable, but it also leaves those who study weather events for a living feeling helpless when overcoming the public disconnect.</p>
 
   <p>"People have survivor's guilt. I have something called meteorological survivor's guilt. I've kind of coined that, and I struggle with it because I knew what the forecast was," Rennie reflected. "If you look back — and you know hindsight is 2020 — could we have had a bigger voice?"</p>
+  </div>
 
   <p>Helene stands as the worst water disaster Western North Carolina has seen to date. But this flooding is not new for the region.</p>
 
@@ -365,7 +292,6 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 
   <p>"Nobody had insurance. And if they did, they didn't talk about it," Gerard said. "People I talked to unilaterally seemed to be saying, 'I lost everything and didn't have insurance.' So I did not hear of anybody other than me."</p>
 
-  <!-- ═══ SECTION 3 ═══ -->
   <div class="section-divider"><span>'Climate change' gets an update in NC</span></div>
 
   <p><a href="https://www.noaa.gov/noaa-atlas-14" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">NOAA Atlas 14</a> is the current standard for measuring precipitation frequency, supplying data on "1-in-N year" events. Government agencies like the <a href="https://www.weather.gov/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">National Weather Service</a> use this language when communicating the strength of the storm to the public.</p>
@@ -375,23 +301,20 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   <p>Storms like Helene — "thousand year storms" — are becoming alarmingly more frequent due to global climate change. In the last 25 years, there have been nine storms in North Carolina that would be considered a thousand-year event.</p>
 
   <div class="stat-band">
-    <div class="stat-item">
-      <div class="stat-number">9</div>
-      <div class="stat-label">"1,000-year" storms in NC in 25 years</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">$1B+</div>
-      <div class="stat-label">Property damage in RAD alone</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">80%</div>
-      <div class="stat-label">of RAD buildings affected</div>
-    </div>
+    <div class="stat-item"><div class="stat-number">9</div><div class="stat-label">"1,000-year" storms in NC in 25 years</div></div>
+    <div class="stat-item"><div class="stat-number">$1B+</div><div class="stat-label">Property damage in RAD alone</div></div>
+    <div class="stat-item"><div class="stat-number">80%</div><div class="stat-label">of RAD buildings affected</div></div>
   </div>
 
   <p>"Researchers have looked at the environment that caused Hurricane Florence to develop, what caused it to slow down, what caused it to produce those extreme rainfall totals, and found that the fingerprints of climate change are really all over a storm like that," Davis says. "When Helene came in, we also started to recognize those fingerprints."</p>
 
   <p>Today, NOAA Atlas 14 is getting an update. Set to be released in 2026, Atlas 15 is currently under development. The updated system will use future climate projections to account for climate change. For the first time, the technology will be able to project rainfall patterns through the year 2100 and account for future trends. Once implemented, the new technology will help communities nationally become more resilient.</p>
+
+  <!-- IMAGE 3 — full width -->
+  <figure class="story-img">
+    <img src="images/story/grace/3.jpg" alt="Road along the Swannanoa River with exposed pipes and shattered asphalt">
+    <figcaption>A stretch of road along the Swannanoa River reveals exposed pipes and shattered asphalt left over from Helene. The storm caused widespread road closures across Swannanoa and Western North Carolina in September 2024. Photo Credit: Sydney Woogerd</figcaption>
+  </figure>
 
   <p>This isn't the only important shift on the horizon on the federal level. Another significant effort, led by those who recognize that climate change is not going away, is under way in the form of new legislation to create a <a href="https://www.congress.gov/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">National Weather Safety Board</a>. Board members, who would be appointed by the president and confirmed by the Senate, would investigate severe weather disasters, modeled after the <a href="https://www.ntsb.gov/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">National Transportation Safety Board</a>. If the Board voted to launch an investigation, which would determine what went wrong during major weather disasters to better protect lives and property, it could issue reports with actionable recommendations to agencies like NOAA and the National Weather Service.</p>
 
@@ -407,7 +330,6 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 
   <p>In 2025, Gov. Stein also delegated development of a new North Carolina Climate Science Report to the State Climate Office. Set to be released in October 2026, the updated report will feature a dedicated section on the ways in which storms are getting worse. These measures will help prepare people for the unexpected. Beyond storms, North Carolina is vulnerable to several climate threats.</p>
 
-  <!-- ═══ SECTION 4 ═══ -->
   <div class="section-divider"><span>Building resilience locally</span></div>
 
   <p>Local and county decision makers are also shifting preparedness strategies to make sure the fallout from Helene is never repeated.</p>
@@ -440,13 +362,20 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 
   <p>"When you're just trying to survive…you don't think about planning for the next big thing," said Divoky, the Asheville artist who used to think she was safe from storms in Asheville. "You're just thinking about trying to make it through the day."</p>
 
+  <!-- IMAGE 4 — float right -->
+  <div class="clearfix">
+  <figure class="story-img-float">
+    <img src="images/story/grace/4.jpg" alt="Artist Heather Divoky at her studio in Pink Dog Creative">
+    <figcaption>Artist Heather Divoky poses for a portrait at her studio in Pink Dog Creative. Photo Credit: Grace Sawin</figcaption>
+  </figure>
+
   <p>As a child, she experienced that tug and pull during bad storms in her own family: "That's something that people see a lot, especially with hurricane preparedness and stuff like that. On my dad's side, he's always been like, 'Well, you need to do this in case this happens.' And my mom's just like, 'You just gotta hammer through it, girl.'"</p>
 
   <p>Helene made one thing very clear to Divoky. That is, from now on, her dad's approach is the way to go.</p>
+  </div>
 
 </article>
 
-<!-- FOOTER -->
 <footer>
   <p class="footer-title">Caught in the Current</p>
   <p class="footer-sub">Helene Recovery in Asheville and Beyond · Northeastern University · 2025</p>
