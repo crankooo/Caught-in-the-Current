@@ -33,6 +33,7 @@ body {
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 
+/* ── NAV ── */
 .story-nav {
   position: sticky; top: 0; z-index: 300;
   display: flex; align-items: center; justify-content: space-between;
@@ -51,14 +52,11 @@ a { color: inherit; text-decoration: none; }
 }
 .back-btn:hover { background: var(--amber); border-color: var(--amber); }
 
+/* ── HERO ── */
 .story-hero {
-  position: relative;
-  min-height: 10vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: var(--navy);
+  position: relative; min-height: 10vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; background: var(--navy);
 }
 .story-hero-bg {
   position: absolute; inset: 0;
@@ -74,13 +72,12 @@ a { color: inherit; text-decoration: none; }
     linear-gradient(to right, rgba(34,64,80,.40), rgba(34,64,80,.08));
 }
 @keyframes heroZoom { from { transform: scale(1.05); } to { transform: scale(1); } }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeUp   { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 .story-hero > *:not(.story-hero-bg):not(.story-hero-overlay) { position: relative; z-index: 2; }
 
 .hero-inner {
   width: 100%; max-width: 1180px;
-  margin: 0 auto; padding: 5rem 2.5rem 4rem;
-  text-align: center;
+  margin: 0 auto; padding: 5rem 2.5rem 4rem; text-align: center;
 }
 .story-kicker {
   display: inline-block; font-size: .62rem; letter-spacing: .28em;
@@ -107,24 +104,13 @@ a { color: inherit; text-decoration: none; }
 }
 .story-byline span { color: rgba(247,243,237,.88); font-weight: 700; }
 
+/* ── SHELL & GRID ── */
 .article-shell {
   max-width: 1180px; margin: 0 auto;
   padding: 3.2rem 1.5rem 4rem;
 }
-
 .article-topper { max-width: var(--max-w); margin: 0 auto 2.2rem; }
 .article-topper p { font-size: .82rem; line-height: 1.95; color: rgba(34,64,80,.82); }
-
-.stat-band {
-  margin: 0 auto 3rem; max-width: 1040px;
-  padding: 1.8rem 1.4rem; background: var(--white);
-  border: 1px solid rgba(34,64,80,.08); border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(34,64,80,.06);
-  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem;
-}
-.stat-item { text-align: center; padding: .6rem; }
-.stat-number { font-size: 1.75rem; line-height: 1.05; color: var(--rust); font-weight: 700; margin-bottom: .35rem; }
-.stat-label { font-size: .62rem; line-height: 1.55; letter-spacing: .14em; text-transform: uppercase; color: rgba(34,64,80,.58); }
 
 .article-grid {
   display: grid; grid-template-columns: minmax(0, 1fr) 260px;
@@ -136,9 +122,10 @@ a { color: inherit; text-decoration: none; }
   float: left; font-size: 3.9rem; font-weight: 700;
   line-height: .82; margin: .06em .14em 0 0; color: var(--teal);
 }
-.article-main a, .article-aside a, .photo-credit a { color: var(--teal); text-decoration: underline; text-underline-offset: 2px; }
-.article-main a:hover, .article-aside a:hover, .photo-credit a:hover { color: var(--rust); }
+.article-main a, .article-aside a { color: var(--teal); text-decoration: underline; text-underline-offset: 2px; }
+.article-main a:hover, .article-aside a:hover { color: var(--rust); }
 
+/* ── SECTION DIVIDERS ── */
 .section-divider {
   display: flex; align-items: center; gap: 1rem;
   margin: 3rem 0 1.9rem;
@@ -146,9 +133,10 @@ a { color: inherit; text-decoration: none; }
 .section-divider::after { content: ''; flex: 1; height: 1px; background: rgba(34,64,80,.15); }
 .section-divider span {
   font-size: .92rem; letter-spacing: .24em; text-transform: uppercase;
-  color: var(--rust); white-space: normal;
+  color: var(--rust);
 }
 
+/* ── ASIDE ── */
 .article-aside { position: sticky; top: calc(var(--nav-h) + 1.25rem); }
 .aside-card {
   background: rgba(255,255,255,.75); border: 1px solid rgba(34,64,80,.08);
@@ -161,23 +149,69 @@ a { color: inherit; text-decoration: none; }
 .aside-card li:first-child { border-top: none; padding-top: 0; }
 .aside-card strong { display: block; color: var(--navy); font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .2rem; }
 
+/* ── PHOTO STYLES ── */
+.photo-caption {
+  font-size: .67rem; line-height: 1.6;
+  color: rgba(34,64,80,.52); font-style: regular;
+  margin-top: .5rem;
+  padding-left: .7rem;
+  border-left: 2px solid var(--amber);
+}
+
+/* Full-width */
+.story-photo { margin: 2.2rem 0; }
+.story-photo img { width: 100%; height: auto; border-radius: 10px; display: block; }
+
+/* Float right with text wrap */
+.float-group { margin-bottom: 1.35rem; }
+.float-group::after { content: ''; display: table; clear: both; }
+.story-photo-float {
+  float: right; width: 45%;
+  margin: .15rem 0 .8rem 1.8rem;
+  border-radius: 10px;
+}
+.story-photo-float img { width: 100%; border-radius: 10px; display: block; }
+.story-photo-float .photo-caption { margin-top: .45rem; }
+
+/* Side-by-side pair */
+.story-photo-pair {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: .75rem; margin: 2.2rem 0;
+}
+.story-photo-pair img {
+  width: 100%; height: 215px;
+  object-fit: cover; border-radius: 10px; display: block;
+}
+.story-photo-pair .photo-caption { grid-column: 1 / -1; }
+
+/* Closing image */
+.story-photo-closing { margin: 2.8rem 0 .5rem; }
+.story-photo-closing img {
+  width: 100%; max-height: 520px;
+  object-fit: cover; object-position: center;
+  border-radius: 12px; display: block;
+}
+.story-photo-closing .photo-caption { margin-top: .55rem; }
+
+/* ── FOOTER ── */
 footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; margin-top: 2rem; }
 .footer-title { font-family: var(--font-display); font-size: 1rem; color: var(--cream); letter-spacing: .1em; margin-bottom: .35rem; }
 .footer-sub { font-size: .75rem; color: rgba(247,243,237,.48); letter-spacing: .08em; }
 
+/* ── RESPONSIVE ── */
 @media (max-width: 980px) {
   .article-grid { grid-template-columns: 1fr; gap: 2rem; }
   .article-aside { position: static; max-width: var(--max-w); margin: 0 auto; }
-  .stat-band { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 680px) {
   .story-nav { padding: 0 1rem; }
   .hero-inner { padding: 4rem 1.2rem 3rem; }
   .story-hero { min-height: 68vh; }
   .article-shell { padding: 2.4rem 1.05rem 3rem; }
-  .stat-band { grid-template-columns: 1fr; padding: 1.2rem 1rem; }
-  .section-divider { gap: .7rem; }
   .section-divider span { font-size: .66rem; }
+  .story-photo-float { float: none; width: 100%; margin: 1.2rem 0; }
+  .story-photo-pair { grid-template-columns: 1fr; }
+  .story-photo-pair img { height: 200px; }
 }
 </style>
 </head>
@@ -202,97 +236,168 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
 </header>
 
 <main class="article-shell">
-  <div class="article-topper">
-    <p>In western North Carolina, housing recovery after Tropical Storm Helene has become a story of long waits, layered bureaucracy and the neighbors, churches and nonprofits filling gaps that public systems still have not fully closed.</p>
-  </div>
-
-  <section class="stat-band" aria-label="Key housing recovery figures">
-    <div class="stat-item">
-      <div class="stat-number">19,951</div>
-      <div class="stat-label">Homes FEMA estimates were damaged</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">1,400+</div>
-      <div class="stat-label">Homes estimated to need replacement</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">$225M</div>
-      <div class="stat-label">CDBG-DR funds allocated directly to Asheville</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">114</div>
-      <div class="stat-label">Projects in Buncombe County's recovery plan</div>
-    </div>
-  </section>
+  
 
   <div class="article-grid">
     <article class="article-main">
+
       <p>Kim Pierce paid $387,000 in cash for the east Asheville townhome she moved into on Monday, Sept. 23, 2024. A divorced mother of six, the 57-year-old moved to the River Knoll community to downsize, slow down from work and spend more time with her grandchildren.</p>
-      <p>But she only slept four nights in that house. Tropical Storm Helene hit on Friday, flooding Pierce's new home and destroying most of her possessions along with it. A year and a half later, she is finally settled into another townhome, this time in east Asheville's Hawthorne Villages complex about five miles west of River Knoll. She moved there in June 2025.</p>
+
+      <p>But she only slept four nights in that house. Tropical Storm Helene hit on Friday, flooding Pierce's new home and destroying most of her possessions along with it. A year and a half later, she's finally settled into another townhome, this time in east Asheville's Hawthorne Villages complex about four miles west of River Knoll. She moved there in June 2025.</p>
+
       <p>"It's still surreal," she said of the experience. "I mean, I couldn't wrap my brain around the loss of everything."</p>
-      <p>Pierce is one of thousands who lost housing to Helene. According to FEMA estimates cited in <a href="https://www.buncombenc.gov/DocumentCenter/View/1379/Buncombe-County-Housing-Needs-Assessment-and-Market-Study-PDF" target="_blank" rel="noopener noreferrer">Buncombe County's housing needs assessment</a>, roughly 19,951 homes were damaged by the storm, and more than 1,400 were damaged severely enough to require replacement.</p>
-      <p>But even eighteen months later, many western North Carolina residents are still not back to normal. Post-disaster housing recovery was always going to be slow, but it has faced additional roadblocks and delays amid federal funding confusion, state-administered bottlenecks and overlapping relief programs. The result is mounting frustration among people already exhausted by the cost of rebuilding, financially and emotionally.</p>
-      <p>Pierce knows this reality all too well.</p>
-      <p>"I used to be a little bit able to tell my story without crying so much," she said on a recent warm day in early spring. She is still waiting for FEMA to fully resolve claims tied to her lost home. But "it wiped me out more than anything I've ever been through, and I get frustrated that it's taken so long. I also am trying to be realistic and understanding that I'm not the only person that's in this situation."</p>
 
-      <div class="section-divider"><span>From transitional sheltering to long recovery</span></div>
+      <p>Pierce is one of thousands who lost their house to Helene. According to estimates from FEMA, which were cited in <a href="https://www.buncombenc.gov/DocumentCenter/View/1379/Buncombe-County-Housing-Needs-Assessment-and-Market-Study-PDF" target="_blank" rel="noopener noreferrer">Buncombe County's 2025 housing needs assessment</a>, approximately 19,951 homes were damaged by the storm, and more than 1,400 were wrecked to the point of needing replacement.</p>
 
-      <p>For the first several weeks after Helene, government efforts were focused on disaster response and immediate shelter. At its peak in October 2024, FEMA's Transitional Sheltering Assistance program was helping 5,284 households access temporary housing, according to the <a href="https://weavervillenc.org/wp-content/uploads/2025/11/2025-Buncombe-County-Helene-Recovery-Plan-final-for-adoption.pdf" target="_blank" rel="noopener noreferrer">Buncombe County Helene Recovery Plan</a>. That meant hotel rooms, trailers, rental help and temporary repair support.</p>
-      <p>That emergency support has repeatedly hovered near expiration. Most recently, FEMA announced on <a href="https://www.fema.gov/press-release/20260316/fema-approves-six-month-extension-direct-housing-and-rental-assistance" target="_blank" rel="noopener noreferrer">March 16, 2026</a>, that direct temporary housing and rental assistance for Helene survivors would be extended another six months.</p>
-      <p>Even during emergency operations, local governments were already trying to position themselves for long-term rebuilding. In January 2025, the U.S. Department of Housing and Urban Development allocated more than $1.4 billion to North Carolina through the <a href="https://www.commercerecovery.nc.gov/about/about-cdbg-dr-funding" target="_blank" rel="noopener noreferrer">Community Development Block Grant Disaster Recovery program</a>. Because Asheville is an entitlement jurisdiction, the city also received about <a href="https://www.ashevillenc.gov/news/hud-approves-city-of-asheville-action-plan-for-225-million-in-cdbg-dr-funds/" target="_blank" rel="noopener noreferrer">$225 million directly</a>. Asheville said $31 million, or about 13%, would go toward housing recovery.</p>
-      <p>Still, many residents say churches and nonprofits have moved faster than governments. <a href="https://www.samaritanspurse.org/disaster/hurricane-helene/" target="_blank" rel="noopener noreferrer">Samaritan's Purse</a>, a Christian nonprofit headquartered in Boone, has helped replace mobile homes, build new homes and complete major repairs across the region at no cost to recipients.</p>
-      <p>Jack Bailey, a 60-year-old cook at Asheville's Hotel Indigo, is one of many who has community support to thank for both his transitional housing and his new home. Early on the Friday Helene hit, Bailey had already left his Black Mountain home for work, not knowing he would become homeless that day. He spent more than a month living at the hotel downtown and cooking for disaster response staff staying there, while his wife and child stayed with family in Atlanta and came up only occasionally for visits.</p>
-      <p>By the time Bailey finally returned home, mold had taken over after weeks without power. The house was condemned. A local church eventually gave the family a trailer, where they spent Christmas 2024 parked beside the old house. They lived in that trailer for more than a year until they could move into a new home the following December.</p>
-      <p>Despite losing the house, Bailey still owed $59,000 on the old mortgage. "Do you know anybody on this planet that would go and spend $59,000 to pay off a house that's condemned?" he said. "That's what we had to do." He and his wife paid off the mortgage on their 17th anniversary.</p>
-      <p>Bailey said FEMA did provide some money, though he has lost track of exactly how much. But it was private and nonprofit support that made the biggest difference. <a href="https://www.belovedasheville.com/rebuilding-hope-after-hurricane-helene/" target="_blank" rel="noopener noreferrer">BeLoved Asheville</a> gave Bailey a check for $48,000, and Samaritan's Purse later gave him $134,575.</p>
-      <p>Bailey's new house sits in the same spot as the old one, and it resembles the old place too. It was prefabricated by Clayton Homes, a Berkshire Hathaway subsidiary. It is not perfect. Walking through the house, Bailey pointed out trim that had been installed unevenly, with exposed nails where the vinyl should have covered them. It also has less storage than what the family had before.</p>
+      <p>But even eighteen months later, many Western North Carolina residents are still not back to normal. Post-disaster housing recovery was always going to be slow, but it has faced additional delays due to federal funding chaos amid a new administration. The result is mounting frustration by a population already exhausted from the toll rebuilding takes on everything from bank accounts to mental health.</p>
+
+      <p>President Trump taking office four months after the storm "caused things to look different than what people who have done this for a long time told us to expect," said Rachael Sawyer, the strategic partnerships director at Buncombe County and a former Helene recovery coordinator. Though Sawyer's recovery work has been more administrative than political, she said that local and county government leaders have often had "to advocate to get things unstuck when they got stuck."</p>
+
+      <p>Pierce knows this reality all too well. "I used to be a little bit able to tell my story without crying so much," she said on a recent warm day in early spring.</p>
+
+      <p>She is still waiting for FEMA to start the process of buying out her lost home. But "it wiped me out more than anything I've ever been through [and] I get frustrated that it's taken so long," she said. "I also am trying to be realistic and understanding that I'm not the only person that's in this situation."</p>
+
+      <div class="section-divider"><span>From transitional housing to recovery</span></div>
+
+      <p>For the first several weeks after Helene, government efforts were focused on disaster response, trying to make sure everyone had access to the essentials. This included temporary housing support from FEMA. At its peak in October 2024, FEMA's Transitional Sheltering Assistance program was helping 5,284 households access temporary housing, according to the <a href="https://weavervillenc.org/wp-content/uploads/2025/11/2025-Buncombe-County-Helene-Recovery-Plan-final-for-adoption.pdf" target="_blank" rel="noopener noreferrer">Buncombe County Helene Recovery Plan</a>. That meant funding for things like temporary stays in hotels or trailers, help with rent and home repair. Since then, transitional housing support had been at risk of expiring in spring 2025 and again on April 11 of this year. Most recently, on <a href="https://www.fema.gov/press-release/20260316/fema-approves-six-month-extension-direct-housing-and-rental-assistance" target="_blank" rel="noopener noreferrer">March 16</a>, FEMA announced a six-month extension for temporary housing and rental assistance.</p>
+
+      <p>Even amid emergency operations, local governments were already preparing for recovery. In January 2025, over $1.4 billion was allocated by HUD to North Carolina through the <a href="https://www.commercerecovery.nc.gov/about/about-cdbg-dr-funding" target="_blank" rel="noopener noreferrer">Community Development Block Grant Disaster Recovery (CDBG-DR) program</a>. Asheville falls under the program's "entitlement" jurisdiction, which means the city received an additional <a href="https://www.ashevillenc.gov/news/hud-approves-city-of-asheville-action-plan-for-225-million-in-cdbg-dr-funds/" target="_blank" rel="noopener noreferrer">$225 million in CDBG-DR funds</a> directly from the federal government. Asheville is putting $31 million, or 13% of those funds, toward housing recovery.</p>
+
+      <p>But support from churches and nonprofits has outpaced that from governments. <a href="https://www.samaritanspurse.org/disaster/hurricane-helene/" target="_blank" rel="noopener noreferrer">Samaritan's Purse</a>, a Christian nonprofit headquartered in Boone, has replaced over 140 mobile homes, built 26 new homes and completed over 100 major home repairs — all at no cost to the recipients. In April, they also announced an expansion of their rebuilding program, adding 19 new locations in four different states.</p>
+
+      <p>Jack Bailey, a 60-year-old cook at Asheville's downtown branch of Hotel Indigo, is one of many who has community organizations to thank for both his transitional housing and his new home. Early that Friday morning before Helene hit Asheville, Bailey left his Black Mountain home for work — not knowing he'd become homeless that day — then spent over a month living at the hotel and cooking for disaster response staff staying there. Meanwhile, his wife and child stayed with the wife's sister in Atlanta, coming up only occasionally for visits.</p>
+
+      <p>By the time Bailey finally went back home, mold had infested the building after several weeks of no power. The house was condemned. Luckily, a local church gifted Bailey's family a trailer, where they spent Christmas 2024 parked next to the old home. They lived in that trailer for over a year until they had a new house to move into the following December.</p>
+
+      <p>Despite losing his house, Bailey still owed $59,000 on the old mortgage. "Do you know anybody on this planet that would go and spend $59,000 to pay off a house that's condemned?" he said. "That's what we had to do." He and his wife paid off the old mortgage on their 17th anniversary.</p>
+
+      <p>Though he cited frustrations with FEMA, Bailey did get some money from the agency, though he's lost track of exactly how much. Yet it was community donations that helped him afford the new house. The nonprofit <a href="https://www.belovedasheville.com/rebuilding-hope-after-hurricane-helene/" target="_blank" rel="noopener noreferrer">BeLoved Asheville</a> gave Bailey a check for $48,000, and on June 3, 2025, Samaritan's Purse gave him $134,575. Bailey is one of many WNC residents who have churches to thank for their new or repaired home.</p>
+
+      <!-- PHOTO 1: Bailey + tree -->
+      <div class="story-photo">
+        <img src="images/story/claire/2.jpg" alt="Jack Bailey poses with a storm-damaged tree that still stands">
+        <p class="photo-caption">Jack Bailey poses with a tree that was damaged by the storm but lives on. Photo credit: Claire Ogden</p>
+      </div>
+
+      <p>Bailey's new house sits in the same spot as the old one, and it looks like the old house, too. It was prefabricated by Clayton Homes, a subsidiary of Berkshire Hathaway. It's not perfect; walking around the new place, Bailey pointed to several areas where vinyl trim was improperly installed, exposing the nails it was meant to cover. And it has less storage than their old place.</p>
+
       <p>"There's not a lot of room like we're used to," Bailey said. "But still, we're still not going to complain, because the house prices out here have gone up anyway."</p>
-      <p>He looked around a living room full of quirky furniture and secondhand finds, many from Habitat for Humanity. There was a bright fuchsia couch and a rug with a unicorn on it. "She picked it all out," he said of his wife.</p>
-      <p>Bailey is one of the lucky ones. <a href="https://www.bpr.org/helene-recovery/2026-01-28/winter-brings-a-fight-to-stay-warm-for-those-displaced-by-helene-and-living-in-rvs" target="_blank" rel="noopener noreferrer">Blue Ridge Public Radio reported</a> in January 2026 that hundreds of people displaced by Helene were still living in RVs. And according to the City of Asheville's <a href="https://www.ashevillenc.gov/news/continuum-of-care-coc-releases-2025-point-in-time-count-numbers/" target="_blank" rel="noopener noreferrer">2025 point-in-time count release</a>, the number of unsheltered people counted in Buncombe County rose 50% from 2024 to 2025.</p>
-      <p>While many people remain displaced, local governments have steadily shifted from emergency response into recovery mode. By June 2025, Buncombe County had mostly transitioned out of disaster operations.</p>
-      <p>Matthew Cable, the county's community development division manager, said he served as the lead recovery support official for housing from October 2024 through January 2026. Now, he said, the work is more about tracking progress: how many applicants are moving through programs, how many homes are actually being repaired and how much unmet need remains.</p>
-      <p>In October 2025, the county hired Kevin Madsen as its first full-time recovery staffer. He now manages a small dedicated recovery team overseeing progress on the county's recovery plan, a five-year strategy that includes <a href="https://www.buncombenc.gov/809/Helene-Long-Term-Recovery-Projects" target="_blank" rel="noopener noreferrer">114 projects</a> across seven local governments.</p>
-      <p>The major housing programs at play, including <a href="https://renewnc.org/" target="_blank" rel="noopener noreferrer">Renew NC</a> and the <a href="https://www.fema.gov/grants/mitigation/hazard-mitigation" target="_blank" rel="noopener noreferrer">Hazard Mitigation Grant Program</a>, are federally funded but largely state-managed. Notably, most of the biggest housing recovery streams are geared toward homeowners. Renters, in a region that was already in a housing crisis before Helene, have had fewer long-term options.</p>
-      <p>Amid all of that confusion, local governments have tried to help residents navigate what one county staffer described as the "alphabet soup" of recovery programs. Buncombe County created a Helene Resource Center to help survivors understand which applications they might qualify for and how the different aid streams fit together.</p>
 
-      <div class="section-divider"><span>When the paperwork goes nowhere</span></div>
+      <p>He looks around at his living room, which is filled with quirky furniture and knick-knacks, bought mostly from Habitat for Humanity. There's a bright fuschia couch and a carpet with a unicorn on it. "She picked it all out," he said of his wife.</p>
 
-      <p>For Nadja Simon, a personal trainer who lost her house in Swannanoa, that alphabet soup has been exhausting and mostly fruitless. Tucked away in a green house on a mountainside about ten miles east of Asheville, Simon once felt protected by the privacy and elevation of her home. Helene changed that.</p>
-      <p>Though some outsiders had called western North Carolina a "climate haven," the region's mountains also helped intensify rainfall through a process known as orographic lift, which forces air upward, cools it and wrings out additional rain. The area had already been saturated by earlier storms before Helene arrived, destabilizing slopes and priming the landscape for landslides.</p>
-      <p>Simon's house was hit by one of the more than 2,000 landslides that struck the region. Several trees fell near the house, and two separate slides sent stumps and debris barreling toward the building. Miraculously, the mass stopped just short of coming through the wall.</p>
-      <p>Simon had just installed a new sliding glass door, which she believes saved her life. "It's a miracle it didn't come inside the house," she said.</p>
-      <p>"My phone was going off, like, 'get to higher ground,'" she said. "But we are on higher ground."</p>
-      <p>Standing at that same sliding glass door eighteen months later, Simon looked out at a wall of stumps and debris still pressed against the edge of the property. She has not lived there for more than a year, but she still pays around $200 a month in electricity bills to keep mold at bay. She secured a forbearance on the mortgage for a while, but recently started paying that again, about $750 a month, on top of rent for a new apartment in south Asheville.</p>
-      <p>Since the storm, Simon has applied for nearly every form of public relief she could find, including FEMA's individual assistance program, Renew NC and the Hazard Mitigation Grant Program. Renew NC, North Carolina's single-family recovery program, is meant to help eligible homeowners repair, reconstruct or replace homes damaged by Helene. HMGP, by contrast, can fund buyouts or mitigation work for properties facing repeated or permanent risk.</p>
-      <p>Simon said Renew NC inspected her property, but she has not heard anything substantial since. She has also not heard back about the hazard mitigation application. "The frustration of not hearing anything and not knowing what's happening gets kind of wearing," she said.</p>
-      <p>At first, FEMA denied her individual assistance claim because the agency incorrectly classified her house as livable. "I lost my shit," she said. "I cried on the phone and they apologized." She eventually received about $42,000 from FEMA for damages, storage and some rental assistance, but said it took repeated follow-ups and appeals. She credits <a href="https://www.pisgahlegal.org/helene/" target="_blank" rel="noopener noreferrer">Pisgah Legal Services</a> with helping her navigate the process.</p>
-      <p>In the meantime, Simon has had to absorb the costs of maintaining her damaged property while also paying to live somewhere else. "I don't get to walk away from that," she said.</p>
-      <p>Though the structure itself still looks intact from some angles, she said the landslides carved out a new path for water across the slope, making the site fundamentally unsafe. "There's no repairing this house," she said, "and there's no fixing this mountain."</p>
-      <p>She pointed to the underbelly of the house, where bricks had fallen away from the foundation. "The whole thing is sitting on chocolate pudding, essentially," Simon said. "So this could all just go."</p>
-      <p>Even so, Simon says she is staying. Friends, family, her synagogue and strangers have all helped keep her afloat. A colleague created a GoFundMe that raised more than $13,000. Temple Beth HaTephila provided another $31,000. FEMA eventually contributed more than $42,000. Her business, <a href="https://www.allonhealthandwellness.com/" target="_blank" rel="noopener noreferrer">Allon Health and Wellness</a>, survived the storm, and that has helped her hold onto something steady.</p>
-      <p>"My business is here," Simon said. "I'm rooted here. I love it here."</p>
-      <p>She paused, then described the mindset recovery has forced on her. "I've been through some things," she said, "and you know, you just put one foot in front of the other. You just keep going, right?"</p>
+      <p>Bailey is one of the lucky ones. As of late January this year, Blue Ridge Public Radio reported that hundreds of people displaced from Helene were still living in RVs. And while it's difficult to measure exactly how Helene has affected the area's homelessness crisis, <a href="https://www.ashevillenc.gov/news/continuum-of-care-coc-releases-2025-point-in-time-count-numbers/" target="_blank" rel="noopener noreferrer">the City of Asheville's 2025 point-in-time count</a> showed a 50% increase in the number of unsheltered people — or people living in tents, cars and the like — from March 2024 to March 2025.</p>
 
-      <div class="section-divider"><span>Hazard mitigation, politics and the long clock</span></div>
+      <p>While many are still displaced, local governments have moved on to recovery. By June 2025, Buncombe County had mostly transitioned away from emergency services, closing their emergency operations center on June 4.</p>
 
-      <p>While Simon is still waiting for answers, Pierce recently learned that her application for hazard mitigation acquisition had cleared the county level and would move to the state and then FEMA.</p>
-      <p>On March 4, 2026, North Carolina Emergency Management and Buncombe County hosted a kickoff meeting for property owners whose sites had been approved to move forward in the acquisition process. According to <a href="https://www.ncdps.gov/news/press-releases/2026/03/04/nc-emergency-management-and-buncombe-county-host-kick-meeting-awarded-properties-seeking-hazard" target="_blank" rel="noopener noreferrer">state and county announcements</a>, those homeowners are in the first wave of acquisitions and will now move through surveys, appraisals, purchase offers and negotiations.</p>
-      <p>Pierce is in a later group, which means her official kickoff may still be months away. She is under no illusion that the program will make her whole. Her hope, she said, is simpler than that: that it might at least allow her to pay off the mortgage on the ruined house.</p>
-      <p>"Do I get frustrated that it's taking so long?" Pierce said. Yes. But she also knows "there are far worse people off. I've tried to be thankful for what I do have."</p>
-      <p>That tension, between gratitude and exhaustion, runs through nearly every housing story in Buncombe County right now. Recovery officials describe disasters as apolitical in the sense that they affect entire communities. Yet actual recovery machinery is deeply shaped by politics, from how much scrutiny federal spending receives to how quickly state and federal agencies approve plans, reimbursements and buyouts.</p>
-      <p>Housing recovery has repeatedly run into funding delays, timeline confusion and shifting administrative expectations. For survivors, those complications often translate into more months paying mortgages on unlivable homes, more rent, more temporary fixes and more waiting.</p>
-      <p>The buyouts themselves, county officials have noted, come with their own complications. Once purchased, those properties must remain open space in perpetuity. That creates resilience benefits, but it also leaves local governments with permanent land management obligations.</p>
+      <p>By October 2025, the county hired Kevin Madsen, its first full-time recovery staffer. Madsen now manages a dedicated recovery team of three other employees. Their job is to manage progress on the county's recovery plan, which consists of <a href="https://www.buncombenc.gov/809/Helene-Long-Term-Recovery-Projects" target="_blank" rel="noopener noreferrer">114 projects</a> divided among seven local governments that opted into and contributed to the plan.</p>
 
-      <div class="section-divider"><span>Something old, something saved</span></div>
+      <p>The major housing programs at play, including single-family home repair through <a href="https://renewnc.org/" target="_blank" rel="noopener noreferrer">RenewNC</a> and home buyouts through the <a href="https://www.fema.gov/grants/mitigation/hazard-mitigation" target="_blank" rel="noopener noreferrer">Hazard Mitigation Grant Program</a>, are federally funded but managed at the state and/or county level. Notably, federal housing recovery dollars are mostly for homeowners. Although the North Carolina legislature allocated $1 million in rental assistance and Asheville has beefed up that number using its CDBG-DR funding, it has still not met the need for an area that was already in a housing crisis pre-Helene.</p>
 
-      <p>Back in east Asheville, Pierce reflected on what recovery has actually looked like in practice. Some time ago, a team of volunteers from Baptist on Mission came to her River Knoll house to help remove what was left and assess whether the structure itself had been compromised. "We had to get it down to the studs," she said, "to see if structurally it had been compromised."</p>
-      <p>The engineer who came to inspect the damaged home turned out to be the same person who had inspected it before Pierce bought it. He had seen the house when it represented a fresh start. Now he was seeing what the flood had done.</p>
-      <p>"He walked in my garage and started crying," Pierce said. "There's just no words, the amount of mud, the amount of dirt, the amount of moisture" that coated everything.</p>
-      <p>Pierce tried not to get her hopes up. Her mother kept insisting that some belongings might still be salvageable.</p>
-      <p>It turned out she was right. After long hours of washing and restoration, Pierce saved a set of plates and teacups, along with three pieces of old furniture, all family heirlooms.</p>
-      <p>The most meaningful was a chandelier made from her grandmother's teacups, crafted by Pierce's mother as a Christmas gift about twenty years ago. Each cup had to be washed individually, and the chandelier had to be completely rebuilt, a restoration that cost $700. Now it hangs above her old dining room table again, just as it did before Helene.</p>
-      <p>When Pierce looks at that chandelier and thinks about everything it took to get it back, she does not see a policy program or a timeline. She sees something closer to mercy.</p>
-      <p>"It's totally grace," she said. "It doesn't feel earned or deserved, and it's a beautiful picture of people loving other people."</p>
+      <p>Amid confusion over federal funding, local governments have tried to help constituents navigate the chaos. "We've tried to go above and beyond" what the federal government provided, said Sawyer. The county established a Helene Resource Center, where county officials were available to "be a liaison so they don't have to go through all the alphabet soup" of various funding programs, she said. As of early March, though, the resource center is only open by appointment. Sawyer said Buncombe County was "thankful" the state was able to manage the hazard mitigation program, given the high volume of applications.</p>
+
+      <p>Likewise, Madsen said that although applications for the major housing rebuilding programs have closed, the Buncombe County Long-Term Recovery group, of which the national nonprofit United Way is the fiscal agent, is still doing intakes for recovery case management.</p>
+
+      <div class="section-divider"><span>Public funding confusion</span></div>
+
+      <p>For Nadja Simon, a personal trainer who lost her house in Swannanoa, the alphabet soup of public funding has been almost entirely fruitless. Ten miles east of Asheville and tucked away in a green house on a mountain, Simon always felt safe in the privacy offered by her Swannanoa alcove. But Helene changed that.</p>
+
+      <!-- PHOTO 2: Nadja pointing at hillside — floated right, text wraps around -->
+      <div class="float-group">
+        <div class="story-photo-float">
+          <img src="images/story/claire/3.jpg" alt="Nadja Simon points to the hillside where a landslide came down">
+          <p class="photo-caption">Nadja Simon points to the hill where a landslide came down during Helene, destroying her house's foundation. Photo credit: Ali Caudle</p>
+        </div>
+
+        <p>Though the media had dubbed the area a "climate haven," the mountains actually played a part in bringing heavy rainfall to greater Asheville through a combination of atmospheric and geographic factors. In a process called orographic lift, mountains forced the air to rise, cool, condense and form clouds. The area had already been inundated with rainstorms in the days before Helene even came, which destabilized slope structures and created the perfect conditions for landslides. Simon's house fell victim to one of the more than 2,000 landslides that hit the area during Helene, killing at least 23 people and damaging over 245 homes in Buncombe County alone.</p>
+
+        <p>Several trees fell down next to Simon's house, while two separate landslides sent a mess of tree stumps and debris barreling toward the building. Mercifully, it stopped right next to the house but didn't enter.</p>
+
+        <p>Simon had just gotten a new sliding glass door, which she thinks saved her life. "It's a miracle it didn't come inside the house," she said.</p>
+
+        <p>"My phone was going off, like, 'get to higher ground,'" she said. "But we are on higher ground."</p>
+      </div>
+
+      <!-- PHOTO 3: Foundation damage -->
+      <div class="story-photo">
+        <img src="images/story/claire/4.jpg" alt="The destroyed foundation of Nadja Simon's house">
+        <p class="photo-caption">Landslides destroyed the foundation of Nadja Simon's house, making the parcel of land it sits on unlivable. Photo credit: Ali Caudle</p>
+      </div>
+
+      <p>Standing at that sliding glass door, Simon, 58, looked out at the mass of tree stumps and debris that still sit right outside the window, 18 months later. She hasn't lived there for over a year, but she's still paying about $200 a month on an electric bill to prevent mold growth. She was able to get a forbearance on her mortgage for a year, but she recently started paying that again at $750 a month. That's on top of the $1,200 in monthly rent for her new apartment in south Asheville.</p>
+
+      <p>Since the storm, Simon has applied to every form of government relief she could find, like FEMA's individual assistance program and the several opportunities available for homeowners, including Renew NC and the Hazard Mitigation Grant Program. The former helps rebuild and replace single family housing, while the latter is FEMA-funded and gives property owners the option to rebuild with future disaster preparedness in mind, or to have their property bought out by the government.</p>
+
+      <p>Simon said that Renew NC came out and inspected her property in fall 2025, but that she hasn't heard anything from them since. She also has yet to hear back from the Hazard Mitigation Grant Program. "The frustration of not hearing anything and not knowing what's happening gets kind of wearing," she said.</p>
+
+      <p>At first, FEMA sent Simon a letter denying her application for individual assistance, since they had incorrectly determined her house was still livable. "I lost my shit," she said. "I cried on the phone and they apologized." Simon eventually got $42,000 from FEMA for the damages, but "It's been a lot of back and forth with them," she said.</p>
+
+      <p>In the meantime, she has had to handle much of the cost of her former house, plus costs for renting a new apartment. "I don't get to walk away from that," she said.</p>
+
+      <p>Though Simon's house still looks intact, she said the landslides "carved out a whole new path" for water on the slope she lives on — meaning any future storms would just go straight through her house's current foundation. "There's no repairing this house," she said. "There's no fixing this mountain."</p>
+
+      <p>Simon pointed to the underbelly of the house, where several bricks have fallen away from the foundation. "The whole thing is sitting on chocolate pudding, essentially," Simon said. "So this could all just go."</p>
+
+      <!-- PHOTO 4: Downed trees surrounding house -->
+      <div class="story-photo">
+        <img src="images/story/claire/5.jpg" alt="Downed trees still surrounding Nadja Simon's house a year later">
+        <p class="photo-caption">One year later, downed trees still surround Nadja Simon's house. No volunteer organization has had the capacity or equipment to clear the area. Photo credit: Ali Caudle</p>
+      </div>
+
+      <p>Though government support has been slow to arrive, Simon has gotten a lot of help from friends and family, her synagogue and even strangers. A colleague created a GoFundMe that raised over $13,000 for her, and she did get $31,000 from her synagogue, Temple Beth HaTephila. She also got around $42,000 from FEMA for repair, storage and some rental assistance. Simon credits <a href="https://www.pisgahlegal.org/helene/" target="_blank" rel="noopener noreferrer">Pisgah Legal Services</a> with helping her put in the work required to get the FEMA funds.</p>
+
+      <p>Despite the challenges, Simon has no intention of leaving the area. "My business is here," Simon said. "I'm rooted here. I love it here."</p>
+
+      <p>Simon has taken refuge in her community as well as her job at <a href="https://www.allonhealthandwellness.com/" target="_blank" rel="noopener noreferrer">Allon Health and Wellness</a>, a personal training studio that she founded and owns and operates in North Asheville. Though she lost the house, her gym was luckily untouched.</p>
+
+      <p>"I've been through some things," Simon said, "and you know, you just put one foot in front of the other. You just keep going, right?"</p>
+
+      <div class="section-divider"><span>Hazard mitigation grant program</span></div>
+
+      <p>While Simon has yet to hear back about the Hazard Mitigation Grant, Pierce was recently told that her application passed at the county level, and will go to the state and then FEMA next.</p>
+
+      <p>On the evening of March 4, North Carolina's Emergency Management division and Buncombe County government hosted a kickoff meeting for owners of the 47 properties that were recently approved to be acquired by the county through the program. Those property owners are in the first of three groups; letters of intent were due on Oct. 31.</p>
+
+      <p>At that March meeting, property owners met the contracted vendor who will help them through the entire acquisitions process, which could take several years. In that process, they'll get the property value surveyed and appraised; then, the owners will be given an offer for purchase and negotiations can begin. Upon acceptance, the property will be closed and the contractors will manage the process by which the property will eventually be returned to the local government and remain green space in perpetuity.</p>
+
+      <p>Pierce is in group two of the HMGP, so she said it could be eight to nine months or more before her official kickoff even takes place. She's under no illusions that the HMGP will cover the full extent of her need, but her hope is that she can at least pay her mortgage off.</p>
+
+      <p>"Do I get frustrated that it's taking so long?" Pierce said. Yes, but she knows "there are far worse people off. I've tried to be thankful for what I do have."</p>
+
+      <p>According to Sawyer, "Disasters are generally not political," she said, "because everyone in a place is impacted." Even so, recovery procedures have frequently collided with politics post-Helene.</p>
+
+      <p>"FEMA already has, when they're following regular process," she said, "so many steps that it snakes down the page." That means political effects — like the funding delays that a report by Senate Democrats attributed to former Department of Homeland Security secretary Kristi Noem's extra scrutiny of FEMA funding — can delay an already arduous process.</p>
+
+      <p>For the Hazard Mitigation program, the properties the county acquires "are going to be a great opportunity, but also a burden to be managed," Sawyer said. "None of that will be easy."</p>
+
+      <p>Housing recovery has fallen prey to several political stoppages and confusion over funding timelines. Shortly after the hazard mitigation kickoff meeting, the secretary rejected Buncombe County's recovery plan, citing DEI as the reason. Transitional housing support — another FEMA-funded program — was supposed to end in March 2026, but FEMA announced a six-month extension two weeks before its expiration.</p>
+
+      <p>While long-term recovery efforts continue — with all their fits and starts — regular people are still rebuilding, every day. That work doesn't get to wait.</p>
+
+      <div class="section-divider"><span>Something old, something new</span></div>
+
+      <p>Over in east Asheville, Pierce reflected on her own journey. A little while ago, a team of volunteers at Baptist on Mission came to her house in River Knoll to help get all her belongings out of the house and assess the structural integrity of the building. "We had to get it down to the studs," she said, "to see if structurally it had been compromised."</p>
+
+      <p>It turned out that the engineer who came to survey the damaged house was actually the same person who had inspected it when Pierce was about to buy it pre-Helene; he had seen what it looked like before and after. "He walked in my garage and started crying," Pierce said. "There's just no words, the amount of mud, the amount of dirt, the amount of moisture" that was on everything.</p>
+
+      <!-- PHOTOS 5 & 6: Side-by-side mud damage -->
+      <div class="story-photo-pair">
+        <img src="images/story/claire/6.jpg" alt="A sink full of dried mud in an abandoned Swannanoa home">
+        <img src="images/story/claire/7.jpg" alt="A wrecked bedroom in an abandoned Swannanoa home">
+        <p class="photo-caption">Mud covered many of the houses that were condemned after the flooding, making homes like Pierce's, Bailey's and Smith's unrecoverable. In these photos, taken in an abandoned home in Swannanoa 18 months after the storm, a sink full of dried mud and a wrecked bedroom illustrate the kind of damage residents experienced. Photo credit: Sydney Woogerd</p>
+      </div>
+
+      <p>Pierce didn't want to get her hopes up, but her mother kept saying she thought some of Pierce's belongings could be salvaged. It turned out that was true. After a long time spent washing and money spent restoring some belongings, Pierce was able to save a bunch of plates and teacups, as well as three pieces of old furniture — all family heirlooms.</p>
+
+      <p>The most meaningful one for Pierce was a chandelier made from her grandmother's set of teacups that her mother made as a Christmas present about 20 years ago. Each individual cup had to be washed, and Pierce's mother had to get the chandelier totally redone, a process that cost $700. It now sits over her dining room table, just like it did in River Knoll.</p>
+
+      <p>When Pierce looks at that chandelier — and thinks about all she went through to get it back — she sees the hand of God. "It's totally grace," she said. "It doesn't feel earned or deserved, and it's a beautiful picture of people loving other people."</p>
+
+      <!-- PHOTO 7: Chandelier — closing image -->
+      <div class="story-photo-closing">
+        <img src="images/story/claire/8.jpg" alt="Kim Pierce's salvaged chandelier made from her grandmother's teacups">
+        <p class="photo-caption">With the help of her mother, Kim Pierce was able to salvage this treasured chandelier, made with her grandmother's teacups, from the mud that covered the inside of her house.</p>
+      </div>
+
     </article>
 
     <aside class="article-aside">

@@ -92,7 +92,7 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: .06em; padding: .4rem 1.5rem; text-align: left;
 }
 .photo-credit a { color: rgba(235, 96, 10, 0.75); text-decoration: underline; text-underline-offset: 2px; }
-.photo-credit{ color: var(--amber); }
+.photo-credit { color: var(--amber); }
 
 .article-body { max-width: 800px; margin: 0 auto; padding: 3.5rem 1.5rem 4rem; }
 .article-body p { font-size: 12.8px; line-height: 1.95; color: rgba(34,64,80,.85); margin-bottom: 1.35rem; }
@@ -119,33 +119,30 @@ a { color: inherit; text-decoration: none; }
 .stat-label { font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(247,243,237,.55); line-height: 1.5; }
 
 /* ── STORY IMAGES ── */
+.photo-caption {
+  font-size: .67rem; line-height: 1.6;
+  color: rgba(34,64,80,.52); font-style: regular;
+  margin-top: .5rem;
+  padding-left: .7rem;
+  border-left: 2px solid var(--amber);
+}
+
 .story-img {
   margin: 2rem 0;
   border-radius: 10px;
-  overflow: hidden;
   box-shadow: 0 8px 28px rgba(34,64,80,.12);
 }
-.story-img img { width: 100%; height: auto; display: block; }
-.story-img figcaption {
-  font-size: .75rem; line-height: 1.6;
-  color: rgba(0, 0, 0, 0.5); padding: .65rem .9rem .7rem;
-  background: var(--white); border-top: 1px solid rgba(34,64,80,.06);
-  font-style: italic;
-}
+.story-img img { width: 100%; height: auto; display: block; border-radius: 10px; }
 
 .story-img-float {
   float: right; width: 42%;
   margin: .4rem 0 1.2rem 2rem;
-  border-radius: 10px; overflow: hidden;
-  box-shadow: 0 8px 28px rgba(34,64,80,.12); clear: right;
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(34,64,80,.12);
+  clear: right;
 }
-.story-img-float img { width: 100%; height: auto; display: block; }
-.story-img-float figcaption {
-  font-size: .72rem; line-height: 1.6;
-  color: rgba(0, 0, 0, 0.5); padding: .55rem .8rem .6rem;
-  background: var(--white); border-top: 1px solid rgba(34,64,80,.06);
-  font-style: italic;
-}
+.story-img-float img { width: 100%; height: auto; display: block; border-radius: 10px; }
+
 .clearfix::after { content: ''; display: table; clear: both; }
 
 footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
@@ -225,10 +222,10 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   <p>For more than a year before the storm, she worked happily in Pink Dog Creative, a vibrant collective of studios, coffeehouses and restaurants along the upper portion of the River Arts District, known locally as RAD. Steps away from the river, the district boasted more than 300 artists in what was repurposed in the early 2000s from an industrial corridor to a hip, mixed-use neighborhood that trumpeted river views and easy access to "Asheville's scenic waterway."</p>
 
   <!-- IMAGE 1 — full width -->
-  <figure class="story-img">
+  <div class="story-img">
     <img src="images/story/grace/1.jpg" alt="Deserted building in Asheville's River Arts District">
-    <figcaption>A deserted building sits in Asheville's River Arts District, steps away from the Swannanoa River. Over 18 months after Helene, it's still waiting to be rebuilt. Photo Credit: Sydney Woogerd</figcaption>
-  </figure>
+    <p class="photo-caption">A deserted building sits in Asheville's River Arts District, steps away from the Swannanoa River. Over 18 months after Helene, it's still waiting to be rebuilt. Photo Credit: Sydney Woogerd</p>
+  </div>
 
   <p>It was that same proximity that led to RAD suffering the most severe damage in the storm. More than 80% of buildings were affected, with two thirds of the district washed away or reduced to rubble. Over 100 artists were displaced, many of whom have yet to return. There is little hope of recovering what they lost, contributing to an estimated $1 billion in property damage in that district alone.</p>
 
@@ -258,20 +255,20 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 
   <!-- IMAGE 2 — float right -->
   <div class="clearfix">
-  <figure class="story-img-float">
-    <img src="images/story/grace/2.jpg" alt="Railroad tracks alongside the French Broad River in Marshall, NC">
-    <figcaption>Railroad tracks run alongside the French Broad River in Marshall, North Carolina, with debris and collapsed buildings still visible in March 2026. When the water crested to over 27 feet during Helene, the town experienced catastrophic flooding. Photo Credit: Sydney Woogerd</figcaption>
-  </figure>
+    <div class="story-img-float">
+      <img src="images/story/grace/2.jpg" alt="Railroad tracks alongside the French Broad River in Marshall, NC">
+      <p class="photo-caption">Railroad tracks run alongside the French Broad River in Marshall, North Carolina, with debris and collapsed buildings still visible in March 2026. When the water crested to over 27 feet during Helene, the town experienced catastrophic flooding. Photo Credit: Sydney Woogerd</p>
+    </div>
 
-  <p>Although meteorologists were aware of the likely potential for disaster, the disconnect between residents and state and local authorities had catastrophic ramifications.</p>
+    <p>Although meteorologists were aware of the likely potential for disaster, the disconnect between residents and state and local authorities had catastrophic ramifications.</p>
 
-  <p>Rennie says meteorologists do a "very good job at the physical science" but they "suck at science communication," making it difficult to accurately portray urgency to the public in the face of exacerbated weather conditions.</p>
+    <p>Rennie says meteorologists do a "very good job at the physical science" but they "suck at science communication," making it difficult to accurately portray urgency to the public in the face of exacerbated weather conditions.</p>
 
-  <p>They knew the predecessor rainfall event and the system were coming, "but getting the people to react to it — whether it's to evacuate or to prepare, 'fill up your buckets' — that's something we're still trying to figure out," Rennie said.</p>
+    <p>They knew the predecessor rainfall event and the system were coming, "but getting the people to react to it — whether it's to evacuate or to prepare, 'fill up your buckets' — that's something we're still trying to figure out," Rennie said.</p>
 
-  <p>This forecasting knowledge is invaluable, but it also leaves those who study weather events for a living feeling helpless when overcoming the public disconnect.</p>
+    <p>This forecasting knowledge is invaluable, but it also leaves those who study weather events for a living feeling helpless when overcoming the public disconnect.</p>
 
-  <p>"People have survivor's guilt. I have something called meteorological survivor's guilt. I've kind of coined that, and I struggle with it because I knew what the forecast was," Rennie reflected. "If you look back — and you know hindsight is 2020 — could we have had a bigger voice?"</p>
+    <p>"People have survivor's guilt. I have something called meteorological survivor's guilt. I've kind of coined that, and I struggle with it because I knew what the forecast was," Rennie reflected. "If you look back — and you know hindsight is 2020 — could we have had a bigger voice?"</p>
   </div>
 
   <p>Helene stands as the worst water disaster Western North Carolina has seen to date. But this flooding is not new for the region.</p>
@@ -311,10 +308,10 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   <p>Today, NOAA Atlas 14 is getting an update. Set to be released in 2026, Atlas 15 is currently under development. The updated system will use future climate projections to account for climate change. For the first time, the technology will be able to project rainfall patterns through the year 2100 and account for future trends. Once implemented, the new technology will help communities nationally become more resilient.</p>
 
   <!-- IMAGE 3 — full width -->
-  <figure class="story-img">
+  <div class="story-img">
     <img src="images/story/grace/3.jpg" alt="Road along the Swannanoa River with exposed pipes and shattered asphalt">
-    <figcaption>A stretch of road along the Swannanoa River reveals exposed pipes and shattered asphalt left over from Helene. The storm caused widespread road closures across Swannanoa and Western North Carolina in September 2024. Photo Credit: Sydney Woogerd</figcaption>
-  </figure>
+    <p class="photo-caption">A stretch of road along the Swannanoa River reveals exposed pipes and shattered asphalt left over from Helene. The storm caused widespread road closures across Swannanoa and Western North Carolina in September 2024. Photo Credit: Sydney Woogerd</p>
+  </div>
 
   <p>This isn't the only important shift on the horizon on the federal level. Another significant effort, led by those who recognize that climate change is not going away, is under way in the form of new legislation to create a <a href="https://www.congress.gov/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">National Weather Safety Board</a>. Board members, who would be appointed by the president and confirmed by the Senate, would investigate severe weather disasters, modeled after the <a href="https://www.ntsb.gov/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">National Transportation Safety Board</a>. If the Board voted to launch an investigation, which would determine what went wrong during major weather disasters to better protect lives and property, it could issue reports with actionable recommendations to agencies like NOAA and the National Weather Service.</p>
 
@@ -360,18 +357,18 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 
   <p>Regardless of the threat, everyone agrees it will take a multi-pronged approach to get the community ready for whatever is in front of them.</p>
 
-  <p>"When you're just trying to survive…you don't think about planning for the next big thing," said Divoky, the Asheville artist who used to think she was safe from storms in Asheville. "You're just thinking about trying to make it through the day."</p>
-
   <!-- IMAGE 4 — float right -->
   <div class="clearfix">
-  <figure class="story-img-float">
-    <img src="images/story/grace/4.jpg" alt="Artist Heather Divoky at her studio in Pink Dog Creative">
-    <figcaption>Artist Heather Divoky poses for a portrait at her studio in Pink Dog Creative. Photo Credit: Grace Sawin</figcaption>
-  </figure>
+    <div class="story-img-float">
+      <img src="images/story/grace/4.jpg" alt="Artist Heather Divoky at her studio in Pink Dog Creative">
+      <p class="photo-caption">Artist Heather Divoky poses for a portrait at her studio in Pink Dog Creative. Photo Credit: Grace Sawin</p>
+    </div>
 
-  <p>As a child, she experienced that tug and pull during bad storms in her own family: "That's something that people see a lot, especially with hurricane preparedness and stuff like that. On my dad's side, he's always been like, 'Well, you need to do this in case this happens.' And my mom's just like, 'You just gotta hammer through it, girl.'"</p>
+    <p>"When you're just trying to survive…you don't think about planning for the next big thing," said Divoky, the Asheville artist who used to think she was safe from storms in Asheville. "You're just thinking about trying to make it through the day."</p>
 
-  <p>Helene made one thing very clear to Divoky. That is, from now on, her dad's approach is the way to go.</p>
+    <p>As a child, she experienced that tug and pull during bad storms in her own family: "That's something that people see a lot, especially with hurricane preparedness and stuff like that. On my dad's side, he's always been like, 'Well, you need to do this in case this happens.' And my mom's just like, 'You just gotta hammer through it, girl.'"</p>
+
+    <p>Helene made one thing very clear to Divoky. That is, from now on, her dad's approach is the way to go.</p>
   </div>
 
 </article>
