@@ -106,7 +106,7 @@ a { color: inherit; text-decoration: none; }
   padding: 3.2rem 1.5rem 4rem;
 }
 .article-topper { max-width: var(--max-w); margin: 0 auto 2.2rem; }
-.article-topper p { font-size: .88rem; line-height: 1.95; color: rgba(34,64,80,.82); font-style: italic; }
+.article-topper p { font-size: .88rem; line-height: 1.95; color: rgba(34,64,80,.82); font-style: Regular; }
 
 .article-grid {
   display: grid; grid-template-columns: minmax(0, 1fr) 260px;
@@ -134,14 +134,15 @@ a { color: inherit; text-decoration: none; }
 }
 .section-divider::after { content: ''; flex: 1; height: 1px; background: rgba(34,64,80,.15); }
 .section-divider span {
-  font-size: .72rem; letter-spacing: .24em; text-transform: uppercase;
+  font-size: .95rem; letter-spacing: .24em; text-transform: uppercase;
   color: var(--rust); white-space: normal;
 }
 
 /* ── PHOTO CAPTION ── */
 .photo-caption {
-  font-size: .67rem; line-height: 1.6;
+  font-size: .77rem; line-height: 1.6;
   color: rgba(34,64,80,.52);
+  font-style: normal;
   margin-top: .5rem;
   padding-left: .7rem;
   border-left: 2px solid var(--amber);
@@ -151,78 +152,7 @@ a { color: inherit; text-decoration: none; }
 .story-photo { margin: 2.2rem 0; }
 .story-photo img { width: 100%; height: auto; border-radius: 10px; display: block; }
 
-/* ──────────────────────────────
-   BEFORE / AFTER SLIDER
-────────────────────────────── */
-.before-after-wrap {
-  margin: 2.2rem 0;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(34,64,80,.18);
-  position: relative;
-  user-select: none;
-  cursor: ew-resize;
-  -webkit-user-select: none;
-}
-.ba-container {
-  position: relative;
-  width: 100%;
-  height: 380px;
-}
-.ba-container img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center;
-  display: block;
-  pointer-events: none;
-}
-.ba-after { z-index: 1; }
-.ba-before-clip {
-  position: absolute; inset: 0; z-index: 2;
-  overflow: hidden;
-  width: 50%;
-}
-.ba-before-clip img {
-  position: absolute;
-  top: 0; left: 0;
-  width: var(--ba-full-width, 100%);
-  height: 100%;
-  object-fit: cover;
-  max-width: none;
-}
-.ba-label {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  z-index: 4; font-family: var(--font-body);
-  font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
-  background: rgba(0,0,0,.52); color: #fff;
-  padding: .28rem .65rem; border-radius: 50px;
-  pointer-events: none; opacity: 0;
-  transition: opacity .25s;
-}
-.ba-label-before { left: .9rem; }
-.ba-label-after  { right: .9rem; }
-.before-after-wrap:hover .ba-label,
-.before-after-wrap.touched .ba-label { opacity: 1; }
-.ba-divider-line {
-  position: absolute; top: 0; bottom: 0; z-index: 5;
-  left: 50%;
-  width: 3px;
-  background: var(--cream);
-  transform: translateX(-50%);
-  pointer-events: none;
-}
-.ba-handle {
-  position: absolute; top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 42px; height: 42px;
-  background: var(--cream);
-  border-radius: 50%;
-  box-shadow: 0 2px 14px rgba(0,0,0,.3);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 6; pointer-events: none;
-}
-.ba-handle svg { width: 22px; height: 22px; }
+
 
 /* ──────────────────────────────
    PHOTO CAROUSEL
@@ -251,7 +181,7 @@ a { color: inherit; text-decoration: none; }
 .carousel-counter {
   position: absolute; top: .9rem; right: .9rem; z-index: 10;
   background: rgba(0,0,0,.52); color: #fff;
-  font-family: var(--font-body); font-size: .6rem; letter-spacing: .12em;
+  font-family: var(--font-body); font-size: .78rem; letter-spacing: .12em;
   padding: .25rem .7rem; border-radius: 50px;
 }
 .carousel-btn {
@@ -402,17 +332,18 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
 
       <p>"The FEMA money is not flowing as fast as expected or as is needed in the state," said Justin Graney, chief of external affairs and communication for the North Carolina Department of Public Safety. "We would have liked to see that funding move quicker," he said, adding that his office has urged legislators including Republican Sen. Thom Tillis to help free up federal disbursements.</p>
 
-      <!-- PHOTO CAROUSEL: images 3–8 -->
+     <!-- PHOTO CAROUSEL: images 2–7 -->
+      <p>The wait for FEMA assistance is complicated and slow. Click here for a slideshow of some of the damaged properties that still litter the landscape in Asheville and beyond. All photos by Sydney Woogerd</p>
       <div class="photo-carousel-wrap">
         <div class="carousel-stage" id="carouselStage">
           <div class="carousel-counter"><span id="carouselCurrent">1</span>&thinsp;/&thinsp;6</div>
 
-          <div class="carousel-slide active"><img src="images/story/ali/3.png" alt="River Arts District storm damage photo 1"></div>
-          <div class="carousel-slide"><img src="images/story/ali/4.png" alt="River Arts District storm damage photo 2"></div>
-          <div class="carousel-slide"><img src="images/story/ali/5.png" alt="River Arts District storm damage photo 3"></div>
-          <div class="carousel-slide"><img src="images/story/ali/6.png" alt="River Arts District storm damage photo 4"></div>
-          <div class="carousel-slide"><img src="images/story/ali/7.png" alt="River Arts District storm damage photo 5"></div>
-          <div class="carousel-slide"><img src="images/story/ali/8.png" alt="River Arts District storm damage photo 6"></div>
+          <div class="carousel-slide active"><img src="images/story/ali/3.png" alt="Biltmore Village storefront roof damage"></div>
+          <div class="carousel-slide"><img src="images/story/ali/4.png" alt="Biltmore Village business interior gutted"></div>
+          <div class="carousel-slide"><img src="images/story/ali/5.png" alt="Riverside home in Swannanoa warped by flooding"></div>
+          <div class="carousel-slide"><img src="images/story/ali/6.png" alt="Abandoned office building beside Swannanoa River"></div>
+          <div class="carousel-slide"><img src="images/story/ali/7.png" alt="Old mill in Marshall boarded up after floods"></div>
+          <div class="carousel-slide"><img src="images/story/ali/8.png" alt="Car buried in debris in River Arts District"></div>
 
           <button class="carousel-btn prev" id="carouselPrev" aria-label="Previous photo">
             <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
@@ -430,7 +361,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
           <button class="carousel-dot" data-index="4" aria-label="Photo 5"></button>
           <button class="carousel-dot" data-index="5" aria-label="Photo 6"></button>
         </div>
-        <p class="photo-caption" style="margin-top:.6rem;">In the River Arts District along the French Broad River in Asheville, a car displaced from the storm is buried beneath debris and dirt. Photo credit: Ali Caudle</p>
+<p id="carouselCaption" class="photo-caption" style="margin-top:.6rem;">The roof of a storefront in the hard-hit Biltmore Village, sagging without its structural beams and walls to hold it up.</p>
       </div>
 
       <p>According to FEMA's website, public assistance is FEMA's "largest grant program providing funds to assist communities responding to and recovering from major disasters or emergencies declared by the president." Eligible applicants for PA include states, U.S. territories, federally recognized tribal governments, local governments, and certain private non-profit organizations. The houses of worship provision falls under the umbrella of private non-profit groups.</p>
@@ -576,6 +507,16 @@ function setPos(clientX) {
   let cur = 0;
   let timer;
 
+ const captions = [
+    'The roof of a storefront in the hard-hit Biltmore Village, sagging without its structural beams and walls to hold it up.',
+    'Inside a business in Biltmore Village, the interior structure is gutted with metal boning and insulation strewn across the rooms.',
+    'A riverside home sits, warped, from the surging water that came through Swannanoa. The contents of the home lay sprawled across the front yard.',
+    'A small office building beside the Swannanoa River still sits abandoned, left with several inches of mud on the white-tiled floors.',
+    'At the edge of Marshall, an old mill facing the French Broad River sits boarded up with windows still broken from the floods.',
+    'In the River Arts District along the French Broad River in Asheville, a car displaced from the storm is buried beneath debris and dirt.'
+  ];
+  const captionEl = document.getElementById('carouselCaption');
+
   function goTo(n) {
     slides[cur].classList.remove('active');
     dots[cur].classList.remove('active');
@@ -583,6 +524,7 @@ function setPos(clientX) {
     slides[cur].classList.add('active');
     dots[cur].classList.add('active');
     counter.textContent = cur + 1;
+    if (captionEl) captionEl.textContent = captions[cur];
   }
 
   function startTimer() { timer = setInterval(() => goTo(cur + 1), 5000); }
