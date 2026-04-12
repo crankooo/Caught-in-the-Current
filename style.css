@@ -81,7 +81,13 @@ h1, h2, h3, h4, h5, h6 {
   display: block; width: 22px; height: 2px;
   background: var(--cream); border-radius: 2px;
 }
-
+.rainfall-note a {
+  color: var(--amber);
+  text-decoration: underline;
+}
+.rainfall-note a:hover {
+  color: var(--rust);
+}
 
 /* ═══════════════════════════════════════════
    ABOUT PAGE NAV
