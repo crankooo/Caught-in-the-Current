@@ -345,7 +345,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
      <!-- PHOTO CAROUSEL: images 2–7 -->
       <div class="photo-carousel-wrap">
         <div class="carousel-stage" id="carouselStage">
-<div class="carousel-title">The wait for FEMA assistance is complicated and slow. A slideshow of damaged properties still littering the landscape in Asheville and beyond. All photos by Sydney Woogerd</div>
+<div class="carousel-title">The wait for FEMA assistance is complicated and slow. Below is a slideshow of damaged properties in Asheville and beyond. All photos by Sydney Woogerd</div>
           <div class="carousel-counter"><span id="carouselCurrent">1</span>&thinsp;/&thinsp;6</div>
           <div class="carousel-slide active"><img src="images/story/ali/3.png" alt="Biltmore Village storefront roof damage"></div>
           <div class="carousel-slide"><img src="images/story/ali/4.png" alt="Biltmore Village business interior gutted"></div>
@@ -543,8 +543,6 @@ function setPos(clientX) {
   next.addEventListener('click',  () => { stopTimer(); goTo(cur + 1); startTimer(); });
   dots.forEach(d => d.addEventListener('click', () => { stopTimer(); goTo(+d.dataset.index); startTimer(); }));
 
-  stage.addEventListener('mouseenter', stopTimer);
-  stage.addEventListener('mouseleave', startTimer);
 
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowLeft')  { stopTimer(); goTo(cur - 1); startTimer(); }
@@ -560,7 +558,6 @@ function setPos(clientX) {
     startTimer();
   });
 
-  startTimer();
 })();
 </script>
 

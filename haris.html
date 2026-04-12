@@ -38,6 +38,7 @@ a { color: inherit; text-decoration: none; }
   transition: background .2s, border-color .2s;
 }
 .back-btn:hover { background: var(--amber); border-color: var(--amber); }
+.hero-rule { width: 40px; height: 2px; background: var(--amber); margin: 1rem auto 1.2rem; border-radius: 1px; }
 
 /* ── HERO ── */
 .story-hero {
@@ -48,8 +49,8 @@ a { color: inherit; text-decoration: none; }
 }
 .story-hero-bg {
   position: absolute; inset: 0;
-  background-image: url('images/fotos/kids.jpg');
-  background-size: cover; background-position: center 20%;
+  background-image: url('images/fotos/schoolbus.jpg');
+  background-size: cover; background-position: center 50%;
   opacity: 0;
   animation: heroFadeIn 2.5s ease forwards;
 }
@@ -100,11 +101,13 @@ a { color: inherit; text-decoration: none; }
 }
 .audio-card {
   background: var(--white);
-  border-radius: 16px;
-  box-shadow: 0 12px 48px rgba(34,64,80,.18);
-  padding: 2.5rem 2.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(34,64,80,.22), 0 4px 12px rgba(34,64,80,.1);
+  padding: 2.2rem 2.2rem 1.8rem;
   text-align: center;
 }
+.controls-row { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.2rem; }
+.progress-col { flex: 1; }
 .audio-card-label {
   font-size: .58rem; letter-spacing: .22em; text-transform: uppercase;
   color: var(--amber); margin-bottom: 1.6rem; font-weight: 700;
@@ -133,7 +136,7 @@ a { color: inherit; text-decoration: none; }
   display: inline-flex; align-items: center; justify-content: center;
   box-shadow: 0 6px 24px rgba(2,100,90,.35);
   transition: transform .2s, box-shadow .2s, background .2s;
-  margin-bottom: 1.4rem;
+ 
 }
 .play-btn:hover {
   transform: scale(1.08);
@@ -297,45 +300,42 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
     <span class="headline-kids">The Kids Who</span>
     <span class="headline-remember">Remember</span>
   </h1>
+  <div class="hero-rule"></div>
   <p class="story-byline">By <span>Namira Haris</span></p>
   <p class="story-dek">How does disaster shape you differently at six versus sixteen? An audio documentary centering the young voices of Western North Carolina after Hurricane Helene.</p>
 </header>
 
-<!-- ═══ AUDIO PLAYER ═══ -->
 <section class="audio-section">
   <div class="audio-card">
     <p class="audio-card-label">Listen to the Documentary</p>
-
-    <!-- Waveform decoration -->
     <div class="waveform-deco" id="waveform"></div>
-
-    <!-- Play button -->
-    <button class="play-btn" id="playBtn" aria-label="Play">
-      <svg id="playIcon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
-    </button>
-
-    <!-- Progress -->
-    <div class="progress-wrap">
-      <span class="time-label" id="timeCurrent">0:00</span>
-      <div class="progress-bar" id="progressBar">
-        <div class="progress-fill" id="progressFill"></div>
+    <div class="controls-row">
+      <button class="play-btn" id="playBtn" aria-label="Play">
+        <svg id="playIcon" viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+      </button>
+      <div class="progress-col">
+        <div class="progress-wrap">
+          <span class="time-label" id="timeCurrent">0:00</span>
+          <div class="progress-bar" id="progressBar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <span class="time-label" id="timeDuration">0:00</span>
+        </div>
+        <div class="volume-row">
+          <svg class="vol-icon" id="volIcon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8.5v7a4.47 4.47 0 0 0 2.5-3.5zM14 3.23v2.06a6.51 6.51 0 0 1 0 13.42v2.06A8.51 8.51 0 0 0 14 3.23z"/></svg>
+          <input type="range" class="vol-slider" id="volSlider" min="0" max="1" step="0.05" value="0.8">
+        </div>
       </div>
-      <span class="time-label" id="timeDuration">0:00</span>
-    </div>
-
-    <!-- Volume -->
-    <div class="volume-row">
-      <svg class="vol-icon" id="volIcon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8.5v7a4.47 4.47 0 0 0 2.5-3.5zM14 3.23v2.06a6.51 6.51 0 0 1 0 13.42v2.06A8.51 8.51 0 0 0 14 3.23z"/></svg>
-      <input type="range" class="vol-slider" id="volSlider" min="0" max="1" step="0.05" value="0.8">
     </div>
   </div>
 </section>
 
 <!-- ═══ INTRO ═══ -->
 <section class="story-intro">
-  <p>There is a generation of young people in Asheville and across Western North Carolina for whom Hurricane Helene will be a formative childhood memory. They watched rivers swallow their neighborhoods. They slept in shelters, missed weeks of school, and tried to make sense of a world that shifted overnight.</p>
-  <p>This audio documentary lets them tell those stories — not filtered through adults, but in their own words and voices. From a five-year-old who remembers the sound of the water to teenagers navigating displacement and loss, <em>The Kids Who Remember</em> asks what children carry with them that adults miss, and how disaster shapes you differently depending on when it finds you.</p>
+  <p>There is a generation of young people in Asheville and across Western North Carolina for whom tropical storm Helene will remain a formative childhood memory. They watched rivers swallow their neighborhoods. They slept in shelters, missed weeks of school and tried to make sense of a world that shifted overnight.</p>
+  <p>This audio documentary lets them tell those stories in their own words and voices. From a 5-year-old who remembers the sound of the rushing water to teenagers navigating displacement and loss, <em>The Kids Who Remember</em> asks what children carry with them that adults miss and how disaster shapes you differently depending on when it finds you.</p>
   <p>Young people are almost never centered in disaster coverage. This piece fills that gap and creates a generational archive of this experience.</p>
+  <p>Parents or guardians of all children interviewed signed consent forms to participate in this project.</p>
 </section>
 
 <!-- ═══ TRANSCRIPT ═══ -->

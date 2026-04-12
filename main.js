@@ -157,31 +157,42 @@ function escapeHtml(value) {
 /* ═══════════════════════════════════════════
    0. SCROLL TO TOP ON EVERY PAGE LOAD
 ═══════════════════════════════════════════ */
-if (history.scrollRestoration) history.scrollRestoration = "manual";
-window.scrollTo(0, 0);
-document.documentElement.scrollTop = 0;
-document.body.scrollTop = 0;
-
 const vid = document.getElementById("hero-video");
+const soundscape = document.getElementById("soundscape-main");
+const hasVisited = sessionStorage.getItem("hasVisitedHome");
+
 if (vid) {
   vid.loop = false;
   vid.muted = true;
-  vid.play().catch(() => {});
-
-  function unlockAudio() {
-    vid.muted = false;
+  if (!hasVisited) {
     vid.currentTime = 0;
-    vid.play().catch(() => {
-      vid.muted = true;
-      vid.play().catch(() => {});
-    });
+    vid.play().catch(() => {});
+  } else {
+    vid.pause();
+    vid.currentTime = 0;
   }
-
-  document.addEventListener('mousemove', unlockAudio, { once: true });
-  document.addEventListener('scroll', unlockAudio, { once: true });
-  document.addEventListener('touchstart', unlockAudio, { once: true });
-  document.addEventListener('click', unlockAudio, { once: true });
 }
+
+if (soundscape) {
+  soundscape.volume = 0.4;
+  if (!hasVisited) {
+    soundscape.play().catch(() => {});
+  } else {
+    soundscape.pause();
+    soundscape.currentTime = 0;
+  }
+}
+
+function unlockMedia() {
+  if (vid && !vid.ended) vid.muted = false;
+  if (soundscape && !hasVisited) soundscape.play().catch(() => {});
+}
+
+document.addEventListener("click", unlockMedia, { once: true });
+document.addEventListener("scroll", unlockMedia, { once: true });
+document.addEventListener("touchstart", unlockMedia, { once: true });
+
+sessionStorage.setItem("hasVisitedHome", "true");
 /* ═══════════════════════════════════════════
    2. ABOUT PAGE
 ═══════════════════════════════════════════ */
@@ -602,5 +613,4 @@ window.addEventListener("load", () => {
   if (window.location.hash) {
     history.replaceState(null, "", window.location.pathname);
   }
-  window.scrollTo(0, 0);
 });
