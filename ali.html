@@ -258,6 +258,9 @@ a { color: inherit; text-decoration: none; }
   color: rgba(34,64,80,.74);
   font-family: var(--font-body);
 }
+@media (max-width: 680px) {
+  .friends-grid { grid-template-columns: 1fr !important; }
+}
 
 footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; margin-top: 2rem; }
 .footer-title { font-family: var(--font-display); font-size: 1rem; color: var(--cream); letter-spacing: .1em; margin-bottom: .35rem; }
@@ -436,7 +439,16 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
       <p>In Hogan's initial correspondence with FEMA, she was redirected to different programs and led to believe that there was no support the agency could offer the group. "All my efforts to get FEMA help or help anywhere prior to this moment of this hazard mitigation was, 'We can't help you because you're not residential,'" said Hogan. "It's a weird situation. We're not commercial, we're not a business. But we're not a family owning a property."</p>
 
       <p>"Then you add on top of it government shutdowns, and you add on top of it the current administration, and you add on top of it, all the things. And the program as a whole takes a while," said Hogan. "The whole time we've been kind of in the dark. We found out maybe a year in that we were one of the first 23 properties approved for this buyout program, which was great news. That still might mean that it'll be years from now before anything happens. We don't know."</p>
-
+<!-- BEFORE/AFTER GRID: Swannanoa Valley Friends Meeting -->
+      <div style="margin: 2.8rem 0;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:.6rem; border-radius:12px; overflow:hidden; box-shadow: 0 8px 32px rgba(34,64,80,.18);">
+          <img src="images/story/ali/10.jpg" alt="Friends Meeting house before storm, front" style="width:100%; height:240px; object-fit:cover; display:block;">
+          <img src="images/story/ali/11.jpeg" alt="Friends Meeting house after storm, front" style="width:100%; height:240px; object-fit:cover; display:block;">
+          <img src="images/story/ali/12.jpg" alt="Friends Meeting house before storm, back deck" style="width:100%; height:240px; object-fit:cover; display:block;">
+          <img src="images/story/ali/13.JPG" alt="Friends Meeting house after storm, back deck" style="width:100%; height:240px; object-fit:cover; display:block;">
+        </div>
+        <p class="photo-caption" style="margin-top:.5rem;">The Swannanoa Valley Friends Meeting house in Black Mountain was destroyed by tropical storm Helene. With no flood insurance, the Quaker group has to rely on public assistance to recover what they lost. They were rejected by FEMA, but the state has approved at least a portion of their request. Top: The front of the meeting house before and after the storm. Bottom: The back deck of the meeting house before and after the storm. Photos courtesy of MJ Hogan</p>
+      </div>
     </article>
 
     <!-- ── ASIDE: KEY FIGURES ── -->
