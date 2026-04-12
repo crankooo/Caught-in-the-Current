@@ -94,12 +94,6 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.05; color: var(--cream);
   opacity: 0; animation: fadeUp .9s ease .45s forwards;
 }
-.story-dek {
-  max-width: 640px; margin: 0 auto 1.2rem;
-  font-size: 1.05rem; line-height: 1.8;
-  color: rgba(247,243,237,.84); font-style: italic;
-  opacity: 0; animation: fadeUp .9s ease .6s forwards;
-}
 .story-byline {
   font-size: .75rem; color: rgba(247,243,237,.62);
   letter-spacing: .1em; text-transform: uppercase;
@@ -111,7 +105,6 @@ a { color: inherit; text-decoration: none; }
   max-width: 1180px; margin: 0 auto;
   padding: 3.2rem 1.5rem 4rem;
 }
-
 .article-topper { max-width: var(--max-w); margin: 0 auto 2.2rem; }
 .article-topper p { font-size: .88rem; line-height: 1.95; color: rgba(34,64,80,.82); font-style: italic; }
 
@@ -135,7 +128,6 @@ a { color: inherit; text-decoration: none; }
   padding-bottom: .5rem;
   border-bottom: 2px solid var(--amber);
 }
-
 .section-divider {
   display: flex; align-items: center; gap: 1rem;
   margin: 3rem 0 1.9rem;
@@ -146,17 +138,186 @@ a { color: inherit; text-decoration: none; }
   color: var(--rust); white-space: normal;
 }
 
-.article-aside { position: sticky; top: calc(var(--nav-h) + 1.25rem); }
-.aside-card {
-  background: rgba(255,255,255,.75); border: 1px solid rgba(34,64,80,.08);
-  border-radius: 14px; padding: 1.2rem 1.1rem;
-  box-shadow: 0 10px 26px rgba(34,64,80,.05); backdrop-filter: blur(4px);
+/* ── PHOTO CAPTION ── */
+.photo-caption {
+  font-size: .67rem; line-height: 1.6;
+  color: rgba(34,64,80,.52);
+  margin-top: .5rem;
+  padding-left: .7rem;
+  border-left: 2px solid var(--amber);
 }
-.aside-label { font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; color: var(--rust); margin-bottom: .8rem; }
-.aside-card ul { list-style: none; }
-.aside-card li { font-size: .73rem; line-height: 1.7; color: rgba(34,64,80,.78); padding: .72rem 0; border-top: 1px solid rgba(34,64,80,.08); }
-.aside-card li:first-child { border-top: none; padding-top: 0; }
-.aside-card strong { display: block; color: var(--navy); font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .2rem; }
+
+/* ── SINGLE PHOTO ── */
+.story-photo { margin: 2.2rem 0; }
+.story-photo img { width: 100%; height: auto; border-radius: 10px; display: block; }
+
+/* ──────────────────────────────
+   BEFORE / AFTER SLIDER
+────────────────────────────── */
+.before-after-wrap {
+  margin: 2.2rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(34,64,80,.18);
+  position: relative;
+  user-select: none;
+  cursor: ew-resize;
+  -webkit-user-select: none;
+}
+.ba-container {
+  position: relative;
+  width: 100%;
+  height: 380px;
+}
+.ba-container img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  display: block;
+  pointer-events: none;
+}
+.ba-after { z-index: 1; }
+.ba-before-clip {
+  position: absolute; inset: 0; z-index: 2;
+  overflow: hidden;
+  width: 50%;
+}
+.ba-before-clip img {
+  position: absolute;
+  top: 0; left: 0;
+  width: var(--ba-full-width, 100%);
+  height: 100%;
+  object-fit: cover;
+  max-width: none;
+}
+.ba-label {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  z-index: 4; font-family: var(--font-body);
+  font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
+  background: rgba(0,0,0,.52); color: #fff;
+  padding: .28rem .65rem; border-radius: 50px;
+  pointer-events: none; opacity: 0;
+  transition: opacity .25s;
+}
+.ba-label-before { left: .9rem; }
+.ba-label-after  { right: .9rem; }
+.before-after-wrap:hover .ba-label,
+.before-after-wrap.touched .ba-label { opacity: 1; }
+.ba-divider-line {
+  position: absolute; top: 0; bottom: 0; z-index: 5;
+  left: 50%;
+  width: 3px;
+  background: var(--cream);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.ba-handle {
+  position: absolute; top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 42px; height: 42px;
+  background: var(--cream);
+  border-radius: 50%;
+  box-shadow: 0 2px 14px rgba(0,0,0,.3);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 6; pointer-events: none;
+}
+.ba-handle svg { width: 22px; height: 22px; }
+
+/* ──────────────────────────────
+   PHOTO CAROUSEL
+────────────────────────────── */
+.photo-carousel-wrap { margin: 2.4rem 0; }
+.carousel-stage {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: var(--navy);
+  box-shadow: 0 8px 32px rgba(34,64,80,.2);
+}
+.carousel-slide {
+  position: absolute; inset: 0;
+  opacity: 0;
+  transition: opacity .55s ease;
+  pointer-events: none;
+}
+.carousel-slide.active { opacity: 1; pointer-events: auto; }
+.carousel-slide img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  display: block;
+}
+.carousel-counter {
+  position: absolute; top: .9rem; right: .9rem; z-index: 10;
+  background: rgba(0,0,0,.52); color: #fff;
+  font-family: var(--font-body); font-size: .6rem; letter-spacing: .12em;
+  padding: .25rem .7rem; border-radius: 50px;
+}
+.carousel-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  z-index: 10; background: rgba(247,243,237,.92);
+  border: none; border-radius: 50%;
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(34,64,80,.18);
+  transition: background .18s, transform .18s;
+}
+.carousel-btn:hover { background: var(--amber); transform: translateY(-50%) scale(1.08); }
+.carousel-btn svg { width: 16px; height: 16px; stroke: var(--navy); fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.carousel-btn.prev { left: .75rem; }
+.carousel-btn.next { right: .75rem; }
+.carousel-dots {
+  display: flex; justify-content: center; gap: .45rem;
+  margin-top: .85rem;
+}
+.carousel-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: rgba(34,64,80,.22);
+  border: none; cursor: pointer; padding: 0;
+  transition: background .2s, transform .2s;
+}
+.carousel-dot.active { background: var(--rust); transform: scale(1.35); }
+
+/* ──────────────────────────────
+   ASIDE — KEY FIGURES
+────────────────────────────── */
+.article-aside { position: sticky; top: calc(var(--nav-h) + 1.25rem); }
+.aside-figures { display: flex; flex-direction: column; gap: .55rem; }
+.figure-card {
+  background: rgba(255,255,255,.72);
+  border: 1px solid rgba(34,64,80,.08);
+  border-radius: 12px;
+  padding: .95rem 1rem .85rem;
+  box-shadow: 0 6px 20px rgba(34,64,80,.06);
+  backdrop-filter: blur(4px);
+  position: relative;
+  overflow: hidden;
+}
+.figure-card::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 4px;
+}
+.figure-card.teal::before  { background: var(--teal); }
+.figure-card.amber::before { background: var(--amber); }
+.figure-card.rust::before  { background: var(--rust); }
+.figure-card.navy::before  { background: var(--navy); }
+.figure-num {
+  font-family: var(--font-display);
+  font-size: 1.55rem; font-weight: 700; line-height: 1;
+  margin-bottom: .22rem;
+}
+.figure-card.teal  .figure-num { color: var(--teal); }
+.figure-card.amber .figure-num { color: var(--amber); }
+.figure-card.rust  .figure-num { color: var(--rust); }
+.figure-card.navy  .figure-num { color: var(--navy); }
+.figure-label {
+  font-size: .67rem; line-height: 1.55;
+  color: rgba(34,64,80,.74);
+  font-family: var(--font-body);
+}
 
 footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; margin-top: 2rem; }
 .footer-title { font-family: var(--font-display); font-size: 1rem; color: var(--cream); letter-spacing: .1em; margin-bottom: .35rem; }
@@ -165,12 +326,17 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
 @media (max-width: 980px) {
   .article-grid { grid-template-columns: 1fr; gap: 2rem; }
   .article-aside { position: static; max-width: var(--max-w); margin: 0 auto; }
+  .aside-figures { flex-direction: row; flex-wrap: wrap; }
+  .figure-card { flex: 1 1 calc(50% - .28rem); }
 }
 @media (max-width: 680px) {
   .story-nav { padding: 0 1rem; }
   .hero-inner { padding: 4rem 1.2rem 3rem; }
   .story-hero { min-height: 45vh; }
   .article-shell { padding: 2.4rem 1.05rem 3rem; }
+  .ba-container { height: 230px; }
+  .aside-figures { flex-direction: column; }
+  .figure-card { flex: unset; }
 }
 </style>
 </head>
@@ -195,19 +361,26 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
 
 <main class="article-shell">
   <div class="article-topper">
-    <p>Between the DHS government shutdown, leadership changes and an uncertain political future, FEMA assistance for Helene survivors is deeply complicated — and largely stalled.</p>
   </div>
 
   <div class="article-grid">
     <article class="article-main">
 
-      <p>When the flood waters ravaged Micaville Presbyterian Church, lifting pews and washing a house into the back of the building, the water level stopped just below the base of the stained glass windows. Saving the windows was one of many blessings for pastors Beth and Tom Hall, alongside receiving an initial sum of $140,000 to rebuild in April of last year.</p>
+      <p>When the flood waters ravaged Micaville Presbyterian Church, lifting pews and pushing a neighboring house into the back of the building, the water level stopped just below the base of the stained glass windows. Saving the blue-rimmed fractal panes was one of many blessings for pastors Beth and Tom Hall, alongside receiving $140,000 in April of last year to rebuild.</p>
 
       <p>This money came through the Public Assistance program for Houses of Worship damaged by declared disasters through the Federal Emergency Management Agency, or FEMA.</p>
 
-      <p>Micaville, an unincorporated community in Yancey County, about 45 miles northeast of Asheville, lies at the intersection of two creeks. When Tropical Storm Helene blew through western North Carolina in October 2024, causing catastrophic flooding, much of Micaville was washed away. Today, Micaville Presbyterian Church stands partially rebuilt in the middle of destruction. What was once a gym, a coffee shop, a thrift store, a post office and a water tower, is now an abandoned lot, filled with debris and stacks of wood.</p>
+      <p>Micaville, an unincorporated community in Yancey County, about 45 miles northeast of Asheville, lies at the intersection of two creeks. When Tropical Storm Helene blew through western North Carolina in September 2024, causing catastrophic flooding, much of Micaville was washed away. Once neighbored by a gym, a coffee shop, a thrift store, a post office and a water tower, Micaville Presbyterian Church stands partially rebuilt in the middle of the destruction. The rest of the strip is abandoned, filled with debris and stacks of wood.</p>
 
-      <p>"You wouldn't believe how much water came from such a little creek," said Beth Hall. "I've never seen anything like that in my life."</p>
+      <p>"You wouldn't believe how much water came from such a little creek," said Beth Hall on a sunny day in early March, 18 months later. "I've never seen anything like that in my life."</p>
+
+      <!-- BEFORE / AFTER: FLOURISH EMBED -->
+      <div style="margin: 2.2rem 0;">
+        <div style="border-radius:12px; overflow:hidden; box-shadow: 0 8px 32px rgba(34,64,80,.18);">
+          <div class="flourish-embed flourish-chart" data-src="visualisation/28479221"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/28479221/thumbnail" width="100%" alt="visualization" /></noscript></div>
+        </div>
+        <p class="photo-caption" style="margin-top:.5rem;">Micaville Presbyterian Church reopened one year after Helene, when the water filled the basement and flooded the sanctuary up to the stained glass windows. Left, pews are scattered amid debris and mud soon after the water receded. Right, chairs face the altar in the newly rebuilt church. Photo credits: Beth Hall and Ali Caudle</p>
+      </div>
 
       <p>With the initial funding from FEMA, debris removal by the National Guard, as well as donations and aid from community members and Amish volunteers, the Halls were able to reopen their church last fall. The basement remains unfinished, though, and much of the planned work to fortify the structure against future storms and flooding remains on hold.</p>
 
@@ -221,15 +394,48 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
 
       <p>There are two primary categories of aid dispersed by FEMA after a disaster declaration: individual assistance, known as IA, and public assistance, referred to as PA.</p>
 
-      <p>"FEMA does two major things after a disaster. One of them is helping individuals, IA, so that's helping people, tree on the house, bridge washed out, that kind of thing," said Rachael Sawyer, the strategic partnerships director for Buncombe County, and Helene recovery coordinator. "And then PA is help government to government. So if we sustained any damages that need to be repaired, they help with that, and they also help reimburse us for our, they call it emergency protective measures."</p>
+      <p>"FEMA does two major things after a disaster. One of them is helping individuals, IA, so that's helping people, tree on the house, bridge washed out, that kind of thing," said Rachael Sawyer, the strategic partnerships director for Buncombe County, and Helene recovery coordinator. "And then PA is help government to government. So if we sustained any damages that need to be repaired, they help with that, and they also help reimburse us for … emergency protective measures."</p>
 
       <p>FEMA funding involves a fractured landscape, shifting constantly. Between the DHS government shutdown, leadership changes and an uncertain political future, FEMA assistance is deeply complicated. As of March, both public and individual assistance remains stalled.</p>
 
       <p>As of March 19, North Carolina state officials estimate that there are roughly 1,800 Helene-related projects in progress within the FEMA public assistance program, accounting for an estimated $2.6 billion in need.</p>
 
+      <p>"The FEMA money is not flowing as fast as expected or as is needed in the state," said Justin Graney, chief of external affairs and communication for the North Carolina Department of Public Safety. "We would have liked to see that funding move quicker," he said, adding that his office has urged legislators including Republican Sen. Thom Tillis to help free up federal disbursements.</p>
+
+      <!-- PHOTO CAROUSEL: images 3–8 -->
+      <div class="photo-carousel-wrap">
+        <div class="carousel-stage" id="carouselStage">
+          <div class="carousel-counter"><span id="carouselCurrent">1</span>&thinsp;/&thinsp;6</div>
+
+          <div class="carousel-slide active"><img src="images/story/ali/3.png" alt="River Arts District storm damage photo 1"></div>
+          <div class="carousel-slide"><img src="images/story/ali/4.png" alt="River Arts District storm damage photo 2"></div>
+          <div class="carousel-slide"><img src="images/story/ali/5.png" alt="River Arts District storm damage photo 3"></div>
+          <div class="carousel-slide"><img src="images/story/ali/6.png" alt="River Arts District storm damage photo 4"></div>
+          <div class="carousel-slide"><img src="images/story/ali/7.png" alt="River Arts District storm damage photo 5"></div>
+          <div class="carousel-slide"><img src="images/story/ali/8.png" alt="River Arts District storm damage photo 6"></div>
+
+          <button class="carousel-btn prev" id="carouselPrev" aria-label="Previous photo">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="carousel-btn next" id="carouselNext" aria-label="Next photo">
+            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+
+        <div class="carousel-dots" id="carouselDots">
+          <button class="carousel-dot active" data-index="0" aria-label="Photo 1"></button>
+          <button class="carousel-dot" data-index="1" aria-label="Photo 2"></button>
+          <button class="carousel-dot" data-index="2" aria-label="Photo 3"></button>
+          <button class="carousel-dot" data-index="3" aria-label="Photo 4"></button>
+          <button class="carousel-dot" data-index="4" aria-label="Photo 5"></button>
+          <button class="carousel-dot" data-index="5" aria-label="Photo 6"></button>
+        </div>
+        <p class="photo-caption" style="margin-top:.6rem;">In the River Arts District along the French Broad River in Asheville, a car displaced from the storm is buried beneath debris and dirt. Photo credit: Ali Caudle</p>
+      </div>
+
       <p>According to FEMA's website, public assistance is FEMA's "largest grant program providing funds to assist communities responding to and recovering from major disasters or emergencies declared by the president." Eligible applicants for PA include states, U.S. territories, federally recognized tribal governments, local governments, and certain private non-profit organizations. The houses of worship provision falls under the umbrella of private non-profit groups.</p>
 
-      <p>As a result of the DHS shutdown, FEMA is operating at limited capacity. This means that the agency has only been able to make progress on processing grant funding for public assistance category A, or debris removal, and category B, emergency protective actions. Categories C through G, considered "permanent work," include rebuilding roads and bridges, water control facilities, public utilities, parks and other facilities — and remain largely frozen.</p>
+      <p>As a result of the DHS shutdown, FEMA is operating at limited capacity. This means that the agency has only been able to make progress on processing grant funding for public assistance category A, or debris removal, and category B, emergency protective actions. Categories C through G are considered "permanent work" and include rebuilding roads and bridges, water control facilities, public utilities, parks and other facilities.</p>
 
       <div class="section-divider"><span>The secretary's approval</span></div>
 
@@ -243,13 +449,13 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
 
       <p>"You have a policy right now that anything over $100,000 has to go through your desk for approval," Sen. Tillis said in the committee hearing. "If you're requesting a review of $100,000 and up, then it begs the question why? Why would you be involved in that? Why would that be a policy?"</p>
 
-      <p>In a study released March 4 by the minority staff of the U.S. Senate Committee on Homeland Security and Governmental Affairs, ranking members Gary Peters (D-MI) and Andy Kim (D-NJ) laid out real-world impacts of this DHS directive for disaster survivors. The study found that minority staff identified 1,034 contracts, grants or disaster assistance awards that were delayed or left pending as a result of this directive.</p>
+      <p>In a study released March 4 — titled "Delayed by Design: Disaster Survivors Left Behind by DHS Secretary Noem's $100,000 Approval Policy" — by the minority staff of the U.S. Senate Committee on Homeland Security and Governmental Affairs, ranking members Gary Peters (D-MI) and Andy Kim (D-NJ) laid out real-world impacts of this DHS directive for disaster survivors. The study found that minority staff identified 1,034 contracts, grants or disaster assistance awards that were delayed or left pending as a result of this directive.</p>
 
       <p>"The Homeland Security Act of 2002 expressly prohibits the Secretary of Homeland Security from restricting or diverting FEMA resources from the agency's mission. Based on your disaster response," said Sen. Tillis in the committee hearing, "I have reason to believe that you're violating the law, either knowingly or unknowingly."</p>
 
       <p>On the ground in North Carolina, individuals cited DHS policies and the Trump administration when assessing FEMA's response to Helene.</p>
 
-      <p>"If we got the rest of the FEMA money, we'd be wonderful. But Kristi Noem has to approve it personally, anything over $100,000," said Tom Hall. "Donald Trump came in here and said, 'I'll build it back better than ever.' … FEMA was here right from the start helping us. They were the ones that did the job. They came and found us. …The administration change just…it came to a screeching halt."</p>
+      <p>"If we got the rest of the FEMA money, we'd be wonderful," said Tom Hall. "Donald Trump came in here and said, 'I'll build it back better than ever.' … FEMA was here right from the start helping us. They were the ones that did the job. They came and found us. …The administration change just…it came to a screeching halt."</p>
 
       <div class="section-divider"><span>Navigating the FEMA landscape</span></div>
 
@@ -257,27 +463,33 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
 
       <p>"In terms of the day-to-day operation of the Individual Assistance Program that we see, I would say the only change that we have seen at this level has been that FEMA responses have slowed down," said Emma Smiley, a supervising attorney for the Disaster Relief Project at Legal Aid of North Carolina. "The time to get a decision on an appeal has crept longer and longer. … We're talking like three months, but it's at this point at least four before people get their decisions made on appeals."</p>
 
-      <p>In September 2025, the U.S. Government Accountability Office published a report finding that from Jan. 1, 2025, to June 1, 2025, the active number of FEMA employees decreased from 25,800 to 23,350 — a loss of 2,446 employees, including 1,465 who participated in a workforce reduction program directly tied to the Trump administration's efforts to reduce the size of the government workforce.</p>
+      <p>In September 2025, the U.S. Government Accountability Office published a report finding that from Jan. 1, 2025, to June 1, 2025, the active number of FEMA employees decreased from 25,800 to 23,350 — a loss of 2,446 employees, including 1,465 who participated in a workforce reduction program. The report ties these departures to the Trump administration's efforts to reduce the size of the government workforce, as well as attrition and employee burnout from concurrent disasters.</p>
 
       <p>"I think that it's important for FEMA to have the staffing levels where they can make decisions on appeals in a timely manner, because when people are in a disaster situation, they tend to have a lot of emergency needs," said Smiley. "So if they have to wait four months for an appeal decision, just because there isn't the staffing to be able to do that, that can make somebody homeless."</p>
 
-      <p>In January 2026, the American Federation of Government Employees led a coalition in a lawsuit challenging the Trump administration's "unlawful and drastic" staffing cuts at FEMA. The complaint alleges that attempts to dismantle FEMA through workforce reductions take direct aim at FEMA's mandate as laid out in U.S. law.</p>
+      <p>In January 2026, the American Federation of Government Employees led a coalition in a lawsuit challenging the Trump administration's "unlawful and drastic" staffing cuts at FEMA. The complaint alleges that attempts to dismantle FEMA through workforce reductions take direct aim at FEMA's mandate as laid out in U.S. law, and warns that shrinking FEMA risks pushing disaster relief to state and local governments in ways that could cause the kind of catastrophic tragedy Congress sought to prevent.</p>
 
       <p>"We had to hunt through so much red tape. And we're educated people, so we were able to persevere and not give up," said Beth Hall. "So if we had that much trouble, I think a lot of people, they don't try and get it filled out. They just don't believe that they can."</p>
+
+      <!-- PHOTO 9 -->
+      <div class="story-photo">
+        <img src="images/story/ali/9.jpg" alt="Beth Hall on the front steps of Micaville Presbyterian Church">
+        <p class="photo-caption">Beth Hall, co-pastor of Micaville Presbyterian Church, stands on the front steps and points at the ravaged remains of Micaville. The Yancey County community was decimated by the floods and structures still sit abandoned 18 months out. Photo credit: Ali Caudle</p>
+      </div>
 
       <div class="section-divider"><span>Impacts on organizations</span></div>
 
       <p>MANNA FoodBank is a private, nonprofit regional organization that works to end food insecurity in Western North Carolina. Their Asheville headquarters and warehouse, then-located on Swannanoa River Road, were completely destroyed by Helene.</p>
 
-      <p>Claire Neal, MANNA's CEO, credited FEMA with providing crucial support in the immediate aftermath of Helene by providing significant amounts of food to be distributed to people in need. But 18 months later, the organization is still trying to piece together funding from various sources, including FEMA, on a relocation project to rebuild.</p>
+      <p>Claire Neal, MANNA's CEO, credited FEMA with providing crucial support in the immediate aftermath of Helene by providing significant amounts of food to be distributed to people in need — including foods for specific dietary needs and cultural or religious restrictions that couldn't be sourced through community donations alone. MANNA was able to resume food distribution within days of Helene's impact. But 18 months later, the organization is still trying to piece together funding from various sources, including FEMA, on a relocation project to rebuild.</p>
 
       <p>The Swannanoa River completely changed course as a result of the flooding. What used to be MANNA's parking lot is now the river — meaning the organization cannot rebuild on the old site. To fund this relocation, MANNA is coordinating with FEMA on a daily basis, contracting with an outside consultant and dedicating substantial staff time.</p>
 
-      <p>MANNA is also working with FEMA through the Hazard Mitigation Grant Program, or HMGP, which provides funding to state, tribal and local governments to reduce or mitigate future disaster losses. In Buncombe County, there are four groups of applicants. The first group involves 23 properties with funding already awarded by FEMA. Groups three and four, involving 157 and 72 properties respectively, are listed as "application submitted to FEMA."</p>
+      <p>MANNA is also working with FEMA through the Hazard Mitigation Grant Program, or HMGP, which provides funding to state, tribal and local governments to reduce or mitigate future disaster losses. In Buncombe County, there are four groups of applicants. The first group involves 23 properties with funding already awarded by FEMA. For group two, 24 of 26 properties have been awarded funds. Groups three and four, involving 157 and 72 properties respectively, are listed as "application submitted to FEMA."</p>
 
       <p>MANNA has been approved through the county and state level for this program, so the state has agreed to buy back the original land to be converted to green space, at fair market value, using FEMA funds, once approved.</p>
 
-      <p>Over in Black Mountain, a Quaker meeting house was damaged beyond repair. The Swannanoa Valley Friends Meeting are now gathering at a host church on the Warren Wilson College campus. The group's leadership recently learned that their old property has been approved in the first group of HMGP funding in Buncombe County.</p>
+      <p>Over in Black Mountain, a Quaker meeting house was damaged beyond repair. The Swannanoa Valley Friends Meeting, which did not have flood insurance, are now gathering at a host church on the Warren Wilson College campus. The group's leadership recently learned that their old property has been approved in the first group of HMGP funding in Buncombe County.</p>
 
       <p>MJ Hogan, the group's assistant treasurer, recalled the state of the meeting house after the floods. "We salvaged what we felt like was salvageable, and it was a mess. I mean, it was disgusting. Everything was just caked in mud," she said.</p>
 
@@ -287,16 +499,29 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
 
     </article>
 
+    <!-- ── ASIDE: KEY FIGURES ── -->
     <aside class="article-aside">
-      <div class="aside-card">
-        <div class="aside-label">At a glance</div>
-        <ul>
-          <li><strong>FEMA aid stalled</strong> As of March 2026, both public and individual assistance for Helene survivors remains largely frozen due to the DHS shutdown.</li>
-          <li><strong>$2.6B in need</strong> North Carolina officials estimate roughly 1,800 Helene-related projects in the FEMA public assistance program.</li>
-          <li><strong>Staffing cuts</strong> FEMA lost 2,446 employees between January and June 2025, slowing appeal decisions to four months or more.</li>
-          <li><strong>$100K rule</strong> Former DHS Secretary Noem's policy requiring personal approval of expenditures over $100,000 delayed millions in aid — rescinded April 2, 2026.</li>
-          <li><strong>HMGP</strong> The Hazard Mitigation Grant Program remains a key but slow path for nonprofits and homeowners in Buncombe County.</li>
-        </ul>
+      <div class="aside-figures">
+        <div class="figure-card teal">
+          <div class="figure-num">$2.6B</div>
+          <div class="figure-label">Estimated need across ~1,800 Helene-related projects in North Carolina's FEMA public assistance program</div>
+        </div>
+        <div class="figure-card amber">
+          <div class="figure-num">2,446</div>
+          <div class="figure-label">FEMA employees lost between Jan.–June 2025, slowing appeal decisions to four months or more</div>
+        </div>
+        <div class="figure-card rust">
+          <div class="figure-num">$100K</div>
+          <div class="figure-label">Former Sec. Noem required personal approval for any expenditure above this threshold — rescinded April 2, 2026</div>
+        </div>
+        <div class="figure-card navy">
+          <div class="figure-num">$28.6M</div>
+          <div class="figure-label">Obligation sitting in 21 projects awaiting DHS secretary approval in North Carolina alone</div>
+        </div>
+        <div class="figure-card teal">
+          <div class="figure-num">1,034</div>
+          <div class="figure-label">Contracts, grants or disaster awards delayed or left pending due to Noem's approval directive</div>
+        </div>
       </div>
     </aside>
   </div>
@@ -306,6 +531,87 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
   <p class="footer-title">Caught in the Current</p>
   <p class="footer-sub">Helene Recovery in Asheville and Beyond · Northeastern University · 2026</p>
 </footer>
+
+<script>
+/* ── BEFORE / AFTER SLIDER ── */
+(function () {
+  const wrap    = document.getElementById('baWrap');
+  const clip    = document.getElementById('baClip');
+  const divLine = document.getElementById('baDividerLine');
+  if (!wrap) return;
+
+  let dragging = false;
+
+function setPos(clientX) {
+    const rect = wrap.getBoundingClientRect();
+    let pct = ((clientX - rect.left) / rect.width) * 100;
+    pct = Math.max(2, Math.min(98, pct));
+    clip.style.width     = pct + '%';
+    divLine.style.left   = pct + '%';
+    // keep the before image at full container width so it doesn't zoom
+    clip.style.setProperty('--ba-full-width', (rect.width / (pct / 100)) + 'px');
+  }
+
+  wrap.addEventListener('mousedown',   e => { dragging = true; setPos(e.clientX); });
+  window.addEventListener('mouseup',   ()  => { dragging = false; });
+  window.addEventListener('mousemove', e   => { if (dragging) setPos(e.clientX); });
+// set correct width on load
+  const initRect = wrap.getBoundingClientRect();
+  clip.style.setProperty('--ba-full-width', initRect.width + 'px');
+  wrap.addEventListener('touchstart',  e => { dragging = true; wrap.classList.add('touched'); setPos(e.touches[0].clientX); }, { passive: true });
+  window.addEventListener('touchend',  ()  => { dragging = false; });
+  window.addEventListener('touchmove', e   => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
+})();
+
+/* ── CAROUSEL ── */
+(function () {
+  const slides  = document.querySelectorAll('.carousel-slide');
+  const dots    = document.querySelectorAll('.carousel-dot');
+  const counter = document.getElementById('carouselCurrent');
+  const prev    = document.getElementById('carouselPrev');
+  const next    = document.getElementById('carouselNext');
+  const stage   = document.getElementById('carouselStage');
+  if (!slides.length) return;
+
+  let cur = 0;
+  let timer;
+
+  function goTo(n) {
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    counter.textContent = cur + 1;
+  }
+
+  function startTimer() { timer = setInterval(() => goTo(cur + 1), 5000); }
+  function stopTimer()  { clearInterval(timer); }
+
+  prev.addEventListener('click',  () => { stopTimer(); goTo(cur - 1); startTimer(); });
+  next.addEventListener('click',  () => { stopTimer(); goTo(cur + 1); startTimer(); });
+  dots.forEach(d => d.addEventListener('click', () => { stopTimer(); goTo(+d.dataset.index); startTimer(); }));
+
+  stage.addEventListener('mouseenter', stopTimer);
+  stage.addEventListener('mouseleave', startTimer);
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft')  { stopTimer(); goTo(cur - 1); startTimer(); }
+    if (e.key === 'ArrowRight') { stopTimer(); goTo(cur + 1); startTimer(); }
+  });
+
+  // touch swipe
+  let tx = 0;
+  stage.addEventListener('touchstart', e => { tx = e.touches[0].clientX; stopTimer(); }, { passive: true });
+  stage.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 40) goTo(dx < 0 ? cur + 1 : cur - 1);
+    startTimer();
+  });
+
+  startTimer();
+})();
+</script>
 
 </body>
 </html>
