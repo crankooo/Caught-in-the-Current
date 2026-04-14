@@ -606,6 +606,23 @@ soundscape.addEventListener('ended', () => {
   btn.classList.remove('playing');
   btn.querySelector('.btn-label').textContent = 'Listen to soundscape';
 });
+
+/* Try autoplay on load */
+soundscape.play().then(() => {
+  isPlaying = true;
+  btn.classList.add('playing');
+  btn.querySelector('.btn-label').textContent = 'Playing…';
+}).catch(() => {
+  /* Autoplay blocked — wait for first click anywhere */
+  document.addEventListener('click', function unlock() {
+    soundscape.play().then(() => {
+      isPlaying = true;
+      btn.classList.add('playing');
+      btn.querySelector('.btn-label').textContent = 'Playing…';
+    }).catch(() => {});
+    document.removeEventListener('click', unlock);
+  });
+});
 </script>
 
 </body>
