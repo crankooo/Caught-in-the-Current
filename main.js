@@ -173,24 +173,51 @@ if (vid) {
   }
 }
 
-if (soundscape) {
-  soundscape.volume = 0.4;
-  if (!hasVisited) {
-    soundscape.play().catch(() => {});
+/* ── LANDING PAGE VIDEO SOUND TOGGLE ── */
+let videoMuted = true;
+const landingBtn = document.createElement('button');
+landingBtn.id = 'landingSoundBtn';
+landingBtn.innerHTML = `<span class="btn-label">Hear the story</span><span class="btn-bars"><span style="height:8px"></span><span style="height:4px"></span><span style="height:11px"></span><span style="height:6px"></span></span>`;
+landingBtn.style.cssText = `
+  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+  display: inline-flex; align-items: center; gap: .6rem;
+  padding: .55rem 1.4rem;
+  background: rgba(34,64,80,.85);
+  border: 1px solid rgba(247,243,237,.2);
+  border-radius: 50px;
+  color: rgba(247,243,237,.9);
+  font-family: 'Lora', Georgia, serif;
+  font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background .3s, border-color .3s, box-shadow .3s;
+`;
+document.body.appendChild(landingBtn);
+
+landingBtn.querySelectorAll('.btn-bars span').forEach(s => {
+  s.style.cssText = 'display:block; width:2px; background:#9FE1CB; border-radius:1px;';
+});
+
+landingBtn.addEventListener('click', () => {
+  if (!vid) return;
+  if (videoMuted) {
+    vid.muted = false;
+    videoMuted = false;
+    landingBtn.querySelector('.btn-label').textContent = 'Mute video';
+    landingBtn.style.background = 'rgba(2,100,90,.4)';
+    landingBtn.style.borderColor = 'rgba(159,225,203,.7)';
+    landingBtn.style.boxShadow = '0 0 22px rgba(2,100,90,.6), 0 0 50px rgba(2,100,90,.25)';
+    landingBtn.style.color = '#9FE1CB';
   } else {
-    soundscape.pause();
-    soundscape.currentTime = 0;
+    vid.muted = true;
+    videoMuted = true;
+    landingBtn.querySelector('.btn-label').textContent = 'Hear the story';
+    landingBtn.style.background = 'rgba(34,64,80,.85)';
+    landingBtn.style.borderColor = 'rgba(247,243,237,.2)';
+    landingBtn.style.boxShadow = 'none';
+    landingBtn.style.color = 'rgba(247,243,237,.9)';
   }
-}
-
-function unlockMedia() {
-  if (vid && !vid.ended) vid.muted = false;
-  if (soundscape && !hasVisited) soundscape.play().catch(() => {});
-}
-
-document.addEventListener("click", unlockMedia, { once: true });
-document.addEventListener("scroll", unlockMedia, { once: true });
-document.addEventListener("touchstart", unlockMedia, { once: true });
+});
 
 sessionStorage.setItem("hasVisitedHome", "true");
 /* ═══════════════════════════════════════════

@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soundscape — Caught in the Current</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Averia+Libre:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:  #02645A;
+  --navy:  #224050;
+  --amber: #D4874C;
+  --rust:  #C45D3A;
+  --cream: #F7F3ED;
+  --white: #ffffff;
+  --font-display: 'Averia Libre', serif;
+  --font-body: 'Lora', Georgia, serif;
+  --nav-h: 70px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  background: #0a0f0e;
+  color: var(--cream);
+  overflow-x: hidden;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ── NAV ── */
+.story-nav {
+  position: sticky; top: 0; z-index: 300;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem; height: var(--nav-h);
+  background: rgba(10,15,14,.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.nav-logo-img { height: 56px; width: 56px; object-fit: contain; border-radius: 50%; }
+.back-btn {
+  background: none; border: 1.5px solid rgba(247,243,237,.3);
+  color: var(--cream); font-family: var(--font-body);
+  font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
+  padding: .4rem 1.1rem; border-radius: 50px; cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.back-btn:hover { background: var(--amber); border-color: var(--amber); }
+
+/* ── HERO ── */
+.story-hero {
+  position: relative;
+  min-height: 58vh;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+  background: linear-gradient(135deg, #02201c 0%, #0a1a14 40%, #1a0e08 100%);
+}
+.hero-bg-img {
+  position: absolute; inset: 0;
+  background-image: url('images/fotos/business.jpg');
+  background-size: cover; background-position: center 30%;
+  opacity: 0.28;
+  animation: heroZoom 14s ease-out forwards;
+}
+.hero-noise {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+.hero-gradient {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, #0a0f0e 0%, rgba(10,15,14,.7) 40%, transparent 100%);
+}
+@keyframes heroZoom { from { transform: scale(1.08); } to { transform: scale(1); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.hero-inner {
+  position: relative; z-index: 2;
+  width: 100%; max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 3rem 3.5rem;
+  display: flex; align-items: flex-end; gap: 2.5rem;
+}
+
+/* Fake album art for hero */
+.hero-vinyl-wrap {
+  flex-shrink: 0;
+  width: 180px; height: 180px;
+  position: relative;
+  opacity: 0; animation: fadeUp .9s ease .2s forwards;
+}
+.hero-album-cover {
+  width: 180px; height: 180px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #1a3a2a, #02645A, #D4874C 80%);
+  box-shadow: 0 20px 60px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.06);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3.5rem;
+  overflow: hidden;
+  position: relative;
+}
+.hero-album-cover img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  opacity: 0.85;
+}
+.hero-meta {
+  flex: 1;
+  opacity: 0; animation: fadeUp .9s ease .45s forwards;
+}
+.hero-label {
+  font-size: .6rem; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: .5rem; font-weight: 700;
+}
+.hero-title {
+  font-family: var(--font-body);
+  font-size: clamp(1.8rem, 4.5vw, 3rem);
+  line-height: 1.05; color: var(--cream);
+  font-weight: 700; margin-bottom: .6rem;
+}
+.hero-byline {
+  font-size: .82rem; color: rgba(247,243,237,.55);
+  margin-bottom: 1.2rem;
+}
+.hero-byline span { color: rgba(247,243,237,.85); font-weight: 700; }
+.hero-desc {
+  font-size: .88rem; line-height: 1.75;
+  color: rgba(247,243,237,.62);
+  max-width: 520px;
+}
+
+/* ── MAIN PLAYER SHELL ── */
+.player-shell {
+  max-width: 1200px; margin: 0 auto;
+  padding: 2.5rem 3rem 5rem;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* ── TRACK LIST (left) ── */
+.tracklist-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.4rem;
+  padding-bottom: .8rem;
+  border-bottom: 1px solid rgba(247,243,237,.08);
+}
+.tracklist-title {
+  font-size: .58rem; letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(247,243,237,.35); font-weight: 700;
+}
+.tracklist-count {
+  font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(247,243,237,.25);
+}
+
+.track-row {
+  display: grid;
+  grid-template-columns: 24px 80px 1fr auto;
+  gap: 1.1rem;
+  align-items: center;
+  padding: .7rem .6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .18s;
+  position: relative;
+}
+.track-row:hover { background: rgba(247,243,237,.05); }
+.track-row.active { background: rgba(2,100,90,.15); }
+.track-row.active::before {
+  content: '';
+  position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 3px; height: 70%; border-radius: 0 2px 2px 0;
+  background: var(--amber);
+}
+
+.track-num {
+  font-size: .72rem; color: rgba(247,243,237,.3);
+  text-align: center; font-style: normal;
+  transition: color .18s;
+}
+.track-row.active .track-num { color: var(--amber); }
+.track-row:hover .track-num { color: rgba(247,243,237,.7); }
+
+/* Vinyl thumbnail */
+.track-vinyl-wrap {
+  position: relative;
+  width: 80px; height: 80px;
+  flex-shrink: 0;
+}
+.track-vinyl {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: #111;
+  box-shadow: 0 4px 18px rgba(0,0,0,.5);
+  position: relative;
+  overflow: hidden;
+  transition: transform .6s cubic-bezier(.22,.68,0,1.2);
+  cursor: pointer;
+}
+.track-row.active .track-vinyl {
+  animation: spinVinyl 4s linear infinite;
+}
+.track-row:hover .track-vinyl {
+  transform: scale(1.08);
+}
+
+@keyframes spinVinyl {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.track-vinyl-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  opacity: 0.65;
+}
+/* Vinyl grooves overlay */
+.track-vinyl::after {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background:
+    repeating-radial-gradient(
+      circle at center,
+      transparent 0px,
+      transparent 5px,
+      rgba(0,0,0,.15) 5px,
+      rgba(0,0,0,.15) 6px
+    );
+  pointer-events: none;
+}
+/* Center label on vinyl */
+.track-vinyl-label {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--amber);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2;
+  box-shadow: 0 0 0 2px rgba(0,0,0,.4);
+}
+.track-vinyl-label svg {
+  width: 10px; height: 10px;
+  fill: var(--white);
+}
+.track-row.active .track-vinyl-label { background: var(--rust); }
+
+/* Play overlay on hover */
+.track-vinyl-play {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background: rgba(0,0,0,.45);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  transition: opacity .2s;
+  z-index: 3;
+}
+.track-vinyl-play svg {
+  width: 22px; height: 22px; fill: white;
+}
+.track-row:hover .track-vinyl-play { opacity: 1; }
+.track-row.active .track-vinyl-play { opacity: 0; } /* spinning, no overlay */
+
+.track-info { min-width: 0; }
+.track-name {
+  font-size: .9rem; font-weight: 700;
+  color: var(--cream); margin-bottom: .2rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.track-row.active .track-name { color: var(--amber); }
+.track-blurb {
+  font-size: .73rem; line-height: 1.55;
+  color: rgba(247,243,237,.45); font-style: italic;
+}
+.track-duration {
+  font-size: .72rem; color: rgba(247,243,237,.3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ── NOW PLAYING SIDEBAR (right) ── */
+.now-playing-card {
+  position: sticky;
+  top: calc(var(--nav-h) + 1.5rem);
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 16px;
+  padding: 1.8rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 40px rgba(0,0,0,.35);
+}
+
+.now-playing-label {
+  font-size: .52rem; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 1.2rem;
+  display: flex; align-items: center; gap: .5rem;
+}
+.now-playing-label::after {
+  content: '';
+  display: inline-block;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--amber);
+  animation: blink 1.2s ease infinite;
+}
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* Big vinyl in sidebar */
+.sidebar-vinyl-wrap {
+  width: 100%;
+  aspect-ratio: 1;
+  position: relative;
+  margin-bottom: 1.4rem;
+}
+.sidebar-vinyl {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  background: #111;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.06),
+    0 16px 60px rgba(0,0,0,.7),
+    inset 0 0 30px rgba(0,0,0,.5);
+  position: relative;
+  overflow: hidden;
+  transition: transform .3s ease;
+}
+.sidebar-vinyl.spinning {
+  animation: spinVinyl 3s linear infinite;
+}
+.sidebar-vinyl-img {
+  width: 100%; height: 100%;
+  object-fit: cover; border-radius: 50%;
+  opacity: 0.6;
+}
+.sidebar-vinyl::after {
+  content: '';
+  position: absolute; inset: 0; border-radius: 50%;
+  background:
+    repeating-radial-gradient(
+      circle at center,
+      transparent 0px, transparent 6px,
+      rgba(0,0,0,.12) 6px, rgba(0,0,0,.12) 7px
+    );
+  pointer-events: none;
+}
+.sidebar-vinyl-center {
+  position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 40px; height: 40px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--amber), var(--rust));
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2;
+  box-shadow: 0 0 0 3px rgba(0,0,0,.5), 0 4px 12px rgba(212,135,76,.4);
+}
+.sidebar-vinyl-center svg { width: 14px; height: 14px; fill: white; }
+
+.sidebar-track-name {
+  font-size: 1.05rem; font-weight: 700;
+  color: var(--cream); margin-bottom: .3rem;
+  line-height: 1.25;
+}
+.sidebar-track-sub {
+  font-size: .72rem; color: rgba(247,243,237,.45);
+  font-style: italic; margin-bottom: 1.6rem;
+}
+
+/* Progress bar */
+.progress-wrap { margin-bottom: 1rem; }
+.progress-bar-bg {
+  width: 100%; height: 3px;
+  background: rgba(255,255,255,.1);
+  border-radius: 2px;
+  position: relative;
+  cursor: pointer;
+}
+.progress-bar-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(to right, var(--teal), var(--amber));
+  border-radius: 2px;
+  transition: width .25s linear;
+  position: relative;
+}
+.progress-bar-fill::after {
+  content: '';
+  position: absolute; right: -4px; top: 50%;
+  transform: translateY(-50%);
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 8px rgba(212,135,76,.6);
+  opacity: 0;
+  transition: opacity .18s;
+}
+.progress-bar-bg:hover .progress-bar-fill::after { opacity: 1; }
+.progress-times {
+  display: flex; justify-content: space-between;
+  margin-top: .4rem;
+  font-size: .62rem; color: rgba(247,243,237,.3);
+}
+
+/* Controls */
+.controls {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1.4rem; margin-bottom: 1.6rem;
+}
+.ctrl-btn {
+  background: none; border: none; cursor: pointer;
+  color: rgba(247,243,237,.5);
+  display: flex; align-items: center; justify-content: center;
+  padding: .3rem;
+  transition: color .18s, transform .18s;
+}
+.ctrl-btn:hover { color: var(--cream); }
+.ctrl-btn svg { width: 18px; height: 18px; }
+.ctrl-btn.main-play {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--amber);
+  color: var(--white);
+  box-shadow: 0 4px 20px rgba(212,135,76,.45);
+  transition: background .2s, transform .2s, box-shadow .2s;
+}
+.ctrl-btn.main-play:hover {
+  background: var(--rust);
+  transform: scale(1.08);
+  box-shadow: 0 6px 28px rgba(196,93,58,.5);
+}
+.ctrl-btn.main-play svg { width: 22px; height: 22px; }
+
+/* Volume */
+.volume-row {
+  display: flex; align-items: center; gap: .75rem;
+}
+.vol-icon { color: rgba(247,243,237,.35); flex-shrink: 0; }
+.vol-icon svg { width: 15px; height: 15px; }
+.vol-slider {
+  flex: 1; -webkit-appearance: none; appearance: none;
+  height: 3px; border-radius: 2px;
+  background: rgba(255,255,255,.15);
+  outline: none; cursor: pointer;
+}
+.vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px; border-radius: 50%;
+  background: var(--cream); cursor: pointer;
+  box-shadow: 0 0 6px rgba(247,243,237,.3);
+}
+
+/* Waveform decoration under progress */
+.waveform-deco {
+  display: flex; align-items: center; gap: 2px;
+  height: 28px; margin: 1rem 0 .6rem;
+  justify-content: center;
+}
+.waveform-deco span {
+  display: block; width: 2px; border-radius: 1px;
+  background: rgba(212,135,76,.35);
+  animation: waveDance 1.4s ease-in-out infinite alternate;
+}
+.waveform-deco.paused span { animation-play-state: paused; }
+
+@keyframes waveDance {
+  0%   { height: 4px; }
+  100% { height: 22px; }
+}
+
+/* Coming soon badge */
+.coming-soon-badge {
+  display: inline-block;
+  font-size: .52rem; letter-spacing: .18em; text-transform: uppercase;
+  background: rgba(247,243,237,.08);
+  color: rgba(247,243,237,.35);
+  padding: .2rem .6rem; border-radius: 3px;
+  vertical-align: middle; margin-left: .5rem;
+}
+
+/* ── ABOUT STRIP ── */
+.about-strip {
+  max-width: 1200px; margin: 0 auto;
+  padding: 0 3rem 4rem;
+}
+.about-strip-inner {
+  border-top: 1px solid rgba(247,243,237,.07);
+  padding-top: 2.5rem;
+  display: grid; grid-template-columns: 80px 1fr;
+  gap: 2rem; align-items: start;
+}
+.about-avatar {
+  width: 80px; height: 80px; border-radius: 50%;
+  object-fit: cover; object-position: center 15%;
+  border: 2px solid rgba(212,135,76,.3);
+}
+.about-heading {
+  font-size: .58rem; letter-spacing: .26em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: .5rem;
+}
+.about-name {
+  font-size: 1.1rem; font-weight: 700; color: var(--cream);
+  margin-bottom: .5rem;
+}
+.about-role {
+  font-size: .68rem; letter-spacing: .06em; text-transform: uppercase;
+  color: rgba(247,243,237,.35); font-style: italic;
+  margin-bottom: .8rem;
+}
+.about-bio {
+  font-size: .84rem; line-height: 1.85;
+  color: rgba(247,243,237,.55);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: rgba(0,0,0,.4);
+  border-top: 1px solid rgba(255,255,255,.05);
+  padding: 2.4rem 3rem; text-align: center;
+}
+.footer-title { font-family: var(--font-display); font-size: 1rem; color: var(--cream); letter-spacing: .1em; margin-bottom: .35rem; }
+.footer-sub { font-size: .75rem; color: rgba(247,243,237,.3); letter-spacing: .08em; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .player-shell { grid-template-columns: 1fr; gap: 2rem; }
+  .now-playing-card { position: static; }
+  .hero-vinyl-wrap { width: 130px; height: 130px; }
+  .hero-album-cover { width: 130px; height: 130px; }
+}
+@media (max-width: 640px) {
+  .hero-inner { flex-direction: column; align-items: flex-start; padding: 3rem 1.5rem 2.5rem; }
+  .player-shell { padding: 2rem 1.5rem 4rem; }
+  .about-strip { padding: 0 1.5rem 3rem; }
+  .track-row { grid-template-columns: 20px 64px 1fr; }
+  .track-duration { display: none; }
+  .story-nav { padding: 0 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Placeholder audio elements — swap src when files are ready -->
+<audio id="audio-player" preload="none"></audio>
+
+<nav class="story-nav">
+  <a href="index.html">
+    <img src="images/logos/main.png" alt="Caught in the Current" class="nav-logo-img">
+  </a>
+  <button class="back-btn" onclick="history.back()">← All Stories</button>
+</nav>
+
+<!-- ── HERO ── -->
+<header class="story-hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-gradient"></div>
+  <div class="hero-inner">
+    <div class="hero-vinyl-wrap">
+      <div class="hero-album-cover">
+        <img src="images/fotos/business.jpg" alt="Businesses Bounce Back" onerror="this.style.display='none'">
+      </div>
+    </div>
+    <div class="hero-meta">
+      <p class="hero-label">Soundscape</p>
+      <h1 class="hero-title">Soundscape</h1>
+      <p class="hero-byline">By <span>Azariah Baker</span></p>
+      <p class="hero-desc">An immersive audio journey through Asheville's recovery — the sounds of a community rebuilding, told through the voices of those who lived it.</p>
+    </div>
+  </div>
+</header>
+
+<!-- ── PLAYER ── -->
+<main class="player-shell">
+
+  <!-- TRACKLIST -->
+  <section>
+    <div class="tracklist-header">
+      <span class="tracklist-title"># &nbsp;&nbsp;&nbsp; Track</span>
+      <span class="tracklist-count">4 stories</span>
+    </div>
+
+    <!-- Track 1 -->
+    <div class="track-row" data-index="0" data-src="" data-duration="3:42">
+      <span class="track-num">1</span>
+      <div class="track-vinyl-wrap">
+        <div class="track-vinyl">
+          <img class="track-vinyl-img" src="images/fotos/business.jpg" alt="">
+          <div class="track-vinyl-label">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
+          </div>
+          <div class="track-vinyl-play">
+            <svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="track-info">
+        <p class="track-name">Open for Business <span class="coming-soon-badge">Coming Soon</span></p>
+        <p class="track-blurb">Downtown Asheville storefronts reckoned with water damage and supply chain chaos — here's what the comeback looks like.</p>
+      </div>
+      <span class="track-duration">3:42</span>
+    </div>
+
+    <!-- Track 2 -->
+    <div class="track-row" data-index="1" data-src="" data-duration="5:18">
+      <span class="track-num">2</span>
+      <div class="track-vinyl-wrap">
+        <div class="track-vinyl">
+          <img class="track-vinyl-img" src="images/fotos/business.jpg" alt="">
+          <div class="track-vinyl-label">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
+          </div>
+          <div class="track-vinyl-play">
+            <svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="track-info">
+        <p class="track-name">The River Arts District Rises <span class="coming-soon-badge">Coming Soon</span></p>
+        <p class="track-blurb">Studios once flooded to the ceiling are back open. Artists talk about rebuilding their creative spaces from scratch.</p>
+      </div>
+      <span class="track-duration">5:18</span>
+    </div>
+
+    <!-- Track 3 -->
+    <div class="track-row" data-index="2" data-src="" data-duration="4:05">
+      <span class="track-num">3</span>
+      <div class="track-vinyl-wrap">
+        <div class="track-vinyl">
+          <img class="track-vinyl-img" src="images/fotos/business.jpg" alt="">
+          <div class="track-vinyl-label">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
+          </div>
+          <div class="track-vinyl-play">
+            <svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="track-info">
+        <p class="track-name">Small Business, Big Loss <span class="coming-soon-badge">Coming Soon</span></p>
+        <p class="track-blurb">For small family-owned shops, insurance gaps and delayed FEMA funds meant making impossible decisions.</p>
+      </div>
+      <span class="track-duration">4:05</span>
+    </div>
+
+    <!-- Track 4 -->
+    <div class="track-row" data-index="3" data-src="" data-duration="6:29">
+      <span class="track-num">4</span>
+      <div class="track-vinyl-wrap">
+        <div class="track-vinyl">
+          <img class="track-vinyl-img" src="images/fotos/business.jpg" alt="">
+          <div class="track-vinyl-label">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
+          </div>
+          <div class="track-vinyl-play">
+            <svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="track-info">
+        <p class="track-name">Tourism, Transformed <span class="coming-soon-badge">Coming Soon</span></p>
+        <p class="track-blurb">Asheville built its economy on visitors. After Helene, the city is navigating what tourism means in a recovering landscape.</p>
+      </div>
+      <span class="track-duration">6:29</span>
+    </div>
+
+  </section>
+
+  <!-- NOW PLAYING SIDEBAR -->
+  <aside>
+    <div class="now-playing-card">
+      <p class="now-playing-label">Now Playing</p>
+
+      <!-- Big vinyl -->
+      <div class="sidebar-vinyl-wrap">
+        <div class="sidebar-vinyl" id="sidebarVinyl">
+          <img class="sidebar-vinyl-img" src="images/fotos/business.jpg" alt="Now playing" onerror="this.style.display='none'">
+          <div class="sidebar-vinyl-center">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <p class="sidebar-track-name" id="sidebarName">Select a track</p>
+      <p class="sidebar-track-sub" id="sidebarSub">Azariah Baker · Caught in the Current</p>
+
+      <!-- Waveform deco -->
+      <div class="waveform-deco paused" id="waveformDeco">
+        <span style="animation-delay:0s; height:8px"></span>
+        <span style="animation-delay:.1s; height:4px"></span>
+        <span style="animation-delay:.2s; height:14px"></span>
+        <span style="animation-delay:.3s; height:6px"></span>
+        <span style="animation-delay:.4s; height:18px"></span>
+        <span style="animation-delay:.5s; height:4px"></span>
+        <span style="animation-delay:.6s; height:10px"></span>
+        <span style="animation-delay:.7s; height:16px"></span>
+        <span style="animation-delay:.8s; height:5px"></span>
+        <span style="animation-delay:.9s; height:12px"></span>
+        <span style="animation-delay:1s; height:20px"></span>
+        <span style="animation-delay:1.1s; height:7px"></span>
+        <span style="animation-delay:1.2s; height:15px"></span>
+        <span style="animation-delay:1.3s; height:4px"></span>
+        <span style="animation-delay:1.4s; height:11px"></span>
+        <span style="animation-delay:1.5s; height:9px"></span>
+        <span style="animation-delay:1.6s; height:3px"></span>
+        <span style="animation-delay:1.7s; height:17px"></span>
+        <span style="animation-delay:1.8s; height:5px"></span>
+        <span style="animation-delay:1.9s; height:13px"></span>
+      </div>
+
+      <!-- Progress -->
+      <div class="progress-wrap">
+        <div class="progress-bar-bg" id="progressBg">
+          <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-times">
+          <span id="timeElapsed">0:00</span>
+          <span id="timeDuration">0:00</span>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="controls">
+        <button class="ctrl-btn" id="prevBtn" title="Previous">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6L20 18V6z"/></svg>
+        </button>
+        <button class="ctrl-btn main-play" id="mainPlayBtn" title="Play / Pause">
+          <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          <svg id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <button class="ctrl-btn" id="nextBtn" title="Next">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zm2-8.14L11.03 12 8 14.14V9.86zM16 6h2v12h-2z"/></svg>
+        </button>
+      </div>
+
+      <!-- Volume -->
+      <div class="volume-row">
+        <span class="vol-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+        </span>
+        <input type="range" class="vol-slider" id="volSlider" min="0" max="100" value="80">
+      </div>
+
+    </div>
+  </aside>
+
+</main>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-title">Caught in the Current</p>
+  <p class="footer-sub">Helene Recovery in Asheville and Beyond · Northeastern University · 2026</p>
+</footer>
+
+<script>
+/* ──────────────────────────────────
+   TRACK DATA
+────────────────────────────────── */
+const TRACKS = [
+  {
+    name: 'Open for Business',
+    sub: 'Downtown Asheville storefronts',
+    src: '',   /* swap when ready */
+    duration: '3:42'
+  },
+  {
+    name: 'The River Arts District Rises',
+    sub: 'Rebuilding creative spaces from scratch',
+    src: '',
+    duration: '5:18'
+  },
+  {
+    name: 'Small Business, Big Loss',
+    sub: 'Insurance gaps and impossible decisions',
+    src: '',
+    duration: '4:05'
+  },
+  {
+    name: 'Tourism, Transformed',
+    sub: 'What tourism means in a recovering landscape',
+    src: '',
+    duration: '6:29'
+  }
+];
+
+/* ── DOM refs ── */
+const audioEl       = document.getElementById('audio-player');
+const mainPlayBtn   = document.getElementById('mainPlayBtn');
+const playIcon      = document.getElementById('playIcon');
+const pauseIcon     = document.getElementById('pauseIcon');
+const prevBtn       = document.getElementById('prevBtn');
+const nextBtn       = document.getElementById('nextBtn');
+const progressBg    = document.getElementById('progressBg');
+const progressFill  = document.getElementById('progressFill');
+const timeElapsed   = document.getElementById('timeElapsed');
+const timeDuration  = document.getElementById('timeDuration');
+const sidebarName   = document.getElementById('sidebarName');
+const sidebarSub    = document.getElementById('sidebarSub');
+const sidebarVinyl  = document.getElementById('sidebarVinyl');
+const waveformDeco  = document.getElementById('waveformDeco');
+const volSlider     = document.getElementById('volSlider');
+const trackRows     = document.querySelectorAll('.track-row');
+
+let currentIdx = -1;
+let isPlaying  = false;
+
+/* ── helpers ── */
+function fmtTime(s) {
+  if (!s || isNaN(s)) return '0:00';
+  const m = Math.floor(s / 60);
+  const sec = Math.floor(s % 60);
+  return `${m}:${sec.toString().padStart(2,'0')}`;
+}
+
+function setActiveRow(idx) {
+  trackRows.forEach((r, i) => {
+    r.classList.toggle('active', i === idx);
+    const vinyl = r.querySelector('.track-vinyl');
+    if (i === idx) {
+      if (isPlaying) vinyl.style.animation = 'spinVinyl 4s linear infinite';
+      else vinyl.style.animation = 'none';
+    } else {
+      vinyl.style.animation = 'none';
+    }
+  });
+}
+
+function loadTrack(idx) {
+  const t = TRACKS[idx];
+  currentIdx = idx;
+  sidebarName.textContent = t.name;
+  sidebarSub.textContent  = 'Azariah Baker · Caught in the Current';
+  timeDuration.textContent = t.duration;
+  progressFill.style.width = '0%';
+  timeElapsed.textContent  = '0:00';
+
+  if (t.src) {
+    audioEl.src = t.src;
+    audioEl.load();
+  }
+
+  setActiveRow(idx);
+}
+
+function play() {
+  if (currentIdx < 0) loadTrack(0);
+  isPlaying = true;
+  if (TRACKS[currentIdx].src) audioEl.play().catch(() => {});
+  playIcon.style.display  = 'none';
+  pauseIcon.style.display = '';
+  sidebarVinyl.classList.add('spinning');
+  waveformDeco.classList.remove('paused');
+  setActiveRow(currentIdx);
+}
+
+function pause() {
+  isPlaying = false;
+  audioEl.pause();
+  playIcon.style.display  = '';
+  pauseIcon.style.display = 'none';
+  sidebarVinyl.classList.remove('spinning');
+  waveformDeco.classList.add('paused');
+  setActiveRow(currentIdx);
+}
+
+function toggle() {
+  if (!isPlaying) play();
+  else pause();
+}
+
+/* ── track row clicks ── */
+trackRows.forEach((row, idx) => {
+  row.addEventListener('click', () => {
+    if (currentIdx === idx && isPlaying) { pause(); return; }
+    loadTrack(idx);
+    play();
+  });
+});
+
+/* ── controls ── */
+mainPlayBtn.addEventListener('click', toggle);
+
+prevBtn.addEventListener('click', () => {
+  if (currentIdx <= 0) return;
+  loadTrack(currentIdx - 1);
+  if (isPlaying) play();
+});
+
+nextBtn.addEventListener('click', () => {
+  if (currentIdx >= TRACKS.length - 1) return;
+  loadTrack(currentIdx + 1);
+  if (isPlaying) play();
+});
+
+/* ── audio events ── */
+audioEl.addEventListener('timeupdate', () => {
+  if (!audioEl.duration) return;
+  const pct = (audioEl.currentTime / audioEl.duration) * 100;
+  progressFill.style.width = pct + '%';
+  timeElapsed.textContent  = fmtTime(audioEl.currentTime);
+  timeDuration.textContent = fmtTime(audioEl.duration);
+});
+
+audioEl.addEventListener('ended', () => {
+  if (currentIdx < TRACKS.length - 1) {
+    loadTrack(currentIdx + 1);
+    play();
+  } else {
+    pause();
+  }
+});
+
+/* ── progress bar scrub ── */
+progressBg.addEventListener('click', e => {
+  if (!audioEl.duration) return;
+  const rect = progressBg.getBoundingClientRect();
+  const pct  = (e.clientX - rect.left) / rect.width;
+  audioEl.currentTime = pct * audioEl.duration;
+});
+
+/* ── volume ── */
+audioEl.volume = 0.8;
+volSlider.addEventListener('input', () => {
+  audioEl.volume = volSlider.value / 100;
+});
+</script>
+</body>
+</html>

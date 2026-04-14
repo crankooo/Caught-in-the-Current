@@ -66,7 +66,7 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--font-body); font-weight: 700;
  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
   color: var(--cream); line-height: 1.15;
-  max-width: 780px; margin: 4rem auto .8rem; text-align: center;
+ max-width: 680px; margin: 2rem auto .6rem; text-align: center;
   opacity: 0; animation: fadeUp .9s ease .6s forwards;
 }
 .headline-em { color: var(--cream); font-style: italic; }
@@ -83,6 +83,7 @@ a { color: inherit; text-decoration: none; }
   text-align: center; opacity: 0; animation: fadeUp .9s ease 1s forwards;
   font-size: 1rem;
 }
+
 .photo-credit {
   display: block; font-size: .55rem; color: rgba(34,64,80,.45);
   letter-spacing: .06em; padding: .4rem 1.5rem; text-align: left;
@@ -153,6 +154,52 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   .stat-item { max-width: 100%; }
   .story-img-float { float: none; width: 100%; margin: 1.5rem 0; }
 }
+.soundscape-btn {
+  display: inline-flex; align-items: center; gap: .6rem;
+  margin-top: 1.4rem;
+  padding: .55rem 1.4rem;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 50px;
+  color: rgba(247,243,237,.9);
+  font-family: var(--font-body);
+  font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background .3s, border-color .3s, box-shadow .3s, transform .2s;
+  position: relative; z-index: 2;
+  opacity: 0; animation: fadeUp .9s ease 1.1s forwards;
+}
+.soundscape-btn:hover {
+  background: rgba(2,100,90,.35);
+  border-color: rgba(159,225,203,.5);
+  box-shadow: 0 0 18px rgba(2,100,90,.5), 0 0 40px rgba(2,100,90,.2);
+  transform: translateY(-1px);
+}
+.soundscape-btn.playing {
+  background: rgba(2,100,90,.4);
+  border-color: rgba(159,225,203,.7);
+  box-shadow: 0 0 22px rgba(2,100,90,.6), 0 0 50px rgba(2,100,90,.25);
+  color: #9FE1CB;
+}
+.soundscape-btn .btn-bars {
+  display: flex; align-items: center; gap: 2px; height: 12px;
+}
+.soundscape-btn .btn-bars span {
+  display: block; width: 2px; background: #9FE1CB;
+  border-radius: 1px; animation: none;
+}
+.soundscape-btn.playing .btn-bars span {
+  animation: barDance 1s ease-in-out infinite alternate;
+}
+.soundscape-btn.playing .btn-bars span:nth-child(1) { animation-delay: 0s; }
+.soundscape-btn.playing .btn-bars span:nth-child(2) { animation-delay: .15s; }
+.soundscape-btn.playing .btn-bars span:nth-child(3) { animation-delay: .3s; }
+.soundscape-btn.playing .btn-bars span:nth-child(4) { animation-delay: .45s; }
+@keyframes barDance {
+  0%   { height: 3px; }
+  100% { height: 12px; }
+}
 </style>
 </head>
 <body>
@@ -171,6 +218,15 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   <h1 class="story-headline">Fingerprints of climate change: <span class="headline-em">Storm preparedness in a new era</span></h1>
   <p class="story-byline">By <span>Grace Sawin</span></p>
   <p class="story-dek">Hurricane Helene made landfall in Western North Carolina in September 2024. Eighteen months later, residents are still picking up the pieces — but as climate change intensifies storms, Helene was just the beginning.</p>
+  <button class="soundscape-btn" id="soundscapeBtn" onclick="toggleSound()">
+    <span class="btn-label">Listen to soundscape</span>
+    <span class="btn-bars">
+      <span style="height:8px"></span>
+      <span style="height:4px"></span>
+      <span style="height:11px"></span>
+      <span style="height:6px"></span>
+    </span>
+  </button>
 </header>
 <span class="photo-credit">
   Cover Photo:
@@ -178,6 +234,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
     NOAA
   </a>
 </span>
+
 <article class="article-body">
 
   <p>Heather Divoky immediately went into disaster preparation mode when she heard Hurricane Helene was headed for Asheville. In the days leading up to the storm, the artist and poet transported her larger, more expensive art pieces from her studio in the River Arts District, just off the banks of the French Broad River, to her more elevated home in West Asheville.</p>
@@ -374,19 +431,48 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 </footer>
 <script>
 const soundscape = document.getElementById('soundscape');
+const btn = document.getElementById('soundscapeBtn');
 soundscape.loop = false;
 soundscape.volume = 0.4;
 
-function tryPlay() {
-  soundscape.play().catch(() => {});
+let isPlaying = false;
+
+function toggleSound() {
+  if (isPlaying) {
+    soundscape.pause();
+    soundscape.currentTime = 0;
+    isPlaying = false;
+    btn.classList.remove('playing');
+    btn.querySelector('.btn-label').textContent = 'Listen to soundscape';
+  } else {
+    soundscape.play().then(() => {
+      isPlaying = true;
+      btn.classList.add('playing');
+      btn.querySelector('.btn-label').textContent = 'Playing…';
+    }).catch(() => {});
+  }
 }
 
-document.addEventListener('click', tryPlay, { once: true });
-document.addEventListener('scroll', tryPlay, { once: true });
-document.addEventListener('mousemove', tryPlay, { once: true });
+soundscape.addEventListener('ended', () => {
+  isPlaying = false;
+  btn.classList.remove('playing');
+  btn.querySelector('.btn-label').textContent = 'Listen to soundscape';
+});
 
-// Try autoplay immediately
-tryPlay();
+soundscape.play().then(() => {
+  isPlaying = true;
+  btn.classList.add('playing');
+  btn.querySelector('.btn-label').textContent = 'Playing…';
+}).catch(() => {
+  document.addEventListener('click', function unlock() {
+    soundscape.play().then(() => {
+      isPlaying = true;
+      btn.classList.add('playing');
+      btn.querySelector('.btn-label').textContent = 'Playing…';
+    }).catch(() => {});
+    document.removeEventListener('click', unlock);
+  });
+});
 </script>
 </body>
 </html>
