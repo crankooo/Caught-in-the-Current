@@ -82,11 +82,6 @@ a { color: inherit; text-decoration: none; }
   margin: 0 auto; padding: 5rem 2.5rem 4rem;
   text-align: center;
 }
-.story-kicker {
-  display: inline-block; font-size: .62rem; letter-spacing: .28em;
-  text-transform: uppercase; color: var(--amber); margin-bottom: 1rem;
-  opacity: 0; animation: fadeUp .8s ease .3s forwards;
-}
 .story-headline {
   max-width: 860px; margin: 0 auto .9rem;
   font-family: var(--font-body);
@@ -101,12 +96,62 @@ a { color: inherit; text-decoration: none; }
 }
 .story-byline span { color: rgba(247,243,237,.88); font-weight: 700; }
 
+/* ── SOUNDSCAPE BUTTON ── */
+.soundscape-btn {
+  display: inline-flex; align-items: center; gap: .6rem;
+  margin-top: 1.4rem;
+  padding: .55rem 1.4rem;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 50px;
+  color: rgba(247,243,237,.9);
+  font-family: var(--font-body);
+  font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background .3s, border-color .3s, box-shadow .3s, transform .2s;
+  position: relative; z-index: 2;
+  opacity: 0; animation: fadeUp .9s ease 1.1s forwards;
+}
+.soundscape-btn:hover {
+  background: rgba(2,100,90,.35);
+  border-color: rgba(159,225,203,.5);
+  box-shadow: 0 0 18px rgba(2,100,90,.5), 0 0 40px rgba(2,100,90,.2);
+  transform: translateY(-1px);
+}
+.soundscape-btn.playing {
+  background: rgba(2,100,90,.4);
+  border-color: rgba(159,225,203,.7);
+  box-shadow: 0 0 22px rgba(2,100,90,.6), 0 0 50px rgba(2,100,90,.25);
+  color: #9FE1CB;
+}
+.soundscape-btn .btn-bars {
+  display: flex; align-items: center; gap: 2px;
+  height: 12px;
+}
+.soundscape-btn .btn-bars span {
+  display: block; width: 2px; background: #9FE1CB;
+  border-radius: 1px;
+  animation: none;
+}
+.soundscape-btn.playing .btn-bars span {
+  animation: barDance 1s ease-in-out infinite alternate;
+}
+.soundscape-btn.playing .btn-bars span:nth-child(1) { animation-delay: 0s; }
+.soundscape-btn.playing .btn-bars span:nth-child(2) { animation-delay: .15s; }
+.soundscape-btn.playing .btn-bars span:nth-child(3) { animation-delay: .3s; }
+.soundscape-btn.playing .btn-bars span:nth-child(4) { animation-delay: .45s; }
+@keyframes barDance {
+  0%   { height: 3px; }
+  100% { height: 12px; }
+}
+
 .article-shell {
   max-width: 1180px; margin: 0 auto;
   padding: 3.2rem 1.5rem 4rem;
 }
 .article-topper { max-width: var(--max-w); margin: 0 auto 2.2rem; }
-.article-topper p { font-size: .88rem; line-height: 1.95; color: rgba(34,64,80,.82); font-style: Regular; }
+.article-topper p { font-size: .88rem; line-height: 1.95; color: rgba(34,64,80,.82); }
 
 .article-grid {
   display: grid; grid-template-columns: minmax(0, 1fr) 260px;
@@ -138,7 +183,6 @@ a { color: inherit; text-decoration: none; }
   color: var(--rust); white-space: normal;
 }
 
-/* ── PHOTO CAPTION ── */
 .photo-caption {
   font-size: .60rem; line-height: 1.6;
   color: rgba(34,64,80,.52);
@@ -148,15 +192,9 @@ a { color: inherit; text-decoration: none; }
   border-left: 2px solid var(--amber);
 }
 
-/* ── SINGLE PHOTO ── */
 .story-photo { margin: 2.2rem 0; }
 .story-photo img { width: 100%; height: auto; border-radius: 10px; display: block; }
 
-
-
-/* ──────────────────────────────
-   PHOTO CAROUSEL
-────────────────────────────── */
 .photo-carousel-wrap { margin: 2.4rem 0; }
 .carousel-stage {
   position: relative;
@@ -218,9 +256,6 @@ a { color: inherit; text-decoration: none; }
 }
 .carousel-dot.active { background: var(--rust); transform: scale(1.35); }
 
-/* ──────────────────────────────
-   ASIDE — KEY FIGURES
-────────────────────────────── */
 .article-aside { position: sticky; top: calc(var(--nav-h) + 1.25rem); }
 .aside-figures { display: flex; flex-direction: column; gap: .55rem; }
 .figure-card {
@@ -256,9 +291,6 @@ a { color: inherit; text-decoration: none; }
   color: rgba(34,64,80,.74);
   font-family: var(--font-body);
 }
-@media (max-width: 680px) {
-  .friends-grid { grid-template-columns: 1fr !important; }
-}
 
 footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; margin-top: 2rem; }
 .footer-title { font-family: var(--font-display); font-size: 1rem; color: var(--cream); letter-spacing: .1em; margin-bottom: .35rem; }
@@ -275,91 +307,14 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
   .hero-inner { padding: 4rem 1.2rem 3rem; }
   .story-hero { min-height: 10vh; }
   .article-shell { padding: 2.4rem 1.05rem 3rem; }
-  .ba-container { height: 230px; }
   .aside-figures { flex-direction: column; }
   .figure-card { flex: unset; }
-}
-/* ── SOUNDSCAPE BUTTON ── */
-.soundscape-btn {
-  display: inline-flex; align-items: center; gap: .6rem;
-  margin-top: 1.4rem;
-  padding: .55rem 1.4rem .55rem 1rem;
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.22);
-  border-radius: 50px;
-  color: rgba(247,243,237,.9);
-  font-family: var(--font-body);
-  font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
-  cursor: pointer;
-  backdrop-filter: blur(8px);
-  transition: background .3s, border-color .3s, box-shadow .3s, transform .2s;
-  box-shadow: 0 0 0 0 rgba(2,100,90,0);
-  position: relative; z-index: 2;
-  opacity: 0; animation: fadeUp .9s ease 1.1s forwards;
-}
-.soundscape-btn:hover {
-  background: rgba(2,100,90,.35);
-  border-color: rgba(159,225,203,.5);
-  box-shadow: 0 0 18px rgba(2,100,90,.5), 0 0 40px rgba(2,100,90,.2);
-  transform: translateY(-1px);
-}
-.soundscape-btn.playing {
-  background: rgba(2,100,90,.4);
-  border-color: rgba(159,225,203,.7);
-  box-shadow: 0 0 22px rgba(2,100,90,.6), 0 0 50px rgba(2,100,90,.25);
-  color: #9FE1CB;
-}
-.soundscape-btn .btn-icon {
-  width: 28px; height: 28px; border-radius: 50%;
-  background: rgba(159,225,203,.15);
-  border: 1px solid rgba(159,225,203,.35);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  transition: background .3s, border-color .3s;
-}
-.soundscape-btn:hover .btn-icon,
-.soundscape-btn.playing .btn-icon {
-  background: rgba(159,225,203,.25);
-  border-color: rgba(159,225,203,.6);
-}
-.soundscape-btn .btn-icon svg {
-  width: 13px; height: 13px;
-  fill: #9FE1CB;
-}
-.soundscape-btn .btn-bars {
-  display: flex; align-items: center; gap: 2px;
-  height: 12px;
-}
-.soundscape-btn .btn-bars span {
-  display: block; width: 2px; background: #9FE1CB;
-  border-radius: 1px;
-  animation: none;
-}
-.soundscape-btn.playing .btn-bars span {
-  animation: barDance 1s ease-in-out infinite alternate;
-}
-.soundscape-btn.playing .btn-bars span:nth-child(1) { animation-delay: 0s; }
-.soundscape-btn.playing .btn-bars span:nth-child(2) { animation-delay: .15s; }
-.soundscape-btn.playing .btn-bars span:nth-child(3) { animation-delay: .3s; }
-.soundscape-btn.playing .btn-bars span:nth-child(4) { animation-delay: .45s; }
-@keyframes barDance {
-  0%   { height: 3px; }
-  100% { height: 12px; }
 }
 </style>
 </head>
 <body>
-  <audio id="soundscape" src="audio/soundscape/ali.wav" preload="auto"></audio>
 
-<div id="soundBtn" onclick="tryPlay()" style="
-  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
-  background: rgba(34,64,80,.85); color: #F7F3ED;
-  border: 1.5px solid rgba(247,243,237,.3);
-  border-radius: 50px; padding: .5rem 1.1rem;
-  font-family: 'Lora', serif; font-size: .65rem;
-  letter-spacing: .14em; text-transform: uppercase;
-  cursor: pointer; backdrop-filter: blur(6px);
-">▶ Play Soundscape</div>
+<audio id="soundscape" src="audio/soundscape/ali.wav" preload="auto"></audio>
 
 <nav class="story-nav">
   <a href="index.html">
@@ -372,15 +327,9 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
   <div class="story-hero-bg"></div>
   <div class="story-hero-overlay"></div>
   <div class="hero-inner">
-
     <h1 class="story-headline">FEMA funding presents a fractured landscape for storm victims</h1>
     <p class="story-byline">By <span>Ali Caudle</span></p>
     <button class="soundscape-btn" id="soundscapeBtn" onclick="toggleSound()">
-      <span class="btn-icon">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9 18V5l12-2v13M9 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm12-2c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2z"/>
-        </svg>
-      </span>
       <span class="btn-label">Listen to soundscape</span>
       <span class="btn-bars">
         <span style="height:8px"></span>
@@ -391,23 +340,9 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
     </button>
   </div>
 </header>
-  <span class="btn-icon">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M9 18V5l12-2v13M9 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm12-2c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2z"/>
-    </svg>
-  </span>
-  <span class="btn-label">Listen to soundscape</span>
-  <span class="btn-bars">
-    <span style="height:8px"></span>
-    <span style="height:4px"></span>
-    <span style="height:11px"></span>
-    <span style="height:6px"></span>
-  </span>
-</button>
 
 <main class="article-shell">
-  <div class="article-topper">
-  </div>
+  <div class="article-topper"></div>
 
   <div class="article-grid">
     <article class="article-main">
@@ -425,7 +360,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
         <div style="border-radius:12px; overflow:hidden; box-shadow: 0 8px 32px rgba(34,64,80,.18);">
           <div class="flourish-embed flourish-chart" data-src="visualisation/28479221"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/28479221/thumbnail" width="100%" alt="visualization" /></noscript></div>
         </div>
-      <p class="photo-caption" style="margin-top:.5rem; font-size:.75rem;">Micaville Presbyterian Church reopened one year after Helene, when the water filled the basement and flooded the sanctuary up to the stained glass windows. Left, pews are scattered amid debris and mud soon after the water receded. Right, chairs face the altar in the newly rebuilt church. Photo credits: Beth Hall and Ali Caudle</p>
+        <p class="photo-caption" style="margin-top:.5rem; font-size:.75rem;">Micaville Presbyterian Church reopened one year after Helene, when the water filled the basement and flooded the sanctuary up to the stained glass windows. Left, pews are scattered amid debris and mud soon after the water receded. Right, chairs face the altar in the newly rebuilt church. Photo credits: Beth Hall and Ali Caudle</p>
       </div>
 
       <p>With the initial funding from FEMA, debris removal by the National Guard, as well as donations and aid from community members and Amish volunteers, the Halls were able to reopen their church last fall. The basement remains unfinished, though, and much of the planned work to fortify the structure against future storms and flooding remains on hold.</p>
@@ -448,7 +383,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
 
       <p>"The FEMA money is not flowing as fast as expected or as is needed in the state," said Justin Graney, chief of external affairs and communication for the North Carolina Department of Public Safety. "We would have liked to see that funding move quicker," he said, adding that his office has urged legislators including Republican Sen. Thom Tillis to help free up federal disbursements.</p>
 
-    <!-- PHOTO CAROUSEL: images 2–7 -->
+      <!-- PHOTO CAROUSEL -->
       <div class="photo-carousel-wrap">
         <div class="carousel-title">The wait for FEMA assistance is complicated and slow. Below is a slideshow of damaged properties in Asheville and beyond. All photos by Sydney Woogerd</div>
         <div class="carousel-stage" id="carouselStage">
@@ -466,7 +401,6 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
             <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
           </button>
         </div>
-
         <div class="carousel-dots" id="carouselDots">
           <button class="carousel-dot active" data-index="0" aria-label="Photo 1"></button>
           <button class="carousel-dot" data-index="1" aria-label="Photo 2"></button>
@@ -475,7 +409,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
           <button class="carousel-dot" data-index="4" aria-label="Photo 5"></button>
           <button class="carousel-dot" data-index="5" aria-label="Photo 6"></button>
         </div>
-<p id="carouselCaption" class="photo-caption" style="margin-top:.6rem; font-size:.75rem;">The roof of a storefront in the hard-hit Biltmore Village, sagging without its structural beams and walls to hold it up.</p>
+        <p id="carouselCaption" class="photo-caption" style="margin-top:.6rem; font-size:.75rem;">The roof of a storefront in the hard-hit Biltmore Village, sagging without its structural beams and walls to hold it up.</p>
       </div>
 
       <p>According to FEMA's website, public assistance is FEMA's "largest grant program providing funds to assist communities responding to and recovering from major disasters or emergencies declared by the president." Eligible applicants for PA include states, U.S. territories, federally recognized tribal governments, local governments, and certain private non-profit organizations. The houses of worship provision falls under the umbrella of private non-profit groups.</p>
@@ -541,7 +475,8 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
       <p>In Hogan's initial correspondence with FEMA, she was redirected to different programs and led to believe that there was no support the agency could offer the group. "All my efforts to get FEMA help or help anywhere prior to this moment of this hazard mitigation was, 'We can't help you because you're not residential,'" said Hogan. "It's a weird situation. We're not commercial, we're not a business. But we're not a family owning a property."</p>
 
       <p>"Then you add on top of it government shutdowns, and you add on top of it the current administration, and you add on top of it, all the things. And the program as a whole takes a while," said Hogan. "The whole time we've been kind of in the dark. We found out maybe a year in that we were one of the first 23 properties approved for this buyout program, which was great news. That still might mean that it'll be years from now before anything happens. We don't know."</p>
-<!-- BEFORE/AFTER GRID: Swannanoa Valley Friends Meeting -->
+
+      <!-- BEFORE/AFTER GRID -->
       <div style="margin: 2.8rem 0;">
         <div style="display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:.6rem; border-radius:12px; overflow:hidden; box-shadow: 0 8px 32px rgba(34,64,80,.18);">
           <img src="images/story/ali/10.jpg" alt="Friends Meeting house before storm, front" style="width:100%; height:240px; object-fit:cover; display:block;">
@@ -549,8 +484,9 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
           <img src="images/story/ali/12.jpg" alt="Friends Meeting house before storm, back deck" style="width:100%; height:240px; object-fit:cover; display:block;">
           <img src="images/story/ali/13.JPG" alt="Friends Meeting house after storm, back deck" style="width:100%; height:240px; object-fit:cover; display:block;">
         </div>
-       <p class="photo-caption" style="margin-top:.5rem; font-size:.75rem;">The Swannanoa Valley Friends Meeting house in Black Mountain was destroyed by tropical storm Helene. With no flood insurance, the Quaker group has to rely on public assistance to recover what they lost. They were rejected by FEMA at first, but the state has just approved at least a portion of their request with FEMA-provided money. Top: The front of the meeting house before and after the storm. Bottom: The back deck of the meeting house before and after the storm. Photos courtesy of MJ Hogan</p>
+        <p class="photo-caption" style="margin-top:.5rem; font-size:.75rem;">The Swannanoa Valley Friends Meeting house in Black Mountain was destroyed by tropical storm Helene. With no flood insurance, the Quaker group has to rely on public assistance to recover what they lost. They were rejected by FEMA at first, but the state has just approved at least a portion of their request with FEMA-provided money. Top: The front of the meeting house before and after the storm. Bottom: The back deck of the meeting house before and after the storm. Photos courtesy of MJ Hogan</p>
       </div>
+
     </article>
 
     <!-- ── ASIDE: KEY FIGURES ── -->
@@ -587,36 +523,6 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
 </footer>
 
 <script>
-/* ── BEFORE / AFTER SLIDER ── */
-(function () {
-  const wrap    = document.getElementById('baWrap');
-  const clip    = document.getElementById('baClip');
-  const divLine = document.getElementById('baDividerLine');
-  if (!wrap) return;
-
-  let dragging = false;
-
-function setPos(clientX) {
-    const rect = wrap.getBoundingClientRect();
-    let pct = ((clientX - rect.left) / rect.width) * 100;
-    pct = Math.max(2, Math.min(98, pct));
-    clip.style.width     = pct + '%';
-    divLine.style.left   = pct + '%';
-    // keep the before image at full container width so it doesn't zoom
-    clip.style.setProperty('--ba-full-width', (rect.width / (pct / 100)) + 'px');
-  }
-
-  wrap.addEventListener('mousedown',   e => { dragging = true; setPos(e.clientX); });
-  window.addEventListener('mouseup',   ()  => { dragging = false; });
-  window.addEventListener('mousemove', e   => { if (dragging) setPos(e.clientX); });
-// set correct width on load
-  const initRect = wrap.getBoundingClientRect();
-  clip.style.setProperty('--ba-full-width', initRect.width + 'px');
-  wrap.addEventListener('touchstart',  e => { dragging = true; wrap.classList.add('touched'); setPos(e.touches[0].clientX); }, { passive: true });
-  window.addEventListener('touchend',  ()  => { dragging = false; });
-  window.addEventListener('touchmove', e   => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
-})();
-
 /* ── CAROUSEL ── */
 (function () {
   const slides  = document.querySelectorAll('.carousel-slide');
@@ -630,7 +536,7 @@ function setPos(clientX) {
   let cur = 0;
   let timer;
 
- const captions = [
+  const captions = [
     'The roof of a storefront in the hard-hit Biltmore Village, sagging without its structural beams and walls to hold it up.',
     'Inside a business in Biltmore Village, the interior structure is gutted with metal boning and insulation strewn across the rooms.',
     'A riverside home sits, warped, from the surging water that came through Swannanoa. The contents of the home lay sprawled across the front yard.',
@@ -657,13 +563,11 @@ function setPos(clientX) {
   next.addEventListener('click',  () => { stopTimer(); goTo(cur + 1); startTimer(); });
   dots.forEach(d => d.addEventListener('click', () => { stopTimer(); goTo(+d.dataset.index); startTimer(); }));
 
-
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowLeft')  { stopTimer(); goTo(cur - 1); startTimer(); }
     if (e.key === 'ArrowRight') { stopTimer(); goTo(cur + 1); startTimer(); }
   });
 
-  // touch swipe
   let tx = 0;
   stage.addEventListener('touchstart', e => { tx = e.touches[0].clientX; stopTimer(); }, { passive: true });
   stage.addEventListener('touchend',   e => {
@@ -671,28 +575,9 @@ function setPos(clientX) {
     if (Math.abs(dx) > 40) goTo(dx < 0 ? cur + 1 : cur - 1);
     startTimer();
   });
-
 })();
-</script>
-const soundscape = document.getElementById('soundscape');
-soundscape.loop = false;
-soundscape.volume = 0.4;
 
-let played = false;
-
-function tryPlay() {
-  if (played) return;
-  soundscape.play().then(() => {
-    played = true;
-    const btn = document.getElementById('soundBtn');
-    if (btn) btn.style.display = 'none';
-  }).catch(() => {});
-}
-
-document.addEventListener('click', tryPlay, { once: true });
-document.addEventListener('keydown', tryPlay, { once: true });
-tryPlay();
-<script>
+/* ── SOUNDSCAPE ── */
 const soundscape = document.getElementById('soundscape');
 const btn = document.getElementById('soundscapeBtn');
 soundscape.loop = false;
@@ -722,5 +607,6 @@ soundscape.addEventListener('ended', () => {
   btn.querySelector('.btn-label').textContent = 'Listen to soundscape';
 });
 </script>
+
 </body>
 </html>
