@@ -400,21 +400,21 @@ document.addEventListener("keydown", (e) => {
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
-  const STATIONS = [
-    {name:'Gulf of Mexico',  loc:'Origin',      rain:0.2,  x:0.04},
-    {name:'Pensacola, FL',   loc:'FL Panhandle',rain:1.1,  x:0.13},
-    {name:'Tallahassee, FL', loc:'Florida',     rain:2.4,  x:0.22},
-    {name:'Perry, FL',       loc:'Landfall',    rain:3.8,  x:0.31},
-    {name:'Valdosta, GA',    loc:'Georgia',     rain:4.2,  x:0.40},
-    {name:'Atlanta, GA',     loc:'Georgia',     rain:5.1,  x:0.49},
-    {name:'Greenville, SC',  loc:'Upstate SC',  rain:6.8,  x:0.58},
-    {name:'Hendersonville',  loc:'NC Foothills',rain:9.4,  x:0.67},
-    {name:'Asheville, NC',   loc:'Blue Ridge',  rain:14.2, x:0.76},
-    {name:'Boone, NC',       loc:'High Country',rain:11.6, x:0.85},
-    {name:'Dissipation',     loc:'Appalachians',rain:6.2,  x:0.94},
+ const STATIONS = [
+    {name:'Gulf of Mexico',      loc:'Origin',       rain:0,     x:0.04},
+   {name:'Perry, FL',           loc:'Big Bend, FL',  rain:3.4,   x:0.13},
+    {name:'Tallahassee, FL',     loc:'Florida',      rain:6.1,   x:0.22},
+    {name:'Valdosta, GA',        loc:'Georgia',      rain:4.8,   x:0.31},
+    {name:'Atlanta, GA',         loc:'Georgia',      rain:11.8,  x:0.40},
+    {name:'Greenville, SC',      loc:'Upstate SC',   rain:9.5,   x:0.49},
+    {name:'Hendersonville, NC',  loc:'NC Foothills', rain:18.9,  x:0.58},
+    {name:'Asheville, NC',       loc:'Blue Ridge',   rain:19.5,  x:0.67},
+    {name:'Busick, NC',          loc:'NC Mountains', rain:30.8,  x:0.76},
+    {name:'Boone, NC',           loc:'High Country', rain:17.9,  x:0.85},
+    {name:'Williamsburg, KY',    loc:'Kentucky',      rain:2.6,   x:0.94},
   ];
 
-  const MAXRAIN = 15;
+  const MAXRAIN = 33;
   let prog = 0;
   let hovIdx = -1;
   let started = false;
@@ -454,6 +454,17 @@ document.addEventListener("keydown", (e) => {
     ctx.fillRect(0, 0, W, H);
     ctx.fillStyle = 'rgba(2,100,90,0.18)';
     ctx.fillRect(0, 0, W, H);
+    /* legend text — upper left inside chart */
+   ctx.font = "600 18px 'Lora',Georgia,serif";
+    ctx.fillStyle = 'rgba(159,225,203,0.85)';
+    ctx.textAlign = 'left';
+    const legendText = 'Helene started as a Category 1 hurricane in the Gulf of Mexico';
+    const legendText2 = 'and ended up as a tropical storm in Asheville and beyond.';
+    ctx.fillText(legendText, PAD_L + 8, PAD_T + 22);
+    ctx.fillText(legendText2, PAD_L + 8, PAD_T + 46);
+    ctx.font = "400 12px 'Lora',Georgia,serif";
+    ctx.fillStyle = 'rgba(159,225,203,0.5)';
+    ctx.fillText('Data visualization by Hayes Botnick', PAD_L + 8, PAD_T + 66);
 
     /* mountain silhouette */
     ctx.beginPath();
@@ -505,10 +516,13 @@ document.addEventListener("keydown", (e) => {
       const isAsheville = s.name === 'Asheville, NC';
       const isHov = i === hovIdx;
 
-      let col = s.rain >= 9 ? 'rgba(196,93,58,0.7)'
-               : s.rain >= 5 ? 'rgba(212,135,76,0.65)'
-               : 'rgba(34,64,80,0.22)';
-      if(isAsheville) col = '#C45D3A';
+   const maxRain = 30.8;
+      const intensity = s.rain / maxRain;
+      const r = Math.round(100 + intensity * 96);
+      const g = Math.round(50 + intensity * 30);
+      const b = Math.round(30 + intensity * 10);
+      let col = `rgba(${r}, ${g}, ${b}, 0.9)`;
+      if(s.name === 'Busick, NC') col = '#C45D3A';
 
       ctx.fillStyle = isHov ? '#C45D3A' : col;
       ctx.fillRect(x - barW/2, baseY - barH, barW, barH);
@@ -539,15 +553,31 @@ document.addEventListener("keydown", (e) => {
         ctx.textAlign='left';
       }
 
-      if(isAsheville && ap>0.9) {
-        ctx.font="700 12px 'Lora',Georgia,serif";
-        ctx.fillStyle='#9FE1CB';
-        ctx.fillText('14"+ in 24hrs', x+8, baseY-barH-14);
+      if(s.name==='Williamsburg, KY' && ap>0.9) {
+        ctx.font="700 10px 'Lora',Georgia,serif";
+        ctx.fillStyle='rgba(212,135,76,0.8)';
+        ctx.textAlign='center';
+        ctx.fillText('▼ DISSIPATION', x, baseY-barH-12);
+        ctx.textAlign='left';
+      }
+
+  if(s.name === 'Gulf of Mexico' && ap>0.8) {
         ctx.font="400 10px 'Lora',Georgia,serif";
         ctx.fillStyle='rgba(159,225,203,0.6)';
-        ctx.fillText('Asheville, NC', x+8, baseY-barH+1);
+        ctx.textAlign='center';
+        ctx.fillText('0"', x, baseY-12);
+        ctx.textAlign='left';
       }
-    });
+
+  if(isAsheville && ap>0.9) {
+        ctx.font="700 10px 'Lora',Georgia,serif";
+        ctx.fillStyle='rgba(212,135,76,0.8)';
+        ctx.textAlign='center';
+        ctx.fillText('▲ 19.49" in 36hrs', x, baseY-barH-12);
+        ctx.textAlign='left';
+      }
+  
+    });  /* ← closes STATIONS.forEach */
 
     /* hover tooltip */
     if(hovIdx>=0 && hovIdx<STATIONS.length) {
@@ -565,7 +595,7 @@ document.addEventListener("keydown", (e) => {
       ctx.fillText(s.name, tx+8, ty+16);
       ctx.font="400 10px 'Lora',Georgia,serif";
       ctx.fillStyle='rgba(159,225,203,0.9)';
-      ctx.fillText(s.rain+'" rainfall (placeholder)', tx+8, ty+31);
+      ctx.fillText(s.rain+'" rainfall', tx+8, ty+31);
     }
   }
 

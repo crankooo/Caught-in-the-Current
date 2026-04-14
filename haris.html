@@ -44,7 +44,7 @@ a { color: inherit; text-decoration: none; }
 .story-hero {
   position: relative; padding: 5rem 2.5rem 4.5rem;
   text-align: center; overflow: hidden; background: var(--navy);
-  min-height: 20px; display: flex; flex-direction: column;
+  min-height: 60px; display: flex; flex-direction: column;
   align-items: center; justify-content: center;
 }
 .story-hero-bg {
@@ -62,14 +62,6 @@ a { color: inherit; text-decoration: none; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 .story-hero > *:not(.story-hero-bg):not(.story-hero-overlay) { position: relative; z-index: 2; }
 
-.story-kicker {
-  display: inline-flex; align-items: center; gap: .5rem;
-  font-size: .62rem; letter-spacing: .28em; text-transform: uppercase;
-  color: var(--amber); margin-bottom: 1.2rem;
-  opacity: 0; animation: fadeUp .8s ease .4s forwards;
-}
-.kicker-icon { width: 16px; height: 16px; fill: var(--amber); }
-
 .story-headline {
   font-family: var(--font-body); font-weight: 700;
   font-size: clamp(1.8rem, 4.5vw, 3.2rem);
@@ -78,7 +70,7 @@ a { color: inherit; text-decoration: none; }
   opacity: 0; animation: fadeUp .9s ease .6s forwards;
 }
 .headline-kids { display: block; color: var(--cream); }
-.headline-remember { display: block; color: var(--amber); font-style: italic; font-size: clamp(2rem, 5vw, 3.6rem); }
+.headline-remember { display: block; color: var(--cream); font-style: italic; font-size: clamp(2rem, 5vw, 3.6rem); }
 
 .story-byline {
   font-size: .78rem; color: rgba(247,243,237,.55);
@@ -191,7 +183,7 @@ a { color: inherit; text-decoration: none; }
   max-width: 860px; margin: 0 auto; padding: 4rem 3rem 3rem;
 }
 .story-intro p {
-  font-size: .80rem; line-height: 1.9;
+  font-size: .92rem; line-height: 1.9;
   color: rgba(34,64,80,.85); margin-bottom: 1.3rem;
 }
 .story-intro p:first-child::first-letter {
@@ -221,7 +213,7 @@ a { color: inherit; text-decoration: none; }
   display: flex; align-items: center; justify-content: space-between;
   width: 100%; background: none; border: 1.5px solid rgba(34,64,80,.15);
   border-radius: 10px; padding: 1rem 1.4rem;
-  font-family: var(--font-body); font-size: .85rem; font-weight: 700;
+  font-family: var(--font-body); font-size: .92rem; font-weight: 700;
   color: var(--navy); cursor: pointer;
   transition: border-color .2s, background .2s;
 }
@@ -293,8 +285,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   <div class="story-hero-bg"></div>
   <div class="story-hero-overlay"></div>
   <span class="story-kicker">
-    <svg class="kicker-icon" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zM19 10v2a7 7 0 0 1-14 0v-2H3v2a9 9 0 0 0 8 8.94V23h2v-2.06A9 9 0 0 0 21 12v-2h-2z"/></svg>
-    Audio Documentary
+
   </span>
   <h1 class="story-headline">
     <span class="headline-kids">The Kids Who</span>

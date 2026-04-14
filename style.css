@@ -24,6 +24,7 @@ html { scroll-behavior: smooth; font-size: 16px; }
 
 body {
   font-family: var(--font-body);
+  font-size: 1rem;
   background: var(--cream);
   color: var(--navy);
   overflow-x: hidden;
@@ -88,6 +89,21 @@ h1, h2, h3, h4, h5, h6 {
 .rainfall-note a:hover {
   color: var(--rust);
 }
+.dataviz-cta {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: .6rem 1.4rem;
+  background: var(--rust);
+  color: var(--white);
+  font-size: .75rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background .2s ease;
+}
+.dataviz-cta:hover { background: var(--amber); }
 
 /* ═══════════════════════════════════════════
    ABOUT PAGE NAV
@@ -177,12 +193,13 @@ section:not(#hero) {
 }
 .section-label {
   display: block;
-  font-size: .96rem; letter-spacing: .26em;
+  font-size: 1.4rem; letter-spacing: .26em;
   text-transform: uppercase; color: var(--rust);
   margin-bottom: .7rem;
+   margin-top: 1.5rem;
 }
 .section-header h2 {
-  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-size: clamp(1.8rem, 10vw, 0.2rem);
   color: var(--navy); margin-bottom: 1rem;
 }
 .section-intro {

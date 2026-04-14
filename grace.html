@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Preview of What's to Come — Caught in the Current</title>
+<title>Fingerprints of climate change — Caught in the Current</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Averia+Libre:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -45,7 +45,7 @@ a { color: inherit; text-decoration: none; }
 .story-hero {
   position: relative; padding: 3rem 2.5rem 2rem;
   text-align: left; overflow: hidden; background: var(--navy);
-  min-height: 50vh; display: flex; flex-direction: column;
+  min-height: 60vh; display: flex; flex-direction: column;
   align-items: center; justify-content: flex-start;
 }
 .story-hero-bg {
@@ -62,21 +62,16 @@ a { color: inherit; text-decoration: none; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 .story-hero > *:not(.story-hero-bg):not(.story-hero-overlay) { position: relative; z-index: 2; }
 
-.story-kicker {
-  display: inline-block; font-size: .62rem; letter-spacing: .28em;
-  text-transform: uppercase; color: var(--amber); margin-bottom: 1.2rem;
-  opacity: 0; animation: fadeUp .8s ease .4s forwards;
-}
 .story-headline {
   font-family: var(--font-body); font-weight: 700;
-  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+ font-size: clamp(1.8rem, 4.5vw, 3.2rem);
   color: var(--cream); line-height: 1.15;
-  max-width: 780px; margin: 0 auto .8rem; text-align: center;
+  max-width: 780px; margin: 4rem auto .8rem; text-align: center;
   opacity: 0; animation: fadeUp .9s ease .6s forwards;
 }
-.headline-em { color: var(--amber); font-style: italic; }
+.headline-em { color: var(--cream); font-style: italic; }
 .story-byline {
-  font-size: .72rem; color: rgba(247,243,237,.55);
+  font-size: .78rem; color: rgba(247,243,237,.55);
   letter-spacing: .1em; text-transform: uppercase;
   margin: 0 auto 1.6rem; text-align: center;
   opacity: 0; animation: fadeUp .9s ease .8s forwards;
@@ -86,6 +81,7 @@ a { color: inherit; text-decoration: none; }
   max-width: 600px; margin: 0 auto; font-size: 12.8px;
   font-style: italic; color: rgba(247,243,237,.75); line-height: 1.8;
   text-align: center; opacity: 0; animation: fadeUp .9s ease 1s forwards;
+  font-size: 1rem;
 }
 .photo-credit {
   display: block; font-size: .55rem; color: rgba(34,64,80,.45);
@@ -95,7 +91,7 @@ a { color: inherit; text-decoration: none; }
 .photo-credit { color: var(--amber); }
 
 .article-body { max-width: 800px; margin: 0 auto; padding: 3.5rem 1.5rem 4rem; }
-.article-body p { font-size: 12.8px; line-height: 1.95; color: rgba(34,64,80,.85); margin-bottom: 1.35rem; }
+.article-body p { font-size: .92rem; line-height: 1.95; color: rgba(34,64,80,.85); margin-bottom: 1.35rem; }
 .article-body p:first-child::first-letter {
   float: left; font-size: 3.8rem; font-weight: 700;
   line-height: .82; margin: .06em .14em 0 0; color: var(--teal);
@@ -120,7 +116,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ── STORY IMAGES ── */
 .photo-caption {
-  font-size: .67rem; line-height: 1.6;
+  font-size: .75rem; line-height: 1.6;
   color: rgba(34,64,80,.52); font-style: regular;
   margin-top: .5rem;
   padding-left: .7rem;
@@ -160,6 +156,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 </style>
 </head>
 <body>
+  <audio id="soundscape" src="audio/soundscape/grace.wav" preload="auto"></audio>
 
 <nav class="story-nav">
   <a href="index.html">
@@ -171,7 +168,6 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 <header class="story-hero">
   <div class="story-hero-bg"></div>
   <div class="story-hero-overlay"></div>
-  <p class="story-kicker">Environmental</p>
   <h1 class="story-headline">Fingerprints of climate change: <span class="headline-em">Storm preparedness in a new era</span></h1>
   <p class="story-byline">By <span>Grace Sawin</span></p>
   <p class="story-dek">Hurricane Helene made landfall in Western North Carolina in September 2024. Eighteen months later, residents are still picking up the pieces — but as climate change intensifies storms, Helene was just the beginning.</p>
@@ -285,8 +281,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 
   <p>For Gerard, historical floods over the past 10-15 years dictated her decision making. To her, severe flooding was always "not an if, it's a when. When it happens, it's gonna be big…but it hadn't happened since 1916."</p>
 
-  <p>In anticipation of the flooding, Gerard and a handful of artists relocated much of their artwork to higher floors of the building. But it was her flood insurance, which cost her nearly $10,000 a year to maintain, that saved her. She ended up sharing the insurance payout she received with over 30 affected artists who lost their work.</p>
-
+<p>In anticipation of the flooding, Gerard and a handful of artists relocated  much of their artwork to higher floors of the building. But it was her gallery’s flood insurance, which cost her nearly $10,000 a year to maintain, that saved her. She ended up distributing approximately $250,000 to over 30 affected artists whose work was destroyed, damaged or lost in the flood.</p>
   <p>"Nobody had insurance. And if they did, they didn't talk about it," Gerard said. "People I talked to unilaterally seemed to be saying, 'I lost everything and didn't have insurance.' So I did not hear of anybody other than me."</p>
 
   <div class="section-divider"><span>'Climate change' gets an update in NC</span></div>
@@ -377,6 +372,21 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   <p class="footer-title">Caught in the Current</p>
   <p class="footer-sub">Helene Recovery in Asheville and Beyond · Northeastern University · 2025</p>
 </footer>
+<script>
+const soundscape = document.getElementById('soundscape');
+soundscape.loop = false;
+soundscape.volume = 0.4;
 
+function tryPlay() {
+  soundscape.play().catch(() => {});
+}
+
+document.addEventListener('click', tryPlay, { once: true });
+document.addEventListener('scroll', tryPlay, { once: true });
+document.addEventListener('mousemove', tryPlay, { once: true });
+
+// Try autoplay immediately
+tryPlay();
+</script>
 </body>
 </html>
