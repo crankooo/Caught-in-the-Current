@@ -177,7 +177,7 @@ if (vid) {
 let videoMuted = true;
 const landingBtn = document.createElement('button');
 landingBtn.id = 'landingSoundBtn';
-landingBtn.innerHTML = `<span class="btn-label">Hear the story</span><span class="btn-bars"><span style="height:8px"></span><span style="height:4px"></span><span style="height:11px"></span><span style="height:6px"></span></span>`;
+landingBtn.innerHTML = `<span class="btn-label">Listen</span><span class="btn-bars"><span style="height:8px"></span><span style="height:4px"></span><span style="height:11px"></span><span style="height:6px"></span></span>`;
 landingBtn.style.cssText = `
   position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
   display: inline-flex; align-items: center; gap: .6rem;
@@ -211,7 +211,7 @@ landingBtn.addEventListener('click', () => {
   } else {
     vid.muted = true;
     videoMuted = true;
-    landingBtn.querySelector('.btn-label').textContent = 'Hear the story';
+    landingBtn.querySelector('.btn-label').textContent = 'Listen';
     landingBtn.style.background = 'rgba(34,64,80,.85)';
     landingBtn.style.borderColor = 'rgba(247,243,237,.2)';
     landingBtn.style.boxShadow = 'none';
@@ -260,6 +260,12 @@ window.addEventListener("scroll", () => {
   if (scrollHint) {
     scrollHint.style.opacity = pastHero ? "0" : "1";
     scrollHint.style.pointerEvents = pastHero ? "none" : "auto";
+  }
+
+  const landingSound = document.getElementById('landingSoundBtn');
+  if (landingSound) {
+    landingSound.style.opacity = pastHero ? "0" : "1";
+    landingSound.style.pointerEvents = pastHero ? "none" : "auto";
   }
 });
 
