@@ -175,7 +175,8 @@ if (vid) {
 
 /* ── LANDING PAGE VIDEO SOUND TOGGLE ── */
 let videoMuted = true;
-const landingBtn = document.createElement('button');
+const landingBtn = vid ? document.createElement('button') : null;
+if (landingBtn) {
 landingBtn.id = 'landingSoundBtn';
 landingBtn.innerHTML = `<span class="btn-label">Listen</span><span class="btn-bars"><span style="height:8px"></span><span style="height:4px"></span><span style="height:11px"></span><span style="height:6px"></span></span>`;
 landingBtn.style.cssText = `
@@ -197,6 +198,7 @@ document.body.appendChild(landingBtn);
 landingBtn.querySelectorAll('.btn-bars span').forEach(s => {
   s.style.cssText = 'display:block; width:2px; background:#9FE1CB; border-radius:1px;';
 });
+}
 
 landingBtn.addEventListener('click', () => {
   if (!vid) return;
@@ -218,7 +220,7 @@ landingBtn.addEventListener('click', () => {
     landingBtn.style.color = 'rgba(247,243,237,.9)';
   }
 });
-
+ /* ← closes if (landingBtn) */
 sessionStorage.setItem("hasVisitedHome", "true");
 /* ═══════════════════════════════════════════
    2. ABOUT PAGE
@@ -232,12 +234,21 @@ function showAbout(e) {
   if (e) e.preventDefault();
   if (mainSite) mainSite.style.display = "none";
   if (aboutPage) aboutPage.style.display = "block";
+
+  const landingSound = document.getElementById('landingSoundBtn');
+  if (landingSound) landingSound.style.display = "none";
+
   window.scrollTo({ top: 0, behavior: "instant" });
 }
+
 
 function showHome() {
   if (aboutPage) aboutPage.style.display = "none";
   if (mainSite) mainSite.style.display = "block";
+
+  const landingSound = document.getElementById('landingSoundBtn');
+  if (landingSound) landingSound.style.display = "inline-flex";
+
   window.scrollTo({ top: 0, behavior: "instant" });
 }
 
@@ -263,10 +274,11 @@ window.addEventListener("scroll", () => {
   }
 
   const landingSound = document.getElementById('landingSoundBtn');
-  if (landingSound) {
-    landingSound.style.opacity = pastHero ? "0" : "1";
-    landingSound.style.pointerEvents = pastHero ? "none" : "auto";
-  }
+if (landingSound) {
+  const showOnLanding = !pastHero && mainSite?.style.display !== "none";
+  landingSound.style.display = showOnLanding ? "inline-flex" : "none";
+}
+  
 });
 
 /* ═══════════════════════════════════════════

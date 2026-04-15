@@ -42,7 +42,7 @@ a { color: inherit; text-decoration: none; }
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255,255,255,.06);
 }
-.nav-logo-img { height: 56px; width: 56px; object-fit: contain; border-radius: 50%; }
+.nav-logo-img { height: 86px; width: 96px; object-fit: contain; border-radius: 50%; }
 .back-btn {
   background: none; border: 1.5px solid rgba(247,243,237,.3);
   color: var(--cream); font-family: var(--font-body);
@@ -153,11 +153,11 @@ a { color: inherit; text-decoration: none; }
   border-bottom: 1px solid rgba(247,243,237,.08);
 }
 .tracklist-title {
-  font-size: .58rem; letter-spacing: .28em; text-transform: uppercase;
+  font-size: .90rem; letter-spacing: .28em; text-transform: uppercase;
   color: rgba(247,243,237,.35); font-weight: 700;
 }
 .tracklist-count {
-  font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
+  font-size: .78rem; letter-spacing: .18em; text-transform: uppercase;
   color: rgba(247,243,237,.25);
 }
 
@@ -274,14 +274,14 @@ a { color: inherit; text-decoration: none; }
 
 .track-info { min-width: 0; }
 .track-name {
-  font-size: .9rem; font-weight: 700;
+  font-size: 1.05rem; font-weight: 700;
   color: var(--cream); margin-bottom: .2rem;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .track-row.active .track-name { color: var(--amber); }
 .track-blurb {
-  font-size: .73rem; line-height: 1.55;
-  color: rgba(247,243,237,.45); font-style: italic;
+  font-size: .85rem; line-height: 1.55;
+  color: rgba(247,243,237,.45); font-style: regular;
 }
 .track-duration {
   font-size: .72rem; color: rgba(247,243,237,.3);
@@ -302,7 +302,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .now-playing-label {
-  font-size: .52rem; letter-spacing: .3em; text-transform: uppercase;
+  font-size: .72rem; letter-spacing: .3em; text-transform: uppercase;
   color: var(--amber); margin-bottom: 1.2rem;
   display: flex; align-items: center; gap: .5rem;
 }
@@ -482,39 +482,6 @@ a { color: inherit; text-decoration: none; }
   vertical-align: middle; margin-left: .5rem;
 }
 
-/* ── ABOUT STRIP ── */
-.about-strip {
-  max-width: 1200px; margin: 0 auto;
-  padding: 0 3rem 4rem;
-}
-.about-strip-inner {
-  border-top: 1px solid rgba(247,243,237,.07);
-  padding-top: 2.5rem;
-  display: grid; grid-template-columns: 80px 1fr;
-  gap: 2rem; align-items: start;
-}
-.about-avatar {
-  width: 80px; height: 80px; border-radius: 50%;
-  object-fit: cover; object-position: center 15%;
-  border: 2px solid rgba(212,135,76,.3);
-}
-.about-heading {
-  font-size: .58rem; letter-spacing: .26em; text-transform: uppercase;
-  color: var(--amber); margin-bottom: .5rem;
-}
-.about-name {
-  font-size: 1.1rem; font-weight: 700; color: var(--cream);
-  margin-bottom: .5rem;
-}
-.about-role {
-  font-size: .68rem; letter-spacing: .06em; text-transform: uppercase;
-  color: rgba(247,243,237,.35); font-style: italic;
-  margin-bottom: .8rem;
-}
-.about-bio {
-  font-size: .84rem; line-height: 1.85;
-  color: rgba(247,243,237,.55);
-}
 
 /* ── FOOTER ── */
 footer {
@@ -562,17 +529,20 @@ footer {
   <div class="hero-inner">
     <div class="hero-vinyl-wrap">
       <div class="hero-album-cover">
-        <img src="images/fotos/business.jpg" alt="Businesses Bounce Back" onerror="this.style.display='none'">
+        <img src="images/fotos/album.png" alt="Businesses Bounce Back" onerror="this.style.display='none'">
       </div>
     </div>
     <div class="hero-meta">
-      <p class="hero-label">Soundscape</p>
       <h1 class="hero-title">Soundscape</h1>
       <p class="hero-byline">By <span>Azariah Baker</span></p>
-      <p class="hero-desc">An immersive audio journey through Asheville's recovery — the sounds of a community rebuilding, told through the voices of those who lived it.</p>
+      <p class="hero-desc">An immersive journey through Asheville and beyond, chronicling the region’s recovery through local sounds</p>
     </div>
   </div>
 </header>
+<!-- ── INTRO ── -->
+<div style="max-width:1200px; margin:0 auto; padding:2.5rem 3rem 0;">
+  <p style="font-size:.92rem; line-height:1.9; color:rgba(247,243,237,.6); font-style:regular; max-width:680px; border-left:3px solid var(--amber); padding-left:1.4rem;">This project is special to me because music and sound are something I have always gravitated toward. Soundscape allowed me to add an additional dimension to the written stories produced for <em>Caught in the Current</em>. All music is from the Blue Ridge region and all sounds were collected during our time in Western North Carolina. My hope is to help readers further immerse into these stories of Asheville and beyond.</p>
+</div>
 
 <!-- ── PLAYER ── -->
 <main class="player-shell">
@@ -581,15 +551,15 @@ footer {
   <section>
     <div class="tracklist-header">
       <span class="tracklist-title"># &nbsp;&nbsp;&nbsp; Track</span>
-      <span class="tracklist-count">4 stories</span>
+      <span class="tracklist-count">10 soundscapes</span>
     </div>
 
     <!-- Track 1 -->
-    <div class="track-row" data-index="0" data-src="" data-duration="3:42">
+    <div class="track-row" data-index="0" data-src="audio/soundscape/grace.wav" data-img="images/fotos/storm.gif">
       <span class="track-num">1</span>
       <div class="track-vinyl-wrap">
         <div class="track-vinyl">
-          <img class="track-vinyl-img" src="images/fotos/business.jpg" alt="">
+          <img class="track-vinyl-img" src="images/fotos/storm.gif" alt="">
           <div class="track-vinyl-label">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
           </div>
@@ -599,18 +569,19 @@ footer {
         </div>
       </div>
       <div class="track-info">
-        <p class="track-name">Open for Business <span class="coming-soon-badge">Coming Soon</span></p>
-        <p class="track-blurb">Downtown Asheville storefronts reckoned with water damage and supply chain chaos — here's what the comeback looks like.</p>
+        <p class="track-name">Blindsided by the Storm</p>
+        <p class="track-blurb">This piece is centered around preparing for a storm, so I created a storm. Flooding was the issue, so I added water sounds to create a water-flowing-through-a-storm-drain vibe. Lastly, I added an interesting anecdote from Corey Davis, a state climatologist.
+</p>
       </div>
-      <span class="track-duration">3:42</span>
+      <span class="track-duration">—</span>
     </div>
 
     <!-- Track 2 -->
-    <div class="track-row" data-index="1" data-src="" data-duration="5:18">
+    <div class="track-row" data-index="1" data-src="audio/soundscape/claire.wav" data-img="images/fotos/housing.jpg">
       <span class="track-num">2</span>
       <div class="track-vinyl-wrap">
         <div class="track-vinyl">
-          <img class="track-vinyl-img" src="images/fotos/business.jpg" alt="">
+          <img class="track-vinyl-img" src="images/fotos/housing.jpg" alt="">
           <div class="track-vinyl-label">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
           </div>
@@ -620,18 +591,18 @@ footer {
         </div>
       </div>
       <div class="track-info">
-        <p class="track-name">The River Arts District Rises <span class="coming-soon-badge">Coming Soon</span></p>
-        <p class="track-blurb">Studios once flooded to the ceiling are back open. Artists talk about rebuilding their creative spaces from scratch.</p>
+        <p class="track-name">Uprooted</p>
+        <p class="track-blurb">I wanted to find a song that spoke in a metaphorical way. “Make Me a Bed,” by Cisco Houston, has nothing and everything to do with a housing crisis. This song brings light-heartedness and also highlights the desperate need for change.</p>
       </div>
-      <span class="track-duration">5:18</span>
+      <span class="track-duration">—</span>
     </div>
 
     <!-- Track 3 -->
-    <div class="track-row" data-index="2" data-src="" data-duration="4:05">
+    <div class="track-row" data-index="2" data-src="audio/soundscape/ali.wav" data-img="images/fotos/fema.jpg">
       <span class="track-num">3</span>
       <div class="track-vinyl-wrap">
         <div class="track-vinyl">
-          <img class="track-vinyl-img" src="images/fotos/business.jpg" alt="">
+          <img class="track-vinyl-img" src="images/fotos/fema.jpg" alt="">
           <div class="track-vinyl-label">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
           </div>
@@ -641,18 +612,18 @@ footer {
         </div>
       </div>
       <div class="track-info">
-        <p class="track-name">Small Business, Big Loss <span class="coming-soon-badge">Coming Soon</span></p>
-        <p class="track-blurb">For small family-owned shops, insurance gaps and delayed FEMA funds meant making impossible decisions.</p>
+        <p class="track-name">A Fractured FEMA</p>
+        <p class="track-blurb">I wanted to capture the feeling of people waiting for FEMA to help. One night while I was downtown, I heard local musician Jacob Therrien’s mournful rendition of “A Change Gonna Come.” it was packed with soul and emotion.
+</p>
       </div>
-      <span class="track-duration">4:05</span>
+      <span class="track-duration">—</span>
     </div>
-
-    <!-- Track 4 -->
-    <div class="track-row" data-index="3" data-src="" data-duration="6:29">
+<!-- Track 4 -->
+    <div class="track-row" data-index="3" data-src="audio/soundscape/sydney.wav" data-img="images/fotos/foundobjects.jpg">
       <span class="track-num">4</span>
       <div class="track-vinyl-wrap">
         <div class="track-vinyl">
-          <img class="track-vinyl-img" src="images/fotos/business.jpg" alt="">
+          <img class="track-vinyl-img" src="images/fotos/foundobjects.jpg" alt="">
           <div class="track-vinyl-label">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
           </div>
@@ -662,12 +633,136 @@ footer {
         </div>
       </div>
       <div class="track-info">
-        <p class="track-name">Tourism, Transformed <span class="coming-soon-badge">Coming Soon</span></p>
-        <p class="track-blurb">Asheville built its economy on visitors. After Helene, the city is navigating what tourism means in a recovering landscape.</p>
+        <p class="track-name">Lost and Found</p>
+        <p class="track-blurb">The journey begins on the open road with cars passing by, then transitions into "Swannanoa Tunnel" by Bascom Lamar Lunsford — a song full of Asheville references that expresses the warmth of home.</p>
       </div>
-      <span class="track-duration">6:29</span>
+      <span class="track-duration">—</span>
     </div>
 
+<!-- Track 5 -->
+    <div class="track-row" data-index="4" data-src="audio/soundscape/beck.wav" data-img="images/fotos/churchstory.jpg">
+      <span class="track-num">5</span>
+      <div class="track-vinyl-wrap">
+        <div class="track-vinyl">
+          <img class="track-vinyl-img" src="images/fotos/churchstory.jpg" alt="">
+          <div class="track-vinyl-label">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
+          </div>
+          <div class="track-vinyl-play">
+            <svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="track-info">
+        <p class="track-name">Faith Following the Flood</p>
+        <p class="track-blurb">Capturing both inside and outside a church, the bells that open this track were recorded in downtown Asheville. "Holy Ground" by Frances Blalock Denton fades in — chosen for its deep bluegrass roots.</p>
+      </div>
+      <span class="track-duration">—</span>
+    </div>
+    <!-- Track 6 -->
+    <div class="track-row" data-index="5" data-src="audio/soundscape/HAM.wav" data-img="images/fotos/HAM.jpg">
+      <span class="track-num">6</span>
+      <div class="track-vinyl-wrap">
+        <div class="track-vinyl">
+          <img class="track-vinyl-img" src="images/fotos/HAM.jpg" alt="">
+          <div class="track-vinyl-label">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
+          </div>
+          <div class="track-vinyl-play">
+            <svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="track-info">
+        <p class="track-name">HAM Radio</p>
+        <p class="track-blurb">Mimicking the feel of flipping through a radio, this piece weaves music from Frances Blalock Denton and Elizabeth McCorvey between static and clicks — all recorded from an actual ham radio.</p>
+      </div>
+      <span class="track-duration">—</span>
+    </div>
+
+<!-- Track 7 -->
+    <div class="track-row" data-index="6" data-src="audio/soundscape/val.wav" data-img="images/fotos/bipoc.jpg">
+      <span class="track-num">7</span>
+      <div class="track-vinyl-wrap">
+        <div class="track-vinyl">
+          <img class="track-vinyl-img" src="images/fotos/bipoc.jpg" alt="">
+          <div class="track-vinyl-label">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
+          </div>
+          <div class="track-vinyl-play">
+            <svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="track-info">
+        <p class="track-name">Title TBD</p>
+        <p class="track-blurb">"Have I Helped Someone Today?" by Frances Blalock Denton speaks about humanity, self-examination and what can be done for those who need us most.</p>
+      </div>
+      <span class="track-duration">—</span>
+    </div>
+
+<!-- Track 8 -->
+    <div class="track-row" data-index="7" data-src="audio/soundscape/eva.wav" data-img="images/fotos/wildlife.jpg">
+      <span class="track-num">8</span>
+      <div class="track-vinyl-wrap">
+        <div class="track-vinyl">
+          <img class="track-vinyl-img" src="images/fotos/wildlife.jpg" alt="">
+          <div class="track-vinyl-label">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
+          </div>
+          <div class="track-vinyl-play">
+            <svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="track-info">
+        <p class="track-name">Wildlife</p>
+        <p class="track-blurb">Kept as natural as possible — it felt wrong to distort sounds that nature has already been asked to endure. Close your eyes and take a walk through the woods of Western North Carolina.</p>
+      </div>
+      <span class="track-duration">—</span>
+    </div>
+
+<!-- Track 9 -->
+    <div class="track-row" data-index="8" data-src="audio/soundscape/po.wav" data-img="images/fotos/PO.jpg">
+      <span class="track-num">9</span>
+      <div class="track-vinyl-wrap">
+        <div class="track-vinyl">
+          <img class="track-vinyl-img" src="images/fotos/PO.jpg" alt="">
+          <div class="track-vinyl-label">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
+          </div>
+          <div class="track-vinyl-play">
+            <svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="track-info">
+        <p class="track-name">Title TBD</p>
+        <p class="track-blurb">The bustling sounds of a post office — conversations layered over one another — reveal that the post office is an extension of community. Its loss is everybody's loss.</p>
+      </div>
+      <span class="track-duration">—</span>
+    </div>
+
+<!-- Track 10 -->
+    <div class="track-row" data-index="9" data-src="audio/soundscape/mia.wav" data-img="images/fotos/nonprofit.jpg">
+      <span class="track-num">10</span>
+      <div class="track-vinyl-wrap">
+        <div class="track-vinyl">
+          <img class="track-vinyl-img" src="images/fotos/nonprofit.jpg" alt="">
+          <div class="track-vinyl-label">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
+          </div>
+          <div class="track-vinyl-play">
+            <svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="track-info">
+        <p class="track-name">Operation Helo</p>
+        <p class="track-blurb">Focusing on nonprofits that formed to help during the storm, this piece travels three ways: on the ground, on the road and in the air.</p>
+      </div>
+      <span class="track-duration">—</span>
+    </div>
   </section>
 
   <!-- NOW PLAYING SIDEBAR -->
@@ -678,7 +773,7 @@ footer {
       <!-- Big vinyl -->
       <div class="sidebar-vinyl-wrap">
         <div class="sidebar-vinyl" id="sidebarVinyl">
-          <img class="sidebar-vinyl-img" src="images/fotos/business.jpg" alt="Now playing" onerror="this.style.display='none'">
+          <img class="sidebar-vinyl-img" id="sidebarImg" src="images/fotos/storm.gif" alt="Now playing" onerror="this.style.display='none'">
           <div class="sidebar-vinyl-center">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12"/></svg>
           </div>
@@ -749,9 +844,7 @@ footer {
   </aside>
 
 </main>
-    </div>
-  </div>
-</section>
+
 
 <footer>
   <p class="footer-title">Caught in the Current</p>
@@ -764,28 +857,64 @@ footer {
 ────────────────────────────────── */
 const TRACKS = [
   {
-    name: 'Open for Business',
-    sub: 'Downtown Asheville storefronts',
-    src: '',   /* swap when ready */
-    duration: '3:42'
+    name: 'Blindsided by the Storm',
+    sub: 'Grace Sawin · Caught in the Current',
+    src: 'audio/soundscape/grace.wav',
+    img: 'images/fotos/storm.gif'
   },
   {
-    name: 'The River Arts District Rises',
-    sub: 'Rebuilding creative spaces from scratch',
-    src: '',
-    duration: '5:18'
+    name: 'Uprooted',
+    sub: 'Claire Ogden · Caught in the Current',
+    src: 'audio/soundscape/claire.wav',
+    img: 'images/fotos/housing.jpg'
   },
   {
-    name: 'Small Business, Big Loss',
-    sub: 'Insurance gaps and impossible decisions',
-    src: '',
-    duration: '4:05'
+    name: 'A Fractured FEMA',
+    sub: 'Ali Caudle · Caught in the Current',
+    src: 'audio/soundscape/ali.wav',
+    img: 'images/fotos/fema.jpg'
+  }
+  ,{
+    name: 'Lost and Found',
+    sub: 'Sydney Woogerd · Caught in the Current',
+    src: 'audio/soundscape/sydney.wav',
+    img: 'images/fotos/foundobjects.jpg'
   },
   {
-    name: 'Tourism, Transformed',
-    sub: 'What tourism means in a recovering landscape',
-    src: '',
-    duration: '6:29'
+    name: 'Faith Following the Flood',
+    sub: 'Beck Orten · Caught in the Current',
+    src: 'audio/soundscape/beck.wav',
+    img: 'images/fotos/churchstory.jpg'
+  }
+  ,{
+    name: 'HAM Radio',
+    sub: 'Azariah Baker · Caught in the Current',
+    src: 'audio/soundscape/HAM.wav',
+    img: 'images/fotos/HAM.jpg'
+  },
+  {
+    name: 'Title TBD',
+    sub: 'Valentina Gutierrez · Caught in the Current',
+    src: 'audio/soundscape/val.wav',
+    img: 'images/fotos/bipoc.jpg'
+  },
+  {
+    name: 'Wildlife',
+    sub: 'Eva Ciolek Passeri · Caught in the Current',
+    src: 'audio/soundscape/eva.wav',
+    img: 'images/fotos/wildlife.jpg'
+  },
+  {
+    name: 'Title TBD',
+    sub: 'Azariah Baker · Caught in the Current',
+    src: 'audio/soundscape/po.wav',
+    img: 'images/fotos/PO.jpg'
+  },
+  {
+    name: 'Operation Helo',
+    sub: 'Mia Filler · Caught in the Current',
+    src: 'audio/soundscape/mia.wav',
+    img: 'images/fotos/nonprofit.jpg'
   }
 ];
 
@@ -835,10 +964,12 @@ function loadTrack(idx) {
   const t = TRACKS[idx];
   currentIdx = idx;
   sidebarName.textContent = t.name;
-  sidebarSub.textContent  = 'Azariah Baker · Caught in the Current';
-  timeDuration.textContent = t.duration;
+  sidebarSub.textContent  = t.sub;
   progressFill.style.width = '0%';
   timeElapsed.textContent  = '0:00';
+  timeDuration.textContent = '0:00';
+  const sidebarImg = document.getElementById('sidebarImg');
+  if (sidebarImg) sidebarImg.src = t.img;
 
   if (t.src) {
     audioEl.src = t.src;

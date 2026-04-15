@@ -199,7 +199,52 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   .panel-photos, .placeholder-photos { flex: 0 0 280px; }
   .stories-track { height: auto; max-height: 80vh; }
   .stories-viewer { margin: 0 1rem 3rem; }
+}
 
+
+.soundscape-btn {
+  display: inline-flex; align-items: center; gap: .6rem;
+  margin-top: 1.4rem; padding: .55rem 1.4rem;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 50px;
+  color: rgba(247,243,237,.9);
+  font-family: var(--font-body);
+  font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+  cursor: pointer; backdrop-filter: blur(8px);
+  transition: background .3s, border-color .3s, box-shadow .3s, transform .2s;
+  position: relative; z-index: 2;
+  opacity: 0; animation: fadeUp .9s ease 1.1s forwards;
+}
+.soundscape-btn:hover {
+  background: rgba(2,100,90,.35);
+  border-color: rgba(159,225,203,.5);
+  box-shadow: 0 0 18px rgba(2,100,90,.5), 0 0 40px rgba(2,100,90,.2);
+  transform: translateY(-1px);
+}
+.soundscape-btn.playing {
+  background: rgba(2,100,90,.4);
+  border-color: rgba(159,225,203,.7);
+  box-shadow: 0 0 22px rgba(2,100,90,.6), 0 0 50px rgba(2,100,90,.25);
+  color: #9FE1CB;
+}
+.soundscape-btn .btn-bars {
+  display: flex; align-items: center; gap: 2px; height: 12px;
+}
+.soundscape-btn .btn-bars span {
+  display: block; width: 2px; background: #9FE1CB;
+  border-radius: 1px; animation: none;
+}
+.soundscape-btn.playing .btn-bars span {
+  animation: barDance 1s ease-in-out infinite alternate;
+}
+.soundscape-btn.playing .btn-bars span:nth-child(1) { animation-delay: 0s; }
+.soundscape-btn.playing .btn-bars span:nth-child(2) { animation-delay: .15s; }
+.soundscape-btn.playing .btn-bars span:nth-child(3) { animation-delay: .3s; }
+.soundscape-btn.playing .btn-bars span:nth-child(4) { animation-delay: .45s; }
+@keyframes barDance {
+  0%   { height: 3px; }
+  100% { height: 12px; }
 }
 </style>
 </head>
@@ -227,6 +272,15 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   </h1>
   <p class="story-byline">By <span>Sydney Woogerd</span></p>
   <p class="story-dek">After the floodwaters receded, the debris that remained wasn't just wreckage — it was the scattered contents of people's lives. A few have made it their mission to give it all back.</p>
+<button class="soundscape-btn" id="soundscapeBtn" onclick="toggleSound()">
+    <span class="btn-label">Listen to soundscape</span>
+    <span class="btn-bars">
+      <span style="height:8px"></span>
+      <span style="height:4px"></span>
+      <span style="height:11px"></span>
+      <span style="height:6px"></span>
+    </span>
+  </button>
 </header>
 
 <section class="story-intro">
@@ -363,7 +417,6 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 </footer>
 
 <script>
-/* ── PANELS NAV ── */
 const track = document.getElementById('storiesTrack');
 const panels = track.querySelectorAll('.story-panel');
 const dotsContainer = document.getElementById('navDots');
@@ -398,26 +451,34 @@ track.addEventListener('scroll', () => {
     });
   }
 });
-const audio = document.getElementById('soundscape');
-audio.loop = false;
-audio.volume = 0.5;
 
-function tryPlayAudio() {
-  audio.play().catch(() => {
-    const resumeAudio = () => {
-      audio.play().catch(() => {});
-      document.removeEventListener('click', resumeAudio);
-      document.removeEventListener('touchstart', resumeAudio);
-      document.removeEventListener('keydown', resumeAudio);
-    };
+const soundscape = document.getElementById('soundscape');
+const btn = document.getElementById('soundscapeBtn');
+soundscape.loop = false;
+soundscape.volume = 0.5;
+let isPlaying = false;
 
-    document.addEventListener('click', resumeAudio, { once: true });
-    document.addEventListener('touchstart', resumeAudio, { once: true });
-    document.addEventListener('keydown', resumeAudio, { once: true });
-  });
+function toggleSound() {
+  if (isPlaying) {
+    soundscape.pause();
+    soundscape.currentTime = 0;
+    isPlaying = false;
+    btn.classList.remove('playing');
+    btn.querySelector('.btn-label').textContent = 'Listen to soundscape';
+  } else {
+    soundscape.play().then(() => {
+      isPlaying = true;
+      btn.classList.add('playing');
+      btn.querySelector('.btn-label').textContent = 'Playing…';
+    }).catch(() => {});
+  }
 }
 
-window.addEventListener('load', tryPlayAudio, { once: true });
+soundscape.addEventListener('ended', () => {
+  isPlaying = false;
+  btn.classList.remove('playing');
+  btn.querySelector('.btn-label').textContent = 'Listen to soundscape';
+});
 </script>
 
 </body>
