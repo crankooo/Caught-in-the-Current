@@ -489,19 +489,52 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 6px 20px rgba(34,64,80,.13);
 }
 .po-photo-cap {
-  font-size: .7rem; line-height: 1.6;
+  font-size: .75rem; line-height: 1.6;
   color: rgba(34,64,80,.52);
   margin-top: .5rem;
-  padding-left: .65rem;
+  padding-left: .7rem;
   border-left: 2px solid var(--amber);
   font-style: normal;
 }
-.po-photo-credit {
-  display: block; margin-top: 3px;
-  font-size: .55rem; letter-spacing: .07em;
-  color: var(--amber);
-}
 .clearfix::after { content: ''; display: table; clear: both; }
+
+/* ── SIDE BY SIDE PHOTO + VIDEO ── */
+.po-side-by-side {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin: 2rem 0;
+  clear: both;
+}
+.po-side-item img {
+  width: 100%; height: 220px;
+  object-fit: cover; display: block;
+  border-radius: 6px;
+  box-shadow: 0 6px 20px rgba(34,64,80,.13);
+}
+.po-side-item iframe {
+  width: 100%; height: 220px;
+  border: none; display: block;
+  border-radius: 6px;
+  box-shadow: 0 6px 20px rgba(34,64,80,.13);
+}
+.po-side-item .po-photo-cap {
+  float: none; width: 100%; margin: .5rem 0 0;
+}
+@media (max-width: 600px) {
+  .po-side-by-side { grid-template-columns: 1fr; }
+}
+
+/* ── VIDEO EMBED ── */
+.po-video {
+  margin: 2rem 0; clear: both;
+}
+.po-video iframe {
+  width: 100%; aspect-ratio: 16/9;
+  border: none; display: block;
+  border-radius: 6px;
+  box-shadow: 0 6px 20px rgba(34,64,80,.13);
+}
 
 /* ── FULL WIDTH PHOTO ── */
 .po-photo-full {
@@ -532,9 +565,56 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; clea
   .story-img-float { float: none; width: 100%; margin: 1.5rem 0; }
   .po-photo { float: none !important; width: 100%; margin: 1.5rem 0; }
 }
+.soundscape-btn {
+  display: inline-flex; align-items: center; gap: .6rem;
+  margin-top: 1.4rem;
+  padding: .55rem 1.4rem;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 50px;
+  color: rgba(247,243,237,.9);
+  font-family: var(--font-body);
+  font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background .3s, border-color .3s, box-shadow .3s, transform .2s;
+  position: relative; z-index: 2;
+  opacity: 0; animation: fadeUp .9s ease 1.1s forwards;
+}
+.soundscape-btn:hover {
+  background: rgba(2,100,90,.35);
+  border-color: rgba(159,225,203,.5);
+  box-shadow: 0 0 18px rgba(2,100,90,.5), 0 0 40px rgba(2,100,90,.2);
+  transform: translateY(-1px);
+}
+.soundscape-btn.playing {
+  background: rgba(2,100,90,.4);
+  border-color: rgba(159,225,203,.7);
+  box-shadow: 0 0 22px rgba(2,100,90,.6), 0 0 50px rgba(2,100,90,.25);
+  color: #9FE1CB;
+}
+.soundscape-btn .btn-bars {
+  display: flex; align-items: center; gap: 2px; height: 12px;
+}
+.soundscape-btn .btn-bars span {
+  display: block; width: 2px; background: #9FE1CB;
+  border-radius: 1px; animation: none;
+}
+.soundscape-btn.playing .btn-bars span {
+  animation: barDance 1s ease-in-out infinite alternate;
+}
+.soundscape-btn.playing .btn-bars span:nth-child(1) { animation-delay: 0s; }
+.soundscape-btn.playing .btn-bars span:nth-child(2) { animation-delay: .15s; }
+.soundscape-btn.playing .btn-bars span:nth-child(3) { animation-delay: .3s; }
+.soundscape-btn.playing .btn-bars span:nth-child(4) { animation-delay: .45s; }
+@keyframes barDance {
+  0%   { height: 3px; }
+  100% { height: 12px; }
+}
 </style>
 </head>
 <body>
+    <audio id="soundscape" src="audio/soundscape/po.wav" preload="auto"></audio>
 
 <nav class="story-nav">
   <a href="index.html">
@@ -579,14 +659,23 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; clea
 
   <div class="hero-content">
     <div class="wanted-band">Mail, Interrupted</div>
-    <h1 class="story-headline">Going postal: <span class="headline-em">Residents refuse to give up the fight</span> to have mail services restored</h1>
+    <h1 class="story-headline">Going postal: <span class="headline-em">Residents refuse to give up the fight to have mail services restored</span></h1>
     <p class="story-subhed">At least six post offices damaged by the storm remained closed in Western North Carolina. Residents say their communities deserve better.</p>
-    <p class="story-byline">By <span>Ali Caudle</span> and <span>Grace Sawin</span></p>
+    <p class="story-byline">By <span>Grace Sawin</span> and <span>Ali Caudle</span></p>
     <div class="address-lines">
       <span></span>
       <span></span>
       <span></span>
     </div>
+    <button class="soundscape-btn" id="soundscapeBtn" onclick="toggleSound()">
+  <span class="btn-label">Listen to soundscape</span>
+  <span class="btn-bars">
+    <span style="height:8px"></span>
+    <span style="height:4px"></span>
+    <span style="height:11px"></span>
+    <span style="height:6px"></span>
+  </span>
+</button>
   </div>
 </header>
 
@@ -647,7 +736,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; clea
 
   <div class="po-photo-full">
     <img src="images/story/PO/1.jpg" alt="Wanted Swannanoa Post Office sign on Highway 70">
-    <p class="po-photo-cap">Off of U.S. Highway 70 in Swannanoa, a sign reads "Wanted Swannanoa Post Office."<span class="po-photo-credit">Photo: Grace Sawin</span></p>
+    <p class="po-photo-cap">Off of U.S. Highway 70 in Swannanoa, a sign reads "Wanted Swannanoa Post Office." Photo: Grace Sawin</p>
   </div>
 
   <p>Slagle is the culprit behind the "Wanted" sign and has spearheaded community efforts to bring the post office back as part of his work with the Swannanoa Grassroots Alliance. In his Swannanoa home, he has boxes filled with hundreds of papers, print-outs of correspondence with officials, reopening notices and personalized postcards.</p>
@@ -682,7 +771,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; clea
   <div class="clearfix">
     <div class="po-photo">
       <img src="images/story/PO/2.jpg" alt="Mail customer at Grace Station in North Asheville">
-      <p class="po-photo-cap">A mail customer drops off her package at Grace Station, 13 miles from Swannanoa.<span class="po-photo-credit">Photo: Grace Sawin</span></p>
+      <p class="po-photo-cap">A mail customer drops off her package at Grace Station, 13 miles from Swannanoa. Photo: Grace Sawin</p>
     </div>
     <p>A month after the flood, Swannanoa residents were redirected to a mobile unit down the road in the town of Oteen. Two months after the storm, an undated notice appeared on the door of the mobile unit informing residents that they would be relocated to Grace Station, where they have been ever since. There was "no postal person listed or contact," said Slagle.</p>
     <p>The original Swannanoa Post Office building was a leased facility that sustained significant damage from floodwaters. But Ingles Market Inc., a regional supermarket chain that owned the property, chose not to repair it and took it off the market, forcing USPS's relocation. According to federal law, the Postal Service can only lease properties that are actively on the market.</p>
@@ -710,7 +799,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; clea
 
   <div class="po-photo-full">
     <img src="images/story/PO/3.jpg" alt="Reopened Chimney Rock post office on Main Street">
-    <p class="po-photo-cap">The newly reopened post office at the center of Main Street, Chimney Rock — closed for nearly 18 months after Helene.<span class="po-photo-credit">Photo: Ali Caudle</span></p>
+    <p class="po-photo-cap">The newly reopened post office at the center of Main Street, Chimney Rock — closed for nearly 18 months after Helene. Photo: Ali Caudle</p>
   </div>
 
   <p>Main Street, the central business artery that runs through Chimney Rock, a mountain town around 25 miles southeast of Asheville, is home to the town's sole post office. Service was restored on Feb. 23, 2026, after nearly 17 months.</p>
@@ -724,7 +813,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; clea
   <div class="clearfix">
     <div class="po-photo">
       <img src="images/story/PO/4.jpg" alt="Muddied mail baskets outside Marshall post office">
-      <p class="po-photo-cap">Muddied mail baskets outside the closed Marshall post office — shut since September 2024.<span class="po-photo-credit">Photo: Sydney Woogerd</span></p>
+      <p class="po-photo-cap">Muddied mail baskets outside the closed Marshall post office — shut since September 2024. Photo: Sydney Woogerd</p>
     </div>
     <p>But other communities are still in the thick of restoration, with no end in sight. Marshall is another town with no post office, along with several other municipal buildings still not in existence 18 months later. The fire department, police station, town hall and courthouse buildings were all damaged by the flood and are now abandoned, while services have relocated to temporary buildings.</p>
     <p>"It just adds to the discombobulation of everything that all those services that were housed downtown, as they should be, are now just in some random trailer or a room of a commercial building that's unused," said Mashburn Heath. "It's like a game of hide and seek to try to find your basic municipal services."</p>
@@ -737,9 +826,15 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; clea
 
   <p>Post offices have served as a vital means of communication for people for centuries. During Helene, digital communication was temporarily destroyed. Without cell service or internet access, many found themselves cut off from the rest of the world in an unprecedented blackout that in some places, lasted weeks.</p>
 
-  <div class="po-photo">
+  <div class="po-side-by-side">
+    <div class="po-side-item">
       <img src="images/story/PO/7.jpg" alt="Dan Slagle plays drone video of Wanted sign in his home office">
-      <p class="po-photo-cap">Dan Slagle plays a drone video of a "Wanted Swannanoa P.O." sign in his home office.<span class="po-photo-credit">Photo: Ali Caudle</span></p>
+      <p class="po-photo-cap">Dan Slagle plays a drone video of a "Wanted Swannanoa P.O." sign constructed of local materials in his home office. During the filming of the one year anniversary of Helene documentary, he hoped the sign would grab people's attention. Photo: Ali Caudle</p>
+    </div>
+    <div class="po-side-item">
+      <iframe src="https://drive.google.com/file/d/1y5z5eB1yW8ZySPaChpuJpxBdabenJD6V/preview" allow="autoplay" allowfullscreen></iframe>
+      <p class="po-photo-cap">The "Wanted Swannanoa P.O." sign, constructed of local materials near Swannanoa. Video courtesy of Dan Slagle</p>
+    </div>
   </div>
 
   <p>Mashburn Heath recalled how difficult it was in the early days after losing her home, when she couldn't get things in the mail. It's hard "when you can't get those important pieces of information, bills, documents, things that people even want to send you, to give you support while all this is going on."</p>
@@ -747,7 +842,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; clea
 
   <div class="po-photo">
     <img src="images/story/PO/5.jpg" alt="Dan Slagle looks through correspondence in his home">
-      <p class="po-photo-cap">Dan Slagle looks through a folder of correspondence with officials in his Swannanoa home.<span class="po-photo-credit">Photo: Ali Caudle</span></p>
+      <p class="po-photo-cap">Dan Slagle looks through a folder of correspondence with officials in his Swannanoa home. Photo: Ali Caudle</p>
   </div>
 
   <p>According to the <a href="https://www.prc.gov/" target="_blank">United States Postal Regulatory Commission</a>, an independent regulatory agency, the Office of Public Affairs &amp; Government Relations liaisons with Congress and other government agencies about high-level matters involving USPS, including service interruptions.</p>
@@ -755,7 +850,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; clea
 
   <div class="po-photo-full">
     <img src="images/story/PO/6.jpg" alt="Community members lined up in front of closed Swannanoa post office">
-    <p class="po-photo-cap">Community members lined up in front of the closed Swannanoa post office on Slagle's campaign postcard.<span class="po-photo-credit">Photo: Dan Slagle</span></p>
+    <p class="po-photo-cap">Community members lined up in front of the closed Swannanoa post office on Slagle's campaign postcard. Photo: Dan Slagle</p>
   </div>
 
   <p>Slagle has facilitated the mailing of over 600 postcards to local, state and federal officials asking for the restoration. On the front of the post card, over 45 community members are lined up in front of the Swannanoa building, a photo-op event Slagle organized in May 2025. As updates come in, Slagle reprints the postcards with the latest reports from local officials on the status of the Swannanoa post office.</p>
@@ -781,6 +876,50 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; clea
     }, { threshold: 0.3 });
     obs.observe(document.getElementById('htl'));
   }
+
+  const soundscape = document.getElementById('soundscape');
+  const btn = document.getElementById('soundscapeBtn');
+  soundscape.loop = false;
+  soundscape.volume = 0.4;
+  let isPlaying = false;
+
+  function toggleSound() {
+    if (isPlaying) {
+      soundscape.pause();
+      soundscape.currentTime = 0;
+      isPlaying = false;
+      btn.classList.remove('playing');
+      btn.querySelector('.btn-label').textContent = 'Listen to soundscape';
+    } else {
+      soundscape.play().then(() => {
+        isPlaying = true;
+        btn.classList.add('playing');
+        btn.querySelector('.btn-label').textContent = 'Playing…';
+      }).catch(() => {});
+    }
+  }
+
+  soundscape.addEventListener('ended', () => {
+    isPlaying = false;
+    btn.classList.remove('playing');
+    btn.querySelector('.btn-label').textContent = 'Listen to soundscape';
+  });
+
+  soundscape.play().then(() => {
+    isPlaying = true;
+    btn.classList.add('playing');
+    btn.querySelector('.btn-label').textContent = 'Playing…';
+  }).catch(() => {
+    document.addEventListener('click', function unlock() {
+      soundscape.play().then(() => {
+        isPlaying = true;
+        btn.classList.add('playing');
+        btn.querySelector('.btn-label').textContent = 'Playing…';
+      }).catch(() => {});
+      document.removeEventListener('click', unlock);
+    });
+  });
+
 </script>
 </body>
 </html>

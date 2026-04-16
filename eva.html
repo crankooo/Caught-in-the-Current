@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Helene's smallest sufferers — Caught in the Current</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Averia+Libre:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:  #02645A;
+  --navy:  #224050;
+  --amber: #D4874C;
+  --rust:  #C45D3A;
+  --cream: #F7F3ED;
+  --white: #ffffff;
+  --font-display: 'Averia Libre', serif;
+  --font-body:    'Lora', Georgia, serif;
+  --nav-h: 70px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--font-body); background: var(--cream); color: var(--navy); overflow-x: hidden; line-height: 1.7; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+.story-nav {
+  position: sticky; top: 0; z-index: 300;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem; height: var(--nav-h);
+  background: rgba(34,64,80,.95); backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.nav-logo-img { height: 100px; width: 85px; object-fit: contain; border-radius: 50%; }
+.back-btn {
+  background: none; border: 1.5px solid rgba(247,243,237,.38);
+  color: var(--cream); font-family: var(--font-body);
+  font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
+  padding: .4rem 1.1rem; border-radius: 50px; cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.back-btn:hover { background: var(--amber); border-color: var(--amber); }
+
+.story-hero {
+  position: relative; padding: 3rem 2.5rem 2rem;
+  text-align: left; overflow: hidden; background: var(--navy);
+  min-height: 60vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-start;
+}
+.story-hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('images/fotos/wildlife.jpg');
+  background-size: cover; background-position: center;
+  transform: scale(1.06); animation: heroZoom 12s ease-out forwards;
+}
+.story-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.4) 50%, rgba(0,0,0,.7));
+}
+@keyframes heroZoom { from { transform: scale(1.06); } to { transform: scale(1); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.story-hero > *:not(.story-hero-bg):not(.story-hero-overlay) { position: relative; z-index: 2; }
+
+.story-headline {
+  font-family: var(--font-body); font-weight: 700;
+  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+  color: var(--cream); line-height: 1.15;
+  max-width: 680px; margin: 2rem auto .6rem; text-align: center;
+  opacity: 0; animation: fadeUp .9s ease .6s forwards;
+}
+.headline-em { color: var(--cream); font-style: italic; }
+.story-byline {
+  font-size: .78rem; color: rgba(247,243,237,.55);
+  letter-spacing: .1em; text-transform: uppercase;
+  margin: 0 auto 1.6rem; text-align: center;
+  opacity: 0; animation: fadeUp .9s ease .8s forwards;
+}
+.story-byline span { color: rgba(247,243,237,.85); font-weight: 700; }
+.story-dek {
+  max-width: 600px; margin: 0 auto;
+  font-style: italic; color: rgba(247,243,237,.75); line-height: 1.8;
+  text-align: center; opacity: 0; animation: fadeUp .9s ease 1s forwards;
+  font-size: 1rem;
+}
+
+.photo-credit {
+  display: block; font-size: .55rem; color: rgba(34,64,80,.45);
+  letter-spacing: .06em; padding: .4rem 1.5rem; text-align: left;
+}
+.photo-credit a { color: rgba(235, 96, 10, 0.75); text-decoration: underline; text-underline-offset: 2px; }
+.photo-credit { color: var(--amber); }
+
+.article-body { max-width: 800px; margin: 0 auto; padding: 3.5rem 1.5rem 4rem; }
+.article-body p { font-size: .92rem; line-height: 1.95; color: rgba(34,64,80,.85); margin-bottom: 1.35rem; }
+.article-body p:first-child::first-letter {
+  float: left; font-size: 3.8rem; font-weight: 700;
+  line-height: .82; margin: .06em .14em 0 0; color: var(--teal);
+}
+
+.section-divider {
+  display: flex; align-items: center; gap: 1rem;
+  margin: 3rem 0 2.2rem; justify-content: flex-start;
+}
+.section-divider span { font-size: .95rem; letter-spacing: .28em; text-transform: uppercase; color: var(--rust); white-space: nowrap; }
+.section-divider::before { display: none; }
+.section-divider::after { content: ''; flex: 1; height: 1px; background: rgba(34,64,80,.15); }
+
+.stat-band {
+  margin: 2.8rem -1.5rem; padding: 2.2rem 2rem;
+  background: var(--navy); border-radius: 10px;
+  display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+}
+.stat-item { text-align: center; flex: 1 1 140px; max-width: 200px; }
+.stat-number { font-size: 1.6rem; font-weight: 700; color: var(--amber); line-height: 1.1; margin-bottom: .3rem; }
+.stat-label { font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(247,243,237,.55); line-height: 1.5; }
+
+.photo-caption {
+  font-size: .75rem; line-height: 1.6;
+  color: rgba(34,64,80,.52); font-style: regular;
+  margin-top: .5rem;
+  padding-left: .7rem;
+  border-left: 2px solid var(--amber);
+}
+
+.story-img {
+  margin: 2rem 0;
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(34,64,80,.12);
+}
+.story-img img { width: 100%; height: auto; display: block; border-radius: 10px; }
+
+.story-img-float {
+  float: right; width: 42%;
+  margin: .4rem 0 1.2rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(34,64,80,.12);
+  clear: right;
+}
+.story-img-float img { width: 100%; height: auto; display: block; border-radius: 10px; }
+
+.clearfix::after { content: ''; display: table; clear: both; }
+
+footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
+.footer-title { font-family: var(--font-display); font-size: 1rem; color: var(--cream); letter-spacing: .1em; margin-bottom: .35rem; }
+.footer-sub { font-size: .75rem; color: rgba(247,243,237,.48); letter-spacing: .08em; }
+
+@media (max-width: 600px) {
+  .story-nav { padding: 0 1.2rem; }
+  .story-hero { padding: 4rem 1.2rem 3rem; min-height: 60vh; }
+  .article-body { padding: 2.5rem 1.2rem 3rem; }
+  .stat-band { margin: 2rem -.5rem; padding: 1.5rem 1rem; flex-direction: column; align-items: center; }
+  .stat-item { max-width: 100%; }
+  .story-img-float { float: none; width: 100%; margin: 1.5rem 0; }
+}
+
+.soundscape-btn {
+  display: inline-flex; align-items: center; gap: .6rem;
+  margin-top: 1.4rem;
+  padding: .55rem 1.4rem;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 50px;
+  color: rgba(247,243,237,.9);
+  font-family: var(--font-body);
+  font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background .3s, border-color .3s, box-shadow .3s, transform .2s;
+  position: relative; z-index: 2;
+  opacity: 0; animation: fadeUp .9s ease 1.1s forwards;
+}
+.soundscape-btn:hover {
+  background: rgba(2,100,90,.35);
+  border-color: rgba(159,225,203,.5);
+  box-shadow: 0 0 18px rgba(2,100,90,.5), 0 0 40px rgba(2,100,90,.2);
+  transform: translateY(-1px);
+}
+.soundscape-btn.playing {
+  background: rgba(2,100,90,.4);
+  border-color: rgba(159,225,203,.7);
+  box-shadow: 0 0 22px rgba(2,100,90,.6), 0 0 50px rgba(2,100,90,.25);
+  color: #9FE1CB;
+}
+.soundscape-btn .btn-bars {
+  display: flex; align-items: center; gap: 2px; height: 12px;
+}
+.soundscape-btn .btn-bars span {
+  display: block; width: 2px; background: #9FE1CB;
+  border-radius: 1px; animation: none;
+}
+.soundscape-btn.playing .btn-bars span {
+  animation: barDance 1s ease-in-out infinite alternate;
+}
+.soundscape-btn.playing .btn-bars span:nth-child(1) { animation-delay: 0s; }
+.soundscape-btn.playing .btn-bars span:nth-child(2) { animation-delay: .15s; }
+.soundscape-btn.playing .btn-bars span:nth-child(3) { animation-delay: .3s; }
+.soundscape-btn.playing .btn-bars span:nth-child(4) { animation-delay: .45s; }
+@keyframes barDance {
+  0%   { height: 3px; }
+  100% { height: 12px; }
+}
+</style>
+</head>
+<body>
+  <audio id="soundscape" src="audio/soundscape/eva.wav" preload="auto"></audio>
+
+<nav class="story-nav">
+  <a href="index.html">
+    <img src="images/logos/main.png" alt="Caught in the Current" class="nav-logo-img">
+  </a>
+  <button class="back-btn" onclick="history.back()">← All Stories</button>
+</nav>
+
+<header class="story-hero">
+  <div class="story-hero-bg"></div>
+  <div class="story-hero-overlay"></div>
+  <h1 class="story-headline">Helene's smallest sufferers: <span class="headline-em">The river dwellers left behind</span></h1>
+  <p class="story-byline">By <span>Eva Ciolek Passeri</span></p>
+  <p class="story-dek">Some of the storm's most vulnerable victims — river dwellers — suffered dramatically when raging waters washed them downstream. Conservationists say it will take years to recover the damage.</p>
+  <button class="soundscape-btn" id="soundscapeBtn" onclick="toggleSound()">
+    <span class="btn-label">Listen to soundscape</span>
+    <span class="btn-bars">
+      <span style="height:8px"></span>
+      <span style="height:4px"></span>
+      <span style="height:11px"></span>
+      <span style="height:6px"></span>
+    </span>
+  </button>
+</header>
+<span class="photo-credit">Cover Photo: Eva Ciolek Passeri</span>
+
+<article class="article-body">
+
+  <p>Hans Lohmeyer is standing in a lively park on the outskirts of Asheville as children and dogs gambol around him. He's just about to step onto a nature trail along Cane Creek that was only recently reopened after Tropical Storm Helene ravaged its banks and many of its inhabitants.</p>
+
+  <p>"It experienced just crazy amounts of tree loss and damage. You'll see it along the creek…the flooding damage, destabilization from the stream banks," Lohmeyer said as he walked along the now placid waterway at Bill Moore Community Park in Fletcher, North Carolina. "I don't think it'll be quite the same as what it was before, just due to the sheer power and the impact from the [storm]."</p>
+
+  <p>Lohmeyer is stewardship manager for Conserving Carolina, a nonprofit that works to preserve land and water resources throughout Western North Carolina by focusing on creating trails and educating the community about the importance of habitat. What he's particularly interested in these days is one of the smallest creatures that suffered significantly from Helene: freshwater mussels.</p>
+
+  <p>First, these tiny mollusks experienced the rushing water as it swelled the rivers and creeks where they live. Second, they had to endure a cleanup that involved massive construction vehicles driving up and down to scrape out riverbeds and remove thousands of pounds of washed-out debris.</p>
+
+  <p>"A lot of mussels got run over," Lohmeyer said about the vulnerable freshwater population that resides in Western North Carolina. These small creatures, some on endangered species lists, cluster together in "beds" among rocks and eddies. They are critical to the ecosystem because they serve as nature's filtering system, siphoning out pollutants as water runs over their extended necks. "The storm did have a very negative impact on those populations."</p>
+
+  <p>The fallout for this largely unseen and unknown creature is just one example of the extent of damage the storm wrought in the natural world alongside the better-publicized human one. Mussels are just one species that scientists and researchers are watching and worrying about. Another to take a hard hit was the famously ugly hellbender salamander, which can grow up to 2 feet long and live up to 30 years.</p>
+
+  <div class="section-divider"><span>A double whammy for river life</span></div>
+
+  <p>The brownish, yellowish aquatic animal lives in the mud and among the rocks of riverbeds. This, again, put it in the direct line of destruction. The result will likely be felt for generations of hellbenders to come, experts say.</p>
+
+  <p>"Those impacts that we're dealing with are probably going to still deal with for the next, at least 10, 15 years," said Hannah Woodburn, a riverkeeper for MountainBlue, a nonprofit that works to protect clean water and resilient forests across the southern Blue Ridge region.</p>
+
+  <p>"No. 1, the banks were already pretty eroded from the storm event itself, and then No. 2, that secondary impact of having heavy machinery coming in, accessing, cutting all the live trees and remaining vegetation along from the banks — but then also drove these giant machines up and down the streams as well," she said.</p>
+
+  <p>"It was kind of this double whammy. They probably smushed anything that had survived the flood."</p>
+
+  <div class="stat-band">
+    <div class="stat-item"><div class="stat-number">2 ft</div><div class="stat-label">Max length of hellbender salamander</div></div>
+    <div class="stat-item"><div class="stat-number">30 yrs</div><div class="stat-label">Hellbender lifespan</div></div>
+    <div class="stat-item"><div class="stat-number">10–15</div><div class="stat-label">Years of expected recovery ahead</div></div>
+  </div>
+
+</article>
+
+<footer>
+  <p class="footer-title">Caught in the Current</p>
+  <p class="footer-sub">Helene Recovery in Asheville and Beyond · Northeastern University · 2025</p>
+</footer>
+
+<script>
+const soundscape = document.getElementById('soundscape');
+const btn = document.getElementById('soundscapeBtn');
+soundscape.loop = false;
+soundscape.volume = 0.4;
+
+let isPlaying = false;
+
+function toggleSound() {
+  if (isPlaying) {
+    soundscape.pause();
+    soundscape.currentTime = 0;
+    isPlaying = false;
+    btn.classList.remove('playing');
+    btn.querySelector('.btn-label').textContent = 'Listen to soundscape';
+  } else {
+    soundscape.play().then(() => {
+      isPlaying = true;
+      btn.classList.add('playing');
+      btn.querySelector('.btn-label').textContent = 'Playing…';
+    }).catch(() => {});
+  }
+}
+
+soundscape.addEventListener('ended', () => {
+  isPlaying = false;
+  btn.classList.remove('playing');
+  btn.querySelector('.btn-label').textContent = 'Listen to soundscape';
+});
+
+soundscape.play().then(() => {
+  isPlaying = true;
+  btn.classList.add('playing');
+  btn.querySelector('.btn-label').textContent = 'Playing…';
+}).catch(() => {
+  document.addEventListener('click', function unlock() {
+    soundscape.play().then(() => {
+      isPlaying = true;
+      btn.classList.add('playing');
+      btn.querySelector('.btn-label').textContent = 'Playing…';
+    }).catch(() => {});
+    document.removeEventListener('click', unlock);
+  });
+});
+</script>
+</body>
+</html>
