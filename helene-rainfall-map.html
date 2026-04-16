@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hurricane Helene Rainfall — Western NC</title>
+
+<!-- ============================================================
+     CUSTOMIZATION GUIDE
+     ============================================================
+     FONTS:    Search "FONT CONFIG"
+     COLORS:   Search "COLOR CONFIG"
+     SHAPE:    Search "SHAPE CONFIG"
+     DATA:     Search "DATA CONFIG"
+     RIVERS:   Search "RIVER CONFIG"
+     ============================================================ -->
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root { --font-main: 'DM Sans', sans-serif; --font-heading: 'Lora', serif; }
+
+  :root {
+    --bg-page: #fafaf8;
+    --bg-map: #f0efeb;
+    --text-primary: #1a1a1a;
+    --text-secondary: #6b6b6b;
+    --text-muted: #999999;
+    --county-fill: rgba(0, 0, 0, 0.02);
+    --county-stroke: rgba(0, 0, 0, 0.15);
+    --state-stroke: rgba(0, 0, 0, 0.3);
+    --color-tier1: #02645A;
+    --color-tier2: #224050;
+    --color-tier3: #D4874C;
+    --color-tier4: #C45D3A;
+    --drop-opacity: 0.6;
+    --bg-tooltip: #ffffff;
+    --border-tooltip: #d0d0d0;
+
+    /* River styling */
+    --river-color: #3B8BD4;
+    --river-glow: rgba(59, 139, 212, 0.12);
+    --flood-corridor: rgba(59, 139, 212, 0.06);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-page: #1a1a1a;
+      --bg-map: #242422;
+      --text-primary: #e8e8e4;
+      --text-secondary: #a0a09a;
+      --text-muted: #666;
+      --county-fill: rgba(255, 255, 255, 0.03);
+      --county-stroke: rgba(255, 255, 255, 0.12);
+      --state-stroke: rgba(255, 255, 255, 0.25);
+      --bg-tooltip: #2c2c2a;
+      --border-tooltip: #444;
+      --river-color: #5AABEF;
+      --river-glow: rgba(90, 171, 239, 0.15);
+      --flood-corridor: rgba(90, 171, 239, 0.07);
+    }
+  }
+
+  * { margin: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font-main);
+    background: var(--bg-page);
+    color: var(--text-primary);
+    padding: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  h1 { font-family: var(--font-heading); font-size: 24px; font-weight: 600; margin-bottom: 4px; }
+  .subtitle { font-family: var(--font-heading); font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; }
+  .legend {
+    display: flex; align-items: center; gap: 18px;
+    font-size: 12px; color: var(--text-secondary);
+    margin-bottom: 14px; flex-wrap: wrap;
+  }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  #map-container {
+    position: relative; width: 100%; aspect-ratio: 4 / 3;
+    background: var(--bg-map); border-radius: 12px; overflow: hidden;
+  }
+  #tooltip {
+    position: fixed; display: none;
+    background: var(--bg-tooltip); border: 1px solid var(--border-tooltip);
+    border-radius: 8px; padding: 10px 14px; font-size: 13px;
+    font-family: var(--font-main); pointer-events: none; z-index: 10;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12); max-width: 240px;
+  }
+  #detail-panel {
+    font-size: 13px; color: var(--text-secondary);
+    margin-top: 12px; min-height: 22px; line-height: 1.5;
+  }
+  .source { font-size: 11px; color: var(--text-muted); margin-top: 16px; }
+  .county-label {
+    font-size: 9px;
+    fill: var(--text-muted);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<h1>Helene brings extreme flooding to Western North Carolina</h1>
+<p class="subtitle">Sept 25–27, 2024 &middot; 3-day rainfall totals in inches</p>
+
+<div class="legend" id="legend"></div>
+
+<div id="map-container"></div>
+<div id="tooltip"></div>
+<p id="detail-panel">Tap a location to see details</p>
+<p class="source">Data: NC Emergency Management, NWS Greenville-Spartanburg &middot; County boundaries: U.S. Census Bureau</p>
+<p class="source" style="margin-top: 4px;">Data visualization by Mia Filler</p>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script>
+
+/* ── DATA CONFIG ──────────────────────────────────────────── */
+const locations = [
+  { name: "Busick",              county: "Yancey",       inches: 30.78, lat: 35.7698, lon: -82.1829, note: "Highest total in the state — over 30 inches in 3 days" },
+  { name: "Celo",                county: "Yancey",       inches: 26.65, lat: 35.8551, lon: -82.1979, note: "Second-highest observed total in western NC" },
+  { name: "Mt Mitchell St Park", county: "Yancey",       inches: 24.20, lat: 35.7648, lon: -82.2651, note: "Highest peak east of the Mississippi; 24+ inches recorded" },
+  { name: "Spruce Pine",         county: "Mitchell",     inches: 18.23, lat: 35.9154, lon: -82.0647, note: "Major flooding along the North Toe River" },
+  { name: "Davidson River",      county: "Transylvania", inches: 17.70, lat: 35.2637, lon: -82.7036, note: "Heavy rainfall in the Pisgah National Forest area" },
+  { name: "Foscoe",              county: "Watauga",      inches: 16.42, lat: 36.1262, lon: -81.7697, note: "High-elevation community near Grandfather Mountain" },
+  { name: "Old Fort",            county: "McDowell",     inches: 15.60, lat: 35.6274, lon: -82.1726, note: "Severe damage along the Catawba River headwaters" },
+  { name: "Whitehead",           county: "Alleghany",    inches: 15.59, lat: 36.4709, lon: -81.1265, note: "Northern extent of heaviest rainfall band" },
+  { name: "Hendersonville",      county: "Henderson",    inches: 15.11, lat: 35.3187, lon: -82.4610, note: "Mud River and other tributaries overflowed" },
+  { name: "Swannanoa",           county: "Buncombe",     inches: 14.81, lat: 35.5979, lon: -82.3982, note: "Devastating flooding; Swannanoa River broke 1916 record" },
+  { name: "North Cove Pinnacle", county: "McDowell",     inches: 14.75, lat: 35.8200, lon: -82.0500, note: "Remote mountain gauge near Spruce Pine border" },
+  { name: "Guion Farm",          county: "Henderson",    inches: 14.73, lat: 35.3500, lon: -82.4200, note: "Agricultural area heavily impacted" },
+  { name: "Saluda",              county: "Polk",         inches: 14.58, lat: 35.2278, lon: -82.3415, note: "Southern edge of the heaviest rainfall band" },
+  { name: "Highlands",           county: "Macon",        inches: 14.52, lat: 35.0527, lon: -83.1974, note: "One of the wettest towns in the eastern US normally" },
+  { name: "Grandfather Mtn",     county: "Watauga",      inches: 14.47, lat: 36.0995, lon: -81.8328, note: "Iconic high-elevation peak and nature preserve" },
+  { name: "Asheville Airport",   county: "Buncombe",     inches: 13.98, lat: 35.4362, lon: -82.5418, note: "Nearly 3 months of rain in under 3 days; gauge lost comms Friday AM" },
+  { name: "Boone",               county: "Watauga",      inches: 11.50, lat: 36.2168, lon: -81.6746, note: "Downtown flooded; Appalachian State campus damaged" },
+  { name: "Watauga Med Center",  county: "Watauga",      inches: 10.98, lat: 36.2094, lon: -81.6658, note: "Hospital recorded nearly 11 inches" },
+];
+
+/* ── RIVER CONFIG ─────────────────────────────────────────────
+   Waypoints for the French Broad River and Swannanoa River,
+   traced from their actual paths through the region.
+   
+   French Broad: Rosman → Brevard area → Etowah → Hendersonville →
+   Skyland → Asheville (Biltmore) → River Arts District →
+   Woodfin → Marshall → Hot Springs → TN border
+   
+   Swannanoa: Black Mountain → Swannanoa → east Asheville →
+   confluence with French Broad at Biltmore Estate
+*/
+const frenchBroadPoints = [
+  [-82.824, 35.083],  // headwaters near Rosman
+  [-82.790, 35.115],  // south of Brevard
+  [-82.753, 35.155],  // Brevard area
+  [-82.700, 35.195],  // Davidson River confluence area
+  [-82.660, 35.230],  // Horseshoe bend area
+  [-82.625, 35.255],  // Etowah
+  [-82.580, 35.280],  // approaching Henderson Co.
+  [-82.545, 35.308],  // near Hendersonville / Mills River
+  [-82.560, 35.340],  // turns more northward
+  [-82.570, 35.370],  // approaching Buncombe Co.
+  [-82.575, 35.400],  // near Asheville Airport / Skyland
+  [-82.570, 35.430],  // Biltmore Estate area
+  [-82.568, 35.460],  // Swannanoa River confluence
+  [-82.572, 35.488],  // River Arts District
+  [-82.575, 35.510],  // downtown Asheville area
+  [-82.590, 35.533],  // north Asheville
+  [-82.610, 35.558],  // Woodfin
+  [-82.640, 35.590],  // leaving Buncombe County
+  [-82.670, 35.620],  // entering Madison County
+  [-82.690, 35.650],  // approaching Marshall
+  [-82.685, 35.670],  // Marshall area
+  [-82.700, 35.698],  // north of Marshall
+  [-82.740, 35.730],  // Barnard area
+  [-82.790, 35.770],  // approaching Hot Springs
+  [-82.830, 35.810],  // Hot Springs
+  [-82.870, 35.840],  // north of Hot Springs
+  [-82.910, 35.870],  // approaching TN border
+  [-82.950, 35.900],  // TN border area
+];
+
+const swannanoaPoints = [
+  [-82.230, 35.558],  // near Black Mountain headwaters
+  [-82.270, 35.550],  // Black Mountain town
+  [-82.310, 35.540],  // east of Swannanoa
+  [-82.350, 35.537],  // Swannanoa community
+  [-82.400, 35.520],  // Oteen / VA hospital area
+  [-82.440, 35.505],  // Azalea area
+  [-82.490, 35.485],  // approaching Biltmore
+  [-82.530, 35.470],  // Biltmore Village
+  [-82.568, 35.460],  // confluence with French Broad
+];
+
+const westernNCFips = new Set([
+  "37005","37009","37011","37021","37023","37027","37035","37039",
+  "37043","37045","37075","37087","37089","37099","37111","37113",
+  "37115","37121","37149","37161","37171","37173","37175","37189",
+  "37193","37199","37003","37007","37019","37031","37037","37047",
+  "37059","37069","37073","37097","37109","37155","37169","37197",
+]);
+
+/* ── COLOR + SIZE ──────────────────────────────────────────── */
+function getCSSVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+function getColor(inches) {
+  if (inches >= 25) return getCSSVar('--color-tier4');
+  if (inches >= 20) return getCSSVar('--color-tier3');
+  if (inches >= 15) return getCSSVar('--color-tier2');
+  return getCSSVar('--color-tier1');
+}
+
+/* ── SHAPE CONFIG ──────────────────────────────────────────── */
+const RAINDROP_PATH = "M10 0 C10 0 0 14 0 19 A10 10 0 1 0 20 19 C20 14 10 0 10 0 Z";
+const DROP_W = 20, DROP_H = 28;
+function getScale(inches) { return 0.65 + (inches / 31) * 1.15; }
+
+/* ── LEGEND ────────────────────────────────────────────────── */
+const tiers = [
+  { label: "10–15 in", size: 12, color: '--color-tier1' },
+  { label: "15–20 in", size: 16, color: '--color-tier2' },
+  { label: "20–25 in", size: 20, color: '--color-tier3' },
+  { label: "25–31 in", size: 24, color: '--color-tier4' },
+];
+const legendEl = document.getElementById('legend');
+tiers.forEach(t => {
+  const s = t.size;
+  const item = document.createElement('span');
+  item.className = 'legend-item';
+  item.innerHTML = `<svg width="${s}" height="${s*1.4}" viewBox="0 0 ${DROP_W} ${DROP_H}" style="display:block;">` +
+    `<path d="${RAINDROP_PATH}" fill="var(${t.color})" opacity="0.75"/></svg> ${t.label}`;
+  legendEl.appendChild(item);
+});
+// River legend item
+const riverItem = document.createElement('span');
+riverItem.className = 'legend-item';
+riverItem.innerHTML = `<svg width="24" height="6" style="display:block;"><line x1="0" y1="3" x2="24" y2="3" stroke="var(--river-color)" stroke-width="2" stroke-linecap="round"/></svg> French Broad River`;
+legendEl.appendChild(riverItem);
+
+/* ── MAP ───────────────────────────────────────────────────── */
+const container = document.getElementById('map-container');
+const tooltip = document.getElementById('tooltip');
+const detail = document.getElementById('detail-panel');
+
+const width = 700, height = 525;
+const svg = d3.select('#map-container').append('svg')
+  .attr('viewBox', `0 0 ${width} ${height}`)
+  .attr('width', '100%')
+  .style('display', 'block');
+
+const projection = d3.geoMercator()
+  .center([-82.35, 35.62])
+  .scale(22000)
+  .translate([width / 2, height / 2]);
+
+const pathGen = d3.geoPath(projection);
+
+d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json').then(us => {
+  const allCounties = topojson.feature(us, us.objects.counties).features;
+  const allStates = topojson.feature(us, us.objects.states).features;
+  const ncState = allStates.find(s => s.id === '37');
+  const neighbors = ['47','45','13','51'].map(id => allStates.find(s => s.id === id)).filter(Boolean);
+
+  /* Neighboring state fills */
+  svg.append('g').selectAll('path')
+    .data(neighbors).join('path')
+    .attr('d', pathGen)
+    .attr('fill', getCSSVar('--county-fill'))
+    .attr('stroke', 'none');
+
+  if (ncState) {
+    svg.append('path').datum(ncState)
+      .attr('d', pathGen).attr('fill', getCSSVar('--county-fill')).attr('stroke', 'none');
+  }
+
+  /* State borders */
+  [ncState, ...neighbors].filter(Boolean).forEach(s => {
+    svg.append('path').datum(s)
+      .attr('d', pathGen).attr('fill', 'none')
+      .attr('stroke', getCSSVar('--state-stroke')).attr('stroke-width', 1.2);
+  });
+
+  /* County boundaries */
+  const wnc = allCounties.filter(c => westernNCFips.has(c.id));
+  svg.append('g').selectAll('path')
+    .data(wnc).join('path')
+    .attr('d', pathGen)
+    .attr('fill', getCSSVar('--county-fill'))
+    .attr('stroke', getCSSVar('--county-stroke'))
+    .attr('stroke-width', 0.5);
+
+  /* State name labels (drawn before rivers so rivers overlay them,
+     but county labels are drawn after rivers — see below) */
+
+  /* ── RIVERS ─────────────────────────────────────────────── */
+  const riverLine = d3.line()
+    .x(d => projection(d)[0])
+    .y(d => projection(d)[1])
+    .curve(d3.curveCatmullRom.alpha(0.5));
+
+  const riverGroup = svg.append('g');
+  const riverColor = getCSSVar('--river-color');
+  const glowColor = getCSSVar('--river-glow');
+  const corridorColor = getCSSVar('--flood-corridor');
+
+  /* Flood corridor glow — wide, soft band along the French Broad
+     to show where flooding concentrated */
+  riverGroup.append('path')
+    .attr('d', riverLine(frenchBroadPoints))
+    .attr('fill', 'none')
+    .attr('stroke', corridorColor)
+    .attr('stroke-width', 50)
+    .attr('stroke-linecap', 'round')
+    .attr('stroke-linejoin', 'round');
+
+  /* Slightly narrower glow */
+  riverGroup.append('path')
+    .attr('d', riverLine(frenchBroadPoints))
+    .attr('fill', 'none')
+    .attr('stroke', glowColor)
+    .attr('stroke-width', 18)
+    .attr('stroke-linecap', 'round')
+    .attr('stroke-linejoin', 'round');
+
+  /* French Broad main line */
+  riverGroup.append('path')
+    .attr('d', riverLine(frenchBroadPoints))
+    .attr('fill', 'none')
+    .attr('stroke', riverColor)
+    .attr('stroke-width', 2.5)
+    .attr('stroke-linecap', 'round')
+    .attr('stroke-linejoin', 'round')
+    .attr('opacity', 0.8);
+
+  /* Swannanoa River — glow */
+  riverGroup.append('path')
+    .attr('d', riverLine(swannanoaPoints))
+    .attr('fill', 'none')
+    .attr('stroke', corridorColor)
+    .attr('stroke-width', 30)
+    .attr('stroke-linecap', 'round')
+    .attr('stroke-linejoin', 'round');
+
+  riverGroup.append('path')
+    .attr('d', riverLine(swannanoaPoints))
+    .attr('fill', 'none')
+    .attr('stroke', glowColor)
+    .attr('stroke-width', 12)
+    .attr('stroke-linecap', 'round')
+    .attr('stroke-linejoin', 'round');
+
+  /* Swannanoa main line */
+  riverGroup.append('path')
+    .attr('d', riverLine(swannanoaPoints))
+    .attr('fill', 'none')
+    .attr('stroke', riverColor)
+    .attr('stroke-width', 1.8)
+    .attr('stroke-linecap', 'round')
+    .attr('stroke-linejoin', 'round')
+    .attr('opacity', 0.7);
+
+  /* River labels */
+  const fbLabelPos = projection([-82.685, 35.683]);
+  svg.append('text')
+    .attr('x', fbLabelPos[0] + 10).attr('y', fbLabelPos[1])
+    .attr('font-size', '10px')
+    .attr('font-style', 'italic')
+    .attr('font-family', getCSSVar('--font-main'))
+    .attr('fill', riverColor)
+    .attr('opacity', 0.8)
+    .text('French Broad R.');
+
+  const swLabelPos = projection([-82.350, 35.552]);
+  svg.append('text')
+    .attr('x', swLabelPos[0]).attr('y', swLabelPos[1])
+    .attr('font-size', '9px')
+    .attr('font-style', 'italic')
+    .attr('font-family', getCSSVar('--font-main'))
+    .attr('fill', riverColor)
+    .attr('opacity', 0.7)
+    .text('Swannanoa R.');
+
+  /* Flow direction arrows along French Broad */
+  const arrowIndices = [4, 10, 16, 22];
+  arrowIndices.forEach(i => {
+    if (i < frenchBroadPoints.length - 1) {
+      const [x1, y1] = projection(frenchBroadPoints[i]);
+      const [x2, y2] = projection(frenchBroadPoints[i + 1]);
+      const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+      const mx = (x1 + x2) / 2;
+      const my = (y1 + y2) / 2;
+      svg.append('text')
+        .attr('x', mx).attr('y', my)
+        .attr('text-anchor', 'middle')
+        .attr('dominant-baseline', 'central')
+        .attr('font-size', '10px')
+        .attr('fill', riverColor)
+        .attr('opacity', 0.6)
+        .attr('transform', `rotate(${angle}, ${mx}, ${my})`)
+        .text('\u25B8');
+    }
+  });
+
+  /* County labels (drawn after rivers so they appear on top) */
+  wnc.forEach(c => {
+    const [cx, cy] = pathGen.centroid(c);
+    if (cx > 20 && cx < width - 20 && cy > 20 && cy < height - 20) {
+      svg.append('text')
+        .attr('class', 'county-label')
+        .attr('x', cx).attr('y', cy)
+        .attr('text-anchor', 'middle')
+        .attr('dominant-baseline', 'central')
+        .attr('font-family', getCSSVar('--font-main'))
+        .text(c.properties.name);
+    }
+  });
+
+  /* State name labels (drawn after rivers) */
+  [
+    { name: "TENNESSEE", lon: -83.8, lat: 35.95 },
+    { name: "SOUTH CAROLINA", lon: -82.0, lat: 34.92 },
+    { name: "GEORGIA", lon: -83.7, lat: 34.92 },
+    { name: "VIRGINIA", lon: -81.3, lat: 36.72 },
+  ].forEach(sl => {
+    const [sx, sy] = projection([sl.lon, sl.lat]);
+    if (sx > 0 && sx < width && sy > 0 && sy < height) {
+      svg.append('text')
+        .attr('x', sx).attr('y', sy)
+        .attr('text-anchor', 'middle')
+        .attr('font-size', '10px').attr('font-weight', '500')
+        .attr('letter-spacing', '2px')
+        .attr('font-family', getCSSVar('--font-main'))
+        .attr('fill', getCSSVar('--text-muted')).attr('opacity', 0.4)
+        .text(sl.name);
+    }
+  });
+
+  /* ── RAINDROPS ─────────────────────────────────────────── */
+  const sorted = [...locations].sort((a, b) => b.inches - a.inches);
+  const dropsGroup = svg.append('g');
+
+  sorted.forEach(loc => {
+    const [cx, cy] = projection([loc.lon, loc.lat]);
+    const scale = getScale(loc.inches);
+    const color = getColor(loc.inches);
+    const tx = cx - (DROP_W * scale) / 2;
+    const ty = cy - (DROP_H * scale) * 0.65;
+
+    const g = dropsGroup.append('g').style('cursor', 'pointer');
+
+    g.append('path')
+      .attr('d', RAINDROP_PATH)
+      .attr('transform', `translate(${tx}, ${ty}) scale(${scale})`)
+      .attr('fill', color)
+      .attr('fill-opacity', parseFloat(getCSSVar('--drop-opacity')))
+      .attr('stroke', color)
+      .attr('stroke-width', 1.2 / scale)
+      .attr('stroke-opacity', 0.85);
+
+    if (loc.inches >= 18) {
+      g.append('text')
+        .attr('x', cx)
+        .attr('y', cy + (DROP_H * scale) * 0.08)
+        .attr('text-anchor', 'middle')
+        .attr('dominant-baseline', 'central')
+        .attr('font-size', Math.max(10, 11 * scale) + 'px')
+        .attr('font-weight', '500')
+        .attr('font-family', getCSSVar('--font-main'))
+        .attr('fill', '#fff')
+        .text(Math.round(loc.inches) + '"');
+    }
+
+    g.on('mouseenter', function(event) {
+      d3.select(this).select('path')
+        .attr('fill-opacity', 0.85)
+        .attr('stroke-width', 2 / scale);
+      tooltip.style.display = 'block';
+      tooltip.innerHTML =
+        `<div style="font-weight:500;margin-bottom:2px;">${loc.name}</div>` +
+        `<div style="color:var(--text-secondary);font-size:12px;">${loc.county} County</div>` +
+        `<div style="font-size:18px;font-weight:600;color:${color};margin:4px 0;">${loc.inches}"</div>`;
+    })
+    .on('mousemove', function(event) {
+      tooltip.style.left = (event.clientX + 16) + 'px';
+      tooltip.style.top = (event.clientY - 24) + 'px';
+    })
+    .on('mouseleave', function() {
+      d3.select(this).select('path')
+        .attr('fill-opacity', parseFloat(getCSSVar('--drop-opacity')))
+        .attr('stroke-width', 1.2 / scale);
+      tooltip.style.display = 'none';
+    })
+    .on('click', function() {
+      detail.innerHTML =
+        `<strong>${loc.name}</strong> (${loc.county} Co.) — ` +
+        `<span style="color:${color};font-weight:500;">${loc.inches} inches</span><br>${loc.note}`;
+      detail.style.color = getCSSVar('--text-primary');
+    });
+  });
+
+  /* Place name labels for mid-range drops */
+  sorted.filter(l => l.inches < 18 && l.inches >= 14).forEach(loc => {
+    const [cx, cy] = projection([loc.lon, loc.lat]);
+    const scale = getScale(loc.inches);
+    svg.append('text')
+      .attr('x', cx + (DROP_W * scale) / 2 + 4).attr('y', cy + 3)
+      .attr('font-size', '10px')
+      .attr('font-family', getCSSVar('--font-main'))
+      .attr('fill', getCSSVar('--text-muted'))
+      .text(loc.name);
+  });
+
+  /* Asheville label */
+  const ashPos = projection([-82.554, 35.595]);
+  svg.append('text')
+    .attr('x', ashPos[0] - 30).attr('y', ashPos[1] + 24)
+    .attr('font-size', '12px').attr('font-weight', '500')
+    .attr('font-family', getCSSVar('--font-main'))
+    .attr('fill', getCSSVar('--text-secondary')).attr('opacity', 0.75)
+    .text('Asheville');
+
+}).catch(err => {
+  console.error('Failed to load topology:', err);
+  container.innerHTML =
+    '<p style="padding:2rem;color:var(--text-secondary);">Map data failed to load. Check your internet connection and reload.</p>';
+});
+
+</script>
+</body>
+</html>
