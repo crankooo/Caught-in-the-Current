@@ -31,6 +31,7 @@ a { color: inherit; text-decoration: none; }
   padding: 0 2.5rem; height: var(--nav-h);
   background: rgba(34,64,80,.95); backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(255,255,255,.07);
+  
 }
 .nav-logo-img { height: 100px; width: 85px; object-fit: contain; border-radius: 50%; }
 .back-btn {
@@ -50,7 +51,7 @@ a { color: inherit; text-decoration: none; }
 }
 .story-hero-bg {
   position: absolute; inset: 0;
-  background-image: url('images/story/mia/hero.jpg');
+  background-image: url('images/fotos/nonprofit.jpg');
   background-size: cover; background-position: center;
   transform: scale(1.06); animation: heroZoom 12s ease-out forwards;
 }
@@ -117,7 +118,7 @@ a { color: inherit; text-decoration: none; }
 
 .photo-caption {
   font-size: .75rem; line-height: 1.6;
-  color: rgba(34,64,80,.52); font-style: regular;
+  color: rgba(34,64,80,.52);
   margin-top: .5rem;
   padding-left: .7rem;
   border-left: 2px solid var(--amber);
@@ -130,14 +131,15 @@ a { color: inherit; text-decoration: none; }
 }
 .story-img img { width: 100%; height: auto; display: block; border-radius: 10px; }
 
-.story-img-float {
-  float: right; width: 42%;
-  margin: .4rem 0 1.2rem 2rem;
-  border-radius: 10px;
-  box-shadow: 0 8px 28px rgba(34,64,80,.12);
-  clear: right;
+.side-by-side-imgs { margin: 2rem 0; }
+.side-by-side-imgs .side-row {
+  display: flex; gap: 1rem; margin-bottom: .6rem;
 }
-.story-img-float img { width: 100%; height: auto; display: block; border-radius: 10px; }
+.side-img {
+  flex: 1; border-radius: 10px; overflow: hidden;
+  box-shadow: 0 8px 28px rgba(34,64,80,.12);
+}
+.side-img img { width: 100%; height: 260px; object-fit: cover; display: block; }
 
 .clearfix::after { content: ''; display: table; clear: both; }
 
@@ -151,7 +153,8 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   .article-body { padding: 2.5rem 1.2rem 3rem; }
   .stat-band { margin: 2rem -.5rem; padding: 1.5rem 1rem; flex-direction: column; align-items: center; }
   .stat-item { max-width: 100%; }
-  .story-img-float { float: none; width: 100%; margin: 1.5rem 0; }
+  .side-by-side-imgs .side-row { flex-direction: column; }
+  .side-img img { height: 220px; }
 }
 </style>
 </head>
@@ -167,9 +170,13 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 <header class="story-hero">
   <div class="story-hero-bg"></div>
   <div class="story-hero-overlay"></div>
-  <h1 class="story-headline">Rapid Response <span class="headline-em">After Helene, nonprofits emerged to fill gaps. Now they're preparing for the next storm.</span></h1>
+<h1 class="story-headline">
+  Rapid response: <span class="headline-em">
+    After Helene, nonprofits emerged to fill gaps. Now they're preparing for the next&nbsp;storm.
+  </span>
+</h1>
+
   <p class="story-byline">By <span>Mia Filler</span></p>
-  <p class="story-dek">When federal relief couldn't yet mobilize, Operation Helo, Mission Mules and Down Home NC showed up with helicopters, mules and community trust. Eighteen months later, they're still going — and growing.</p>
 </header>
 
 <article class="article-body">
@@ -179,6 +186,11 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   <p>"We grew over the course of 11 days to what we have now," said Robinson, the Co-Founder and Executive Director of Operation Helo. "This is the culmination of all of our work."</p>
 
   <p>Seventeen members of the organization, including six helicopter pilots, gathered at Operations Director Natasha Rodriguez's 40-acre home in early March, with a shared goal of being ready for whatever comes next. To them, this is not a training exercise. It's a "strategic mission planning" designed to stress-test technology, streamline the process of assigning missions to pilots and ensure nothing slips through the cracks when the next disaster strikes.</p>
+
+  <div class="story-img">
+    <img src="images/story/helo/1.jpg" alt="Eric Robinson observes his team at Operation Helo command center">
+    <p class="photo-caption">Eric Robinson, co-founder and executive director of Operation Helo, observes his team's work in their mobile command center in Taylorsville, N.C. Photo credit: Mia Filler</p>
+  </div>
 
   <p>Operation Helo is one of several North Carolina-based nonprofits formed in the aftermath of Helene. In the immediate wake of the storm, residents of Asheville and the surrounding regions were left without internet access, drinking water, information about the safety of their loved ones, and, for many, a home. The mountainous, flooded terrain made access to aid even more difficult, leaving those stranded in areas inaccessible to vehicles. When federal relief couldn't yet mobilize, Operation Helo airlifted supplies by helicopter, <a href="https://www.missionmules.org/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">Mission Mules</a> delivered aid on mule-back through flooded mountain trails and <a href="https://downhomenc.org/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">Down Home NC</a> canvassed rural areas door-to-door. Now, all three are expanding beyond Helene.</p>
 
@@ -200,10 +212,16 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 
   <p>"We left that next morning," said Mike Toberer, the Mission Mules co-founder. "We spent two or three weeks there right in the beginning, and we still are moving food and supplies there right now."</p>
 
-  <!-- IMAGE 1 — full width -->
-  <div class="story-img">
-    <img src="images/story/mia/1.jpg" alt="Operation Helo command center in Taylorsville, NC">
-    <p class="photo-caption">Operation Helo's mobile command center in Taylorsville, North Carolina, lined with monitors tracking missions in real time during a strategic planning exercise in early March 2026. Photo Credit: Mia Filler</p>
+  <div class="side-by-side-imgs">
+    <div class="side-row">
+      <div class="side-img">
+        <img src="images/story/helo/2a.jpg" alt="Mission Mules volunteers on mule-back delivering supplies">
+      </div>
+      <div class="side-img">
+        <img src="images/story/helo/2b.jpg" alt="Mission Mules traversing damaged terrain after Helene">
+      </div>
+    </div>
+    <p class="photo-caption">Mission Mules volunteers rode on mule-back, traversing fallen trees and damaged roads, to deliver essential supplies in the wake of Helene. Photo courtesy: Michele Toberer</p>
   </div>
 
   <p>After a few months on the front lines of delivering aid, Mike and Michele grew wary of their ability to continue. Not only had they witnessed an abundance of tragedy, but also two of their mules were killed in the aid and recovery process. Then, <a href="https://www.samaritanspurse.org/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">Samaritan's Purse</a> called.</p>
@@ -220,19 +238,11 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 
   <p>"Because of the work that we did to build our relationship within the community, it was a no-brainer for our folks to take this mobilization effort that we were already in the middle of and turn it into a wellness canvassing effort instead," said Down Home's Communications Director Taí Coates-Wedde. "So rather than door knocking and asking people, 'Hey, what's your plan to go?', it became door knocking to ask, 'Hey, are you OK?'"</p>
 
-  <!-- IMAGE 2 — float right -->
-  <div class="clearfix">
-    <div class="story-img-float">
-      <img src="images/story/mia/2.jpg" alt="Mission Mules carrying supplies through flooded mountain trails">
-      <p class="photo-caption">Mission Mules carrying 150–200 pounds of supplies through mountain terrain inaccessible by vehicle. Photo Credit: Mia Filler</p>
-    </div>
+  <p>Beyond needs assessment, Down Home NC focused on creating informational resources for the community — primarily helping residents navigate <a href="https://www.fema.gov/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">FEMA</a> and get the help they needed.</p>
 
-    <p>Beyond needs assessment, Down Home NC focused on creating informational resources for the community — primarily helping residents navigate <a href="https://www.fema.gov/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">FEMA</a> and get the help they needed.</p>
+  <p>"We wanted people to know their tenant rights, because at the same time that people were still trying to figure out if their family members were alive or where their house had gone to, there were a lot of rich people and corporations coming in and scooping up that land out from underneath them," said Coates-Wedde. "Renters were losing their homes because their landlords were selling out from under them. People lost their jobs, people lost their access to money, and at the same time, rent was still due."</p>
 
-    <p>"We wanted people to know their tenant rights, because at the same time that people were still trying to figure out if their family members were alive or where their house had gone to, there were a lot of rich people and corporations coming in and scooping up that land out from underneath them," said Coates-Wedde. "Renters were losing their homes because their landlords were selling out from under them. People lost their jobs, people lost their access to money, and at the same time, rent was still due."</p>
-
-    <p>When the early chaos died down and news coverage of Helene's impact on western North Carolina tapered off, Down Home developed the website <a href="https://www.keepwnchome.org/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">Keep WNC Home</a> as a community resource database. Once the information was compiled, Down Home's communications team screenshotted it and distributed it via text blast — bypassing the internet entirely — casting a wider net beyond their existing membership to reach anyone in the area who needed help.</p>
-  </div>
+  <p>When the early chaos died down and news coverage of Helene's impact on western North Carolina tapered off, Down Home developed the website <a href="https://www.keepwnchome.org/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">Keep WNC Home</a> as a community resource database. Once the information was compiled, Down Home's communications team screenshotted it and distributed it via text blast — bypassing the internet entirely — casting a wider net beyond their existing membership to reach anyone in the area who needed help.</p>
 
   <p>"These groups are generally better tied in with the local community, which means they sometimes have a better sense of what the exact needs are than more formal groups," said Dr. Montano. "Also, the lack of formal procedures means they can be more flexible to meet the needs of the community."</p>
 
@@ -244,13 +254,12 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 
   <p>"When somebody needs help in that moment, and you can bring them just that little piece of comfort, that's an amazing feeling," Rodriguez said. "Because you brought them something quickly that maybe would have taken them days to get."</p>
 
-  <p>On the ground, in hollows and along mountain trails impassable even by ATV, Mission Mules was operating in the spaces helicopters could not reach. Where tree cover was too dense for an aerial drop, Mike and Michele Toberer moved supplies on mule-back, each animal carrying 150 to 200 pounds of food, medicine and equipment. They had crafted an efficient system: trucks hauled supplies as far as roads allowed, Kawasaki side-by-sides pushed further into the terrain, and then the mules took over, traversing fallen timber with the help of Green Berets wielding chainsaws ahead of them.</p>
-
-  <!-- IMAGE 3 — full width -->
   <div class="story-img">
-    <img src="images/story/mia/3.jpg" alt="Eric Robinson debriefing Operation Helo team after simulated rescue mission">
-    <p class="photo-caption">Eric Robinson debriefs Operation Helo's team after a simulated rescue mission in Taylorsville, North Carolina, in March 2026. Photo Credit: Mia Filler</p>
+    <img src="images/story/helo/3.jpg" alt="Operation Helo relief efforts in western North Carolina">
+    <p class="photo-caption">tbd. Photo credit: Grace Sawin</p>
   </div>
+
+  <p>On the ground, in hollows and along mountain trails impassable even by ATV, Mission Mules was operating in the spaces helicopters could not reach. Where tree cover was too dense for an aerial drop, Mike and Michele Toberer moved supplies on mule-back, each animal carrying 150 to 200 pounds of food, medicine and equipment. They had crafted an efficient system: trucks hauled supplies as far as roads allowed, Kawasaki side-by-sides pushed further into the terrain, and then the mules took over, traversing fallen timber with the help of Green Berets wielding chainsaws ahead of them.</p>
 
   <p>The two organizations found a natural rhythm together. Helicopters from Samaritan's Purse and Operation Helo would air-drop supply pallets at the tops of mountains, and Mission Mules would collect them there and carry them down, reversing the usual direction of effort to spare the animals the hardest part of the climb.</p>
 
@@ -272,25 +281,22 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 
   <p>"The hardest part has been being very strategic," Rodriguez said. "You don't want to grow too fast as a nonprofit. You want to make sure everything is in place."</p>
 
+  <div class="story-img">
+    <img src="images/story/helo/4.jpg" alt="Operation Helo expanding national operations">
+    <p class="photo-caption">tbd. Photo credit: Grace Sawin</p>
+  </div>
+
   <p>Arizona is next on the chapter map, likely by the end of 2026, with two or three additional states to follow in 2027. Supporting all of this growth is a formal partnership with <a href="https://www.robinsonheli.com/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">Robinson Helicopter</a>, which has significantly expanded the organization's fleet and operational capacity, and a work-in-progress contract with the National Guard.</p>
 
   <p>Mission Mules has been building its own national footprint, one disaster at a time. Since Helene, Toberer and his team have deployed to eight states, including four separate trips to West Virginia, where they have developed a working relationship with state troopers who now call them directly when mountain communities get cut off by ice or flooding. They have evacuated horses from wildfire zones in Oklahoma, packed supplies through flood debris in Kentucky and Maryland, and are now integrating drones into their operations to expand their search-and-rescue capabilities.</p>
 
   <p>"I feel that our future is going to go on and on," Toberer said. "We just keep getting more and more contact, and we're working with more people."</p>
 
-  <!-- IMAGE 4 — float right -->
-  <div class="clearfix">
-    <div class="story-img-float">
-      <img src="images/story/mia/4.jpg" alt="Natasha Rodriguez at Operation Helo command center">
-      <p class="photo-caption">Operations Director Natasha Rodriguez at the Operation Helo command post during the March 2026 strategic planning session. Photo Credit: Mia Filler</p>
-    </div>
+  <p>Within North Carolina, Coates-Wedde and her Down Home NC team are working to establish resilience hubs in rural communities. Three pilot locations are planned for 2026, scaling to at least 10 active chapter counties by 2027 and 2028. The hubs are designed to address what Coates-Wedde calls the "intersecting challenges of climate vulnerability, infrastructure neglect and economic inequality," which disproportionately affect rural communities across the state.</p>
 
-    <p>Within North Carolina, Coates-Wedde and her Down Home NC team are working to establish resilience hubs in rural communities. Three pilot locations are planned for 2026, scaling to at least 10 active chapter counties by 2027 and 2028. The hubs are designed to address what Coates-Wedde calls the "intersecting challenges of climate vulnerability, infrastructure neglect and economic inequality," which disproportionately affect rural communities across the state.</p>
+  <p>"Even last year, in July, Tropical Storm Chantal hit North Carolina, and the middle of the state was completely slammed with flooding too," Coates-Wedde said. "We are providing people with resources, but we're also in a listening phase right now, to hear from our community members about how to best reach them. That's how we build relationships, and that's how we'll continue to ensure that we're making a community-centered solution."</p>
 
-    <p>"Even last year, in July, Tropical Storm Chantal hit North Carolina, and the middle of the state was completely slammed with flooding too," Coates-Wedde said. "We are providing people with resources, but we're also in a listening phase right now, to hear from our community members about how to best reach them. That's how we build relationships, and that's how we'll continue to ensure that we're making a community-centered solution."</p>
-
-    <p>The expansion of all three organizations is happening against a backdrop that Dr. Montano carefully studies. The nonprofit disaster sector was already strained before the <a href="https://www.whitehouse.gov/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">Trump administration</a> began pulling back federal resources. Volunteer fatigue and donation fatigue have been flagged as early as 2016, and the COVID pandemic pulled a significant portion of older disaster volunteers out of the field permanently.</p>
-  </div>
+  <p>The expansion of all three organizations is happening against a backdrop that Dr. Montano carefully studies. The nonprofit disaster sector was already strained before the <a href="https://www.whitehouse.gov/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">Trump administration</a> began pulling back federal resources. Volunteer fatigue and donation fatigue have been flagged as early as 2016, and the COVID pandemic pulled a significant portion of older disaster volunteers out of the field permanently.</p>
 
   <p>"When you pair that trend with these threats from the administration to pull back federal resources, you're really creating this perfect recipe for disaster, in terms of there not really being anybody left to meet the needs of communities," said Dr. Montano.</p>
 

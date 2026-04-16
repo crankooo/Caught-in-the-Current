@@ -158,7 +158,6 @@ a { color: inherit; text-decoration: none; }
 .pin-ring   { display: none; }
 .pin-label  { display: none; }
 
-/* Church image overlay */
 .pin-img {
   width: 220px;
   height: auto;
@@ -167,22 +166,10 @@ a { color: inherit; text-decoration: none; }
   transition: filter .3s ease, transform .3s ease;
   filter: drop-shadow(0 4px 14px rgba(34,64,80,.18));
 }
-
-/*
-  Glow on hover — uses brightness + saturate instead of drop-shadow
-  so it lights up the painted content rather than casting a coloured
-  rectangle around the whole image bounding box.
-  Works whether the PNG has a transparent OR white background.
-*/
 .church-pin:hover .pin-img {
   transform: scale(1.06);
-  filter:
-    brightness(1.14)
-    saturate(1.18)
-    drop-shadow(0 6px 18px rgba(34,64,80,.22));
+  filter: brightness(1.14) saturate(1.18) drop-shadow(0 6px 18px rgba(34,64,80,.22));
 }
-
-/* Click pulse */
 .church-pin:active .pin-img {
   transform: scale(.97);
   filter: brightness(1.22) saturate(1.25);
@@ -244,7 +231,6 @@ a { color: inherit; text-decoration: none; }
 .modal-body    { font-size:.875rem; line-height:1.88; color:rgba(34,64,80,.82); }
 .modal-body p  { margin-bottom:.95rem; }
 .modal-body p:last-child { margin-bottom:0; }
-.modal-body .pq { border-left:3px solid var(--amber); padding-left:.9rem; margin:.9rem 0; font-style:italic; color:var(--navy); font-size:.92rem; }
 
 .modal-coming { display:flex; flex-direction:column; gap:.6rem; padding:.5rem 0; }
 .coming-tag { display:inline-block; font-size:.56rem; letter-spacing:.18em; text-transform:uppercase; color:var(--amber); border:1px solid rgba(212,135,76,.4); padding:.22rem .65rem; border-radius:20px; }
@@ -293,8 +279,8 @@ footer { background:var(--navy); padding:2.8rem 3rem; text-align:center; }
 <header class="story-hero">
   <div class="story-hero-bg"></div>
   <div class="story-hero-overlay"></div>
-  <h1 class="story-headline">Faith Following the Flood: <span class="headline-em">Churches provided more than spiritual support after Helene — they offered sanctuary</span></h1>
-  <p class="story-byline">By <span>Beck Orten</span></p>
+  <h1 class="story-headline">Faith following the flood <span class="headline-em">Churches provided more than spiritual support after Helene — they offered sanctuary</span></h1>
+  <p class="story-byline">Watercolors and words by <span>Beck Orten</span></p>
   <p class="story-dek">Religion has always been vital to the region of Western North Carolina, from traditional Cherokee beliefs to modern multi-campus church complexes. Here, faith is more than a conviction; it's a way of life.</p>
   <button class="soundscape-btn" id="soundscapeBtn" onclick="toggleSound()">
     <span class="btn-label">Listen to soundscape</span>
@@ -304,13 +290,13 @@ footer { background:var(--navy); padding:2.8rem 3rem; text-align:center; }
     </span>
   </button>
 </header>
-<span class="photo-credit">Watercolor by Beck Orten</span>
+
 
 <article class="article-intro">
   <p>Nearly 70% of North Carolinians claim an affiliation with religious organizations, but even those with no spiritual background were welcomed by churches after tropical storm Helene took their homes and disconnected them from necessities such as drinkable water, food, gas, shelter and even their cell phones.</p>
-  <p>Religion has always been vital to the region, from traditional Cherokee beliefs to modern multi-campus church complexes. Here, faith is more than a conviction; it's a way of life.</p>
   <p>No story about the aftermath of Helene is complete without a nod toward the churches that worked within their communities. From Grace Covenant Presbyterian Church in the city of Asheville to the Episcopal Church of the Transfiguration in the tiny, unincorporated community of Bat Cave, residents had a place to turn. What follows is a tour of five houses of worship in Asheville and beyond, rendered in original watercolors, that are on the frontlines of continued recovery from Helene.</p>
 </article>
+
 <section class="map-section">
   <div class="map-label">
     <h2>Five Houses of Worship</h2>
@@ -320,46 +306,45 @@ footer { background:var(--navy); padding:2.8rem 3rem; text-align:center; }
   <div class="map-outer">
   <div class="map-container" id="mapContainer">
 
-    <!-- BASE MAP — no churches, just the painted landscape -->
     <img src="beck/beck painted map BASE.png" alt="Painted map of Asheville region" style="width:100%;height:auto;display:block;">
 
-    <!-- Grace Covenant Presbyterian — Asheville, top left -->
+    <!-- Grace Covenant Presbyterian — Asheville -->
     <div class="church-pin" data-church="3" tabindex="0" role="button"
          aria-label="Grace Covenant Presbyterian Church, Asheville"
          style="left:13%; top:14%;">
       <img class="pin-img" src="beck/grace covenant ext shadow.png" alt="Grace Covenant Presbyterian Church">
     </div>
 
-    <!-- Valley Hope Church — Swannanoa, top center -->
+    <!-- Valley Hope Church — Swannanoa -->
     <div class="church-pin" data-church="4" tabindex="0" role="button"
          aria-label="Valley Hope Church, Swannanoa"
          style="left:55%; top:21%;">
       <img class="pin-img" src="beck/hope valley ext shadow.png" alt="Valley Hope Church">
     </div>
 
-    <!-- Black Mountain Presbyterian — Black Mountain, top right -->
+    <!-- Black Mountain Presbyterian — Black Mountain -->
     <div class="church-pin" data-church="5" tabindex="0" role="button"
          aria-label="Black Mountain Presbyterian Church"
          style="left:75%; top:8%;">
       <img class="pin-img" src="beck/black mountain ext shadow.png" alt="Black Mountain Presbyterian Church">
     </div>
 
-    <!-- Fairview Christian Fellowship — Fairview, center -->
+    <!-- Fairview Christian Fellowship — Fairview -->
     <div class="church-pin" data-church="2" tabindex="0" role="button"
          aria-label="Fairview Christian Fellowship, Fairview"
          style="left:46%; top:52%;">
       <img class="pin-img" src="beck/fairview christian ext shadow.png" alt="Fairview Christian Fellowship">
     </div>
 
-    <!-- Episcopal Church of the Transfiguration — Bat Cave, bottom right -->
+    <!-- Episcopal Church of the Transfiguration — Bat Cave -->
     <div class="church-pin" data-church="1" tabindex="0" role="button"
          aria-label="Episcopal Church of the Transfiguration, Bat Cave"
          style="left:83%; top:85%;">
       <img class="pin-img" src="beck/bat cave ext shadow.png" alt="Episcopal Church of the Transfiguration">
     </div>
 
-  </div><!-- /.map-container -->
-  </div><!-- /.map-outer -->
+  </div>
+  </div>
   <p class="map-hint">Tap any church to explore its story</p>
 </section>
 
@@ -393,7 +378,16 @@ const CHURCHES = {
     name:"Episcopal Church of the Transfiguration",
     location:"Bat Cave, NC",
     imgA:"beck/1a.png", imgB:"beck/1b.png",
-    soon:true, body:[]
+    soon:false,
+    body:[
+      "The quaint garden spaces and makeshift stone walls throughout Bat Cave belie what this small community endured from Helene 18 months ago when floodwaters and mud slides ruined much of the landscape and put residents through one of the greatest challenges of their lives.",
+      "Through it all, to the east of town center, just off Lake Lure Highway, stood Episcopal Church of the Transfiguration, a beacon of safety and refuge. When the worst of the storm hit, Father John Roberts handed the church keys to a group that had been displaced by landslides — and in an instant, the church transformed into an emergency shelter from the storm.",
+      "For months, the doors of the church remained open to both Bat Cave residents and relief workers such as volunteers from an Amish community who had traveled south to help repair the damage and needed a safe place to sleep.",
+      "But refuge is only part of the story of this Episcopal church, whose motto is \"Together we shine forth with the love and light of Jesus.\" Parishioners and volunteers also made use of downed trees littering land owned by the church to rebuild a small business in Chimney Rock, a village about three miles away and among the most devastated in all of Western North Carolina.",
+      "The land has also been utilized to store equipment and for groups involved in rebuilding efforts.",
+      "With funds curated by the diocese through Episcopal Relief and Development, the church has also established a laundry facility in its old rectory. Open 24/7, the facility provides a safe and free environment for those still struggling to take care of this unending domestic task on their own.",
+      "For Roberts, Helene provided an opportunity for him and the community to bear witness to the strength and resilience of the people of Bat Cave. Though he understands life in their small community will look different for decades to come, he has gratitude for both God and his neighbors for continuing to prove that no one there is alone."
+    ]
   },
   2:{
     eyebrow:"House of Worship · No. 2",
@@ -402,14 +396,13 @@ const CHURCHES = {
     imgA:"beck/2a.png", imgB:"beck/2b.png",
     soon:false,
     body:[
-      "When Pastor Trevor Allen moved to Fairview, North Carolina, he never expected that trees would be crashing through his house a year and a half later.",
-      "Allen was working in a probation department in southern California when he says the Lord called him to a small church in Western North Carolina. He and his wife were 8 months pregnant with their third child when they arrived just in time to lead Fairview Christian Fellowship through the trials of Helene.",
-      `<p class="pq">"We did it with no expectation of return. We didn't screen people like, who'd you vote for? Who's your God? Who you pray to? We said, what do you need? And then here it is, in the name of Jesus."</p>`,
-      `Fairview Christian Fellowship transformed "into a Walmart," offering food, water, supplies, toiletries, gas, propane, diapers, and even insulin. A fundraiser the church initiated later raised approximately $250,000 dedicated to rebuilding roads for those without insurance or an HOA.`,
-      "Fairview County experienced a disproportionately large number of deaths for their small geographic presence. It has required the community to heal in ways they never anticipated.",
-      `<p class="pq">"There are tables that don't have people at them."</p>`,
-      "In the months after Helene, Fairview Christian Fellowship was there for the community during their heartbreak. The church has tripled in size in the past few years.",
-      `<p class="pq">"There were many, many people that they had not thought anything about God in years. But now was the time they were thinking about God."</p>`
+      "Pastor Trevor Allen was working for a probation department in Southern California when the Lord called him to a small church in Western North Carolina a year and a half before tropical storm Helene. His wife was eight months pregnant with their third child when they finally arrived to Western North Carolina, just in time to lead Fairview Christian Fellowship through the trials of Helene.",
+      "\"We did it with no expectation of return. We didn't screen people like, 'Who'd you vote for? Who's your God? Who do you pray to?' We said, 'What do you need?' And then, 'Here it is, in the name of Jesus.'\" This was the sentiment Allen adopted while opening the church as Fairview's first food distribution center.",
+      "Fairview Christian Fellowship transformed \"into a Walmart,\" offering food, water, supplies, toiletries, gas, propane, diapers and even insulin, said Allen.",
+      "In addition, a fundraiser the church initiated later raised approximately $250,000 to help rebuild roads. Allen felt grateful for the opportunity to serve his community. \"The Lord used this little church in a weirdly abundant way.\"",
+      "Fairview county experienced a disproportionately large number of deaths for its small geographic presence. That has necessitated its members to heal in ways they never could have anticipated.",
+      "In the months after Helene, Fairview Christian Fellowship was there for community members during their heartbreak. Today, the church has tripled in size.",
+      "\"There were many, many people [who] had not thought anything about God in years,\" said Allen. \"But now was the time they were thinking about God.\""
     ]
   },
   3:{
@@ -420,12 +413,12 @@ const CHURCHES = {
     soon:false,
     body:[
       "When Helene struck the community of Asheville's Grace Covenant Presbyterian Church, leaders there didn't anticipate how much their congregation would grow and prosper thanks to the bonds formed by the flooding.",
-      `<p class="pq">"We use the language that it's reciprocal, not transactional," said Ray Lindis, director of music ministries.</p>`,
-      `"We were a destination for a lot of monolingual Spanish speakers. We've become known as a safe space to come, and that's been awesome on both ends," said Communications and Engagement Coordinator Anna Louise Murchison. "This church is about dismantling white supremacy, about centering racial equity."`,
-      "Grace Covenant has also established ongoing rental support through United Way designated specifically for those impacted by Helene. The program has contributed $7 million in rental payments. Grace Covenant is also planning to build apartment units on church property.",
-      `<p class="pq">"We're getting ready to build some deeply affordable housing here on this ground," said Lindis.</p>`,
+      "\"We use the language that it's reciprocal, not transactional,\" said Ray Lindis, director of music ministries. He is referring to the relationship built between Asheville's immigrant communities and the church in the months after Helene.",
+      "\"We were a destination for a lot of monolingual Spanish speakers. We've become known as a safe space to come, and that's been awesome on both ends,\" said Communications and Engagement Coordinator Anna Louise Murchison. \"This church is about dismantling white supremacy, about centering racial equity.\"",
+      "Grace Covenant has also established ongoing rental support through United Way that is designated specifically for those impacted by Helene. The program has contributed $7 million in rental payments. Grace Covenant is also planning to build apartment units on church property.",
+      "\"It had been the long-term vision, but after Helene we started doing some of that immediately,\" said Lindis. \"We're getting ready to build some deeply affordable housing here on this ground.\"",
       "The church also began to utilize its land as garden space for vegetables, 90% of which is donated to parishioners.",
-      `<p class="pq">"Just realizing how many people didn't have a village around that became part of our village. It moves me to tears, sometimes, when I think about that." — Anna Louise Murchison</p>`
+      "\"Just realizing how many people didn't have a village around that became part of our village,\" said Murchison. \"It moves me to tears, sometimes, when I think about that.\""
     ]
   },
   4:{
@@ -433,7 +426,17 @@ const CHURCHES = {
     name:"Valley Hope Church",
     location:"Swannanoa, NC",
     imgA:"beck/4a.png", imgB:"beck/4b.png",
-    soon:true, body:[]
+    soon:false,
+    body:[
+      "\"We always knew that God wanted us to do: set the table for our neighbors wherever we were, whether at home, in our neighborhoods or at the church. And Helene has given us an opportunity to actually do that.\"",
+      "That is how ministry assistant Mila Kirkland describes the aftermath of Helene. There was devastation, yes, but also an opportunity to do God's work.",
+      "\"Our restoration efforts this past month have been very focused on finishing the houses we've been a part of rebuilding,\" said Kirkland, emphasizing how rebuilding work lingers for so many months after a natural disaster, long after most others have stopped paying attention. \"There are five houses that we should have completed by sometime in May.\"",
+      "One beneficiary that will soon be rehoused is a \"sweet little family\" Kirkland knows well, whose home was washed away during Helene.",
+      "Alongside rebuilding homes, Valley Hope has financially supported 30+ small businesses, organized 2,000+ volunteers, and put money toward connecting parishioners with vehicles, campers, meals, rent, utilities, and more. But they are also a resource spiritually.",
+      "\"Our church has become a community, a neighborhood meeting place,\" Kirkland said. \"We're starting a community garden in the spring … We're also offering ESL class for the second time. We have a lot of Hispanic neighbors.\"",
+      "For Kirkland, the lesson from Helene did not stop at the storm or the floodwaters. The lesson repeats every day, as neighbors show up for neighbors.",
+      "\"Because of the destruction and then the community rebuilding directly afterwards, we've been able to get to know our neighbors so much more than we knew them before,\" said Kirkland. \"We love and care for them. They come to our weekly meals now. We know them by name.\""
+    ]
   },
   5:{
     eyebrow:"House of Worship · No. 5",
@@ -442,13 +445,12 @@ const CHURCHES = {
     imgA:"beck/5a.png", imgB:"beck/5b.png",
     soon:false,
     body:[
-      `There is a simple question inscribed on the communication table at Black Mountain Presbyterian Church: <em>Has everyone been fed?</em>`,
-      "Mary Catherine Robertson, pastor and head of staff at the small congregation in the Blue Ridge Mountains, is dedicated to asking that question every day.",
-      `<p class="pq">"I'm always bringing it up. They probably get tired of me saying it as much as I do," she laughed on a recent spring morning from her office just off the main sanctuary.</p>`,
-      `For the months since Helene, church leaders have made sure anyone who needs help receives it. "We were on the news a lot in the beginning. So that brought in a lot of money," Robertson said. "By the time we were finished, about $4 million had come out. And we got it all out within six to eight months."`,
-      `Now, 18 months after the storm, that money has dried up. But Robertson and her church are not done giving. "I just preached a sermon this past Sunday on single moms and how they're just having a really hard time, so we're helping them with their mortgages, car payments, those kinds of things."`,
-      `<p class="pq">"Anytime we have a really bad storm or bad wind, people are on edge. Our nervous systems still haven't settled back to where they should be. Maybe it's because we've been in survival mode for so long."</p>`,
-      `The members of the Black Mountain community plan to continue their work, looking even further into the future. "The year after Helene, we had a big forum on climate change. It was packed," Robertson said. "We gave thanks for everything we had been through in the past year, but also tried to think about what's next — to use our minds, because they're gifts from God."`
+      "There is a simple question inscribed on the communication table at Black Mountain Presbyterian Church: Has everyone been fed?",
+      "Mary Catherine Robertson, pastor and head of staff at the small congregation in the Blue Ridge Mountains, is dedicated to asking that question every day. \"I'm always bringing it up. They probably get tired of me saying it as much as I do,\" she laughed on a recent spring morning from her office just off the main sanctuary.",
+      "For the months since Helene, church leaders have made sure anyone who needs help receives it. \"We were on the news a lot in the beginning. So that brought in a lot of money,\" Robertson said. \"By the time we were finished, about $4 million had come out. And we got it all out within six to eight months.\" Now, 18 months after the storm, that money has dried up. But Robertson and her church are not done giving.",
+      "\"I just preached a sermon this past Sunday on single moms and how they're just having a really hard time, so we're helping them with their mortgages, car payments, those kinds of things,\" Robertson, 55, said. She noted the rising cost of groceries and cuts to healthcare as issues for the community. Helene has taken an incalculable toll.",
+      "\"Anytime we have a really bad storm or bad wind, people are on edge. Our nervous systems still haven't settled back to where they should be. Maybe it's because we've been in survival mode for so long.\"",
+      "The members of the Black Mountain community plan to continue their work, looking even further into the future. \"The year after Helene, we had a big forum on climate change. It was packed,\" she said. \"We gave thanks for everything we had been through in the past year, but also tried to think about what's next — to use our minds, because they're gifts from God.\""
     ]
   }
 };
@@ -469,7 +471,7 @@ function openModal(id) {
   if (c.soon) {
     bodyEl.innerHTML = `<div class="modal-coming"><span class="coming-tag">Story Coming Soon</span><p>The vignette for ${c.name} is being finalized. Please check back soon.</p></div>`;
   } else {
-    bodyEl.innerHTML = c.body.map(p => p.trim().startsWith('<p') ? p : `<p>${p}</p>`).join('');
+    bodyEl.innerHTML = c.body.map(p => `<p>${p}</p>`).join('');
   }
   backdrop.querySelector('.modal-text').scrollTop = 0;
   backdrop.classList.add('open');
