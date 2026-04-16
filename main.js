@@ -414,6 +414,8 @@ document.querySelectorAll(".card-read-btn").forEach((btn) => {
 });
 
 document.querySelectorAll(".story-card").forEach((card) => {
+  if (card.hasAttribute("onclick")) return;
+
   card.addEventListener("click", () => {
     openModal(Number(card.dataset.id));
   });

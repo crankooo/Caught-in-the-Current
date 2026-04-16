@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>After Helene, nonprofits emerged to fill gaps — Caught in the Current</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Averia+Libre:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:  #02645A;
+  --navy:  #224050;
+  --amber: #D4874C;
+  --rust:  #C45D3A;
+  --cream: #F7F3ED;
+  --white: #ffffff;
+  --font-display: 'Averia Libre', serif;
+  --font-body:    'Lora', Georgia, serif;
+  --nav-h: 70px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--font-body); background: var(--cream); color: var(--navy); overflow-x: hidden; line-height: 1.7; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+.story-nav {
+  position: sticky; top: 0; z-index: 300;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem; height: var(--nav-h);
+  background: rgba(34,64,80,.95); backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.nav-logo-img { height: 100px; width: 85px; object-fit: contain; border-radius: 50%; }
+.back-btn {
+  background: none; border: 1.5px solid rgba(247,243,237,.38);
+  color: var(--cream); font-family: var(--font-body);
+  font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
+  padding: .4rem 1.1rem; border-radius: 50px; cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.back-btn:hover { background: var(--amber); border-color: var(--amber); }
+
+.story-hero {
+  position: relative; padding: 3rem 2.5rem 2rem;
+  text-align: left; overflow: hidden; background: var(--navy);
+  min-height: 60vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-start;
+}
+.story-hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('images/story/mia/hero.jpg');
+  background-size: cover; background-position: center;
+  transform: scale(1.06); animation: heroZoom 12s ease-out forwards;
+}
+.story-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.4) 50%, rgba(0,0,0,.7));
+}
+@keyframes heroZoom { from { transform: scale(1.06); } to { transform: scale(1); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.story-hero > *:not(.story-hero-bg):not(.story-hero-overlay) { position: relative; z-index: 2; }
+
+.story-headline {
+  font-family: var(--font-body); font-weight: 700;
+  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+  color: var(--cream); line-height: 1.15;
+  max-width: 680px; margin: 2rem auto .6rem; text-align: center;
+  opacity: 0; animation: fadeUp .9s ease .6s forwards;
+}
+.headline-em { color: var(--cream); font-style: italic; }
+.story-byline {
+  font-size: .78rem; color: rgba(247,243,237,.55);
+  letter-spacing: .1em; text-transform: uppercase;
+  margin: 0 auto 1.6rem; text-align: center;
+  opacity: 0; animation: fadeUp .9s ease .8s forwards;
+}
+.story-byline span { color: rgba(247,243,237,.85); font-weight: 700; }
+.story-dek {
+  max-width: 600px; margin: 0 auto;
+  font-style: italic; color: rgba(247,243,237,.75); line-height: 1.8;
+  text-align: center; opacity: 0; animation: fadeUp .9s ease 1s forwards;
+  font-size: 1rem;
+}
+
+.photo-credit {
+  display: block; font-size: .55rem;
+  letter-spacing: .06em; padding: .4rem 1.5rem; text-align: left;
+}
+.photo-credit a { color: rgba(235, 96, 10, 0.75); text-decoration: underline; text-underline-offset: 2px; }
+.photo-credit { color: var(--amber); }
+
+.article-body { max-width: 800px; margin: 0 auto; padding: 3.5rem 1.5rem 4rem; }
+.article-body p { font-size: .92rem; line-height: 1.95; color: rgba(34,64,80,.85); margin-bottom: 1.35rem; }
+.article-body p:first-child::first-letter {
+  float: left; font-size: 3.8rem; font-weight: 700;
+  line-height: .82; margin: .06em .14em 0 0; color: var(--teal);
+}
+
+.section-divider {
+  display: flex; align-items: center; gap: 1rem;
+  margin: 3rem 0 2.2rem; justify-content: flex-start;
+}
+.section-divider span { font-size: .95rem; letter-spacing: .28em; text-transform: uppercase; color: var(--rust); white-space: nowrap; }
+.section-divider::before { display: none; }
+.section-divider::after { content: ''; flex: 1; height: 1px; background: rgba(34,64,80,.15); }
+
+.stat-band {
+  margin: 2.8rem -1.5rem; padding: 2.2rem 2rem;
+  background: var(--navy); border-radius: 10px;
+  display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+}
+.stat-item { text-align: center; flex: 1 1 140px; max-width: 200px; }
+.stat-number { font-size: 1.6rem; font-weight: 700; color: var(--amber); line-height: 1.1; margin-bottom: .3rem; }
+.stat-label { font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(247,243,237,.55); line-height: 1.5; }
+
+.photo-caption {
+  font-size: .75rem; line-height: 1.6;
+  color: rgba(34,64,80,.52); font-style: regular;
+  margin-top: .5rem;
+  padding-left: .7rem;
+  border-left: 2px solid var(--amber);
+}
+
+.story-img {
+  margin: 2rem 0;
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(34,64,80,.12);
+}
+.story-img img { width: 100%; height: auto; display: block; border-radius: 10px; }
+
+.story-img-float {
+  float: right; width: 42%;
+  margin: .4rem 0 1.2rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(34,64,80,.12);
+  clear: right;
+}
+.story-img-float img { width: 100%; height: auto; display: block; border-radius: 10px; }
+
+.clearfix::after { content: ''; display: table; clear: both; }
+
+footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
+.footer-title { font-family: var(--font-display); font-size: 1rem; color: var(--cream); letter-spacing: .1em; margin-bottom: .35rem; }
+.footer-sub { font-size: .75rem; color: rgba(247,243,237,.48); letter-spacing: .08em; }
+
+@media (max-width: 600px) {
+  .story-nav { padding: 0 1.2rem; }
+  .story-hero { padding: 4rem 1.2rem 3rem; min-height: 60vh; }
+  .article-body { padding: 2.5rem 1.2rem 3rem; }
+  .stat-band { margin: 2rem -.5rem; padding: 1.5rem 1rem; flex-direction: column; align-items: center; }
+  .stat-item { max-width: 100%; }
+  .story-img-float { float: none; width: 100%; margin: 1.5rem 0; }
+}
+</style>
+</head>
+<body>
+
+<nav class="story-nav">
+  <a href="index.html">
+    <img src="images/logos/main.png" alt="Caught in the Current" class="nav-logo-img">
+  </a>
+  <button class="back-btn" onclick="history.back()">← All Stories</button>
+</nav>
+
+<header class="story-hero">
+  <div class="story-hero-bg"></div>
+  <div class="story-hero-overlay"></div>
+  <h1 class="story-headline">Rapid Response <span class="headline-em">After Helene, nonprofits emerged to fill gaps. Now they're preparing for the next storm.</span></h1>
+  <p class="story-byline">By <span>Mia Filler</span></p>
+  <p class="story-dek">When federal relief couldn't yet mobilize, Operation Helo, Mission Mules and Down Home NC showed up with helicopters, mules and community trust. Eighteen months later, they're still going — and growing.</p>
+</header>
+
+<article class="article-body">
+
+  <p>Suited head-to-toe in khaki, Eric Robinson stands with hands on his hips, monitoring the hustle and bustle of <a href="https://www.operationhelo.org/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">Operation Helo</a>'s mobile command center in Taylorsville, North Carolina. The trailer, which was transformed into a fully functional command post just one day prior, is lined with massive 40-inch monitors illuminated by the organization's Slack channel, while muffled walkie-talkie voices fill the focused silence. Two hours into their mock rescue mission, a simulated distress call crackles through the room: coordinates, a situation report, a pilot's voice responding on the other end. Eighteen months after tropical storm Helene made landfall in western North Carolina, this is what preparation for the next storm looks like.</p>
+
+  <p>"We grew over the course of 11 days to what we have now," said Robinson, the Co-Founder and Executive Director of Operation Helo. "This is the culmination of all of our work."</p>
+
+  <p>Seventeen members of the organization, including six helicopter pilots, gathered at Operations Director Natasha Rodriguez's 40-acre home in early March, with a shared goal of being ready for whatever comes next. To them, this is not a training exercise. It's a "strategic mission planning" designed to stress-test technology, streamline the process of assigning missions to pilots and ensure nothing slips through the cracks when the next disaster strikes.</p>
+
+  <p>Operation Helo is one of several North Carolina-based nonprofits formed in the aftermath of Helene. In the immediate wake of the storm, residents of Asheville and the surrounding regions were left without internet access, drinking water, information about the safety of their loved ones, and, for many, a home. The mountainous, flooded terrain made access to aid even more difficult, leaving those stranded in areas inaccessible to vehicles. When federal relief couldn't yet mobilize, Operation Helo airlifted supplies by helicopter, <a href="https://www.missionmules.org/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">Mission Mules</a> delivered aid on mule-back through flooded mountain trails and <a href="https://downhomenc.org/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">Down Home NC</a> canvassed rural areas door-to-door. Now, all three are expanding beyond Helene.</p>
+
+  <p>"Nonprofits and spontaneous volunteer efforts are filling the gap of trying to meet the needs that official government efforts aren't able to address," said <a href="https://www.maritime.edu/faculty/dr-samantha-montano" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">Dr. Samantha Montano</a>, a professor of emergency management at Massachusetts Maritime Academy. "Because of the size of Helene and how much need there was, you see a big portion of that response being led by nonprofits and other kinds of grassroots community organizations."</p>
+
+  <div class="stat-band">
+    <div class="stat-item"><div class="stat-number">11</div><div class="stat-label">Days to build Operation Helo from scratch</div></div>
+    <div class="stat-item"><div class="stat-number">8</div><div class="stat-label">States where Mission Mules has deployed</div></div>
+    <div class="stat-item"><div class="stat-number">13</div><div class="stat-label">Counties canvassed by Down Home NC</div></div>
+  </div>
+
+  <div class="section-divider"><span>Helicopters and mules</span></div>
+
+  <p>For Operation Helo, that gap opened on Sept. 27, 2024, the day Helene made landfall in North Carolina. Just five days later, Operation Helo incorporated as an official 501(c)(3) nonprofit organization. Robinson brought together a group of volunteer pilots, and soon enough, various community members showed up to support their post at the <a href="https://hickoryregionalairport.com/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">Hickory Regional Airport</a>. Natasha Rodriguez and her husband, Jose, were among these volunteers, starting out in the call center and triaging assistance amid the rapid influx of devastating requests.</p>
+
+  <p>"I will definitely say this is nothing that any one of us had on our bingo cards, but it has been such a blessing," Rodriguez said. "We have been boots on the ground pretty much from the beginning, even to now."</p>
+
+  <p>Meanwhile, 50 miles northeast of Hickory, Mike and Michele Toberer were readying their mules at their packer ranch in Harmony, North Carolina. The husband and wife were about to head down to South Carolina for a planned training session with the U.S. Marines when Helene hit, and the trip was abruptly canceled due to the unexpected extreme flooding. Even 100 miles from the Blue Ridge Mountains, where the storm hit the hardest, the Toberers lost power in their home. The following day, when it came back, the news exposed them to the destruction and widespread needs of the victims in the western regions of the state.</p>
+
+  <p>"We left that next morning," said Mike Toberer, the Mission Mules co-founder. "We spent two or three weeks there right in the beginning, and we still are moving food and supplies there right now."</p>
+
+  <!-- IMAGE 1 — full width -->
+  <div class="story-img">
+    <img src="images/story/mia/1.jpg" alt="Operation Helo command center in Taylorsville, NC">
+    <p class="photo-caption">Operation Helo's mobile command center in Taylorsville, North Carolina, lined with monitors tracking missions in real time during a strategic planning exercise in early March 2026. Photo Credit: Mia Filler</p>
+  </div>
+
+  <p>After a few months on the front lines of delivering aid, Mike and Michele grew wary of their ability to continue. Not only had they witnessed an abundance of tragedy, but also two of their mules were killed in the aid and recovery process. Then, <a href="https://www.samaritanspurse.org/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">Samaritan's Purse</a> called.</p>
+
+  <p>"We figured that was God telling us that we are going to wrap this up," Toberer said. "Then the next day, Samaritan's Purse called us and said, 'Hey, we want to get you enough mules so you can keep going.' They restocked all the mules that we lost, and that's when we decided, 'This is what we're going to be doing here.'"</p>
+
+  <div class="section-divider"><span>Trust as infrastructure</span></div>
+
+  <p>In those early chaotic days, before federal relief could reach the cutoff and isolated, these groups were finding their own ways in. Operation Helo and Mission Mules were united by physical access — they had the assets to reach people and places that conventional relief simply couldn't. Down Home NC, a grassroots organizing group with deep roots in rural communities across the state, was leveraging something even harder to engender: trust.</p>
+
+  <p>Down Home NC had spent years embedding itself in rural communities across North Carolina long before Helene arrived. Founded in 2017, the organization focuses on base-building and political mobilization among multiracial working-class residents in small towns, empowering communities that often go unheard in state-level policy decisions.</p>
+
+  <p>When Helene hit in September 2024, Down Home was already in the middle of election season, knocking on doors across 13 counties to encourage voter registration and turnout. They used that established infrastructure to show up differently, yet meaningfully, when the storm hit.</p>
+
+  <p>"Because of the work that we did to build our relationship within the community, it was a no-brainer for our folks to take this mobilization effort that we were already in the middle of and turn it into a wellness canvassing effort instead," said Down Home's Communications Director Taí Coates-Wedde. "So rather than door knocking and asking people, 'Hey, what's your plan to go?', it became door knocking to ask, 'Hey, are you OK?'"</p>
+
+  <!-- IMAGE 2 — float right -->
+  <div class="clearfix">
+    <div class="story-img-float">
+      <img src="images/story/mia/2.jpg" alt="Mission Mules carrying supplies through flooded mountain trails">
+      <p class="photo-caption">Mission Mules carrying 150–200 pounds of supplies through mountain terrain inaccessible by vehicle. Photo Credit: Mia Filler</p>
+    </div>
+
+    <p>Beyond needs assessment, Down Home NC focused on creating informational resources for the community — primarily helping residents navigate <a href="https://www.fema.gov/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">FEMA</a> and get the help they needed.</p>
+
+    <p>"We wanted people to know their tenant rights, because at the same time that people were still trying to figure out if their family members were alive or where their house had gone to, there were a lot of rich people and corporations coming in and scooping up that land out from underneath them," said Coates-Wedde. "Renters were losing their homes because their landlords were selling out from under them. People lost their jobs, people lost their access to money, and at the same time, rent was still due."</p>
+
+    <p>When the early chaos died down and news coverage of Helene's impact on western North Carolina tapered off, Down Home developed the website <a href="https://www.keepwnchome.org/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">Keep WNC Home</a> as a community resource database. Once the information was compiled, Down Home's communications team screenshotted it and distributed it via text blast — bypassing the internet entirely — casting a wider net beyond their existing membership to reach anyone in the area who needed help.</p>
+  </div>
+
+  <p>"These groups are generally better tied in with the local community, which means they sometimes have a better sense of what the exact needs are than more formal groups," said Dr. Montano. "Also, the lack of formal procedures means they can be more flexible to meet the needs of the community."</p>
+
+  <div class="section-divider"><span>Flying blind, then finding a system</span></div>
+
+  <p>Where Down Home NC worked street by street, Operation Helo worked from above. In the mountains of western North Carolina, where roads had been swallowed by floodwater and entire communities sat unreachable by vehicle, helicopters became the fastest lifeline available — and the group arrived at the destruction before the <a href="https://www.nationalguard.mil/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">National Guard</a> itself.</p>
+
+  <p>Operation Helo's pilots didn't wait for official dispatch. In the immediate aftermath of the storm, the organization relied heavily on social media to identify where help was needed. Family members left comments and called in from out of state, reporting that they'd lost contact with a relative in Pensacola or Burnsville, not knowing whether they were alive. Pilots flying supply runs to local fire departments would relay these wellness check requests on the ground, building a real-time picture of where to go next. The organization airlifted doctors into areas overwhelmed by chainsaw injuries as residents tried to clear their own roads. They delivered insulin, oxygen, and EpiPens — the last of which became an unexpected urgent need around day five, when displaced bee populations, their habitats destroyed by the storm, began stinging residents en masse.</p>
+
+  <p>"When somebody needs help in that moment, and you can bring them just that little piece of comfort, that's an amazing feeling," Rodriguez said. "Because you brought them something quickly that maybe would have taken them days to get."</p>
+
+  <p>On the ground, in hollows and along mountain trails impassable even by ATV, Mission Mules was operating in the spaces helicopters could not reach. Where tree cover was too dense for an aerial drop, Mike and Michele Toberer moved supplies on mule-back, each animal carrying 150 to 200 pounds of food, medicine and equipment. They had crafted an efficient system: trucks hauled supplies as far as roads allowed, Kawasaki side-by-sides pushed further into the terrain, and then the mules took over, traversing fallen timber with the help of Green Berets wielding chainsaws ahead of them.</p>
+
+  <!-- IMAGE 3 — full width -->
+  <div class="story-img">
+    <img src="images/story/mia/3.jpg" alt="Eric Robinson debriefing Operation Helo team after simulated rescue mission">
+    <p class="photo-caption">Eric Robinson debriefs Operation Helo's team after a simulated rescue mission in Taylorsville, North Carolina, in March 2026. Photo Credit: Mia Filler</p>
+  </div>
+
+  <p>The two organizations found a natural rhythm together. Helicopters from Samaritan's Purse and Operation Helo would air-drop supply pallets at the tops of mountains, and Mission Mules would collect them there and carry them down, reversing the usual direction of effort to spare the animals the hardest part of the climb.</p>
+
+  <p>"Helicopters and mules, you know, we train the military, and that's what we do for a living," Toberer said. "We work together quite a bit."</p>
+
+  <p>That collaboration was put to the test deep in the mountains near Newland, where Toberer's team cut their way through downed trees to reach a hollow that hadn't seen outside contact since the storm. When they arrived, they found an elderly woman in her 80s sitting on the front porch of her crooked, flood-damaged house, a .22 rifle across her lap. She asked who they were. She asked if they were from the government. When Toberer told her they weren't, she relaxed.</p>
+
+  <p>"The deeper you went into the mountains, the more you would hear that," Toberer said. "Less government, more help."</p>
+
+  <div class="section-divider"><span>From response to resilience</span></div>
+
+  <p>A year and a half after Helene, Operation Helo has deployed to disasters across the country, most notably to the catastrophic flooding in <a href="https://www.kerrcountytx.gov/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">Kerr County, Texas</a>, during the summer of 2025, where 63 people were reported missing. Operation Helo arrived at the scene within five hours, alongside six volunteer pilots based in Texas. That deployment laid the foundation for what will become Operation Helo's first official chapter, a Texas-based team in Burnet County that can reach disasters in Louisiana, Oklahoma and Arizona faster than any crew flying out of North Carolina.</p>
+
+  <div class="stat-band">
+    <div class="stat-item"><div class="stat-number">5 hrs</div><div class="stat-label">Time to arrive at Kerr County, TX flooding</div></div>
+    <div class="stat-item"><div class="stat-number">2026</div><div class="stat-label">Target year for Arizona chapter launch</div></div>
+    <div class="stat-item"><div class="stat-number">10</div><div class="stat-label">Active Down Home chapter counties by 2027–28</div></div>
+  </div>
+
+  <p>"The hardest part has been being very strategic," Rodriguez said. "You don't want to grow too fast as a nonprofit. You want to make sure everything is in place."</p>
+
+  <p>Arizona is next on the chapter map, likely by the end of 2026, with two or three additional states to follow in 2027. Supporting all of this growth is a formal partnership with <a href="https://www.robinsonheli.com/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">Robinson Helicopter</a>, which has significantly expanded the organization's fleet and operational capacity, and a work-in-progress contract with the National Guard.</p>
+
+  <p>Mission Mules has been building its own national footprint, one disaster at a time. Since Helene, Toberer and his team have deployed to eight states, including four separate trips to West Virginia, where they have developed a working relationship with state troopers who now call them directly when mountain communities get cut off by ice or flooding. They have evacuated horses from wildfire zones in Oklahoma, packed supplies through flood debris in Kentucky and Maryland, and are now integrating drones into their operations to expand their search-and-rescue capabilities.</p>
+
+  <p>"I feel that our future is going to go on and on," Toberer said. "We just keep getting more and more contact, and we're working with more people."</p>
+
+  <!-- IMAGE 4 — float right -->
+  <div class="clearfix">
+    <div class="story-img-float">
+      <img src="images/story/mia/4.jpg" alt="Natasha Rodriguez at Operation Helo command center">
+      <p class="photo-caption">Operations Director Natasha Rodriguez at the Operation Helo command post during the March 2026 strategic planning session. Photo Credit: Mia Filler</p>
+    </div>
+
+    <p>Within North Carolina, Coates-Wedde and her Down Home NC team are working to establish resilience hubs in rural communities. Three pilot locations are planned for 2026, scaling to at least 10 active chapter counties by 2027 and 2028. The hubs are designed to address what Coates-Wedde calls the "intersecting challenges of climate vulnerability, infrastructure neglect and economic inequality," which disproportionately affect rural communities across the state.</p>
+
+    <p>"Even last year, in July, Tropical Storm Chantal hit North Carolina, and the middle of the state was completely slammed with flooding too," Coates-Wedde said. "We are providing people with resources, but we're also in a listening phase right now, to hear from our community members about how to best reach them. That's how we build relationships, and that's how we'll continue to ensure that we're making a community-centered solution."</p>
+
+    <p>The expansion of all three organizations is happening against a backdrop that Dr. Montano carefully studies. The nonprofit disaster sector was already strained before the <a href="https://www.whitehouse.gov/" target="_blank" style="color:var(--teal);text-decoration:underline;text-underline-offset:2px;">Trump administration</a> began pulling back federal resources. Volunteer fatigue and donation fatigue have been flagged as early as 2016, and the COVID pandemic pulled a significant portion of older disaster volunteers out of the field permanently.</p>
+  </div>
+
+  <p>"When you pair that trend with these threats from the administration to pull back federal resources, you're really creating this perfect recipe for disaster, in terms of there not really being anybody left to meet the needs of communities," said Dr. Montano.</p>
+
+  <p>She is also cautious about the instinct of these groups to go national. Her advice to emerging disaster nonprofits is to specialize locally, move from response to recovery and then to preparedness, and find a reliable funding source before expansion becomes a liability. Most disaster nonprofits, she said, burn out within a few years.</p>
+
+  <p>Montano's hesitation is grounded in decades of research on disaster nonprofits that burn bright and then fade after the storm. But 18 months after Helene, Operation Helo, Mission Mules and Down Home NC are still showing up — not just in western North Carolina, but across the country.</p>
+
+  <p>During Helene, they showed up with what they had — helicopters, mules, community understanding — and figured out the rest. What has kept them going, each in their own way, is the same thing that started them: proximity to and deep care for the people they serve.</p>
+
+  <p>"We judge our impact based on who we help," Robinson said.</p>
+
+</article>
+
+<footer>
+  <p class="footer-title">Caught in the Current</p>
+  <p class="footer-sub">Helene Recovery in Asheville and Beyond · Northeastern University · 2025</p>
+</footer>
+
+</body>
+</html>

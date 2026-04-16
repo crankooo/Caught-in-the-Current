@@ -458,6 +458,21 @@ soundscape.loop = false;
 soundscape.volume = 0.5;
 let isPlaying = false;
 
+function startSoundscape() {
+  if (isPlaying) return;
+  soundscape.play().then(() => {
+    isPlaying = true;
+    btn.classList.add('playing');
+    btn.querySelector('.btn-label').textContent = 'Playing…';
+  }).catch(() => {});
+}
+
+// Auto-start on first interaction
+document.addEventListener('mousemove', startSoundscape, { once: true });
+document.addEventListener('scroll',    startSoundscape, { once: true });
+document.addEventListener('click',     startSoundscape, { once: true });
+
+// Button still works as a manual toggle
 function toggleSound() {
   if (isPlaying) {
     soundscape.pause();
@@ -466,11 +481,7 @@ function toggleSound() {
     btn.classList.remove('playing');
     btn.querySelector('.btn-label').textContent = 'Listen to soundscape';
   } else {
-    soundscape.play().then(() => {
-      isPlaying = true;
-      btn.classList.add('playing');
-      btn.querySelector('.btn-label').textContent = 'Playing…';
-    }).catch(() => {});
+    startSoundscape();
   }
 }
 
