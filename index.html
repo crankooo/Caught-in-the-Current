@@ -324,16 +324,22 @@
       </button>
     </nav>
 <!-- ── HERO ── -->
-    <section id="hero">
-      <video id="hero-video" autoplay muted loop playsinline style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">
-        <source src="Videos/landing-page.mp4" type="video/mp4">
-      </video>
-      <div class="hero-overlay"></div>
-      <div class="scroll-hint" aria-hidden="true">
-        <span>Scroll</span>
-        <div class="scroll-arrow"></div>
-      </div>
-    </section>
+ <section id="hero">
+  <div class="hero-video-wrap">
+    <img id="hero-thumb" src="Videos/thumb.png" alt="" />
+
+    <video id="hero-video" autoplay muted playsinline>
+      <source src="Videos/landing-page.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="hero-overlay"></div>
+
+  <div class="scroll-hint" aria-hidden="true">
+   
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
 <!-- solid wrapper covers video as you scroll -->
     <div id="content-wrap">
 
@@ -350,9 +356,7 @@
 
         <div class="rainfall-bottom">
 <div class="rainfall-bottom" style="text-align: center;">
-  <a href="https://hcbotnick.github.io/AshevilleNew" class="dataviz-cta" target="_blank">
-    Watch Helene's journey
-  </a>
+  <a href="dataviz/index.html" class="dataviz-cta">Watch Helene's journey</a>
 </div>
      </section>
 
@@ -465,41 +469,6 @@
     <p class="card-caption-author">By Azariah Baker</p>
   </div>
 </article>
-<article class="story-card" data-category="Podcasts" tabindex="0" onclick="window.location.href='val.html'" style="cursor:pointer;">
-  <div class="card-photo-wrap">
-    <span class="card-pill">Podcast</span>
-    <div class="card-arrow">
-      <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-    </div>
-    <img src="images/fotos/music1.jpg" alt="Still Playing" class="card-photo">
-    <div class="card-photo-overlay">
-      <p class="card-excerpt">Musicians are a cornerstone of Asheville. Their voices helped the community pick up and carry on.</p>
-    </div>
-  </div>
-  <div class="card-body">
-    <p class="card-caption-category">Podcast</p>
-    <p class="card-caption-title">Melody replaces malady</p>
-    <p class="card-caption-author">By Valentina Gutierrez</p>
-  </div>
-</article>
-
-   <article class="story-card" data-category="Articles" tabindex="0" onclick="window.location.href='ali.html'" style="cursor:pointer;">
-  <div class="card-photo-wrap">
-    <span class="card-pill">Article</span>
-    <div class="card-arrow">
-      <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-    </div>
-    <img src="images/fotos/fema.jpg" alt="FEMA funding story" class="card-photo">
-    <div class="card-photo-overlay">
-      <p class="card-excerpt">Federal funding presents a complex landscape for storm victims who are still waiting for assistance. </p>
-    </div>
-  </div>
-  <div class="card-body">
-    <p class="card-caption-category">Article</p>
-    <p class="card-caption-title">A fractured FEMA</p>
-    <p class="card-caption-author">By Ali Caudle</p>
-  </div>
-</article>
 <!-- 5 — Lost and Found -->
     <article class="story-card" data-category="Articles" tabindex="0" onclick="window.location.href='sydney.html'" style="cursor:pointer;">
       <div class="card-photo-wrap">
@@ -518,6 +487,26 @@
         <p class="card-caption-author">By Sydney Woogerd</p>
       </div>
     </article>
+
+
+   <article class="story-card" data-category="Articles" tabindex="0" onclick="window.location.href='ali.html'" style="cursor:pointer;">
+  <div class="card-photo-wrap">
+    <span class="card-pill">Article</span>
+    <div class="card-arrow">
+      <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </div>
+    <img src="images/fotos/fema.jpg" alt="FEMA funding story" class="card-photo">
+    <div class="card-photo-overlay">
+      <p class="card-excerpt">Federal funding presents a complex landscape for storm victims who are still waiting for assistance. </p>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-caption-category">Article</p>
+    <p class="card-caption-title">A fractured FEMA</p>
+    <p class="card-caption-author">By Ali Caudle</p>
+  </div>
+</article>
+
      <!-- 15 — Audio placeholder -->
     <article class="story-card" data-category="Articles" tabindex="0" onclick="window.location.href='beck.html'" style="cursor:pointer;">
   <div class="card-photo-wrap">
@@ -536,42 +525,24 @@
     <p class="card-caption-author">By Beck Orten</p>
   </div>
 </article>
- <article class="story-card" data-category="Articles" data-id="11" tabindex="0" onclick="window.location='eva.html'">
-      <div class="card-photo-wrap">
-        <span class="card-pill">Article</span>
-        <div class="card-arrow">
-          <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-        </div>
-        <img src="images/fotos/wildlife.jpg" alt="Freshwater mussels and hellbender salamanders after Hurricane Helene" class="card-photo">
-        <div class="card-photo-overlay">
-          <p class="card-excerpt">Some of the storm's most vulnerable victims — river dwellers — suffered dramatically when raging waters washed them downstream.</p>
-        </div>
-      </div>
-      <div class="card-body">
-        <p class="card-caption-category">Article</p>
-        <p class="card-caption-title">Helene's smallest sufferers</p>
-        <p class="card-caption-author">By Eva Ciolek Passeri</p>
-      </div>
-    </article>
-    <!-- 6 — Cultural placeholder -->
-  <article class="story-card" data-category="Articles" data-id="6" tabindex="0" onclick="window.location='HAM.html'">
-      <div class="card-photo-wrap">
-        <span class="card-pill">Article</span>
-        <div class="card-arrow">
-          <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-        </div>
-        <img src="images/fotos/HAM.jpg" alt="Ham radio operators at the Asheville Radio Museum" class="card-photo">
-        <div class="card-photo-overlay">
-          <p class="card-excerpt">Phones failed after Helene, but amateur radio operators summoned help and supplies — and sparked a grassroots radio renaissance.</p>
-        </div>
-      </div>
-      <div class="card-body">
-        <p class="card-caption-category">Article</p>
-        <p class="card-caption-title">When signals saved the day</p>
-         <p class="card-caption-author">By Claire Ogden</p>
-      </div>
-    </article>
-    <!-- 10 — PO story -->
+<article class="story-card" data-category="Podcasts" tabindex="0" onclick="window.location.href='val.html'" style="cursor:pointer;">
+  <div class="card-photo-wrap">
+    <span class="card-pill">Podcast</span>
+    <div class="card-arrow">
+      <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </div>
+    <img src="images/fotos/music1.jpg" alt="Still Playing" class="card-photo">
+    <div class="card-photo-overlay">
+      <p class="card-excerpt">Musicians are a cornerstone of Asheville. Their voices helped the community pick up and carry on.</p>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-caption-category">Podcast</p>
+    <p class="card-caption-title">Melody replaces malady</p>
+    <p class="card-caption-author">By Valentina Gutierrez</p>
+  </div>
+</article>
+<!-- 10 — PO story -->
     <article class="story-card" data-category="Articles" tabindex="0" onclick="window.location.href='PO.html'" style="cursor:pointer;">
       <div class="card-photo-wrap">
         <span class="card-pill">Article</span>
@@ -589,42 +560,7 @@
         <p class="card-caption-author">By Grace Sawin & Ali Caudle</p>
       </div>
     </article>
-
-    <!-- 12 — Political placeholder -->
-    <article class="story-card" data-category="political" data-id="12" tabindex="0">
-      <div class="card-photo-wrap">
-        <span class="card-pill">Political</span>
-        <div class="card-arrow">
-          <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-        </div>
-        <img src="images/fotos/2water.jpg" alt="Political story" class="card-photo">
-        <div class="card-photo-overlay">
-          <p class="card-excerpt">Political reporting from Asheville — coming soon.</p>
-        </div>
-      </div>
-      <div class="card-body placeholder">
-        <p class="card-caption-category">Political</p>
-        <p class="card-caption-title">Coming Soon</p>
-      </div>
-    </article>
-    <!-- 8 — Political placeholder -->
-    <article class="story-card" data-category="Articles" data-id="8" tabindex="0">
-      <div class="card-photo-wrap">
-        <span class="card-pill">Articles</span>
-        <div class="card-arrow">
-          <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-        </div>
-        <img src="images/fotos/bipoc.jpg" alt="Political story" class="card-photo">
-        <div class="card-photo-overlay">
-          <p class="card-excerpt">Political reporting from Asheville — coming soon.</p>
-        </div>
-      </div>
-      <div class="card-body placeholder">
-        <p class="card-caption-category">Political</p>
-        <p class="card-caption-title">Coming Soon</p>
-      </div>
-    </article>
-    <!-- 6 — Cultural placeholder -->
+     <!-- 6 — Cultural placeholder -->
   <article class="story-card" data-category="Articles" data-id="6" tabindex="0" onclick="window.location='helo.html'">
       <div class="card-photo-wrap">
         <span class="card-pill">Article</span>
@@ -639,8 +575,64 @@
       <div class="card-body">
         <p class="card-caption-category">Article</p>
         <p class="card-caption-title">Rapid response</p>
+        <p class="card-caption-author">By Mia Filler</p>
       </div>
     </article>
+     <!-- 6 — Cultural placeholder -->
+  <article class="story-card" data-category="Articles" data-id="6" tabindex="0" onclick="window.location='HAM.html'">
+      <div class="card-photo-wrap">
+        <span class="card-pill">Article</span>
+        <div class="card-arrow">
+          <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+        <img src="images/fotos/HAM.jpg" alt="Ham radio operators at the Asheville Radio Museum" class="card-photo">
+        <div class="card-photo-overlay">
+          <p class="card-excerpt">Phones failed after Helene, but amateur radio operators summoned help and supplies — and sparked a grassroots radio renaissance.</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-caption-category">Article</p>
+        <p class="card-caption-title">When signals saved the day</p>
+         <p class="card-caption-author">By Claire Ogden</p>
+      </div>
+    </article>
+    </div><div class="stories-last-row">
+    <!-- 8 — Political placeholder -->
+    <article class="story-card" style="width:calc(33.333% - 0.75rem);flex:0 0 calc(33.333% - 0.75rem);" data-category="Articles" tabindex="0" onclick="window.location='latino.html'">
+  <div class="card-photo-wrap">
+    <span class="card-pill">Article</span>
+    <div class="card-arrow">
+      <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </div>
+    <img src="images/fotos/bipoc.jpg" alt="Latino community in Asheville after Hurricane Helene" class="card-photo">
+    <div class="card-photo-overlay">
+      <p class="card-excerpt">Post-Helene, Spanish speakers and Latinos had additional barriers to aid. One Asheville journalist tried to confront that.</p>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-caption-category">Article</p>
+    <p class="card-caption-title">When English is the language of crisis</p>
+    <p class="card-caption-author">By Valentina Gutierrez</p>
+  </div>
+</article>
+     <article class="story-card" style="width:calc(33.333% - 0.75rem);flex:0 0 calc(33.333% - 0.75rem);" data-category="Articles" data-id="11" tabindex="0" onclick="window.location='eva.html'">
+        <div class="card-photo-wrap">
+          <span class="card-pill">Article</span>
+          <div class="card-arrow">
+            <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </div>
+          <img src="images/fotos/wildlife.jpg" alt="Freshwater mussels and hellbender salamanders after Hurricane Helene" class="card-photo">
+          <div class="card-photo-overlay">
+            <p class="card-excerpt">Some of the storm's most vulnerable victims — river dwellers — suffered dramatically when raging waters washed them downstream.</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-caption-category">Article</p>
+          <p class="card-caption-title">Helene's smallest sufferers</p>
+          <p class="card-caption-author">By Eva Ciolek Passeri</p>
+        </div>
+     </article>
+    </div>
       </section>
 
   </div><!-- /stories-grid -->

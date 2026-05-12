@@ -154,23 +154,18 @@ function escapeHtml(value) {
   }[c]));
 }
 
-/* ═══════════════════════════════════════════
-   0. SCROLL TO TOP ON EVERY PAGE LOAD
-═══════════════════════════════════════════ */
 const vid = document.getElementById("hero-video");
 const soundscape = document.getElementById("soundscape-main");
-const hasVisited = sessionStorage.getItem("hasVisitedHome");
 
 if (vid) {
   vid.loop = false;
   vid.muted = true;
-  if (!hasVisited) {
-    vid.currentTime = 0;
-    vid.play().catch(() => {});
-  } else {
-    vid.pause();
-    vid.currentTime = 0;
-  }
+  vid.currentTime = 0;
+  vid.play().catch(() => {});
+
+  vid.addEventListener('ended', () => {
+    vid.classList.add('video-ended');
+  });
 }
 
 /* ── LANDING PAGE VIDEO SOUND TOGGLE ── */
@@ -221,7 +216,7 @@ landingBtn.addEventListener('click', () => {
   }
 });
  /* ← closes if (landingBtn) */
-sessionStorage.setItem("hasVisitedHome", "true");
+
 /* ═══════════════════════════════════════════
    2. ABOUT PAGE
 ═══════════════════════════════════════════ */
@@ -348,6 +343,38 @@ document.querySelectorAll(".filter-btn").forEach((btn) => {
     document.querySelectorAll(".story-card").forEach((card) => {
       card.classList.toggle("hidden", filter !== "all" && card.dataset.category !== filter);
     });
+
+    const grid = document.getElementById("stories-grid");
+    const lastRow = document.querySelector(".stories-last-row");
+
+  if (filter === "Articles") {
+      // move latino and eva into grid
+      lastRow.querySelectorAll(".story-card").forEach(card => {
+        card.style.width = "";
+        card.style.flex = "";
+        grid.appendChild(card);
+      });
+      lastRow.style.display = "none";
+      // center eva by adding an invisible spacer before it
+      const eva = grid.querySelector("[onclick*='eva']");
+      const spacer = document.createElement("div");
+      spacer.id = "eva-spacer";
+      spacer.style.cssText = "width:calc(33.333% - 0.75rem);flex:0 0 calc(33.333% - 0.75rem);";
+      grid.insertBefore(spacer, eva);
+    } else {
+      // restore them to last row
+      const latino = document.querySelector("[onclick*='latino']");
+      const eva = document.querySelector("[onclick*='eva']");
+      const spacer = document.getElementById("eva-spacer");
+      if (spacer) spacer.remove();
+      lastRow.style.display = "flex";
+      if (latino) lastRow.appendChild(latino);
+      if (eva) lastRow.appendChild(eva);
+      latino.style.width = "calc(33.333% - 0.75rem)";
+      latino.style.flex = "0 0 calc(33.333% - 0.75rem)";
+      eva.style.width = "calc(33.333% - 0.75rem)";
+      eva.style.flex = "0 0 calc(33.333% - 0.75rem)";
+    }
   });
 });
 

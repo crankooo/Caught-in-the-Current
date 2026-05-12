@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>When Disaster Strikes in English — Caught in the Current</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Averia+Libre:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:  #02645A;
+  --navy:  #224050;
+  --amber: #D4874C;
+  --rust:  #C45D3A;
+  --cream: #F7F3ED;
+  --white: #ffffff;
+  --font-display: 'Averia Libre', serif;
+  --font-body: 'Lora', Georgia, serif;
+  --nav-h: 70px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: var(--font-body); font-size: 12pt; background: var(--cream); color: var(--navy); overflow-x: hidden; line-height: 1.7; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+.story-nav {
+  position: sticky; top: 0; z-index: 300;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem; height: var(--nav-h);
+  background: rgba(34,64,80,.95); backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.nav-logo-img { height: 100px; width: 85px; object-fit: contain; border-radius: 50%; }
+.nav-right { display: flex; align-items: center; gap: .8rem; }
+.back-btn {
+  background: none; border: 1.5px solid rgba(247,243,237,.38);
+  color: var(--cream); font-family: var(--font-body);
+  font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
+  padding: .4rem 1.1rem; border-radius: 50px; cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.back-btn:hover { background: var(--amber); border-color: var(--amber); }
+
+.lang-toggle {
+  display: flex; align-items: center;
+  border: 1.5px solid rgba(247,243,237,.4); border-radius: 50px; overflow: hidden;
+}
+.lang-btn {
+  background: none; border: none; color: rgba(247,243,237,.6);
+  font-family: var(--font-body); font-size: .72rem; letter-spacing: .14em;
+  text-transform: uppercase; padding: .45rem 1.1rem; cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.lang-btn.active { background: var(--amber); color: var(--white); }
+.lang-btn:hover:not(.active) { color: var(--cream); }
+
+/* Big toggle bar above hero */
+.lang-bar {
+  background: var(--navy);
+  padding: .85rem 2.5rem;
+  display: flex; justify-content: center; align-items: center; gap: .8rem;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.lang-bar-label {
+  font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(247,243,237,.55); font-family: var(--font-body);
+}
+.lang-bar .lang-toggle {
+  border-color: rgba(247,243,237,.5);
+}
+.lang-bar .lang-btn {
+  font-size: .82rem; padding: .55rem 1.5rem; letter-spacing: .16em;
+}
+
+.story-hero {
+  position: relative; min-height: 60vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; background: var(--navy);
+}
+
+.story-hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('images/fotos/bipoc.jpg');
+  background-size: cover; background-position: center 20%;
+  transform: scale(1.05); animation: heroZoom 12s ease-out forwards;
+}
+.story-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.10), rgba(0,0,0,.30) 38%, rgba(0,0,0,.75) 100%),
+              linear-gradient(to right, rgba(34,64,80,.50), rgba(34,64,80,.08));
+}
+@keyframes heroZoom { from { transform: scale(1.05); } to { transform: scale(1); } }
+@keyframes fadeUp   { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.story-hero > *:not(.story-hero-bg):not(.story-hero-overlay) { position: relative; z-index: 2; }
+.hero-inner { width: 100%; max-width: 1180px; margin: 0 auto; padding: 5rem 2.5rem 4rem; text-align: center; }
+.hero-label {
+  display: inline-block; font-size: .6rem; letter-spacing: .28em; text-transform: uppercase;
+  color: var(--amber); border: 1px solid rgba(212,135,76,.4);
+  padding: .3rem .9rem; border-radius: 3px; margin-bottom: 1.2rem;
+  opacity: 0; animation: fadeUp .9s ease .3s forwards;
+}
+.story-headline {
+  max-width: 800px; margin: 0 auto .9rem; font-family: var(--font-body);
+  font-size: clamp(2rem, 4.5vw, 3.8rem); line-height: 1.05; color: var(--cream);
+  opacity: 0; animation: fadeUp .9s ease .45s forwards;
+}
+.story-dek {
+  max-width: 580px; margin: 0 auto 1.2rem; font-size: .98rem; line-height: 1.8;
+  color: rgba(247,243,237,.82); font-style: italic;
+  opacity: 0; animation: fadeUp .9s ease .6s forwards;
+}
+.story-byline {
+  font-size: .78rem; color: rgba(247,243,237,.55); letter-spacing: .1em; text-transform: uppercase;
+  opacity: 0; animation: fadeUp .9s ease .75s forwards;
+}
+.story-byline span { color: rgba(247,243,237,.88); font-weight: 700; }
+
+.hero-caption {
+  background: var(--navy);
+  padding: .6rem 2.5rem;
+  font-size: .72rem; line-height: 1.6; color: rgba(247,243,237,.45);
+  font-style: italic; font-family: var(--font-body);
+  border-bottom: 1px solid rgba(255,255,255,.05);
+}
+
+.article-shell { max-width: 1280px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; }
+.article-layout { display: grid; grid-template-columns: 1fr 300px; gap: 0; align-items: start; }
+.article-main { max-width: 700px; padding-right: 3rem; }
+.article-main p { font-size: 16px; line-height: 2.0; color: rgba(34,64,80,.86); margin-bottom: 1.4rem; }
+.article-main > p:first-child::first-letter {
+  float: left; font-size: 3.9rem; font-weight: 700;
+  line-height: .82; margin: .06em .14em 0 0; color: var(--teal);
+}
+.article-main a { color: var(--teal); text-decoration: underline; text-underline-offset: 2px; }
+.article-main a:hover { color: var(--rust); }
+
+.qa-block { margin: 2rem 0; }
+.qa-q {
+  font-size: .8rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--rust); font-weight: 700; margin-bottom: .6rem;
+  padding-left: .8rem; border-left: 3px solid var(--rust); line-height: 1.5;
+}
+.qa-a { font-size: 1rem; line-height: 2.0; color: rgba(34,64,80,.86); margin-bottom: 1.4rem; }
+
+.section-divider { display: flex; align-items: center; gap: 1rem; margin: 3rem 0 1.9rem; }
+.section-divider::after { content: ''; flex: 1; height: 1px; background: rgba(34,64,80,.15); }
+.section-divider span { font-size: .82rem; letter-spacing: .22em; text-transform: uppercase; color: var(--rust); }
+
+.photo-caption { font-size: .75rem; line-height: 1.6; color: rgba(34,64,80,.52); margin-top: .5rem; padding-left: .7rem; border-left: 2px solid var(--amber); }
+.story-photo { margin: 2.2rem 0; }
+.story-photo img { width: 100%; height: auto; border-radius: 10px; display: block; }
+.float-group { margin-bottom: 1.35rem; }
+.float-group::after { content: ''; display: table; clear: both; }
+.story-photo-float { float: right; width: 42%; margin: .15rem 0 .8rem 1.8rem; border-radius: 10px; }
+.story-photo-float img { width: 100%; border-radius: 10px; display: block; }
+.story-photo-float .photo-caption { margin-top: .45rem; }
+
+.pq-trigger { position: relative; }
+.pull-quote-rail {
+  position: sticky; top: calc(var(--nav-h) + 2rem);
+  height: calc(100vh - var(--nav-h) - 4rem);
+  display: flex; align-items: center; justify-content: center;
+}
+.pull-quote-card {
+  width: 100%; background: var(--navy); border-radius: 16px;
+  padding: 1.6rem 1.4rem 1.4rem; box-shadow: 0 20px 50px rgba(34,64,80,.25);
+  opacity: 0; transform: translateY(20px) scale(.97);
+  transition: opacity .5s ease, transform .5s ease;
+  pointer-events: none; position: absolute;
+}
+.pull-quote-card.visible { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+.pull-quote-card.exiting { opacity: 0; transform: translateY(-16px) scale(.97); }
+.pq-label {
+  font-size: .55rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: .9rem;
+  display: flex; align-items: center; gap: .5rem;
+}
+.pq-label::before { content: ''; display: inline-block; width: 18px; height: 1px; background: var(--amber); }
+.pq-audio-player { background: rgba(255,255,255,.06); border-radius: 10px; padding: .8rem 1rem; margin-bottom: 1rem; border: 1px solid rgba(255,255,255,.08); }
+.pq-audio-controls { display: flex; align-items: center; gap: .8rem; margin-bottom: .6rem; }
+.pq-play-btn {
+  width: 36px; height: 36px; border-radius: 50%; background: var(--amber); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  transition: background .2s, transform .15s;
+}
+.pq-play-btn:hover { background: var(--rust); transform: scale(1.08); }
+.pq-play-btn svg { width: 14px; height: 14px; fill: white; }
+.pq-waveform { flex: 1; height: 28px; display: flex; align-items: center; gap: 2px; overflow: hidden; }
+.pq-bar { flex: 1; border-radius: 2px; background: rgba(212,135,76,.35); transition: background .2s; min-height: 3px; }
+.pq-waveform.playing .pq-bar { background: var(--amber); animation: waveAnim 1.2s ease-in-out infinite alternate; }
+.pq-waveform.playing .pq-bar:nth-child(2)  { animation-delay: .1s; }
+.pq-waveform.playing .pq-bar:nth-child(3)  { animation-delay: .2s; }
+.pq-waveform.playing .pq-bar:nth-child(4)  { animation-delay: .05s; }
+.pq-waveform.playing .pq-bar:nth-child(5)  { animation-delay: .15s; }
+.pq-waveform.playing .pq-bar:nth-child(6)  { animation-delay: .25s; }
+.pq-waveform.playing .pq-bar:nth-child(7)  { animation-delay: .08s; }
+.pq-waveform.playing .pq-bar:nth-child(8)  { animation-delay: .18s; }
+.pq-waveform.playing .pq-bar:nth-child(9)  { animation-delay: .12s; }
+.pq-waveform.playing .pq-bar:nth-child(10) { animation-delay: .22s; }
+@keyframes waveAnim { 0% { transform: scaleY(.4); } 100% { transform: scaleY(1); } }
+.pq-audio-label { font-size: .6rem; color: rgba(247,243,237,.38); letter-spacing: .1em; text-transform: uppercase; font-style: italic; }
+.pq-translation-label { font-size: .52rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(212,135,76,.7); margin-bottom: .4rem; }
+.pq-quote-text { font-family: var(--font-body); font-size: .82rem; line-height: 1.72; color: rgba(247,243,237,.82); }
+.pq-speaker { margin-top: .9rem; padding-top: .7rem; border-top: 1px solid rgba(255,255,255,.07); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(212,135,76,.6); }
+
+footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; margin-top: 2rem; }
+.footer-title { font-family: var(--font-display); font-size: 1rem; color: var(--cream); letter-spacing: .1em; margin-bottom: .35rem; }
+.footer-sub { font-size: .75rem; color: rgba(247,243,237,.48); letter-spacing: .08em; }
+
+@media (max-width: 980px) {
+  .article-layout { grid-template-columns: 1fr; }
+  .article-main { padding-right: 0; max-width: 100%; }
+  .pull-quote-rail { display: none; }
+}
+@media (max-width: 680px) {
+  .story-nav { padding: 0 1rem; }
+  .lang-bar { padding: .85rem 1rem; }
+  .hero-inner { padding: 4rem 1.2rem 3rem; }
+  .story-hero { min-height: 70vh; }
+  .article-shell { padding: 2.4rem 1.05rem 3rem; }
+  .story-photo-float { float: none; width: 100%; margin: 1.2rem 0; }
+  .hero-caption { padding: .6rem 1rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="story-nav">
+  <a href="index.html"><img src="images/logos/main.png" alt="Caught in the Current" class="nav-logo-img"></a>
+  <div class="nav-right">
+    <div class="lang-toggle">
+    </div>
+    <button class="back-btn" onclick="history.back()">← All Stories</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="story-hero">
+  <div class="story-hero-bg"></div>
+  <div class="story-hero-overlay"></div>
+  <div class="hero-inner">
+    <div style="margin-bottom:1rem;opacity:0;animation:fadeUp .9s ease .3s forwards;">
+      <div class="lang-toggle" style="display:inline-flex;border-color:rgba(247,243,237,.45);">
+     <button class="lang-btn active" id="btnEN2" onclick="setLang('en')" style="font-size:.82rem;padding:.55rem 1.5rem;">English</button>
+        <button class="lang-btn" id="btnES2" onclick="setLang('es')" style="font-size:.82rem;padding:.55rem 1.5rem;">Español</button>
+      </div>
+    </div>
+    <h1 class="story-headline t" data-en="When disaster strikes in English, Spanish speakers struggle on the margins" data-es="Cuando el desastre ocurre en inglés, los hispanohablantes deben esforzarse desde la barrera del idioma">When disaster strikes in English, Spanish speakers struggle on the margins</h1>
+    <p class="story-dek t" data-en="Post-Helene, Spanish speakers and Latinos had additional barriers to aid. One Asheville journalist tried to confront that." data-es="Después de Helene, los hispanohablantes y latinos enfrentaron barreras adicionales para obtener ayuda. Un periodista de Asheville trató de combatir eso.">Post-Helene, Spanish speakers and Latinos had additional barriers to aid. One Asheville journalist tried to confront that.</p>
+    <p class="story-byline">By <span>Valentina Gutierrez</span></p>
+  </div>
+</header>
+
+<!-- HERO CAPTION -->
+<div class="hero-caption t"
+  data-en="This is Jose Sandoval, Asheville Latino reporter, at his radio station in Blue Ridge Public Radio, NPR for Western North Carolina."
+  data-es="Este es José Sandoval, reportero latino de Asheville, en su estación de radio en Blue Ridge Public Radio, NPR para la región oeste de Carolina del Norte.">This is Jose Sandoval, Asheville Latino reporter, at his radio station in Blue Ridge Public Radio, NPR for Western North Carolina.</div>
+
+<main class="article-shell">
+  <div class="article-layout">
+    <article class="article-main">
+
+      <p class="t" data-en="Tropical Storm Helene spared no demographic as it tore through Western North Carolina, but the recovery in greater Asheville had not been as equally distributed." data-es="La tormenta tropical Helene no perdonó a ningún grupo demográfico mientras arrasaba el oeste de Carolina del Norte, pero la recuperación en el área metropolitana de Asheville no se distribuyó de manera equitativa.">Tropical Storm Helene spared no demographic as it tore through Western North Carolina, but the recovery in greater Asheville had not been as equally distributed.</p>
+
+      <p class="t" data-en="The Latino community in particular faced a different and, in some ways, more difficult path post-storm. And while many were able to seek help after this traumatic disaster, Latinos faced many systemic and language limitations that disrupted the way help was found and used." data-es="La comunidad latina en particular enfrentó una realidad diferente y, en algunos aspectos, obstáculos más difíciles después de la tormenta. Mientras muchos pudieron buscar ayuda después de este desastre traumático, los latinos enfrentaron numerosas limitaciones sistémicas y lingüísticas que dificultaron la manera en que la ayuda fue encontrada y utilizada.">The Latino community in particular faced a different and, in some ways, more difficult path post-storm. And while many were able to seek help after this traumatic disaster, Latinos faced many systemic and language limitations that disrupted the way help was found and used.</p>
+
+      <p class="t" data-en="As one of the few bilingual Latino journalists in Asheville, Jose Sandoval found himself immersed in seeing how language barriers, limited access to aid and immigration-related fears shaped how Latinos recovered. His reporting highlights how in the days and weeks after the storm, Latinos struggled to navigate the systems meant to help them." data-es="José Sandoval, uno de los pocos periodistas bilingües latinos en Asheville, se encontró inmerso en observar cómo las barreras lingüísticas limitaron el acceso a la ayuda y cómo los miedos relacionados con la migración moldearon la manera en que los latinos se recuperaron. Su reportaje refleja cómo, en los días y semanas posteriores a la tormenta, los latinos lucharon para lidiar con un sistema que se suponía debía ayudarlos.">As one of the few bilingual Latino journalists in Asheville, Jose Sandoval found himself immersed in seeing how language barriers, limited access to aid and immigration-related fears shaped how Latinos recovered.</p>
+
+      <p class="t" data-en='"Recovery is going to take years. Here in the city, the debris is gone, but the financial impact still lingers," Sandoval said. "A lot of these effects are still around. I do think Helene exposed a lot of language barriers, especially in how to better reach the [Latino] community."' data-es='"La recuperación va a tomar años. Aquí en la ciudad, los escombros ya no están, pero el impacto financiero todavía persiste," dijo Sandoval. "Muchos de estos efectos siguen presentes. Sí, creo que Helene expuso muchas barreras lingüísticas, especialmente en cómo abordar con más eficiencia a la comunidad latina."'>"Recovery is going to take years. Here in the city, the debris is gone, but the financial impact still lingers," Sandoval said. "A lot of these effects are still around. I do think Helene exposed a lot of language barriers, especially in how to better reach the [Latino] community."</p>
+
+      <p class="t" data-en="While barriers slowed recovery, however, the Latino community remained resilient while giving back to its community when governmental systems fell short. Sandoval discussed these issues with Caught in the Current, providing a cautionary tale for future crises in the region. What follows is an edited and condensed version of that conversation." data-es="Sin embargo, aunque las barreras ralentizaron la recuperación, la comunidad latina se mantuvo resiliente y apoyó a su comunidad cuando los sistemas gubernamentales no fueron suficientes. Sandoval habló sobre estos problemas con Caught in the Current, ofreciendo una advertencia para futuras crisis en la región. Lo que sigue es una versión editada y condensada de esa conversación.">While barriers slowed recovery, however, the Latino community remained resilient while giving back to its community when governmental systems fell short. What follows is an edited and condensed version of that conversation.</p>
+
+      <div class="section-divider"><span class="t" data-en="Before the storm" data-es="Antes de la tormenta">Before the storm</span></div>
+
+      <div class="pq-trigger" data-pq="pq1">
+        <div class="qa-block">
+          <p class="qa-q t" data-en="Q: Take me back to a few days before Helene hit. What were you hearing from Latino and Spanish-speaking families about the storm, especially as a bilingual reporter?" data-es="P: Regresemos a los días antes de que Helene impactara la región. ¿Qué escuchabas de las familias latinas e hispanohablantes sobre la tormenta, especialmente desde tu posición como reportero bilingüe?">Q: Take me back to a few days before Helene hit. What were you hearing from Latino and Spanish-speaking families about the storm, especially as a bilingual reporter?</p>
+          <p class="qa-a t" data-en="I think there were preparations from the county, but nobody knew how bad the storm was going to be. People were kind of prepared, but also at the same time not taking it super seriously, because nothing of that magnitude had ever happened here. People were being prepared, but not to the fullest extent possible." data-es="Creo que sí hubo preparaciones por parte del condado, pero nadie sabía qué tan grave iba a ser la tormenta. La gente estaba más o menos preparada, pero al mismo tiempo no la estaba tomando muy en serio, porque nunca había pasado algo de esa magnitud aquí. La gente se estaba preparando, pero no en la mayor medida posible.">I think there were preparations from the county, but nobody knew how bad the storm was going to be. People were kind of prepared, but also at the same time not taking it super seriously, because nothing of that magnitude had ever happened here.</p>
+          <p class="qa-a t" data-en='The county was doing a lot of stuff because they have bilingual communication staff. They were going out to different communities telling them, "Hey, just be prepared," because we got warnings ahead of time from the National Weather Service, but the extent of the damage and the storm; nobody had any clue. It was mostly, people were prepared, but also like, "it may not be that bad," "maybe they are exaggerating," and it ended up not being that case.' data-es='El condado estaba haciendo muchas cosas porque cuenta con un equipo de comunicaciones bilingüe. Ellos estaban yendo a diferentes comunidades diciéndoles, "Ey, prepárense," porque recibimos advertencias con anticipación del Servicio Nacional de Meteorología, pero nadie tenía idea de la magnitud de la tormenta y los daños que causaría. En gran parte, la gente estaba preparada, pero también pensaba, "quizás no sea tan grave," o "quizás están exagerando," y terminó no siendo así.'>The county was doing a lot of stuff because they have bilingual communication staff. They were going out to different communities telling them, "Hey, just be prepared," but the extent of the damage and the storm; nobody had any clue.</p>
+        </div>
+        <div class="qa-block">
+          <p class="qa-q t" data-en="Q: Did warnings reach Spanish-speaking residents at the same time as English-speaking residents?" data-es="P: ¿Tuviste la impresión de que esas advertencias les estaban llegando a los residentes hispanohablantes al mismo tiempo que a los de habla inglesa?">Q: Did warnings reach Spanish-speaking residents at the same time as English-speaking residents?</p>
+          <p class="qa-a t" data-en="I think it probably didn't reach them the same because people didn't take some of the warnings seriously. The National Weather Service will translate some of their stuff into Spanish, but besides that, I don't think it really fully reached people. People who also speak English weren't taking those warnings seriously. It wasn't a lack of trying to reach them, it was more like folks were not fully prepared and didn't take the warning seriously." data-es="Creo que probablemente no les llegó de la misma manera, porque muchas personas no tomaron algunas de las advertencias en serio. El Servicio Nacional de Meteorología traducía parte de su información al español, pero aparte de eso, no creo que realmente le haya llegado completamente a la gente. No fue por falta de intentos de llegar a ellos, sino más bien porque la gente no estaba completamente preparada y no tomó las advertencias con la seriedad necesaria.">I think it probably didn't reach them the same because people didn't take some of the warnings seriously. The National Weather Service will translate some of their stuff into Spanish, but besides that, I don't think it really fully reached people.</p>
+        </div>
+      </div>
+
+      <div class="section-divider"><span class="t" data-en="Barriers to aid" data-es="Barreras para recibir ayuda">Barriers to aid</span></div>
+
+      <div class="pq-trigger" data-pq="pq2">
+        <div class="qa-block">
+          <p class="qa-q t" data-en="Q: What about post-storm and the effort to rebuild and seek aid? Did language create a barrier?" data-es="P: ¿Qué pasó después de la tormenta, especialmente durante los esfuerzos de reconstrucción y búsqueda de ayuda? ¿El idioma creó una barrera?">Q: What about post-storm and the effort to rebuild and seek aid? Did language create a barrier?</p>
+          <div class="float-group">
+            <div class="story-photo-float">
+              <img src="images/story/latino/1.png" alt="An electrical post in Asheville, NC after Helene">
+              <p class="photo-caption t"
+                data-en="This is an electrical post from Asheville, North Carolina. Power outages were suffered throughout many parts of Western North Carolina because of Tropical Storm Helene."
+                data-es="Este es un poste eléctrico en Asheville, Carolina del Norte. Muchas partes del oeste de Carolina del Norte sufrieron cortes de electricidad debido a la tormenta tropical Helene.">This is an electrical post from Asheville, North Carolina. Power outages were suffered throughout many parts of Western North Carolina because of Tropical Storm Helene.</p>
+            </div>
+            <p class="qa-a t" data-en="I think so for sure. It's also status, too, that created another barrier. Most people didn't know where to go to get water or very simple essential things that they needed, especially during the storm. We were one of the few radio stations that were still up, but we got lucky because we were close to downtown, so the power came back on within a few days. There definitely was a barrier with trying to figure out where to go to get basic stuff like food and water. You had these nonprofits that were on the go immediately after Helene happened, like Poder Emma, True Ridge, We Need x WNC, but there definitely was a barrier because you can't access your phone, you can't access the internet, where are you supposed to get this information from?" data-es="Sí, definitivamente. Y también el estatus migratorio creó otra barrera. Mucha gente no sabía a dónde ir para conseguir agua o cosas esenciales muy básicas que necesitaban. Nosotros éramos una de las pocas estaciones de radio que seguían funcionando, pero tuvimos suerte porque estábamos cerca del centro y la electricidad regresó después de unos pocos días. Algunas organizaciones sin fines de lucro comenzaron a actuar inmediatamente después de Helene, como Poder Emma, True Ridge y We Need x WNC, pero definitivamente había una barrera porque no podías acceder a tu teléfono ni al internet.">I think so for sure. It's also status, too, that created another barrier. Most people didn't know where to go to get water or very simple essential things that they needed. You had these nonprofits that were on the go immediately after Helene happened, like Poder Emma, True Ridge, We Need x WNC, but there definitely was a barrier because you can't access your phone, you can't access the internet.</p>
+            <p class="qa-a t" data-en="And for some of these groups, they weren't going to get their supplies from county staff either, because of that mistrust between the community and government officials. So a lot of the time, folks were going out to these nonprofits for basic supplies, but they had to take whatever information they could find in English, translate it, write it down and pass it by word of mouth to other folks in the community." data-es="En el caso de algunos de estos grupos, ellos tampoco iban a recibir suministros del personal del condado debido a la desconfianza que había entre la comunidad y los funcionarios gubernamentales. En muchas oportunidades, la gente acudía a estas organizaciones sin fines de lucro para conseguir suministros básicos, pero tenían que tomar cualquier información que encontraran en inglés, traducirla, escribirla y transmitirla de boca en boca a otras personas de la comunidad.">And for some of these groups, they weren't going to get their supplies from county staff either, because of that mistrust between the community and government officials. So folks were going out to these nonprofits for basic supplies, but they had to take whatever information they could find in English, translate it, write it down and pass it by word of mouth.</p>
+          </div>
+        </div>
+        <div class="qa-block">
+          <p class="qa-q t" data-en="Q: Did immigration fears discourage people from going to shelters or applying for FEMA relief?" data-es="P: ¿Crees que el miedo desanimó a las personas de ir a refugios, solicitar ayuda de FEMA o interactuar con agencias gubernamentales?">Q: Did immigration fears discourage people from going to shelters or applying for FEMA relief?</p>
+          <p class="qa-a t" data-en="Families here are of mixed status, so it is very difficult for folks to get FEMA help or SBA loans. What I'm hearing from case managers is that they can't qualify — they don't qualify for FEMA or SBA loans because of their immigration status. So it's been very difficult for some of these folks to get any type of help, and a lot of the help has been coming from nonprofits, like Beloved Asheville and Samaritan's Purse, or churches." data-es="Las familias aquí tienen estatus migratorios mixtos, así que es muy difícil para muchas personas obtener ayuda de FEMA o préstamos de la SBA. Lo que he escuchado de los administradores de casos es que no califican para FEMA ni para préstamos de la SBA debido a su estatus migratorio. Gran parte del apoyo ha venido de organizaciones sin fines de lucro, como Beloved Asheville y Samaritan's Purse, o de iglesias.">Families here are of mixed status, so it is very difficult for folks to get FEMA help or SBA loans. What I'm hearing from case managers is that they can't qualify because of their immigration status. A lot of the help has been coming from nonprofits, like Beloved Asheville and Samaritan's Purse, or churches.</p>
+          <p class="qa-a t" data-en="I interviewed a family out in Swannanoa, a mixed-status family. The mom has residency, but she was hesitant to apply for FEMA, so her son, who was born here, applied for it. Even then they didn't get that much money after losing a car, their home and having other damage. They just didn't get that much money, and Beloved came in and rebuilt the homes for them." data-es="Entrevisté a una familia en Swannanoa, de estatus migratorio mixto. La mamá tiene residencia, pero dudaba en solicitar ayuda de FEMA, así que su hijo, que nació aquí, fue quien la solicitó. Aun así, no recibieron mucho dinero después de perder un carro, su casa y sufrir otros daños. Y Beloved llegó para reconstruirles la vivienda.">I interviewed a family out in Swannanoa, a mixed-status family. The mom has residency, but she was hesitant to apply for FEMA, so her son, who was born here, applied for it. Even then they didn't get that much money, and Beloved came in and rebuilt the homes for them.</p>
+          <p class="qa-a t" data-en="There was definitely that type of barrier for aid. You see specific instances of Latinos that might have citizenship or residency but don't speak English, and they had trouble getting through to FEMA and government agencies because of their inability to speak English. Folks would not apply because they didn't know whether they qualified or not." data-es="Definitivamente existía ese tipo de barrera para recibir ayuda. Veías casos específicos de latinos que quizás tenían ciudadanía o residencia, pero no hablaban inglés, y tenían dificultades para comunicarse con FEMA y otras agencias gubernamentales. Muchas personas no solicitaban ayuda porque no sabían si calificaban o no.">There was definitely that type of barrier for aid. Latinos that might have citizenship or residency but don't speak English had trouble getting through to FEMA and government agencies. Folks would not apply because they didn't know whether they qualified or not.</p>
+          <div class="story-photo">
+            <img src="images/story/latino/2.png" alt="A volunteer with Samaritan's Purse unloads supplies in Asheville">
+            <p class="photo-caption t"
+              data-en="A volunteer with Samaritan's Purse unloads supplies in Asheville as communities across Western North Carolina continued to rebuild after Tropical Storm Helene."
+              data-es="Una voluntaria de Samaritan's Purse descarga suministros en Asheville mientras las comunidades del oeste de Carolina del Norte continúan recuperándose tras la tormenta tropical Helene.">A volunteer with Samaritan's Purse unloads supplies in Asheville as communities across Western North Carolina continued to rebuild after Tropical Storm Helene.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"><span class="t" data-en="The community" data-es="La comunidad">The community</span></div>
+
+      <div class="pq-trigger" data-pq="pq3">
+        <div class="qa-block">
+          <p class="qa-q t" data-en="Q: Tell me a little bit about the Latino community here. What are they like?" data-es="P: Cuéntame un poco sobre la comunidad latina aquí. ¿Cómo es?">Q: Tell me a little bit about the Latino community here. What are they like?</p>
+          <p class="qa-a t" data-en="It's a very tight-knit community, for sure. The majority of Latinos that live out here, specifically in the city, are Mexican. A lot of them work in agriculture or hospitality because Asheville is such a touristy town, but it's a very tight-knit community. People know each other. The majority of them live in West Asheville and in the Emma community." data-es="Es una comunidad muy unida, definitivamente. La mayoría de los latinos que viven aquí, específicamente en la ciudad, son mexicanos. Muchos trabajan en el área de la agricultura o en la del turismo porque Asheville es una ciudad muy turística. La gente se conoce entre sí. La mayoría vive en West Asheville y en la comunidad de Emma.">It's a very tight-knit community, for sure. The majority of Latinos that live out here, specifically in the city, are Mexican. A lot of them work in agriculture or hospitality because Asheville is such a touristy town. The majority of them live in West Asheville and in the Emma community.</p>
+        </div>
+        <div class="qa-block">
+          <p class="qa-q t" data-en="Q: Did the concentrated Latino population face a lot of destruction? Did it affect financial disparity?" data-es="P: ¿Este grupo concentrado de latinos enfrentó mucha destrucción en sus hogares? ¿La tormenta agravó las desigualdades económicas?">Q: Did the concentrated Latino population face a lot of destruction? Did it affect financial disparity?</p>
+          <p class="qa-a t" data-en='Oh, for sure. A lot of the Latinos that live here work in hospitality, agriculture or manual labor, and all that stopped. They were not making money at all, and we didn&apos;t have water or power. Families were reaching out saying, "I don&apos;t know how I&apos;m going to be able to pay rent" because they lost about a month of work. That&apos;s a lot of money, and the financial aspect is 100% — they couldn&apos;t get back to work the same way other people could right away.' data-es='Oh, definitivamente. Muchos de los latinos que viven aquí trabajan en hotelería, agricultura o trabajo manual, y todo eso se detuvo. No estaban ganando dinero en absoluto, y tampoco teníamos agua ni electricidad. Varias familias se acercaron diciendo: "No sé cómo voy a poder pagar la renta" porque perdieron aproximadamente un mes de trabajo. Eso es muchísimo dinero, y el impacto financiero fue total.'>Oh, for sure. A lot of the Latinos that live here work in hospitality, agriculture or manual labor, and all that stopped. Families were reaching out saying, "I don't know how I'm going to be able to pay rent" because they lost about a month of work. That's a lot of money, and the financial aspect is 100% — they couldn't get back to work the same way other people could right away.</p>
+        </div>
+      </div>
+
+      <div class="pq-trigger" data-pq="pq3">
+        <div class="story-photo">
+          <img src="images/story/latino/3.png" alt="A fallen sign and caution tape in Asheville after Helene">
+          <p class="photo-caption t"
+            data-en="A fallen sign and caution tape remain scattered across the grass in Asheville, North Carolina, reflecting the damage and disruption left behind by Tropical Storm Helene."
+            data-es="Un letrero caído y cinta de precaución permanecen sobre la hierba en Asheville, Carolina del Norte, como evidencia de los daños y desorden dejados por la tormenta tropical Helene.">A fallen sign and caution tape remain scattered across the grass in Asheville, North Carolina, reflecting the damage and disruption left behind by Tropical Storm Helene.</p>
+        </div>
+        <div class="qa-block">
+          <p class="qa-q t" data-en="Q: Did you notice a visible disparity between how non-Latinos bounce back versus Latinos?" data-es="P: ¿Notaste una diferencia visible entre la manera en que las personas no latinas lograron recuperarse en comparación con las personas latinas?">Q: Did you notice a visible disparity between how non-Latinos bounce back versus Latinos?</p>
+          <p class="qa-a t" data-en="If folks couldn't qualify for SBA loans, they couldn't afford to take another loan, and they were taking money out of their own pockets to pay their employees for weeks, and you can tell that the disparity is still there. It's 100% still there. Is it going to show up in the data? No. There are studies on inequity and disaster recovery, but you're not going to see the data, because some of these nonprofits are very wary about putting that data out there." data-es="En el caso de que las personas no calificaran para préstamos de la SBA, no podían permitirse asumir otra deuda, y muchas estuvieron sacando dinero de sus propios bolsillos para pagarles a sus empleados durante semanas. Aún se nota que esa disparidad existe. Definitivamente sigue ahí. ¿Va a reflejarse en los datos? No. Existen estudios sobre la desigualdad y la recuperación después de desastres, pero no vas a ver los datos reales.">If folks couldn't qualify for SBA loans, they couldn't afford to take another loan, and they were taking money out of their own pockets to pay their employees for weeks, and you can tell that the disparity is still there. It's 100% still there.</p>
+        </div>
+      </div>
+
+      <div class="section-divider"><span class="t" data-en="Coming together" data-es="La unión de la comunidad">Coming together</span></div>
+
+      <div class="pq-trigger" data-pq="pq4">
+        <div class="qa-block">
+          <p class="qa-q t" data-en="Q: Have you noticed any psychological or social effects among the Latino community in Asheville?" data-es="P: ¿Has notado algún impacto psicológico en la salud mental, o incluso efectos sociales, dentro de la comunidad latina en Asheville?">Q: Have you noticed any psychological or social effects among the Latino community in Asheville?</p>
+          <p class="qa-a t" data-en="We had immigration agents here, and people were seeing folks in ICE gear, in their car. Nonprofits asked local officials to have them wear different clothing because that was preventing people from going to get the help that they need, like food, water and rental assistance. We also had some ICE operations that began in Charlotte a few months ago, and that played a part too, where people were afraid to go out of their house, and even families kept their kids at home." data-es="Tuvimos agentes migratorios aquí, y la gente veía a personas con equipo de ICE en sus vehículos. Las organizaciones sin fines de lucro les pidieron a los funcionarios locales que usaran ropa diferente porque eso estaba impidiendo que las personas fueran a buscar la ayuda que necesitaban, como comida, agua y asistencia para la renta. También tuvimos algunos operativos de ICE que comenzaron en Charlotte hace unos meses, lo que provocó que la gente tuviera miedo de salir de sus casas, e incluso algunas familias mantenían a sus hijos en casa.">We had immigration agents here, and people were seeing folks in ICE gear, in their car. Nonprofits asked local officials to have them wear different clothing because that was preventing people from going to get the help that they need. People were afraid to go out of their house, and even families kept their kids at home.</p>
+        </div>
+        <div class="qa-block">
+          <p class="qa-q t" data-en="Q: How did members of the Latino community support one another during the disaster, beyond the work of nonprofits?" data-es="P: ¿Cómo se apoyaron entre sí los miembros de la comunidad latina durante el desastre, más allá del trabajo de las organizaciones sin fines de lucro?">Q: How did members of the Latino community support one another during the disaster, beyond the work of nonprofits?</p>
+          <p class="qa-a t" data-en="You saw people really pulling together, bringing resources together, trying to figure out what was going on. If somebody had a chainsaw, they were bringing it out, chopping down trees so people could get through and get help. People really came together at that time, every single person was looking out for each other." data-es="Se veía a la gente realmente unirse, compartir recursos y tratar de entender lo que estaba pasando. Si alguien tenía una motosierra, la sacaba y ayudaba a cortar árboles para que las personas pudieran pasar y conseguir ayuda. La gente realmente se unió durante ese momento. Todos estaban pendientes los unos de los otros.">You saw people really pulling together, bringing resources together, trying to figure out what was going on. If somebody had a chainsaw, they were bringing it out, chopping down trees so people could get through and get help. People really came together at that time, every single person was looking out for each other.</p>
+          <p class="qa-a t" data-en='"Hey, you need more water? You need food? I got you." "There are trees blocking the way? OK, we&apos;ve got a couple people with chainsaws, we&apos;ll chop it down." Everybody was very together at that time, because we had no idea what was going on.' data-es='"Ey, ¿Necesitas más agua? ¿Necesitas comida? Yo te ayudo." "¿Hay árboles bloqueando el camino? OK, tenemos a algunas personas con motosierras, vamos a cortarlos." Todos estábamos muy unidos en ese momento, porque no teníamos idea de lo que estaba pasando.'>"Hey, you need more water? You need food? I got you." "There are trees blocking the way? OK, we've got a couple people with chainsaws, we'll chop it down." Everybody was very together at that time, because we had no idea what was going on.</p>
+        </div>
+      </div>
+
+      <div class="pq-trigger" data-pq="pq5"><p>&nbsp;</p></div>
+
+      <div class="section-divider"><span class="t" data-en="Systemic change" data-es="Cambio sistémico">Systemic change</span></div>
+
+      <div class="pq-trigger" data-pq="pq6">
+        <div class="qa-block">
+          <p class="qa-q t" data-en="Q: Did Hurricane Helene expose issues in how bilingual disaster recovery operates, and are there efforts to improve those systems?" data-es="P: ¿Crees que el huracán Helene expuso los problemas que produce la poca comunicación bilingüe en la recuperación de desastres, y existen esfuerzos para mejorar esos sistemas?">Q: Did Hurricane Helene expose issues in how bilingual disaster recovery operates, and are there efforts to improve those systems?</p>
+          <p class="qa-a t" data-en="The county had a bilingual communication specialist with strong relationships with nonprofits, but it still showed gaps. From talking to emergency communications staff, everyone agrees they know how to do things better, but there are still major barriers to providing language access. Staffing is a huge issue, and a lot of the time people want to expand outreach, but they don't have the funding, so it becomes a one-person operation." data-es="El condado contaba con una especialista en comunicaciones bilingües que tenía relaciones sólidas con organizaciones sin fines de lucro, pero aún así quedaron en evidencia varias deficiencias. Por lo que he hablado con el personal de comunicaciones de emergencia, todos coinciden en que saben cómo hacer las cosas mejor, pero todavía existen barreras importantes para proporcionar acceso lingüístico. La falta de personal es un problema enorme y muchas veces las personas quieren ampliar el alcance comunitario, pero no cuentan con los fondos necesarios.">The county had a bilingual communication specialist with strong relationships with nonprofits, but it still showed gaps. Staffing is a huge issue, and a lot of the time people want to expand outreach, but they don't have the funding, so it becomes a one-person operation.</p>
+        </div>
+      </div>
+
+      <div class="pq-trigger" data-pq="pq7">
+        <div class="qa-block">
+          <p class="qa-a t" data-en="Counties are trying to improve, but there are still barriers like staffing and funding, and it's hard to retain bilingual workers. The county was sharing information in Spanish on social media and doing daily briefings, but if people didn't know where to access that information, it didn't help. A lot of communication still came down to word of mouth. There's still a long way to go, and there's no perfect system yet." data-es="Los condados están tratando de mejorar, pero todavía existen barreras como la falta de personal y financiamiento, y también es difícil retener a trabajadores bilingües. El condado compartía información en español a través de redes sociales y realizaba reuniones informativas diarias, pero si las personas no sabían como y donde acceder a esa información, entonces no servía de mucho. Gran parte de la comunicación seguía dependiendo del boca a boca. Todavía queda un largo camino por recorrer y aún no existe un sistema perfecto.">Counties are trying to improve, but there are still barriers like staffing and funding, and it's hard to retain bilingual workers. The county was sharing information in Spanish on social media and doing daily briefings, but if people didn't know where to access that information, it didn't help. A lot of communication still came down to word of mouth.</p>
+        </div>
+        <div class="qa-block">
+          <p class="qa-q t" data-en="Q: As one of the few Spanish-speaking journalists in the area, how did you approach outreach to Spanish-speaking residents?" data-es="P: Como uno de los pocos periodistas hispanohablantes en la región, ¿Cómo abordaste el acercamiento a los residentes de habla hispana?">Q: As one of the few Spanish-speaking journalists in the area, how did you approach outreach to Spanish-speaking residents?</p>
+          <p class="qa-a t" data-en="The challenge was getting information out effectively. I was pulling updates from nonprofits and local towns about resource distribution centers, but if people aren't listening, you're essentially speaking to nobody. The briefings kept getting pushed back and were airing at random times, sometimes overnight. If people didn't have a hand-crank radio or weren't in their car, they weren't going to hear it." data-es="El desafío era lograr difundir la información de manera efectiva. Yo estaba recopilando actualizaciones de organizaciones sin fines de lucro y de municipios locales sobre centros de distribución de recursos, pero si la gente no estaba escuchando, básicamente estabas hablándole a nadie. Las reuniones informativas seguían retrasándose y salían al aire a horas aleatorias, a veces incluso durante la madrugada. Si las personas no tenían una radio de manivela o no estaban en su carro, simplemente no iban a escuchar la información.">The challenge was getting information out effectively. I was pulling updates from nonprofits and local towns about resource distribution centers, but if people aren't listening, you're essentially speaking to nobody. The briefings kept getting pushed back and were airing at random times, sometimes overnight.</p>
+          <p class="qa-a t" data-en="I brought in Theresa Serrano and a FEMA bilingual communication specialist and interviewed nonprofits in Spanish whenever I could. But it still came back to: Who was actually listening?" data-es="Traje a Theresa Serrano y a una especialista bilingüe en comunicaciones de FEMA, y entrevisté a organizaciones sin fines de lucro en español siempre que podía. Pero al final, la pregunta seguía siendo: ¿Quién estaba realmente escuchando?">I brought in Theresa Serrano and a FEMA bilingual communication specialist and interviewed nonprofits in Spanish whenever I could. But it still came back to: Who was actually listening?</p>
+        </div>
+      </div>
+
+      <div class="pq-trigger" data-pq="pq8">
+        <div class="qa-block">
+          <p class="qa-a t" data-en="I was trying to take a broader look at language access across counties. Most did the best they could with the resources they had, but there's a big difference between Asheville and more rural areas. In some places, they had Spanish-speaking officers going door to door, warning communities through word of mouth." data-es="Yo estaba tratando de analizar el acceso lingüístico de manera más amplia entre los distintos condados. La mayoría hizo lo mejor que pudo con los recursos que tenía, pero existe una gran diferencia entre Asheville y las áreas más rurales. En algunos lugares, habían oficiales hispanohablantes yendo de puerta en puerta, advirtiendo a las comunidades de manera personalizada.">I was trying to take a broader look at language access across counties. Most did the best they could with the resources they had, but there's a big difference between Asheville and more rural areas. In some places, they had Spanish-speaking officers going door to door, warning communities through word of mouth.</p>
+        </div>
+        <div class="qa-block">
+          <p class="qa-q t" data-en="Q: Did the language barrier look different in rural areas compared to Asheville?" data-es="P: ¿La barrera del idioma se veía diferente en estas áreas rurales en comparación con Asheville?">Q: Did the language barrier look different in rural areas compared to Asheville?</p>
+          <p class="qa-a t" data-en="I think so, for sure. You have a lot of bilingual communication staff in Asheville, but in more rural counties, you're lucky if you have one, and it's hard to keep that person around. In those areas, you're asking one communications person to handle everything in Spanish by themselves, even while going through the disaster too. Here, you have multiple people working in communications, so there's definitely a difference." data-es="Creo que sí, definitivamente. En Asheville hay mucho personal bilingüe en comunicaciones, pero en los condados más rurales tienes suerte si siquiera hay una sola persona, y además es difícil mantenerla en ese puesto. En esas áreas, le estás pidiendo a una sola persona de comunicaciones que maneje todo en español por su cuenta, incluso mientras también atraviesa el desastre. Aquí, en cambio, tienes varias personas trabajando en comunicaciones, así que definitivamente existe una diferencia.">I think so, for sure. You have a lot of bilingual communication staff in Asheville, but in more rural counties, you're lucky if you have one, and it's hard to keep that person around. In those areas, you're asking one communications person to handle everything in Spanish by themselves.</p>
+          <p class="qa-a t" data-en="We need a better system. The Spanish-speaking population is the fastest-growing in the region, but the language barrier is still there. Local governments want to improve their relationship with these communities, but language access isn't required by law, so a lot of the time they're meeting the bare minimum. It's a very complicated issue." data-es="Necesitamos un mejor sistema. La población hispanohablante es la que más rápido está creciendo en la región, pero la barrera del idioma sigue existiendo. Los gobiernos locales quieren mejorar su relación con estas comunidades, pero el acceso lingüístico no es obligatorio por ley, así que muchas veces solo cumplen con lo mínimo. Es un tema muy complicado.">We need a better system. The Spanish-speaking population is the fastest-growing in the region, but the language barrier is still there. Local governments want to improve their relationship with these communities, but language access isn't required by law, so a lot of the time they're meeting the bare minimum.</p>
+        </div>
+      </div>
+
+      <div class="pq-trigger" data-pq="pq9">
+        <div class="qa-block">
+          <p class="qa-q t" data-en="Q: In a broader sense, what do you wish readers better understood about language barriers?" data-es="P: En un sentido más amplio, ¿Qué desearías que los lectores entendieran mejor sobre las barreras lingüísticas?">Q: In a broader sense, what do you wish readers better understood about language barriers?</p>
+          <p class="qa-a t" data-en="I think there still is a language barrier, and it's complicated. Local governments want to do a better job, but it's not as simple as hiring one bilingual person and expecting them to handle everything. That puts a huge burden on one person." data-es="Creo que todavía existe una barrera lingüística, y es algo complicado. Los gobiernos locales quieren hacer un mejor trabajo, pero no es tan simple como contratar a una sola persona bilingüe y esperar que pueda encargarse de todo. Eso pone una carga enorme sobre una sola persona.">I think there still is a language barrier, and it's complicated. Local governments want to do a better job, but it's not as simple as hiring one bilingual person and expecting them to handle everything. That puts a huge burden on one person.</p>
+          <p class="qa-a t" data-en="With natural disasters becoming more frequent, language access is something we really need to take seriously. It comes down to how we provide information to different communities and whether we're doing it in the best way possible. How do we improve, how do we prepare people ahead of time, and how do we make sure the message actually reaches them and is taken seriously?" data-es="Con los desastres naturales volviéndose cada vez más frecuentes, el acceso lingüístico es algo que realmente debemos tomar en serio. Todo se reduce a cómo proporcionamos información a distintas comunidades y si lo estamos haciendo de la mejor manera posible. ¿Cómo mejoramos? ¿Cómo preparamos a las personas con anticipación? ¿Y cómo nos aseguramos de que el mensaje realmente les llegue y sea tomado en serio?">With natural disasters becoming more frequent, language access is something we really need to take seriously. It comes down to how we provide information to different communities and whether we're doing it in the best way possible. How do we improve, how do we prepare people ahead of time, and how do we make sure the message actually reaches them and is taken seriously?</p>
+        </div>
+      </div>
+
+    </article>
+
+    <!-- PULL QUOTE RAIL -->
+    <div class="pull-quote-rail">
+
+      <div class="pull-quote-card" id="pq1">
+        <div class="pq-label t" data-en="Voice from the community" data-es="Voz de la comunidad">Voice from the community</div>
+        <div class="pq-audio-player">
+          <div class="pq-audio-controls">
+            <button class="pq-play-btn" onclick="toggleAudio('audio1','wave1',this)"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button>
+            <div class="pq-waveform" id="wave1">
+              <div class="pq-bar" style="height:40%"></div><div class="pq-bar" style="height:65%"></div><div class="pq-bar" style="height:50%"></div><div class="pq-bar" style="height:80%"></div><div class="pq-bar" style="height:45%"></div><div class="pq-bar" style="height:70%"></div><div class="pq-bar" style="height:55%"></div><div class="pq-bar" style="height:90%"></div><div class="pq-bar" style="height:60%"></div><div class="pq-bar" style="height:35%"></div>
+            </div>
+          </div>
+          <audio id="audio1" src="audio/latinos/pullout%20quote%201-%20Francisco%20Chavez.mp3"></audio>
+          <div class="pq-audio-label t" data-en="Audio in Spanish" data-es="Audio en español">Audio in Spanish</div>
+        </div>
+        <div class="pq-translation-label t" data-en="English translation" data-es="En español">English translation</div>
+        <p class="pq-quote-text t" data-en='"We were really shocked in the beginning, because we don&#39;t know what&#39;s going on. The news didn&#39;t say very much about the rain coming. We don&#39;t have this emergency system — it was not working. We lost everything. Communication, power — just everything that we live with every day."' data-es='"Al principio estábamos realmente en shock, porque no sabíamos lo que estaba pasando. Las noticias realmente no decían mucho más allá de que iba a llover bastante. No esperábamos que viniera tanta lluvia. No teníamos un sistema de emergencia que estuviera funcionando. Perdimos todo — la comunicación, la electricidad… Todo con lo que vivimos día a día."'>"We were really shocked in the beginning, because we don't know what's going on. The news didn't say very much about the rain coming. We don't have this emergency system — it was not working. We lost everything. Communication, power — just everything that we live with every day."</p>
+        <div class="pq-speaker">Francisco Chavez · Community Engagement Manager</div>
+      </div>
+
+      <div class="pull-quote-card" id="pq2">
+        <div class="pq-label t" data-en="Voice from the community" data-es="Voz de la comunidad">Voice from the community</div>
+        <div class="pq-audio-player">
+          <div class="pq-audio-controls">
+            <button class="pq-play-btn" onclick="toggleAudio('audio2','wave2',this)"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button>
+            <div class="pq-waveform" id="wave2">
+              <div class="pq-bar" style="height:55%"></div><div class="pq-bar" style="height:75%"></div><div class="pq-bar" style="height:40%"></div><div class="pq-bar" style="height:85%"></div><div class="pq-bar" style="height:60%"></div><div class="pq-bar" style="height:50%"></div><div class="pq-bar" style="height:90%"></div><div class="pq-bar" style="height:45%"></div><div class="pq-bar" style="height:70%"></div><div class="pq-bar" style="height:35%"></div>
+            </div>
+          </div>
+          <audio id="audio2" src="audio/latinos/pullout%20quote%202-%20Francisco%20Chavez.mp3"></audio>
+          <div class="pq-audio-label t" data-en="Audio in Spanish" data-es="Audio en español">Audio in Spanish</div>
+        </div>
+        <div class="pq-translation-label t" data-en="English translation" data-es="En español">English translation</div>
+        <p class="pq-quote-text t" data-en='"I think what I bring as being a Latino, an immigrant from a different country — I understand the same barriers I had in the beginning, like language, transportation, a job. The community has to trust you. If they don&#39;t trust you, they will not come to you, they will not open up to you."' data-es='"Creo que lo que he aportado, como ciudadano latino e inmigrante, es que entiendo y he vivido las mismas barreras que enfrenta nuestra comunidad: el idioma, el transporte, encontrar trabajo. La comunidad tiene que confiar en ti. Si no confían en ti, no acudirán a ti, ni se abrirán contigo."'>"I think what I bring as being a Latino, an immigrant from a different country — I understand the same barriers I had in the beginning, like language, transportation, a job. The community has to trust you. If they don't trust you, they will not come to you, they will not open up to you."</p>
+        <div class="pq-speaker">Francisco Chavez · Community Engagement Manager</div>
+      </div>
+
+      <div class="pull-quote-card" id="pq3">
+        <div class="pq-label t" data-en="Voice from the community" data-es="Voz de la comunidad">Voice from the community</div>
+        <div class="pq-audio-player">
+          <div class="pq-audio-controls">
+            <button class="pq-play-btn" onclick="toggleAudio('audio3','wave3',this)"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button>
+            <div class="pq-waveform" id="wave3">
+              <div class="pq-bar" style="height:70%"></div><div class="pq-bar" style="height:45%"></div><div class="pq-bar" style="height:85%"></div><div class="pq-bar" style="height:55%"></div><div class="pq-bar" style="height:90%"></div><div class="pq-bar" style="height:40%"></div><div class="pq-bar" style="height:65%"></div><div class="pq-bar" style="height:80%"></div><div class="pq-bar" style="height:50%"></div><div class="pq-bar" style="height:60%"></div>
+            </div>
+          </div>
+          <audio id="audio3" src="audio/latinos/pullout%20quote%203-%20Francisco%20Chavez.mp3"></audio>
+          <div class="pq-audio-label t" data-en="Audio in Spanish" data-es="Audio en español">Audio in Spanish</div>
+        </div>
+        <div class="pq-translation-label t" data-en="English translation" data-es="En español">English translation</div>
+        <p class="pq-quote-text t" data-en='"A lot of the French Broad River has restaurants and places where people were working, and then they lost their job — that was the only income they had. People who were working near those businesses lost everything. They lost their jobs, their businesses. Every way we turned, it was an issue."' data-es='"A lo largo del río French Broad habían muchos restaurantes y otros lugares donde la gente trabajaba, luego de la tormenta tropical perdieron sus empleos, y en la mayoría de los casos era su única fuente de ingresos. Mucha gente que trabajaba cerca del río lo perdió todo. Perdieron sus trabajos, perdieron sus negocios. Hacia donde uno mirara, había problemas."'>"A lot of the French Broad River has restaurants and places where people were working, and then they lost their job — that was the only income they had. People who were working near those businesses lost everything. They lost their jobs, their businesses. Every way we turned, it was an issue."</p>
+        <div class="pq-speaker">Francisco Chavez · Community Engagement Manager</div>
+      </div>
+
+      <div class="pull-quote-card" id="pq4">
+        <div class="pq-label t" data-en="Voice from the community" data-es="Voz de la comunidad">Voice from the community</div>
+        <div class="pq-audio-player">
+          <div class="pq-audio-controls">
+            <button class="pq-play-btn" onclick="toggleAudio('audio4','wave4',this)"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button>
+            <div class="pq-waveform" id="wave4">
+              <div class="pq-bar" style="height:60%"></div><div class="pq-bar" style="height:80%"></div><div class="pq-bar" style="height:45%"></div><div class="pq-bar" style="height:90%"></div><div class="pq-bar" style="height:55%"></div><div class="pq-bar" style="height:70%"></div><div class="pq-bar" style="height:40%"></div><div class="pq-bar" style="height:85%"></div><div class="pq-bar" style="height:65%"></div><div class="pq-bar" style="height:50%"></div>
+            </div>
+          </div>
+          <audio id="audio4" src="audio/latinos/pullout%20quote%204-%20Francisco%20Chavez.mp3"></audio>
+          <div class="pq-audio-label t" data-en="Audio in Spanish" data-es="Audio en español">Audio in Spanish</div>
+        </div>
+        <div class="pq-translation-label t" data-en="English translation" data-es="En español">English translation</div>
+        <p class="pq-quote-text t" data-en='"The only thing that came to my mind at that point was just how we can help."' data-es='"Lo único que me pasaba por la mente en ese momento era cómo podíamos ayudar."'>"The only thing that came to my mind at that point was just how we can help."</p>
+        <div class="pq-speaker">Francisco Chavez · Community Engagement Manager</div>
+      </div>
+
+      <div class="pull-quote-card" id="pq5">
+        <div class="pq-label t" data-en="Voice from the community" data-es="Voz de la comunidad">Voice from the community</div>
+        <div class="pq-audio-player">
+          <div class="pq-audio-controls">
+            <button class="pq-play-btn" onclick="toggleAudio('audio5','wave5',this)"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button>
+            <div class="pq-waveform" id="wave5">
+              <div class="pq-bar" style="height:50%"></div><div class="pq-bar" style="height:70%"></div><div class="pq-bar" style="height:85%"></div><div class="pq-bar" style="height:45%"></div><div class="pq-bar" style="height:60%"></div><div class="pq-bar" style="height:90%"></div><div class="pq-bar" style="height:55%"></div><div class="pq-bar" style="height:75%"></div><div class="pq-bar" style="height:40%"></div><div class="pq-bar" style="height:65%"></div>
+            </div>
+          </div>
+          <audio id="audio5" src="audio/latinos/pullout%20quote%205-%20Francisco%20Chavez.mp3"></audio>
+          <div class="pq-audio-label t" data-en="Audio in Spanish" data-es="Audio en español">Audio in Spanish</div>
+        </div>
+        <div class="pq-translation-label t" data-en="English translation" data-es="En español">English translation</div>
+        <p class="pq-quote-text t" data-en='"We don&#39;t have any communication, we don&#39;t have any phone service, nothing. People were walking around the streets and saying, &#39;We&#39;re going to do a cookout near the Swannanoa library.&#39; They brought their grills, they brought food from their refrigerators because everything was going to go bad. We shared it together. It was incredible, overwhelming."' data-es='"No teníamos ninguna forma de comunicación, no teníamos señal telefónica, nada. Entonces la gente caminaba por las calles y simplemente les decían: &#39;Ey, vamos a hacer una parrillada cerca de la biblioteca de Swannanoa.&#39; Muchísimas personas comenzaron a llegar a ese lugar, llevando parrillas y la comida que tenían en sus refrigeradores, porque todo se iba a echar a perder, así que preferimos compartirlo entre todos. Fue increíble, y gratificante."'>"We don't have any communication, we don't have any phone service, nothing. People were walking around the streets and saying, 'We're going to do a cookout near the Swannanoa library.' They brought their grills, they brought food. We shared it together. It was incredible, overwhelming."</p>
+        <div class="pq-speaker">Francisco Chavez · Community Engagement Manager</div>
+      </div>
+
+      <div class="pull-quote-card" id="pq6">
+        <div class="pq-label t" data-en="Voice from government" data-es="Voz del gobierno">Voice from government</div>
+        <div class="pq-audio-player">
+          <div class="pq-audio-controls">
+            <button class="pq-play-btn" onclick="toggleAudio('audio6','wave6',this)"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button>
+            <div class="pq-waveform" id="wave6">
+              <div class="pq-bar" style="height:65%"></div><div class="pq-bar" style="height:85%"></div><div class="pq-bar" style="height:45%"></div><div class="pq-bar" style="height:75%"></div><div class="pq-bar" style="height:90%"></div><div class="pq-bar" style="height:55%"></div><div class="pq-bar" style="height:70%"></div><div class="pq-bar" style="height:40%"></div><div class="pq-bar" style="height:80%"></div><div class="pq-bar" style="height:60%"></div>
+            </div>
+          </div>
+          <audio id="audio6" src="audio/latinos/pullout%20quote%206REAL-%20Johanna%20Cano.mp3"></audio>
+          <div class="pq-audio-label t" data-en="Audio in Spanish" data-es="Audio en español">Audio in Spanish</div>
+        </div>
+        <div class="pq-translation-label t" data-en="English translation" data-es="En español">English translation</div>
+        <p class="pq-quote-text t" data-en='"I really, truly believe that the role we created — bilingual communication specialist — was really important leading up to Helene. Building trust is really important. Just having someone who represents your local government, who looks like you and speaks your language — people just open up to you more."' data-es='"Realmente creo que el puesto que creamos, el de especialista en comunicaciones bilingües, fue muy importante antes de que llegara Helene. Construir confianza es fundamental, y creo que en el nivel más básico, simplemente tener a alguien que represente al gobierno local, que se parezca a ti y hable tu mismo idioma — la gente se abre más contigo."'>"I really, truly believe that the role we created — bilingual communication specialist — was really important leading up to Helene. Building trust is really important. Just having someone who represents your local government, who looks like you and speaks your language — people just open up to you more."</p>
+        <div class="pq-speaker">Johanna Cano · Public Information Officer, Buncombe County</div>
+      </div>
+
+      <div class="pull-quote-card" id="pq7">
+        <div class="pq-label t" data-en="Voice from government" data-es="Voz del gobierno">Voice from government</div>
+        <div class="pq-audio-player">
+          <div class="pq-audio-controls">
+            <button class="pq-play-btn" onclick="toggleAudio('audio7','wave7',this)"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button>
+            <div class="pq-waveform" id="wave7">
+              <div class="pq-bar" style="height:75%"></div><div class="pq-bar" style="height:50%"></div><div class="pq-bar" style="height:90%"></div><div class="pq-bar" style="height:60%"></div><div class="pq-bar" style="height:40%"></div><div class="pq-bar" style="height:80%"></div><div class="pq-bar" style="height:55%"></div><div class="pq-bar" style="height:70%"></div><div class="pq-bar" style="height:85%"></div><div class="pq-bar" style="height:45%"></div>
+            </div>
+          </div>
+          <audio id="audio7" src="audio/latinos/pullout%20quote%207REAL-%20Johanna%20Cano.mp3"></audio>
+          <div class="pq-audio-label t" data-en="Audio in Spanish" data-es="Audio en español">Audio in Spanish</div>
+        </div>
+        <div class="pq-translation-label t" data-en="English translation" data-es="En español">English translation</div>
+        <p class="pq-quote-text t" data-en='"The storm hit us Friday and then Saturday, we had community briefings. Sunday morning, the whole team showed up to our Emergency Operations Center, and from that day on, all of our community briefings were interpreted in Spanish, every single one of them. Our bilingual communication specialist did all of them on her own for days, in and out."' data-es='"La tormenta nos golpeó el viernes y, para el sábado, ya teníamos reuniones informativas comunitarias. El domingo por la mañana, prácticamente todo el equipo se presentó en nuestro Centro de Operaciones de Emergencia y, desde ese día, todas nuestras reuniones informativas comunitarias fueron interpretadas al español, todas y cada una de ellas. Nuestra especialista en comunicaciones bilingüe las hizo sola durante días enteros, entrando y saliendo continuamente."'>"The storm hit us Friday and then Saturday, we had community briefings. Sunday morning, the whole team showed up to our Emergency Operations Center, and from that day on, all of our community briefings were interpreted in Spanish, every single one of them."</p>
+        <div class="pq-speaker">Johanna Cano · Public Information Officer, Buncombe County</div>
+      </div>
+
+      <div class="pull-quote-card" id="pq8">
+        <div class="pq-label t" data-en="Voice from government" data-es="Voz del gobierno">Voice from government</div>
+        <div class="pq-audio-player">
+          <div class="pq-audio-controls">
+            <button class="pq-play-btn" onclick="toggleAudio('audio8','wave8',this)"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button>
+            <div class="pq-waveform" id="wave8">
+              <div class="pq-bar" style="height:45%"></div><div class="pq-bar" style="height:80%"></div><div class="pq-bar" style="height:60%"></div><div class="pq-bar" style="height:90%"></div><div class="pq-bar" style="height:50%"></div><div class="pq-bar" style="height:75%"></div><div class="pq-bar" style="height:35%"></div><div class="pq-bar" style="height:65%"></div><div class="pq-bar" style="height:85%"></div><div class="pq-bar" style="height:55%"></div>
+            </div>
+          </div>
+          <audio id="audio8" src="audio/latinos/pullout%20quote%208-%20Johanna%20Cano.mp3"></audio>
+          <div class="pq-audio-label t" data-en="Audio in Spanish" data-es="Audio en español">Audio in Spanish</div>
+        </div>
+        <div class="pq-translation-label t" data-en="English translation" data-es="En español">English translation</div>
+        <p class="pq-quote-text t" data-en='"We know that people don&#39;t tend to come to their government for information — we know we have to go to where they are, and especially with our Spanish-speaking population."' data-es='"Sabemos que la gente no suele acudir al gobierno para obtener información. Sabemos que nosotros tenemos que ir hacia donde están las personas, especialmente cuando se trata de nuestra población hispanohablante."'>"We know that people don't tend to come to their government for information — we know we have to go to where they are, and especially with our Spanish-speaking population."</p>
+        <div class="pq-speaker">Johanna Cano · Public Information Officer, Buncombe County</div>
+      </div>
+
+      <div class="pull-quote-card" id="pq9">
+        <div class="pq-label t" data-en="Voice from government" data-es="Voz del gobierno">Voice from government</div>
+        <div class="pq-audio-player">
+          <div class="pq-audio-controls">
+            <button class="pq-play-btn" onclick="toggleAudio('audio9','wave9',this)"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></button>
+            <div class="pq-waveform" id="wave9">
+              <div class="pq-bar" style="height:55%"></div><div class="pq-bar" style="height:75%"></div><div class="pq-bar" style="height:40%"></div><div class="pq-bar" style="height:85%"></div><div class="pq-bar" style="height:65%"></div><div class="pq-bar" style="height:50%"></div><div class="pq-bar" style="height:90%"></div><div class="pq-bar" style="height:70%"></div><div class="pq-bar" style="height:45%"></div><div class="pq-bar" style="height:60%"></div>
+            </div>
+          </div>
+          <audio id="audio9" src="audio/latinos/pullout%20quote%209-%20Johanna%20Cano.mp3"></audio>
+          <div class="pq-audio-label t" data-en="Audio in Spanish" data-es="Audio en español">Audio in Spanish</div>
+        </div>
+        <div class="pq-translation-label t" data-en="English translation" data-es="En español">English translation</div>
+        <p class="pq-quote-text t" data-en='"It went beyond translating. A lot of people are like, &#39;we&#39;ll just translate it,&#39; but it was really important to make sure we not only translate it, but make sure it made sense in the language that people speak — plain language — and making sure that we had that trust built and those partnerships built ahead of time."' data-es='"Fue más allá de simplemente traducir. Creo que mucha gente piensa: &#39;Bueno, solo lo traducimos,&#39; pero era realmente importante asegurarnos no solo de traducir la información, sino también de que tuviera sentido en el idioma que la gente habla y en la manera en que realmente se comunica, usando un lenguaje claro. También era importante asegurarnos de haber construido esa confianza y esas alianzas con anticipación."'>"It went beyond translating. It was really important to make sure we not only translate it, but make sure it made sense in the language that people speak — plain language — and making sure that we had that trust built and those partnerships built ahead of time."</p>
+        <div class="pq-speaker">Johanna Cano · Public Information Officer, Buncombe County</div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p class="footer-title">Caught in the Current</p>
+  <p class="footer-sub">Helene Recovery in Asheville and Beyond · Northeastern University · 2026</p>
+</footer>
+
+<script>
+let currentLang = 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('btnEN2').classList.toggle('active', lang === 'en');
+  document.getElementById('btnES2').classList.toggle('active', lang === 'es');
+  document.querySelectorAll('.t[data-en][data-es]').forEach(el => {
+    el.textContent = el.getAttribute('data-' + lang);
+  });
+}
+
+const triggers = document.querySelectorAll('.pq-trigger');
+let currentCard = null;
+
+function showCard(id) {
+  if (currentCard === id) return;
+  if (currentCard) {
+    const old = document.getElementById(currentCard);
+    if (old) {
+      old.classList.remove('visible');
+      old.classList.add('exiting');
+      setTimeout(() => old.classList.remove('exiting'), 500);
+    }
+  }
+  const next = document.getElementById(id);
+  if (next) { next.classList.add('visible'); currentCard = id; }
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) showCard(entry.target.getAttribute('data-pq'));
+  });
+}, { threshold: 0.25, rootMargin: '-10% 0px -10% 0px' });
+
+triggers.forEach(t => observer.observe(t));
+
+let currentAudio = null, currentWave = null, currentBtn = null;
+
+function toggleAudio(audioId, waveId, btn) {
+  const audio = document.getElementById(audioId);
+  const wave = document.getElementById(waveId);
+  const icon = btn.querySelector('svg');
+  if (currentAudio && currentAudio !== audio) {
+    currentAudio.pause(); currentAudio.currentTime = 0;
+    currentWave.classList.remove('playing');
+    currentBtn.querySelector('svg').innerHTML = '<polygon points="5,3 19,12 5,21"/>';
+  }
+  if (audio.paused) {
+    audio.play().catch(() => {});
+    wave.classList.add('playing');
+    icon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+    currentAudio = audio; currentWave = wave; currentBtn = btn;
+  } else {
+    audio.pause(); wave.classList.remove('playing');
+    icon.innerHTML = '<polygon points="5,3 19,12 5,21"/>'; currentAudio = null;
+  }
+  audio.addEventListener('ended', () => {
+    wave.classList.remove('playing');
+    icon.innerHTML = '<polygon points="5,3 19,12 5,21"/>'; currentAudio = null;
+  }, { once: true });
+}
+</script>
+</body>
+</html>

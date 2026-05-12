@@ -110,7 +110,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ── PARAGRAPHS ── */
 .article-main p {
-  font-size: .92rem; line-height: 1.98;
+  font-size: 16px; line-height: 1.98;
   color: rgba(34,64,80,.86); margin-bottom: 1.35rem;
 }
 .article-main > p:first-child::first-letter {
@@ -268,7 +268,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
   <div class="story-hero-bg"></div>
   <div class="story-hero-overlay"></div>
   <div class="hero-inner">
-    <h1 class="story-headline">When signals saved the day</h1>
+    <h1 class="story-headline">Radio to the rescue</h1>
     <p class="story-dek">Phones failed after Helene, but amateur radio operators summoned help and supplies</p>
     <p class="story-byline">By <span>Claire Ogden</span></p>
     <button class="soundscape-btn" id="soundscapeBtn" onclick="toggleSound()">
@@ -347,7 +347,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
     <p class="photo-caption">Justin Hamel with his radio.</p>
   </div>
   <div>
-    <img src="images/story/HAM/3b.heic" alt="" style="width: 100%; height: 280px; object-fit: cover; border-radius: 10px; display: block;">
+    <img src="images/story/HAM/3b.png" alt="" style="width: 100%; height: 280px; object-fit: cover; border-radius: 10px; display: block;">
     <p class="photo-caption">Hamel building a radio repeater.</p>
   </div>
 </div>
@@ -376,45 +376,93 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
 
       <p>In fact, across the Western North Carolina area, GMRS license applications have ballooned since the storm. In the year after Helene, the number of GMRS licenses approved in North Carolina increased by 36.34%, according to <a href="https://www.fcc.gov/licensing-databases/licensing" target="_blank" rel="noopener noreferrer">license data from the FCC</a>. The increase in Western North Carolina has been more dramatic: From late September 2024 to 2025, GMRS licenses increased 575% in Fairview, 600% in Swannanoa and 517% in Black Mountain.</p>
 
-      <div class="data-card" id="dataCard">
-        <div class="data-card-label">By the numbers</div>
-        <h3>GMRS license growth after Helene<br><span style="font-weight:400;color:rgba(34,64,80,.6);font-size:.8rem;">Sept. 27, 2024 – Sept. 27, 2025 vs. prior year</span></h3>
-        <div class="bar-chart">
-          <div class="bar-row">
-            <div class="bar-meta">
-              <span class="bar-location">Swannanoa</span>
-              <span class="bar-pct">+600%</span>
-            </div>
-            <div class="bar-track"><div class="bar-fill" data-width="100"></div></div>
-            <div class="bar-sublabel">4 licenses → 28 licenses</div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-meta">
-              <span class="bar-location">Fairview</span>
-              <span class="bar-pct">+575%</span>
-            </div>
-            <div class="bar-track"><div class="bar-fill" data-width="95.8"></div></div>
-            <div class="bar-sublabel">4 licenses → 27 licenses</div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-meta">
-              <span class="bar-location">Black Mountain</span>
-              <span class="bar-pct">+517%</span>
-            </div>
-            <div class="bar-track"><div class="bar-fill" data-width="86.2"></div></div>
-            <div class="bar-sublabel">6 licenses → 37 licenses</div>
-          </div>
-          <div class="bar-row" style="margin-top:.4rem; padding-top:.7rem; border-top: 1px solid rgba(34,64,80,.08);">
-            <div class="bar-meta">
-              <span class="bar-location" style="color:rgba(34,64,80,.55); font-weight:400;">North Carolina (statewide)</span>
-              <span class="bar-pct" style="color: var(--teal);">+36%</span>
-            </div>
-            <div class="bar-track"><div class="bar-fill" data-width="6.1" style="background: linear-gradient(90deg, var(--teal), rgba(2,100,90,.4));"></div></div>
-            <div class="bar-sublabel">3,167 licenses → 4,318 licenses</div>
-          </div>
-        </div>
-        <p class="data-note">Source: Federal Communications Commission license data. Western North Carolina figures reflect GMRS licenses in zip codes for each named community. Statewide figures reflect all NC GMRS licenses approved in the same 12-month windows.</p>
-      </div>
+     <div style="background:rgba(255,255,255,.85);border:1px solid rgba(34,64,80,.10);border-radius:14px;padding:1.6rem 1.4rem 1.4rem;box-shadow:0 10px 26px rgba(34,64,80,.07);margin:2.4rem 0;">
+  <div style="font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:#C45D3A;margin-bottom:.5rem;">By the numbers</div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:1rem;font-size:11px;color:rgba(34,64,80,.55);">
+    <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;border-radius:50%;background:#0F6E56;display:inline-block;border:1.5px solid #0F6E56;"></span>WNC communities</span>
+    <span style="display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;border-radius:50%;background:rgba(136,135,128,.15);display:inline-block;border:1.5px solid #888780;"></span>North Carolina statewide</span>
+    <span style="font-size:10px;color:rgba(34,64,80,.4);margin-left:4px;">Bubble size = licenses after Helene</span>
+  </div>
+  <div style="position:relative;width:100%;height:320px;">
+    <canvas id="bubbleChart" role="img" aria-label="Bubble chart showing GMRS license growth after Helene.">Swannanoa: +600%. Fairview: +575%. Black Mountain: +517%. NC statewide: +33%.</canvas>
+  </div>
+  <p style="font-size:.65rem;color:rgba(34,64,80,.45);margin-top:.75rem;border-top:1px solid rgba(34,64,80,.08);padding-top:.75rem;">Source: FCC license data. WNC figures reflect GMRS licenses in zip codes for each named community, Sept. 27, 2024–Sept. 27, 2025 vs. prior year.</p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+new Chart(document.getElementById('bubbleChart'), {
+  type: 'bubble',
+  data: {
+    datasets: [
+      {
+        label: 'WNC communities',
+        data: [
+          { x: 1, y: 600, r: 18, label: 'Swannanoa', licenses: 28 },
+          { x: 2, y: 575, r: 17, label: 'Fairview', licenses: 27 },
+          { x: 3, y: 517, r: 20, label: 'Black Mountain', licenses: 37 },
+        ],
+        backgroundColor: 'rgba(15,110,86,0.18)',
+        borderColor: '#0F6E56',
+        borderWidth: 2,
+        hoverBackgroundColor: 'rgba(15,110,86,0.30)',
+      },
+      {
+        label: 'NC statewide',
+data: [{ x: 2, y: 33, r: 28, label: 'North Carolina', licenses: 4318 }],
+        backgroundColor: 'rgba(136,135,128,0.12)',
+        borderColor: '#888780',
+        borderWidth: 2,
+        hoverBackgroundColor: 'rgba(136,135,128,0.22)',
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+layout: { padding: { top: 30, bottom: 10, left: 10, right: 10 } },
+    scales: {
+      x: { display: false, min: -0.5, max: 4.5 },
+   y: {
+        min: -60, max: 720,
+        title: { display: true, text: '% increase in GMRS licenses', color: '#888780', font: { size: 11 } },
+        ticks: { color: '#888780', font: { size: 11 }, callback: v => '+' + v + '%' },
+        grid: { color: 'rgba(136,135,128,0.15)' }
+      }
+    },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: function(ctx) {
+            const d = ctx.raw;
+            return [d.label, '+' + d.y + '% growth', d.licenses + ' licenses after Helene'];
+          }
+        }
+      }
+    }
+  },
+  plugins: [{
+    id: 'bubbleLabels',
+    afterDatasetsDraw(chart) {
+      const { ctx } = chart;
+      chart.data.datasets.forEach((dataset, i) => {
+        chart.getDatasetMeta(i).data.forEach((point, j) => {
+          const d = dataset.data[j];
+          const r = point.options.radius;
+          ctx.save();
+          ctx.textAlign = 'center';
+          ctx.font = '500 12px Lora, Georgia, serif';
+          ctx.fillStyle = i === 0 ? '#085041' : '#5F5E5A';
+          ctx.fillText(d.label, point.x, point.y - r - 8);
+          ctx.font = '700 13px Lora, Georgia, serif';
+          ctx.fillStyle = i === 0 ? '#0F6E56' : '#888780';
+          ctx.fillText('+' + d.y + '%', point.x, point.y + 5);
+          ctx.restore();
+        });
+      });
+    }
+  }]
+});
+</script>
 
       <p>Repeater infrastructure has gotten more robust, too: The WNC Radio Project has successfully launched two new repeaters so far, and Hamel said he was aware of four other repeaters that have come online since the storm, including one in Yancey County that just went live in April.</p>
 
@@ -477,22 +525,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
 </footer>
 
 <script>
-(function () {
-  const card = document.getElementById('dataCard');
-  if (!card) return;
-  const fills = card.querySelectorAll('.bar-fill');
-  const observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        fills.forEach(function (fill) {
-          fill.style.width = fill.getAttribute('data-width') + '%';
-        });
-        observer.disconnect();
-      }
-    });
-  }, { threshold: 0.3 });
-  observer.observe(card);
-})();
+
 const soundscape = document.getElementById('soundscape');
 const btn = document.getElementById('soundscapeBtn');
 soundscape.loop = false;
