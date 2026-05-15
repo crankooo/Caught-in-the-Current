@@ -56,30 +56,11 @@ a { color: inherit; text-decoration: none; }
 .lang-btn.active { background: var(--amber); color: var(--white); }
 .lang-btn:hover:not(.active) { color: var(--cream); }
 
-/* Big toggle bar above hero */
-.lang-bar {
-  background: var(--navy);
-  padding: .85rem 2.5rem;
-  display: flex; justify-content: center; align-items: center; gap: .8rem;
-  border-bottom: 1px solid rgba(255,255,255,.06);
-}
-.lang-bar-label {
-  font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
-  color: rgba(247,243,237,.55); font-family: var(--font-body);
-}
-.lang-bar .lang-toggle {
-  border-color: rgba(247,243,237,.5);
-}
-.lang-bar .lang-btn {
-  font-size: .82rem; padding: .55rem 1.5rem; letter-spacing: .16em;
-}
-
 .story-hero {
   position: relative; min-height: 60vh;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden; background: var(--navy);
 }
-
 .story-hero-bg {
   position: absolute; inset: 0;
   background-image: url('images/fotos/bipoc.jpg');
@@ -95,12 +76,6 @@ a { color: inherit; text-decoration: none; }
 @keyframes fadeUp   { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 .story-hero > *:not(.story-hero-bg):not(.story-hero-overlay) { position: relative; z-index: 2; }
 .hero-inner { width: 100%; max-width: 1180px; margin: 0 auto; padding: 5rem 2.5rem 4rem; text-align: center; }
-.hero-label {
-  display: inline-block; font-size: .6rem; letter-spacing: .28em; text-transform: uppercase;
-  color: var(--amber); border: 1px solid rgba(212,135,76,.4);
-  padding: .3rem .9rem; border-radius: 3px; margin-bottom: 1.2rem;
-  opacity: 0; animation: fadeUp .9s ease .3s forwards;
-}
 .story-headline {
   max-width: 800px; margin: 0 auto .9rem; font-family: var(--font-body);
   font-size: clamp(2rem, 4.5vw, 3.8rem); line-height: 1.05; color: var(--cream);
@@ -116,14 +91,6 @@ a { color: inherit; text-decoration: none; }
   opacity: 0; animation: fadeUp .9s ease .75s forwards;
 }
 .story-byline span { color: rgba(247,243,237,.88); font-weight: 700; }
-
-.hero-caption {
-  background: var(--navy);
-  padding: .6rem 2.5rem;
-  font-size: .72rem; line-height: 1.6; color: rgba(247,243,237,.45);
-  font-style: italic; font-family: var(--font-body);
-  border-bottom: 1px solid rgba(255,255,255,.05);
-}
 
 .article-shell { max-width: 1280px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; }
 .article-layout { display: grid; grid-template-columns: 1fr 300px; gap: 0; align-items: start; }
@@ -201,7 +168,6 @@ a { color: inherit; text-decoration: none; }
 .pq-waveform.playing .pq-bar:nth-child(10) { animation-delay: .22s; }
 @keyframes waveAnim { 0% { transform: scaleY(.4); } 100% { transform: scaleY(1); } }
 .pq-audio-label { font-size: .6rem; color: rgba(247,243,237,.38); letter-spacing: .1em; text-transform: uppercase; font-style: italic; }
-.pq-translation-label { font-size: .52rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(212,135,76,.7); margin-bottom: .4rem; }
 .pq-quote-text { font-family: var(--font-body); font-size: .82rem; line-height: 1.72; color: rgba(247,243,237,.82); }
 .pq-speaker { margin-top: .9rem; padding-top: .7rem; border-top: 1px solid rgba(255,255,255,.07); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(212,135,76,.6); }
 
@@ -216,12 +182,10 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
 }
 @media (max-width: 680px) {
   .story-nav { padding: 0 1rem; }
-  .lang-bar { padding: .85rem 1rem; }
   .hero-inner { padding: 4rem 1.2rem 3rem; }
   .story-hero { min-height: 70vh; }
   .article-shell { padding: 2.4rem 1.05rem 3rem; }
   .story-photo-float { float: none; width: 100%; margin: 1.2rem 0; }
-  .hero-caption { padding: .6rem 1rem; }
 }
 </style>
 </head>
@@ -244,34 +208,29 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
   <div class="hero-inner">
     <div style="margin-bottom:1rem;opacity:0;animation:fadeUp .9s ease .3s forwards;">
       <div class="lang-toggle" style="display:inline-flex;border-color:rgba(247,243,237,.45);">
-     <button class="lang-btn active" id="btnEN2" onclick="setLang('en')" style="font-size:.82rem;padding:.55rem 1.5rem;">English</button>
+        <button class="lang-btn active" id="btnEN2" onclick="setLang('en')" style="font-size:.82rem;padding:.55rem 1.5rem;">English</button>
         <button class="lang-btn" id="btnES2" onclick="setLang('es')" style="font-size:.82rem;padding:.55rem 1.5rem;">Español</button>
       </div>
     </div>
-    <h1 class="story-headline t" data-en="When disaster strikes in English, Spanish speakers struggle on the margins" data-es="Cuando el desastre ocurre en inglés, los hispanohablantes deben esforzarse desde la barrera del idioma">When disaster strikes in English, Spanish speakers struggle on the margins</h1>
+    <h1 class="story-headline t" data-en="When disaster strikes in English, Spanish speakers struggle on the margins" data-es="Cuando el desastre ocurre en inglés, los hispanohablantes deben esforzarse desde la barrera del idioma">When disaster strikes in English, <em>Spanish speakers struggle on the margins</em></h1>
     <p class="story-dek t" data-en="Post-Helene, Spanish speakers and Latinos had additional barriers to aid. One Asheville journalist tried to confront that." data-es="Después de Helene, los hispanohablantes y latinos enfrentaron barreras adicionales para obtener ayuda. Un periodista de Asheville trató de combatir eso.">Post-Helene, Spanish speakers and Latinos had additional barriers to aid. One Asheville journalist tried to confront that.</p>
     <p class="story-byline">By <span>Valentina Gutierrez</span></p>
   </div>
 </header>
 
-<!-- HERO CAPTION -->
-<div class="hero-caption t"
-  data-en="This is Jose Sandoval, Asheville Latino reporter, at his radio station in Blue Ridge Public Radio, NPR for Western North Carolina."
-  data-es="Este es José Sandoval, reportero latino de Asheville, en su estación de radio en Blue Ridge Public Radio, NPR para la región oeste de Carolina del Norte.">This is Jose Sandoval, Asheville Latino reporter, at his radio station in Blue Ridge Public Radio, NPR for Western North Carolina.</div>
-
 <main class="article-shell">
   <div class="article-layout">
     <article class="article-main">
 
-      <p class="t" data-en="Tropical Storm Helene spared no demographic as it tore through Western North Carolina, but the recovery in greater Asheville had not been as equally distributed." data-es="La tormenta tropical Helene no perdonó a ningún grupo demográfico mientras arrasaba el oeste de Carolina del Norte, pero la recuperación en el área metropolitana de Asheville no se distribuyó de manera equitativa.">Tropical Storm Helene spared no demographic as it tore through Western North Carolina, but the recovery in greater Asheville had not been as equally distributed.</p>
+      <p class="t" data-en="Tropical storm Helene spared no demographic as it tore through Western North Carolina, but the recovery in greater Asheville had not been as equally distributed." data-es="La tormenta tropical Helene no perdonó a ningún grupo demográfico mientras arrasaba el oeste de Carolina del Norte, pero la recuperación en el área metropolitana de Asheville no se distribuyó de manera equitativa.">Tropical storm Helene spared no demographic as it tore through Western North Carolina, but the recovery in greater Asheville had not been as equally distributed.</p>
 
       <p class="t" data-en="The Latino community in particular faced a different and, in some ways, more difficult path post-storm. And while many were able to seek help after this traumatic disaster, Latinos faced many systemic and language limitations that disrupted the way help was found and used." data-es="La comunidad latina en particular enfrentó una realidad diferente y, en algunos aspectos, obstáculos más difíciles después de la tormenta. Mientras muchos pudieron buscar ayuda después de este desastre traumático, los latinos enfrentaron numerosas limitaciones sistémicas y lingüísticas que dificultaron la manera en que la ayuda fue encontrada y utilizada.">The Latino community in particular faced a different and, in some ways, more difficult path post-storm. And while many were able to seek help after this traumatic disaster, Latinos faced many systemic and language limitations that disrupted the way help was found and used.</p>
 
       <p class="t" data-en="As one of the few bilingual Latino journalists in Asheville, Jose Sandoval found himself immersed in seeing how language barriers, limited access to aid and immigration-related fears shaped how Latinos recovered. His reporting highlights how in the days and weeks after the storm, Latinos struggled to navigate the systems meant to help them." data-es="José Sandoval, uno de los pocos periodistas bilingües latinos en Asheville, se encontró inmerso en observar cómo las barreras lingüísticas limitaron el acceso a la ayuda y cómo los miedos relacionados con la migración moldearon la manera en que los latinos se recuperaron. Su reportaje refleja cómo, en los días y semanas posteriores a la tormenta, los latinos lucharon para lidiar con un sistema que se suponía debía ayudarlos.">As one of the few bilingual Latino journalists in Asheville, Jose Sandoval found himself immersed in seeing how language barriers, limited access to aid and immigration-related fears shaped how Latinos recovered.</p>
 
-      <p class="t" data-en='"Recovery is going to take years. Here in the city, the debris is gone, but the financial impact still lingers," Sandoval said. "A lot of these effects are still around. I do think Helene exposed a lot of language barriers, especially in how to better reach the [Latino] community."' data-es='"La recuperación va a tomar años. Aquí en la ciudad, los escombros ya no están, pero el impacto financiero todavía persiste," dijo Sandoval. "Muchos de estos efectos siguen presentes. Sí, creo que Helene expuso muchas barreras lingüísticas, especialmente en cómo abordar con más eficiencia a la comunidad latina."'>"Recovery is going to take years. Here in the city, the debris is gone, but the financial impact still lingers," Sandoval said. "A lot of these effects are still around. I do think Helene exposed a lot of language barriers, especially in how to better reach the [Latino] community."</p>
+      <p class="t" data-en='"Recovery is going to take years. Here in the city, the debris is gone, but the financial impact still lingers," said Sandoval, a reporter for Blue Ridge Public Radio, the National Public Radio station in Asheville. "A lot of these effects are still around. I do think Helene exposed a lot of language barriers, especially in how to better reach the [Latino] community."' data-es='"La recuperación va a tomar años. Aquí en la ciudad, los escombros ya no están, pero el impacto financiero todavía persiste," dijo Sandoval. "Muchos de estos efectos siguen presentes. Sí, creo que Helene expuso muchas barreras lingüísticas, especialmente en cómo abordar con más eficiencia a la comunidad latina."'>"Recovery is going to take years. Here in the city, the debris is gone, but the financial impact still lingers," said Sandoval, a reporter for Blue Ridge Public Radio, the National Public Radio station in Asheville. "A lot of these effects are still around. I do think Helene exposed a lot of language barriers, especially in how to better reach the [Latino] community."</p>
 
-      <p class="t" data-en="While barriers slowed recovery, however, the Latino community remained resilient while giving back to its community when governmental systems fell short. Sandoval discussed these issues with Caught in the Current, providing a cautionary tale for future crises in the region. What follows is an edited and condensed version of that conversation." data-es="Sin embargo, aunque las barreras ralentizaron la recuperación, la comunidad latina se mantuvo resiliente y apoyó a su comunidad cuando los sistemas gubernamentales no fueron suficientes. Sandoval habló sobre estos problemas con Caught in the Current, ofreciendo una advertencia para futuras crisis en la región. Lo que sigue es una versión editada y condensada de esa conversación.">While barriers slowed recovery, however, the Latino community remained resilient while giving back to its community when governmental systems fell short. What follows is an edited and condensed version of that conversation.</p>
+      <p class="t" data-en="While barriers slowed recovery, the Latino community remained resilient, even when governmental systems fell short. Caught in the Current sat down with Sandoval to talk about what happened and what was learned. What follows is an edited and condensed version of that conversation." data-es="Sin embargo, aunque las barreras ralentizaron la recuperación, la comunidad latina se mantuvo resiliente y apoyó a su comunidad cuando los sistemas gubernamentales no fueron suficientes. Sandoval habló sobre estos problemas con Caught in the Current, ofreciendo una advertencia para futuras crisis en la región. Lo que sigue es una versión editada y condensada de esa conversación.">While barriers slowed recovery, the Latino community remained resilient, even when governmental systems fell short. Caught in the Current sat down with Sandoval to talk about what happened and what was learned. What follows is an edited and condensed version of that conversation.</p>
 
       <div class="section-divider"><span class="t" data-en="Before the storm" data-es="Antes de la tormenta">Before the storm</span></div>
 
@@ -296,8 +255,8 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
             <div class="story-photo-float">
               <img src="images/story/latino/1.png" alt="An electrical post in Asheville, NC after Helene">
               <p class="photo-caption t"
-data-en="This is an electrical post from Asheville, North Carolina. Power outages were suffered throughout many parts of Western North Carolina because of Tropical Storm Helene. Photo credit: Sydney Woogerd"
-                data-es="Este es un poste eléctrico en Asheville, Carolina del Norte. Muchas partes del oeste de Carolina del Norte sufrieron cortes de electricidad debido a la tormenta tropical Helene. Crédito fotográfico: Sydney Woogerd">This is an electrical post from Asheville, North Carolina. Power outages were suffered throughout many parts of Western North Carolina because of Tropical Storm Helene. Photo credit: Sydney Woogerd</p>
+data-en="Power outages were suffered throughout many parts of Western North Carolina because of tropical storm Helene. Photo credit: Sydney Woogerd"
+                data-es="Muchas partes del oeste de Carolina del Norte sufrieron cortes de electricidad debido a la tormenta tropical Helene. Crédito fotográfico: Sydney Woogerd">Power outages were suffered throughout many parts of Western North Carolina because of tropical storm Helene. Photo credit: Sydney Woogerd</p>
             </div>
             <p class="qa-a t" data-en="I think so for sure. It's also status, too, that created another barrier. Most people didn't know where to go to get water or very simple essential things that they needed, especially during the storm. We were one of the few radio stations that were still up, but we got lucky because we were close to downtown, so the power came back on within a few days. There definitely was a barrier with trying to figure out where to go to get basic stuff like food and water. You had these nonprofits that were on the go immediately after Helene happened, like Poder Emma, True Ridge, We Need x WNC, but there definitely was a barrier because you can't access your phone, you can't access the internet, where are you supposed to get this information from?" data-es="Sí, definitivamente. Y también el estatus migratorio creó otra barrera. Mucha gente no sabía a dónde ir para conseguir agua o cosas esenciales muy básicas que necesitaban. Nosotros éramos una de las pocas estaciones de radio que seguían funcionando, pero tuvimos suerte porque estábamos cerca del centro y la electricidad regresó después de unos pocos días. Algunas organizaciones sin fines de lucro comenzaron a actuar inmediatamente después de Helene, como Poder Emma, True Ridge y We Need x WNC, pero definitivamente había una barrera porque no podías acceder a tu teléfono ni al internet.">I think so for sure. It's also status, too, that created another barrier. Most people didn't know where to go to get water or very simple essential things that they needed. You had these nonprofits that were on the go immediately after Helene happened, like Poder Emma, True Ridge, We Need x WNC, but there definitely was a barrier because you can't access your phone, you can't access the internet.</p>
             <p class="qa-a t" data-en="And for some of these groups, they weren't going to get their supplies from county staff either, because of that mistrust between the community and government officials. So a lot of the time, folks were going out to these nonprofits for basic supplies, but they had to take whatever information they could find in English, translate it, write it down and pass it by word of mouth to other folks in the community." data-es="En el caso de algunos de estos grupos, ellos tampoco iban a recibir suministros del personal del condado debido a la desconfianza que había entre la comunidad y los funcionarios gubernamentales. En muchas oportunidades, la gente acudía a estas organizaciones sin fines de lucro para conseguir suministros básicos, pero tenían que tomar cualquier información que encontraran en inglés, traducirla, escribirla y transmitirla de boca en boca a otras personas de la comunidad.">And for some of these groups, they weren't going to get their supplies from county staff either, because of that mistrust between the community and government officials. So folks were going out to these nonprofits for basic supplies, but they had to take whatever information they could find in English, translate it, write it down and pass it by word of mouth.</p>
@@ -311,8 +270,8 @@ data-en="This is an electrical post from Asheville, North Carolina. Power outage
           <div class="story-photo">
             <img src="images/story/latino/2.png" alt="A volunteer with Samaritan's Purse unloads supplies in Asheville">
             <p class="photo-caption t"
-data-en="A volunteer with Samaritan's Purse unloads supplies in Asheville as communities across Western North Carolina continued to rebuild after Tropical Storm Helene. Photo credit: Sydney Woogerd"
-              data-es="Una voluntaria de Samaritan's Purse descarga suministros en Asheville mientras las comunidades del oeste de Carolina del Norte continúan recuperándose tras la tormenta tropical Helene. Crédito fotográfico: Sydney Woogerd">A volunteer with Samaritan's Purse unloads supplies in Asheville as communities across Western North Carolina continued to rebuild after Tropical Storm Helene. Photo credit: Sydney Woogerd</p>
+data-en="A volunteer with Samaritan's Purse unloads supplies in Asheville as communities across Western North Carolina continued to rebuild after tropical storm Helene. Photo credit: Sydney Woogerd"
+              data-es="Una voluntaria de Samaritan's Purse descarga suministros en Asheville mientras las comunidades del oeste de Carolina del Norte continúan recuperándose tras la tormenta tropical Helene. Crédito fotográfico: Sydney Woogerd">A volunteer with Samaritan's Purse unloads supplies in Asheville as communities across Western North Carolina continued to rebuild after tropical storm Helene. Photo credit: Sydney Woogerd</p>
           </div>
         </div>
       </div>
@@ -334,8 +293,8 @@ data-en="A volunteer with Samaritan's Purse unloads supplies in Asheville as com
         <div class="story-photo">
           <img src="images/story/latino/3.png" alt="A fallen sign and caution tape in Asheville after Helene">
           <p class="photo-caption t"
-data-en="A fallen sign and caution tape remain scattered across the grass in Asheville, North Carolina, reflecting the damage and disruption left behind by Tropical Storm Helene. Photo credit: Sydney Woogerd"
-            data-es="Un letrero caído y cinta de precaución permanecen sobre la hierba en Asheville, Carolina del Norte, como evidencia de los daños y desorden dejados por la tormenta tropical Helene. Crédito fotográfico: Sydney Woogerd">A fallen sign and caution tape remain scattered across the grass in Asheville, North Carolina, reflecting the damage and disruption left behind by Tropical Storm Helene. Photo credit: Sydney Woogerd</p>
+data-en="A fallen sign and caution tape remain scattered across the grass in Asheville, North Carolina, reflecting the damage and disruption left behind by tropical storm Helene. Photo credit: Sydney Woogerd"
+            data-es="Un letrero caído y cinta de precaución permanecen sobre la hierba en Asheville, Carolina del Norte, como evidencia de los daños y desorden dejados por la tormenta tropical Helene. Crédito fotográfico: Sydney Woogerd">A fallen sign and caution tape remain scattered across the grass in Asheville, North Carolina, reflecting the damage and disruption left behind by tropical storm Helene. Photo credit: Sydney Woogerd</p>
         </div>
         <div class="qa-block">
           <p class="qa-q t" data-en="Q: Did you notice a visible disparity between how non-Latinos bounce back versus Latinos?" data-es="P: ¿Notaste una diferencia visible entre la manera en que las personas no latinas lograron recuperarse en comparación con las personas latinas?">Q: Did you notice a visible disparity between how non-Latinos bounce back versus Latinos?</p>
@@ -363,7 +322,7 @@ data-en="A fallen sign and caution tape remain scattered across the grass in Ash
 
       <div class="pq-trigger" data-pq="pq6">
         <div class="qa-block">
-          <p class="qa-q t" data-en="Q: Did Hurricane Helene expose issues in how bilingual disaster recovery operates, and are there efforts to improve those systems?" data-es="P: ¿Crees que el huracán Helene expuso los problemas que produce la poca comunicación bilingüe en la recuperación de desastres, y existen esfuerzos para mejorar esos sistemas?">Q: Did Hurricane Helene expose issues in how bilingual disaster recovery operates, and are there efforts to improve those systems?</p>
+          <p class="qa-q t" data-en="Q: Did tropical storm Helene expose issues in how bilingual disaster recovery operates, and are there efforts to improve those systems?" data-es="P: ¿Crees que la tormenta tropical Helene expuso los problemas que produce la poca comunicación bilingüe en la recuperación de desastres, y existen esfuerzos para mejorar esos sistemas?">Q: Did tropical storm Helene expose issues in how bilingual disaster recovery operates, and are there efforts to improve those systems?</p>
           <p class="qa-a t" data-en="The county had a bilingual communication specialist with strong relationships with nonprofits, but it still showed gaps. From talking to emergency communications staff, everyone agrees they know how to do things better, but there are still major barriers to providing language access. Staffing is a huge issue, and a lot of the time people want to expand outreach, but they don't have the funding, so it becomes a one-person operation." data-es="El condado contaba con una especialista en comunicaciones bilingües que tenía relaciones sólidas con organizaciones sin fines de lucro, pero aún así quedaron en evidencia varias deficiencias. Por lo que he hablado con el personal de comunicaciones de emergencia, todos coinciden en que saben cómo hacer las cosas mejor, pero todavía existen barreras importantes para proporcionar acceso lingüístico. La falta de personal es un problema enorme y muchas veces las personas quieren ampliar el alcance comunitario, pero no cuentan con los fondos necesarios.">The county had a bilingual communication specialist with strong relationships with nonprofits, but it still showed gaps. Staffing is a huge issue, and a lot of the time people want to expand outreach, but they don't have the funding, so it becomes a one-person operation.</p>
         </div>
       </div>
@@ -414,7 +373,6 @@ data-en="A fallen sign and caution tape remain scattered across the grass in Ash
           </div>
           <audio id="audio1" src="audio/latinos/pullout%20quote%201-%20Francisco%20Chavez.mp3"></audio>
         </div>
-        <div class="pq-translation-label t" data-en="English translation" data-es="En español">English translation</div>
         <p class="pq-quote-text t" data-en='"We were really shocked in the beginning, because we don&#39;t know what&#39;s going on. The news didn&#39;t say very much about the rain coming. We don&#39;t have this emergency system — it was not working. We lost everything. Communication, power — just everything that we live with every day."' data-es='"Al principio estábamos realmente en shock, porque no sabíamos lo que estaba pasando. Las noticias realmente no decían mucho más allá de que iba a llover bastante. No esperábamos que viniera tanta lluvia. No teníamos un sistema de emergencia que estuviera funcionando. Perdimos todo — la comunicación, la electricidad… Todo con lo que vivimos día a día."'>"We were really shocked in the beginning, because we don't know what's going on. The news didn't say very much about the rain coming. We don't have this emergency system — it was not working. We lost everything. Communication, power — just everything that we live with every day."</p>
         <div class="pq-speaker">Francisco Chavez · Community Engagement Manager</div>
       </div>
@@ -430,7 +388,6 @@ data-en="A fallen sign and caution tape remain scattered across the grass in Ash
           </div>
           <audio id="audio2" src="audio/latinos/pullout%20quote%202-%20Francisco%20Chavez.mp3"></audio>
         </div>
-        <div class="pq-translation-label t" data-en="English translation" data-es="En español">English translation</div>
         <p class="pq-quote-text t" data-en='"I think what I bring as being a Latino, an immigrant from a different country — I understand the same barriers I had in the beginning, like language, transportation, a job. The community has to trust you. If they don&#39;t trust you, they will not come to you, they will not open up to you."' data-es='"Creo que lo que he aportado, como ciudadano latino e inmigrante, es que entiendo y he vivido las mismas barreras que enfrenta nuestra comunidad: el idioma, el transporte, encontrar trabajo. La comunidad tiene que confiar en ti. Si no confían en ti, no acudirán a ti, ni se abrirán contigo."'>"I think what I bring as being a Latino, an immigrant from a different country — I understand the same barriers I had in the beginning, like language, transportation, a job. The community has to trust you. If they don't trust you, they will not come to you, they will not open up to you."</p>
         <div class="pq-speaker">Francisco Chavez · Community Engagement Manager</div>
       </div>
@@ -446,7 +403,6 @@ data-en="A fallen sign and caution tape remain scattered across the grass in Ash
           </div>
           <audio id="audio3" src="audio/latinos/pullout%20quote%203-%20Francisco%20Chavez.mp3"></audio>
         </div>
-        <div class="pq-translation-label t" data-en="English translation" data-es="En español">English translation</div>
         <p class="pq-quote-text t" data-en='"A lot of the French Broad River has restaurants and places where people were working, and then they lost their job — that was the only income they had. People who were working near those businesses lost everything. They lost their jobs, their businesses. Every way we turned, it was an issue."' data-es='"A lo largo del río French Broad habían muchos restaurantes y otros lugares donde la gente trabajaba, luego de la tormenta tropical perdieron sus empleos, y en la mayoría de los casos era su única fuente de ingresos. Mucha gente que trabajaba cerca del río lo perdió todo. Perdieron sus trabajos, perdieron sus negocios. Hacia donde uno mirara, había problemas."'>"A lot of the French Broad River has restaurants and places where people were working, and then they lost their job — that was the only income they had. People who were working near those businesses lost everything. They lost their jobs, their businesses. Every way we turned, it was an issue."</p>
         <div class="pq-speaker">Francisco Chavez · Community Engagement Manager</div>
       </div>
@@ -462,7 +418,6 @@ data-en="A fallen sign and caution tape remain scattered across the grass in Ash
           </div>
           <audio id="audio4" src="audio/latinos/pullout%20quote%204-%20Francisco%20Chavez.mp3"></audio>
         </div>
-        <div class="pq-translation-label t" data-en="English translation" data-es="En español">English translation</div>
         <p class="pq-quote-text t" data-en='"The only thing that came to my mind at that point was just how we can help."' data-es='"Lo único que me pasaba por la mente en ese momento era cómo podíamos ayudar."'>"The only thing that came to my mind at that point was just how we can help."</p>
         <div class="pq-speaker">Francisco Chavez · Community Engagement Manager</div>
       </div>
@@ -478,7 +433,6 @@ data-en="A fallen sign and caution tape remain scattered across the grass in Ash
           </div>
           <audio id="audio5" src="audio/latinos/pullout%20quote%205-%20Francisco%20Chavez.mp3"></audio>
         </div>
-        <div class="pq-translation-label t" data-en="English translation" data-es="En español">English translation</div>
         <p class="pq-quote-text t" data-en='"We don&#39;t have any communication, we don&#39;t have any phone service, nothing. People were walking around the streets and saying, &#39;We&#39;re going to do a cookout near the Swannanoa library.&#39; They brought their grills, they brought food from their refrigerators because everything was going to go bad. We shared it together. It was incredible, overwhelming."' data-es='"No teníamos ninguna forma de comunicación, no teníamos señal telefónica, nada. Entonces la gente caminaba por las calles y simplemente les decían: &#39;Ey, vamos a hacer una parrillada cerca de la biblioteca de Swannanoa.&#39; Muchísimas personas comenzaron a llegar a ese lugar, llevando parrillas y la comida que tenían en sus refrigeradores, porque todo se iba a echar a perder, así que preferimos compartirlo entre todos. Fue increíble, y gratificante."'>"We don't have any communication, we don't have any phone service, nothing. People were walking around the streets and saying, 'We're going to do a cookout near the Swannanoa library.' They brought their grills, they brought food. We shared it together. It was incredible, overwhelming."</p>
         <div class="pq-speaker">Francisco Chavez · Community Engagement Manager</div>
       </div>
@@ -494,7 +448,6 @@ data-en="A fallen sign and caution tape remain scattered across the grass in Ash
           </div>
           <audio id="audio6" src="audio/latinos/pullout%20quote%206REAL-%20Johanna%20Cano.mp3"></audio>
         </div>
-        <div class="pq-translation-label t" data-en="English translation" data-es="En español">English translation</div>
         <p class="pq-quote-text t" data-en='"I really, truly believe that the role we created — bilingual communication specialist — was really important leading up to Helene. Building trust is really important. Just having someone who represents your local government, who looks like you and speaks your language — people just open up to you more."' data-es='"Realmente creo que el puesto que creamos, el de especialista en comunicaciones bilingües, fue muy importante antes de que llegara Helene. Construir confianza es fundamental, y creo que en el nivel más básico, simplemente tener a alguien que represente al gobierno local, que se parezca a ti y hable tu mismo idioma — la gente se abre más contigo."'>"I really, truly believe that the role we created — bilingual communication specialist — was really important leading up to Helene. Building trust is really important. Just having someone who represents your local government, who looks like you and speaks your language — people just open up to you more."</p>
         <div class="pq-speaker">Johanna Cano · Public Information Officer, Buncombe County</div>
       </div>
@@ -510,7 +463,6 @@ data-en="A fallen sign and caution tape remain scattered across the grass in Ash
           </div>
           <audio id="audio7" src="audio/latinos/pullout%20quote%207REAL-%20Johanna%20Cano.mp3"></audio>
         </div>
-        <div class="pq-translation-label t" data-en="English translation" data-es="En español">English translation</div>
         <p class="pq-quote-text t" data-en='"The storm hit us Friday and then Saturday, we had community briefings. Sunday morning, the whole team showed up to our Emergency Operations Center, and from that day on, all of our community briefings were interpreted in Spanish, every single one of them. Our bilingual communication specialist did all of them on her own for days, in and out."' data-es='"La tormenta nos golpeó el viernes y, para el sábado, ya teníamos reuniones informativas comunitarias. El domingo por la mañana, prácticamente todo el equipo se presentó en nuestro Centro de Operaciones de Emergencia y, desde ese día, todas nuestras reuniones informativas comunitarias fueron interpretadas al español, todas y cada una de ellas. Nuestra especialista en comunicaciones bilingüe las hizo sola durante días enteros, entrando y saliendo continuamente."'>"The storm hit us Friday and then Saturday, we had community briefings. Sunday morning, the whole team showed up to our Emergency Operations Center, and from that day on, all of our community briefings were interpreted in Spanish, every single one of them."</p>
         <div class="pq-speaker">Johanna Cano · Public Information Officer, Buncombe County</div>
       </div>
@@ -526,7 +478,6 @@ data-en="A fallen sign and caution tape remain scattered across the grass in Ash
           </div>
           <audio id="audio8" src="audio/latinos/pullout%20quote%208-%20Johanna%20Cano.mp3"></audio>
         </div>
-        <div class="pq-translation-label t" data-en="English translation" data-es="En español">English translation</div>
         <p class="pq-quote-text t" data-en='"We know that people don&#39;t tend to come to their government for information — we know we have to go to where they are, and especially with our Spanish-speaking population."' data-es='"Sabemos que la gente no suele acudir al gobierno para obtener información. Sabemos que nosotros tenemos que ir hacia donde están las personas, especialmente cuando se trata de nuestra población hispanohablante."'>"We know that people don't tend to come to their government for information — we know we have to go to where they are, and especially with our Spanish-speaking population."</p>
         <div class="pq-speaker">Johanna Cano · Public Information Officer, Buncombe County</div>
       </div>
@@ -542,7 +493,6 @@ data-en="A fallen sign and caution tape remain scattered across the grass in Ash
           </div>
           <audio id="audio9" src="audio/latinos/pullout%20quote%209-%20Johanna%20Cano.mp3"></audio>
         </div>
-        <div class="pq-translation-label t" data-en="English translation" data-es="En español">English translation</div>
         <p class="pq-quote-text t" data-en='"It went beyond translating. A lot of people are like, &#39;we&#39;ll just translate it,&#39; but it was really important to make sure we not only translate it, but make sure it made sense in the language that people speak — plain language — and making sure that we had that trust built and those partnerships built ahead of time."' data-es='"Fue más allá de simplemente traducir. Creo que mucha gente piensa: &#39;Bueno, solo lo traducimos,&#39; pero era realmente importante asegurarnos no solo de traducir la información, sino también de que tuviera sentido en el idioma que la gente habla y en la manera en que realmente se comunica, usando un lenguaje claro. También era importante asegurarnos de haber construido esa confianza y esas alianzas con anticipación."'>"It went beyond translating. It was really important to make sure we not only translate it, but make sure it made sense in the language that people speak — plain language — and making sure that we had that trust built and those partnerships built ahead of time."</p>
         <div class="pq-speaker">Johanna Cano · Public Information Officer, Buncombe County</div>
       </div>

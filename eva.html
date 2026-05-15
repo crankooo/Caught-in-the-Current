@@ -130,8 +130,18 @@ a { color: inherit; text-decoration: none; }
 }
 .story-img img { width: 100%; height: auto; display: block; border-radius: 10px; }
 
+/* Illustration float — smaller than photo float */
+.illus-float {
+  float: right; width: 28%;
+  margin: .3rem 0 1.2rem 1.8rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(34,64,80,.1);
+  clear: right;
+}
+.illus-float img { width: 100%; height: auto; display: block; border-radius: 8px; }
+
 .story-img-float {
-  float: right; width: 42%;
+  float: right; width: 32%;
   margin: .4rem 0 1.2rem 2rem;
   border-radius: 10px;
   box-shadow: 0 8px 28px rgba(34,64,80,.12);
@@ -161,7 +171,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   .article-body { padding: 2.5rem 1.2rem 3rem; }
   .stat-band { margin: 2rem -.5rem; padding: 1.5rem 1rem; flex-direction: column; align-items: center; }
   .stat-item { max-width: 100%; }
-  .story-img-float { float: none; width: 100%; margin: 1.5rem 0; }
+  .illus-float, .story-img-float { float: none; width: 100%; margin: 1.5rem 0; }
   .story-video iframe { height: 240px; }
 }
 
@@ -249,9 +259,9 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 
   <p>Lohmeyer is stewardship manager for Conserving Carolina, a non-profit that works to preserve land and water resources throughout Western North Carolina by focusing on creating trails and educating the community about the importance of habitat. What he's particularly interested in these days is one of the smallest creatures that suffered significantly from Helene: freshwater mussels.</p>
 
-  <div class="story-img">
+  <div class="illus-float">
     <img src="images/story/eva/2.jpeg" alt="Illustration of a freshwater mussel">
-    <p class="photo-caption">Freshwater mussels cluster in beds along creek bottoms throughout Western North Carolina. Some species are on the endangered list.</p>
+    <p class="photo-caption">Freshwater mussels cluster in beds along creek bottoms throughout Western North Carolina. Some species are on the endangered list. Illustration credit: Beck Orten</p>
   </div>
 
   <p>The fallout for this largely unseen and unknown creature is just one example of the extent of damage the storm wrought in the natural world alongside the better-publicized human one. Mussels are one species that scientists and researchers are watching and worrying about. Another to take a hard hit was the famously (so-ugly-it's-cute) hellbender salamander, which can grow up to 2 feet long and live up to 30 years, and a couple of species of freshwater trout.</p>
@@ -264,9 +274,9 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 
   <p>A second victim of these twin assaults was the brownish, yellowish aquatic hellbender salamander that lives in the mud and among the rocks of riverbeds. This habitat, again, put the amphibian in the direct line of destruction. And just like the mussel, the result will likely be felt for generations of hellbenders to come, experts say.</p>
 
-  <div class="story-img">
+  <div class="illus-float">
     <img src="images/story/eva/1.jpeg" alt="Hellbender salamander illustration">
-    <p class="photo-caption">The hellbender salamander, North America's largest aquatic salamander, lives among rocks in fast-moving streams — putting it directly in Helene's path.</p>
+    <p class="photo-caption">The hellbender, North America's largest aquatic salamander, lives among rocks in fast-moving streams — putting it directly in Helene's path. Illustration credit: Beck Orten</p>
   </div>
 
   <div class="section-divider"><span>A double whammy for river life</span></div>
@@ -274,6 +284,8 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   <p>"Those impacts that we're dealing with are probably going to still deal with for the next, at least 10, 15 years," said Hannah Woodburn, a riverkeeper for MountainTrue, a nonprofit that works to protect clean water and resilient forests across the southern Blue Ridge region. "No. 1, the banks were already pretty eroded from the storm event itself, and then No. 2, that secondary impact of having heavy machinery coming in, accessing, cutting all the live trees and remaining vegetation along from the banks – but then also driving these giant machines up and down the streams as well," she said.</p>
 
   <p>This kind of loss is ruinous for a species that has already declined by 70% in the region since the early 2000s, Woodburn said. "It was kind of this double whammy. They probably smushed anything that had survived the flood."</p>
+
+  <div class="clearfix"></div>
 
   <div class="stat-band">
     <div class="stat-item"><div class="stat-number">2 ft</div><div class="stat-label">Max length of hellbender salamander</div></div>

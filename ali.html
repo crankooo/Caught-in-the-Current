@@ -327,7 +327,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
   <div class="story-hero-bg"></div>
   <div class="story-hero-overlay"></div>
   <div class="hero-inner">
-    <h1 class="story-headline">FEMA funding presents a fractured landscape for storm victims</h1>
+    <h1 class="story-headline">FEMA funding funding presents <em>a complex landscape for storm victims who are still waiting for assistance.</em></h1>
     <p class="story-byline">By <span>Ali Caudle</span></p>
     <button class="soundscape-btn" id="soundscapeBtn" onclick="toggleSound()">
       <span class="btn-label">Listen to soundscape</span>
@@ -412,7 +412,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
         <p id="carouselCaption" class="photo-caption" style="margin-top:.6rem; font-size:.75rem;">The roof of a storefront in the hard-hit Biltmore Village, sagging without its structural beams and walls to hold it up.</p>
       </div>
 
-      <p>According to FEMA's website, public assistance is FEMA's "largest grant program providing funds to assist communities responding to and recovering from major disasters or emergencies declared by the president." Eligible applicants for PA include states, U.S. territories, federally recognized tribal governments, local governments, and certain private non-profit organizations. The houses of worship provision falls under the umbrella of private non-profit groups.</p>
+      <p>According to FEMA's website, public assistance is FEMA's "largest grant program providing funds to assist communities responding to and recovering from major disasters or emergencies declared by the president." Eligible applicants for PA include states, U.S. territories, federally recognized tribal governments, local governments and certain private non-profit organizations. The houses of worship provision falls under the umbrella of private non-profit groups.</p>
 
       <p>However, as a result of the DHS shutdown in early 2026, FEMA was operating for months at limited capacity, which meant that the agency made slow progress on processing grant funding for public assistance category A, or debris removal, and category B, emergency protective actions. Categories C through G are considered "permanent work" and include rebuilding roads and bridges, water control facilities, public utilities, parks and other facilities.</p>
 
@@ -474,8 +474,8 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
 
       <p>In Hogan's initial correspondence with FEMA, she was redirected to different programs and led to believe that there was no support the agency could offer the group. "All my efforts to get FEMA help or help anywhere prior to this moment of this hazard mitigation was, 'We can't help you because you're not residential,'" said Hogan. "It's a weird situation. We're not commercial, we're not a business. But we're not a family owning a property."</p>
 
-      <p><p>Her situation mirrors what countless others have been through. The confusion, the mixed messaging, the promise of aid and then its retraction, have left residents of Western North Carolina wondering how they will fully restore their lives after so much chaos and loss.</p>
-      <p>"Then you add on top of it government shutdowns, and you add on top of it the current administration, and you add on top of it, all the things. The whole time we've been kind of in the dark," said Hogan. "We found out maybe a year in that we were one of the first 23 properties approved for this buyout program, which was great news. That still might mean that it'll be years from now before anything happens. We don't know."</p></p>
+      <p>Her situation mirrors what countless others have been through. The confusion, the mixed messaging, the promise of aid and then its retraction, have left residents of Western North Carolina wondering how they will fully restore their lives after so much chaos and loss.</p>
+      <p>"Then you add on top of it government shutdowns, and you add on top of it the current administration, and you add on top of it, all the things. The whole time we've been kind of in the dark," said Hogan. "We found out maybe a year in that we were one of the first 23 properties approved for this buyout program, which was great news. That still might mean that it'll be years from now before anything happens. We don't know."</p>
 
       <!-- BEFORE/AFTER GRID -->
       <div style="margin: 2.8rem 0;">
@@ -524,7 +524,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
 </footer>
 
 <script>
-/* ── CAROUSEL ── */
+/* ── CAROUSEL (manual only — no autoplay) ── */
 (function () {
   const slides  = document.querySelectorAll('.carousel-slide');
   const dots    = document.querySelectorAll('.carousel-dot');
@@ -535,7 +535,6 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
   if (!slides.length) return;
 
   let cur = 0;
-  let timer;
 
   const captions = [
     'The roof of a storefront in the hard-hit Biltmore Village, sagging without its structural beams and walls to hold it up.',
@@ -557,24 +556,20 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; marg
     if (captionEl) captionEl.textContent = captions[cur];
   }
 
-  function startTimer() { timer = setInterval(() => goTo(cur + 1), 5000); }
-  function stopTimer()  { clearInterval(timer); }
-
-  prev.addEventListener('click',  () => { stopTimer(); goTo(cur - 1); startTimer(); });
-  next.addEventListener('click',  () => { stopTimer(); goTo(cur + 1); startTimer(); });
-  dots.forEach(d => d.addEventListener('click', () => { stopTimer(); goTo(+d.dataset.index); startTimer(); }));
+  prev.addEventListener('click',  () => goTo(cur - 1));
+  next.addEventListener('click',  () => goTo(cur + 1));
+  dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.index)));
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft')  { stopTimer(); goTo(cur - 1); startTimer(); }
-    if (e.key === 'ArrowRight') { stopTimer(); goTo(cur + 1); startTimer(); }
+    if (e.key === 'ArrowLeft')  goTo(cur - 1);
+    if (e.key === 'ArrowRight') goTo(cur + 1);
   });
 
   let tx = 0;
-  stage.addEventListener('touchstart', e => { tx = e.touches[0].clientX; stopTimer(); }, { passive: true });
+  stage.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
   stage.addEventListener('touchend',   e => {
     const dx = e.changedTouches[0].clientX - tx;
     if (Math.abs(dx) > 40) goTo(dx < 0 ? cur + 1 : cur - 1);
-    startTimer();
   });
 })();
 
@@ -614,7 +609,6 @@ soundscape.play().then(() => {
   btn.classList.add('playing');
   btn.querySelector('.btn-label').textContent = 'Playing…';
 }).catch(() => {
-  /* Autoplay blocked — wait for first click anywhere */
   document.addEventListener('click', function unlock() {
     soundscape.play().then(() => {
       isPlaying = true;
