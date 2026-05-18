@@ -37,17 +37,17 @@ const STORIES = [
     body: "Full story coming soon.",
     hasAudio: false
   },
-{
-  id: 5,
-  title: "Lost and Found",
-  category: "cultural",
-  categoryLabel: "Cultural",
-  excerpt: "After the floodwaters receded, volunteers dedicated themselves to returning the scattered remnants of people's lives.",
-  body: "",
-  hasAudio: true,
-  audioSrc: "audio/soundscape/sydney.wav",
-  href: "sydney.html"
-},
+  {
+    id: 5,
+    title: "Lost and Found",
+    category: "cultural",
+    categoryLabel: "Cultural",
+    excerpt: "After the floodwaters receded, volunteers dedicated themselves to returning the scattered remnants of people's lives.",
+    body: "",
+    hasAudio: true,
+    audioSrc: "audio/soundscape/sydney.wav",
+    href: "sydney.html"
+  },
   {
     id: 6,
     title: "Story Title TBD",
@@ -57,16 +57,16 @@ const STORIES = [
     body: "Full story coming soon.",
     hasAudio: false
   },
-{
-  id: 7,
-  title: "Uprooted",
-  category: "political",
-  categoryLabel: "Housing",
-  excerpt: "Amid public funding chaos, post-Helene housing recovery has been slow, uneven and deeply community-driven.",
-  body: "",
-  hasAudio: false,
-  href: "ogden.html"
-},
+  {
+    id: 7,
+    title: "Uprooted",
+    category: "political",
+    categoryLabel: "Housing",
+    excerpt: "Amid public funding chaos, post-Helene housing recovery has been slow, uneven and deeply community-driven.",
+    body: "",
+    hasAudio: false,
+    href: "ogden.html"
+  },
   {
     id: 8,
     title: "Story Title TBD",
@@ -123,15 +123,15 @@ const STORIES = [
     hasAudio: false
   },
   {
-  id: 14,
-  title: "FEMA Funding Presents a Fractured Landscape",
-  category: "political",
-  categoryLabel: "Political",
-  excerpt: "Between the DHS shutdown, leadership changes and an uncertain political future, FEMA assistance for Helene survivors is deeply complicated.",
-  body: "",
-  hasAudio: false,
-  href: "ali.html"
-},
+    id: 14,
+    title: "FEMA Funding Presents a Fractured Landscape",
+    category: "political",
+    categoryLabel: "Political",
+    excerpt: "Between the DHS shutdown, leadership changes and an uncertain political future, FEMA assistance for Helene survivors is deeply complicated.",
+    body: "",
+    hasAudio: false,
+    href: "ali.html"
+  },
   {
     id: 15,
     title: "Story Title TBD",
@@ -162,60 +162,55 @@ if (vid) {
   vid.muted = true;
   vid.currentTime = 0;
   vid.play().catch(() => {});
-
-  vid.addEventListener('ended', () => {
-    vid.classList.add('video-ended');
-  });
+  vid.addEventListener('ended', () => { vid.classList.add('video-ended'); });
 }
 
 /* ── LANDING PAGE VIDEO SOUND TOGGLE ── */
 let videoMuted = true;
 const landingBtn = vid ? document.createElement('button') : null;
 if (landingBtn) {
-landingBtn.id = 'landingSoundBtn';
-landingBtn.innerHTML = `<span class="btn-label">Listen</span><span class="btn-bars"><span style="height:8px"></span><span style="height:4px"></span><span style="height:11px"></span><span style="height:6px"></span></span>`;
-landingBtn.style.cssText = `
-  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
-  display: inline-flex; align-items: center; gap: .6rem;
-  padding: .55rem 1.4rem;
-  background: rgba(34,64,80,.85);
-  border: 1px solid rgba(247,243,237,.2);
-  border-radius: 50px;
-  color: rgba(247,243,237,.9);
-  font-family: 'Lora', Georgia, serif;
-  font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
-  cursor: pointer;
-  backdrop-filter: blur(8px);
-  transition: background .3s, border-color .3s, box-shadow .3s;
-`;
-document.body.appendChild(landingBtn);
+  landingBtn.id = 'landingSoundBtn';
+  landingBtn.innerHTML = `<span class="btn-label">Listen</span><span class="btn-bars"><span style="height:8px"></span><span style="height:4px"></span><span style="height:11px"></span><span style="height:6px"></span></span>`;
+  landingBtn.style.cssText = `
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+    display: inline-flex; align-items: center; gap: .6rem;
+    padding: .55rem 1.4rem;
+    background: rgba(34,64,80,.85);
+    border: 1px solid rgba(247,243,237,.2);
+    border-radius: 50px;
+    color: rgba(247,243,237,.9);
+    font-family: 'Lora', Georgia, serif;
+    font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: background .3s, border-color .3s, box-shadow .3s;
+  `;
+  document.body.appendChild(landingBtn);
+  landingBtn.querySelectorAll('.btn-bars span').forEach(s => {
+    s.style.cssText = 'display:block; width:2px; background:#9FE1CB; border-radius:1px;';
+  });
 
-landingBtn.querySelectorAll('.btn-bars span').forEach(s => {
-  s.style.cssText = 'display:block; width:2px; background:#9FE1CB; border-radius:1px;';
-});
+  landingBtn.addEventListener('click', () => {
+    if (!vid) return;
+    if (videoMuted) {
+      vid.muted = false;
+      videoMuted = false;
+      landingBtn.querySelector('.btn-label').textContent = 'Mute video';
+      landingBtn.style.background = 'rgba(2,100,90,.4)';
+      landingBtn.style.borderColor = 'rgba(159,225,203,.7)';
+      landingBtn.style.boxShadow = '0 0 22px rgba(2,100,90,.6), 0 0 50px rgba(2,100,90,.25)';
+      landingBtn.style.color = '#9FE1CB';
+    } else {
+      vid.muted = true;
+      videoMuted = true;
+      landingBtn.querySelector('.btn-label').textContent = 'Listen';
+      landingBtn.style.background = 'rgba(34,64,80,.85)';
+      landingBtn.style.borderColor = 'rgba(247,243,237,.2)';
+      landingBtn.style.boxShadow = 'none';
+      landingBtn.style.color = 'rgba(247,243,237,.9)';
+    }
+  });
 }
-
-landingBtn.addEventListener('click', () => {
-  if (!vid) return;
-  if (videoMuted) {
-    vid.muted = false;
-    videoMuted = false;
-    landingBtn.querySelector('.btn-label').textContent = 'Mute video';
-    landingBtn.style.background = 'rgba(2,100,90,.4)';
-    landingBtn.style.borderColor = 'rgba(159,225,203,.7)';
-    landingBtn.style.boxShadow = '0 0 22px rgba(2,100,90,.6), 0 0 50px rgba(2,100,90,.25)';
-    landingBtn.style.color = '#9FE1CB';
-  } else {
-    vid.muted = true;
-    videoMuted = true;
-    landingBtn.querySelector('.btn-label').textContent = 'Listen';
-    landingBtn.style.background = 'rgba(34,64,80,.85)';
-    landingBtn.style.borderColor = 'rgba(247,243,237,.2)';
-    landingBtn.style.boxShadow = 'none';
-    landingBtn.style.color = 'rgba(247,243,237,.9)';
-  }
-});
- /* ← closes if (landingBtn) */
 
 /* ═══════════════════════════════════════════
    2. ABOUT PAGE
@@ -229,21 +224,16 @@ function showAbout(e) {
   if (e) e.preventDefault();
   if (mainSite) mainSite.style.display = "none";
   if (aboutPage) aboutPage.style.display = "block";
-
   const landingSound = document.getElementById('landingSoundBtn');
   if (landingSound) landingSound.style.display = "none";
-
   window.scrollTo({ top: 0, behavior: "instant" });
 }
-
 
 function showHome() {
   if (aboutPage) aboutPage.style.display = "none";
   if (mainSite) mainSite.style.display = "block";
-
   const landingSound = document.getElementById('landingSoundBtn');
   if (landingSound) landingSound.style.display = "inline-flex";
-
   window.scrollTo({ top: 0, behavior: "instant" });
 }
 
@@ -257,23 +247,19 @@ const navbar = document.getElementById("navbar");
 
 window.addEventListener("scroll", () => {
   const pastHero = window.scrollY > (window.innerHeight - 120);
-
   if (navbar) {
     navbar.classList.toggle("scrolled", window.scrollY > 80);
   }
-
   const scrollHint = document.querySelector(".scroll-hint");
   if (scrollHint) {
     scrollHint.style.opacity = pastHero ? "0" : "1";
     scrollHint.style.pointerEvents = pastHero ? "none" : "auto";
   }
-
   const landingSound = document.getElementById('landingSoundBtn');
-if (landingSound) {
-  const showOnLanding = !pastHero && mainSite?.style.display !== "none";
-  landingSound.style.display = showOnLanding ? "inline-flex" : "none";
-}
-  
+  if (landingSound) {
+    const showOnLanding = !pastHero && mainSite?.style.display !== "none";
+    landingSound.style.display = showOnLanding ? "inline-flex" : "none";
+  }
 });
 
 /* ═══════════════════════════════════════════
@@ -284,19 +270,21 @@ const navLinks = document.querySelector(".nav-links");
 
 if (hamburger && navLinks) {
   hamburger.addEventListener("click", () => {
-    const open = navLinks.style.display === "flex";
+    navLinks.classList.toggle("mobile-open");
+  });
 
-    Object.assign(navLinks.style, {
-      display: open ? "none" : "flex",
-      flexDirection: "column",
-      position: "absolute",
-      top: "100%",
-      left: "0",
-      right: "0",
-      background: "rgba(34,64,80,.97)",
-      padding: "1.4rem 2rem",
-      gap: "1.1rem"
+  // Close menu when any nav link is tapped
+  navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("mobile-open");
     });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!navbar.contains(e.target)) {
+      navLinks.classList.remove("mobile-open");
+    }
   });
 }
 
@@ -309,7 +297,6 @@ function animateCounter(el) {
   const inc = target / steps;
   let cur = 0;
   let step = 0;
-
   const t = setInterval(() => {
     step++;
     cur = Math.min(Math.round(inc * step), target);
@@ -319,7 +306,6 @@ function animateCounter(el) {
 }
 
 const statsGrid = document.querySelector(".stats-grid");
-
 if (statsGrid) {
   new IntersectionObserver((entries, obs) => {
     entries.forEach((entry) => {
@@ -347,22 +333,19 @@ document.querySelectorAll(".filter-btn").forEach((btn) => {
     const grid = document.getElementById("stories-grid");
     const lastRow = document.querySelector(".stories-last-row");
 
-  if (filter === "Articles") {
-      // move latino and eva into grid
+    if (filter === "Articles") {
       lastRow.querySelectorAll(".story-card").forEach(card => {
         card.style.width = "";
         card.style.flex = "";
         grid.appendChild(card);
       });
       lastRow.style.display = "none";
-      // center eva by adding an invisible spacer before it
       const eva = grid.querySelector("[onclick*='eva']");
       const spacer = document.createElement("div");
       spacer.id = "eva-spacer";
       spacer.style.cssText = "width:calc(33.333% - 0.75rem);flex:0 0 calc(33.333% - 0.75rem);";
       grid.insertBefore(spacer, eva);
     } else {
-      // restore them to last row
       const latino = document.querySelector("[onclick*='latino']");
       const eva = document.querySelector("[onclick*='eva']");
       const spacer = document.getElementById("eva-spacer");
@@ -389,35 +372,22 @@ const modalBackdrop = document.getElementById("modal-backdrop");
 function openModal(id) {
   const story = STORIES.find((s) => s.id === id);
   if (!story || !modal || !modalContent) return;
-
-  if (story.href) {
-    window.location.href = story.href;
-    return;
-  }
+  if (story.href) { window.location.href = story.href; return; }
 
   const hasPlayableAudio = Boolean(story.audioSrc);
-
   const audioBlock = story.hasAudio
-    ? `
-      <div class="modal-audio">
+    ? `<div class="modal-audio">
         <span>🎧 ${hasPlayableAudio ? "Listen here" : "Audio coming soon"}</span>
-        ${
-          hasPlayableAudio
-            ? `<audio controls preload="none" src="${escapeHtml(story.audioSrc)}"></audio>`
-            : `<span>The player will appear once the audio file is added.</span>`
-        }
-      </div>
-    `
+        ${hasPlayableAudio
+          ? `<audio controls preload="none" src="${escapeHtml(story.audioSrc)}"></audio>`
+          : `<span>The player will appear once the audio file is added.</span>`}
+       </div>`
     : "";
 
   modalContent.innerHTML = `
     <p class="modal-category">${escapeHtml(story.categoryLabel)}</p>
     <h2>${escapeHtml(story.title)}</h2>
-    ${story.body
-      .split("\n")
-      .filter(Boolean)
-      .map((p) => `<p>${escapeHtml(p)}</p>`)
-      .join("")}
+    ${story.body.split("\n").filter(Boolean).map((p) => `<p>${escapeHtml(p)}</p>`).join("")}
     ${audioBlock}
   `;
 
@@ -434,38 +404,21 @@ function closeModal() {
 }
 
 document.querySelectorAll(".card-read-btn").forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    openModal(Number(btn.dataset.id));
-  });
+  btn.addEventListener("click", (e) => { e.stopPropagation(); openModal(Number(btn.dataset.id)); });
 });
 
 document.querySelectorAll(".story-card").forEach((card) => {
   if (card.hasAttribute("onclick")) return;
-
-  card.addEventListener("click", () => {
-    openModal(Number(card.dataset.id));
-  });
-
+  card.addEventListener("click", () => { openModal(Number(card.dataset.id)); });
   card.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      openModal(Number(card.dataset.id));
-    }
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModal(Number(card.dataset.id)); }
   });
 });
 
-if (modalClose) {
-  modalClose.addEventListener("click", closeModal);
-}
+if (modalClose) modalClose.addEventListener("click", closeModal);
+if (modalBackdrop) modalBackdrop.addEventListener("click", closeModal);
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
 
-if (modalBackdrop) {
-  modalBackdrop.addEventListener("click", closeModal);
-}
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeModal();
-});
 /* ═══════════════════════════════════════════
    RAINFALL TEASER CHART
 ═══════════════════════════════════════════ */
@@ -474,9 +427,9 @@ document.addEventListener("keydown", (e) => {
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
- const STATIONS = [
+  const STATIONS = [
     {name:'Gulf of Mexico',      loc:'Origin',       rain:0,     x:0.04},
-   {name:'Perry, FL',           loc:'Big Bend, FL',  rain:3.4,   x:0.13},
+    {name:'Perry, FL',           loc:'Big Bend, FL', rain:3.4,   x:0.13},
     {name:'Tallahassee, FL',     loc:'Florida',      rain:6.1,   x:0.22},
     {name:'Valdosta, GA',        loc:'Georgia',      rain:4.8,   x:0.31},
     {name:'Atlanta, GA',         loc:'Georgia',      rain:11.8,  x:0.40},
@@ -485,7 +438,7 @@ document.addEventListener("keydown", (e) => {
     {name:'Asheville, NC',       loc:'Blue Ridge',   rain:19.5,  x:0.67},
     {name:'Busick, NC',          loc:'NC Mountains', rain:30.8,  x:0.76},
     {name:'Boone, NC',           loc:'High Country', rain:17.9,  x:0.85},
-    {name:'Williamsburg, KY',    loc:'Kentucky',      rain:2.6,   x:0.94},
+    {name:'Williamsburg, KY',    loc:'Kentucky',     rain:2.6,   x:0.94},
   ];
 
   const MAXRAIN = 33;
@@ -518,29 +471,31 @@ document.addEventListener("keydown", (e) => {
 
   function draw() {
     const { W, H } = setup();
-    const PAD_L=20, PAD_R=24, PAD_T=48, PAD_B=88;
+    const isMobile = W < 480;
+    const PAD_L=20, PAD_R=24, PAD_T=isMobile?36:48, PAD_B=isMobile?70:88;
     const chartW = W - PAD_L - PAD_R;
     const chartH = H - PAD_T - PAD_B;
     const baseY = PAD_T + chartH;
 
-    /* teal-tinted background */
     ctx.fillStyle = '#0d2320';
     ctx.fillRect(0, 0, W, H);
     ctx.fillStyle = 'rgba(2,100,90,0.18)';
     ctx.fillRect(0, 0, W, H);
-    /* legend text — upper left inside chart */
-   ctx.font = "600 18px 'Lora',Georgia,serif";
+
+    const legendSize = isMobile ? 11 : 18;
+    ctx.font = `600 ${legendSize}px 'Lora',Georgia,serif`;
     ctx.fillStyle = 'rgba(159,225,203,0.85)';
     ctx.textAlign = 'left';
-    const legendText = 'Helene started as a Category 1 hurricane in the Gulf of Mexico';
-    const legendText2 = 'and ended up as a tropical storm in Asheville and beyond.';
-    ctx.fillText(legendText, PAD_L + 8, PAD_T + 22);
-    ctx.fillText(legendText2, PAD_L + 8, PAD_T + 46);
-    ctx.font = "400 12px 'Lora',Georgia,serif";
-    ctx.fillStyle = 'rgba(159,225,203,0.5)';
-    ctx.fillText('Data visualization by Hayes Botnick', PAD_L + 8, PAD_T + 66);
+    if (isMobile) {
+      ctx.fillText('Helene: Gulf of Mexico to Asheville', PAD_L + 4, PAD_T + 16);
+    } else {
+      ctx.fillText('Helene started as a Category 1 hurricane in the Gulf of Mexico', PAD_L + 8, PAD_T + 22);
+      ctx.fillText('and ended up as a tropical storm in Asheville and beyond.', PAD_L + 8, PAD_T + 46);
+      ctx.font = "400 12px 'Lora',Georgia,serif";
+      ctx.fillStyle = 'rgba(159,225,203,0.5)';
+      ctx.fillText('Data visualization by Hayes Botnick', PAD_L + 8, PAD_T + 66);
+    }
 
-    /* mountain silhouette */
     ctx.beginPath();
     ctx.moveTo(PAD_L, baseY);
     [[0,.0],[.3,.04],[.45,.06],[.55,.10],[.62,.18],[.67,.28],[.72,.38],
@@ -553,7 +508,6 @@ document.addEventListener("keydown", (e) => {
 
     const drawnCount = prog * (STATIONS.length - 1);
 
-    /* area fill under path */
     ctx.beginPath();
     STATIONS.forEach((s,i) => {
       if(i > drawnCount) return;
@@ -568,7 +522,6 @@ document.addEventListener("keydown", (e) => {
     ctx.fillStyle = 'rgba(196,93,58,0.08)';
     ctx.fill();
 
-    /* path line */
     ctx.beginPath();
     STATIONS.forEach((s,i) => {
       if(i > drawnCount) return;
@@ -580,17 +533,16 @@ document.addEventListener("keydown", (e) => {
     ctx.strokeStyle='rgba(196,93,58,0.7)'; ctx.lineWidth=2;
     ctx.lineJoin='round'; ctx.lineCap='round'; ctx.stroke();
 
-    /* bars + labels */
     STATIONS.forEach((s,i) => {
       if(i > drawnCount + 0.05) return;
       const ap = easeOut(Math.min(drawnCount-i+1,1));
       const x = PAD_L + s.x*chartW;
       const barH = (s.rain/MAXRAIN)*chartH*ap;
-      const barW = Math.max(chartW/STATIONS.length*0.38, 6);
+      const barW = Math.max(chartW/STATIONS.length*0.38, 4);
       const isAsheville = s.name === 'Asheville, NC';
       const isHov = i === hovIdx;
 
-   const maxRain = 30.8;
+      const maxRain = 30.8;
       const intensity = s.rain / maxRain;
       const r = Math.round(100 + intensity * 96);
       const g = Math.round(50 + intensity * 30);
@@ -609,25 +561,29 @@ document.addEventListener("keydown", (e) => {
       }
 
       if(ap > 0.8) {
-        ctx.font = isAsheville ? "700 11px 'Lora',Georgia,serif" : "400 10px 'Lora',Georgia,serif";
+        const labelSize = isMobile ? 8 : (isAsheville ? 11 : 10);
+        ctx.font = isAsheville ? `700 ${labelSize}px 'Lora',Georgia,serif` : `400 ${labelSize}px 'Lora',Georgia,serif`;
         ctx.fillStyle = isAsheville ? '#9FE1CB' : 'rgba(247,243,237,0.55)';
         ctx.textAlign = 'center';
-        ctx.fillText(s.name.replace(/, (NC|GA|SC|FL)$/,''), x, baseY+16);
-        ctx.font = "400 9px 'Lora',Georgia,serif";
-        ctx.fillStyle = 'rgba(247,243,237,0.28)';
-        ctx.fillText(s.loc, x, baseY+28);
+        const label = isMobile ? s.name.replace(/, (NC|GA|SC|FL|KY)$/,'').split(' ')[0] : s.name.replace(/, (NC|GA|SC|FL)$/,'');
+        ctx.fillText(label, x, baseY+14);
+        if (!isMobile) {
+          ctx.font = "400 9px 'Lora',Georgia,serif";
+          ctx.fillStyle = 'rgba(247,243,237,0.28)';
+          ctx.fillText(s.loc, x, baseY+26);
+        }
         ctx.textAlign = 'left';
       }
 
-      if(s.loc==='Landfall' && ap>0.9) {
-        ctx.font="700 10px 'Lora',Georgia,serif";
+      if(isAsheville && ap>0.9) {
+        ctx.font = `700 ${isMobile?8:10}px 'Lora',Georgia,serif`;
         ctx.fillStyle='rgba(212,135,76,0.8)';
         ctx.textAlign='center';
-        ctx.fillText('▲ LANDFALL', x, baseY-barH-12);
+        ctx.fillText(isMobile ? '▲ 19.49"' : '▲ 19.49" in 36hrs', x, baseY-barH-8);
         ctx.textAlign='left';
       }
 
-      if(s.name==='Williamsburg, KY' && ap>0.9) {
+      if(s.name==='Williamsburg, KY' && ap>0.9 && !isMobile) {
         ctx.font="700 10px 'Lora',Georgia,serif";
         ctx.fillStyle='rgba(212,135,76,0.8)';
         ctx.textAlign='center';
@@ -635,25 +591,15 @@ document.addEventListener("keydown", (e) => {
         ctx.textAlign='left';
       }
 
-  if(s.name === 'Gulf of Mexico' && ap>0.8) {
-        ctx.font="400 10px 'Lora',Georgia,serif";
+      if(s.name === 'Gulf of Mexico' && ap>0.8) {
+        ctx.font=`400 ${isMobile?8:10}px 'Lora',Georgia,serif`;
         ctx.fillStyle='rgba(159,225,203,0.6)';
         ctx.textAlign='center';
-        ctx.fillText('0"', x, baseY-12);
+        ctx.fillText('0"', x, baseY-10);
         ctx.textAlign='left';
       }
+    });
 
-  if(isAsheville && ap>0.9) {
-        ctx.font="700 10px 'Lora',Georgia,serif";
-        ctx.fillStyle='rgba(212,135,76,0.8)';
-        ctx.textAlign='center';
-        ctx.fillText('▲ 19.49" in 36hrs', x, baseY-barH-12);
-        ctx.textAlign='left';
-      }
-  
-    });  /* ← closes STATIONS.forEach */
-
-    /* hover tooltip */
     if(hovIdx>=0 && hovIdx<STATIONS.length) {
       const s = STATIONS[hovIdx];
       const x = PAD_L + s.x*chartW;
@@ -679,18 +625,30 @@ document.addEventListener("keydown", (e) => {
     requestAnimationFrame(animate);
   }
 
-  /* only start animating when section scrolls into view */
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if(e.isIntersecting && !started) {
-        started = true;
-        animate();
-      }
+      if(e.isIntersecting && !started) { started = true; animate(); }
     });
   }, { threshold: 0.2 });
   observer.observe(canvas);
 
-  /* hover */
+  // Touch support for chart
+  canvas.addEventListener('touchmove', e => {
+    e.preventDefault();
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.touches[0].clientX - rect.left;
+    const W = rect.width;
+    const chartW = W - 20 - 24;
+    let closest=-1, minD=999;
+    STATIONS.forEach((s,i) => {
+      const x = 20 + s.x*chartW;
+      const d = Math.abs(mx-x);
+      if(d<minD){ minD=d; closest=i; }
+    });
+    hovIdx = minD < 40 ? closest : -1;
+  }, { passive: false });
+  canvas.addEventListener('touchend', () => { hovIdx=-1; });
+
   canvas.addEventListener('mousemove', e => {
     const rect = canvas.getBoundingClientRect();
     const mx = e.clientX - rect.left;
@@ -709,10 +667,10 @@ document.addEventListener("keydown", (e) => {
 
   window.addEventListener('resize', () => { if(started) draw(); });
 
-  /* initial static render so it's not blank before scroll */
   setup();
   draw();
 })();
+
 window.addEventListener("load", () => {
   if (window.location.hash) {
     history.replaceState(null, "", window.location.pathname);

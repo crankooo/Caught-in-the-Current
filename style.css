@@ -82,13 +82,10 @@ h1, h2, h3, h4, h5, h6 {
   display: block; width: 22px; height: 2px;
   background: var(--cream); border-radius: 2px;
 }
-.rainfall-note a {
-  color: var(--amber);
-  text-decoration: underline;
-}
-.rainfall-note a:hover {
-  color: var(--rust);
-}
+
+.rainfall-note a { color: var(--amber); text-decoration: underline; }
+.rainfall-note a:hover { color: var(--rust); }
+
 .dataviz-cta {
   display: inline-block;
   margin-top: 1rem;
@@ -104,6 +101,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: background .2s ease;
 }
 .dataviz-cta:hover { background: var(--amber); }
+
 .stories-last-row {
   display: flex;
   justify-content: center;
@@ -112,11 +110,11 @@ h1, h2, h3, h4, h5, h6 {
   margin: 1.1rem auto 0;
   width: 100%;
 }
-
 .stories-last-row .story-card {
   width: calc(33.333% - 0.75rem);
   flex: 0 0 calc(33.333% - 0.75rem);
 }
+
 
 /* ═══════════════════════════════════════════
    ABOUT PAGE NAV
@@ -141,7 +139,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* ═══════════════════════════════════════════
-   HERO — full screen video, plays once
+   HERO
 ═══════════════════════════════════════════ */
 #hero {
   position: relative;
@@ -209,7 +207,7 @@ section:not(#hero) {
   font-size: 1.4rem; letter-spacing: .26em;
   text-transform: uppercase; color: var(--rust);
   margin-bottom: .7rem;
-   margin-top: 1.5rem;
+  margin-top: 1.5rem;
 }
 .section-header h2 {
   font-size: clamp(1.8rem, 10vw, 0.2rem);
@@ -217,7 +215,7 @@ section:not(#hero) {
 }
 .section-intro {
   font-size: .9rem; color: rgba(34,64,80,.75);
-  font-style: regular; max-width: 1000px;
+  max-width: 1000px;
   margin: 0 auto; line-height: 1.75;
   text-align: justify;
 }
@@ -301,7 +299,6 @@ section:not(#hero) {
     transform .35s cubic-bezier(.22,.68,0,1.2),
     box-shadow .35s ease;
 }
-
 .story-card:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow:
@@ -309,8 +306,6 @@ section:not(#hero) {
     0 0 28px rgba(212,135,76,.2),
     0 24px 48px rgba(0,0,0,.5);
 }
-
-/* shimmer border on hover */
 .story-card::before {
   content: '';
   position: absolute; inset: 0; z-index: 5;
@@ -332,18 +327,14 @@ section:not(#hero) {
   transition: opacity .3s ease;
 }
 .story-card:hover::before { opacity: 1; }
-
 .story-card.hidden { display: none; }
 
-/* Photo wrap */
 .card-photo-wrap {
   position: relative;
   width: 100%;
   aspect-ratio: 3 / 2;
   overflow: hidden;
 }
-
-/* dark gradient over photo bottom */
 .card-photo-wrap::after {
   content: '';
   position: absolute; inset: 0; z-index: 1;
@@ -354,7 +345,6 @@ section:not(#hero) {
     transparent 100%
   );
 }
-
 .card-photo {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
@@ -370,7 +360,13 @@ section:not(#hero) {
   filter: brightness(1.05) saturate(1.2);
 }
 
-/* excerpt text — slides up from photo bottom on hover */
+/* On touch devices always show overlay/pill/arrow */
+@media (hover: none) {
+  .card-photo-overlay { opacity: 1; transform: translateY(0); }
+  .card-pill { opacity: 1; transform: translateY(0); }
+  .card-arrow { opacity: 1; transform: scale(1); }
+}
+
 .card-photo-overlay {
   position: absolute;
   bottom: 0; left: 0; right: 0; z-index: 2;
@@ -380,10 +376,7 @@ section:not(#hero) {
   transition: opacity .28s ease, transform .28s ease;
   pointer-events: none;
 }
-.story-card:hover .card-photo-overlay {
-  opacity: 1;
-  transform: translateY(0);
-}
+.story-card:hover .card-photo-overlay { opacity: 1; transform: translateY(0); }
 .card-excerpt {
   font-size: .82rem; line-height: 1.6;
   color: rgba(247,243,237,.82);
@@ -394,7 +387,6 @@ section:not(#hero) {
   overflow: hidden;
 }
 
-/* category pill — top left, appears on hover */
 .card-pill {
   position: absolute;
   top: .7rem; left: .7rem; z-index: 3;
@@ -408,7 +400,6 @@ section:not(#hero) {
 }
 .story-card:hover .card-pill { opacity: 1; transform: translateY(0); }
 
-/* arrow button — top right, appears on hover */
 .card-arrow {
   position: absolute;
   top: .7rem; right: .7rem; z-index: 3;
@@ -422,7 +413,6 @@ section:not(#hero) {
 .story-card:hover .card-arrow { opacity: 1; transform: scale(1); }
 .card-arrow svg { width: 12px; height: 12px; }
 
-/* Caption strip */
 .card-body {
   display: block;
   background: var(--amber);
@@ -432,7 +422,6 @@ section:not(#hero) {
   transition: background .25s ease;
 }
 .story-card:hover .card-body { background: var(--rust); }
-
 .card-caption-category {
   font-size: .65rem; letter-spacing: .22em;
   text-transform: uppercase; color: rgba(255,255,255,.65);
@@ -448,8 +437,6 @@ section:not(#hero) {
   font-size: .74rem; font-style: italic;
   color: rgba(255,255,255,.62);
 }
-
-/* placeholder state */
 .card-body.placeholder { background: rgba(34,64,80,.72); }
 .story-card:hover .card-body.placeholder { background: rgba(34,64,80,.9); }
 .card-body.placeholder .card-caption-category { color: rgba(247,243,237,.35); }
@@ -530,7 +517,7 @@ footer {
 }
 
 .team-section { margin-bottom: 4rem; }
-.team-heading { font-size: clamp(1.2rem, 2vw, 1.7rem); color: var(--navy); text-align: center; margin-bottom: 2.5rem;  margin-top: 2rem; } 
+.team-heading { font-size: clamp(1.2rem, 2vw, 1.7rem); color: var(--navy); text-align: center; margin-bottom: 2.5rem; margin-top: 2rem; }
 .team-grid { display: flex; flex-direction: column; gap: 0; }
 .team-card {
   display: flex; flex-direction: row; align-items: stretch;
@@ -580,48 +567,151 @@ footer {
 .ack-list li { font-size: .83rem; color: rgba(34,64,80,.72); line-height: 1.7; padding: .28rem 0; border-bottom: 1px solid rgba(34,64,80,.06); }
 .ack-list li:last-child { border-bottom: none; }
 
-
-/* ═══════════════════════════════════════════
-   RESPONSIVE
-═══════════════════════════════════════════ */
-@media (max-width: 1100px) {
-  .stories-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 768px) {
-  #navbar { padding: 1rem 1.5rem; height: auto; }
-  .nav-links { display: none; }
-  .nav-hamburger { display: flex; }
-  section:not(#hero) { padding: 3.5rem 1.5rem; }
-  #stories { padding: 3.5rem 1.5rem; }
-  .stories-grid { grid-template-columns: repeat(2, 1fr); }
-  .modal-panel { padding: 2rem 1.4rem; width: 95%; }
-  .team-avatar { flex: 0 0 160px; width: 160px; }
-  .inner-page-content { padding: 3.5rem 1.5rem 5rem; }
-  .navbar-inner { padding: 1rem 1.5rem; height: auto; }
-}
-@media (max-width: 580px) {
-  .stories-grid { grid-template-columns: 1fr; }
-  .team-card { flex-direction: column; }
-  .team-avatar { flex: none; width: 100%; height: 200px; min-height: unset; }
-  .team-card-body { border-left: none; border-top: 3px solid var(--amber); }
-  .stories-last-row {
-    flex-direction: column;
-    align-items: center;
-  }
-  .stories-last-row .story-card {
-    width: 100%;
-    max-width: 560px;
-    flex: 0 0 auto;
-  }
-}
 .group-caption {
   font-size: .80rem;
-  color: rgba(0, 0, 0, 0.5);
-  font-style: regular;
+  color: rgba(0,0,0,.5);
   text-align: center;
   margin-top: .3rem;
   max-width: 860px;
   margin-left: auto;
   margin-right: auto;
   line-height: 1.6;
+}
+
+/* mobile nav dropdown */
+.nav-links.mobile-open {
+  display: flex !important;
+  flex-direction: column;
+  position: absolute;
+  top: 100%; left: 0; right: 0;
+  background: rgba(34,64,80,.97);
+  padding: 1.2rem 2rem 1.6rem;
+  gap: 1rem;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — TABLET  (≤1100px)
+═══════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .stories-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — TABLET PORTRAIT  (≤768px)
+═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Nav */
+  #navbar {
+    padding: .5rem 1.2rem;
+    height: 70px;
+  }
+  .nav-logo-img { height: 60px; width: 60px; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+
+  /* About nav */
+  .navbar-inner { padding: .5rem 1.2rem; height: 70px; }
+  .navbar-inner .nav-logo-img { height: 60px; width: 60px; }
+
+  /* Sections */
+  section:not(#hero) { padding: 3rem 1.2rem; }
+  #stories { padding: 3rem 1.2rem; }
+
+  /* Stories grid */
+  .stories-grid { grid-template-columns: repeat(2, 1fr); gap: .8rem; }
+
+  /* Stories last row */
+  .stories-last-row { gap: .8rem; }
+  .stories-last-row .story-card {
+    width: calc(50% - 0.4rem);
+    flex: 0 0 calc(50% - 0.4rem);
+  }
+
+  /* Modal */
+  .modal-panel { padding: 1.8rem 1.2rem; width: 95%; }
+
+  /* Team cards */
+  .team-avatar { flex: 0 0 140px; width: 140px; }
+  .team-card-body { padding: 1rem 1.2rem; }
+
+  /* About page */
+  .inner-page-content { padding: 2.5rem 1.2rem 4rem; }
+
+  /* Rainfall canvas */
+  .rainfall-viz-wrap { margin: 0 -1.2rem; }
+
+  /* Footer */
+  footer { padding: 2rem 1.2rem; }
+}
+
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — PHONE  (≤480px)
+═══════════════════════════════════════════ */
+@media (max-width: 480px) {
+  html { font-size: 15px; }
+
+  /* Nav */
+  #navbar { height: 60px; padding: .4rem 1rem; }
+  .nav-logo-img { height: 50px; width: 50px; }
+
+  /* Hero */
+  #hero { height: 100svh; }
+
+  /* Sections */
+  section:not(#hero) { padding: 2.5rem 1rem; }
+  #stories { padding: 2.5rem 1rem; }
+
+  /* Section label smaller */
+  .section-label { font-size: 1rem; letter-spacing: .18em; }
+  .section-intro { text-align: left; font-size: .85rem; }
+
+  /* Stories: single column */
+  .stories-grid { grid-template-columns: 1fr; gap: .75rem; }
+  .stories-last-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .stories-last-row .story-card {
+    width: 100%;
+    flex: 0 0 auto;
+  }
+
+  /* Filter buttons */
+  .story-filters { gap: .4rem; margin-bottom: 1.5rem; }
+  .filter-btn { font-size: .7rem; padding: .38rem .9rem; }
+
+  /* Card body */
+  .card-caption-title { font-size: .85rem; }
+  .card-caption-author { font-size: .7rem; }
+
+  /* Team cards — stack vertically */
+  .team-card { flex-direction: column; }
+  .team-avatar { flex: none; width: 100%; height: 180px; min-height: unset; }
+  .team-card-body { border-left: none; border-top: 3px solid var(--amber); padding: 1rem; }
+  .team-bio { font-size: .8rem; }
+
+  /* About page */
+  .inner-page-content { padding: 2rem 1rem 3rem; }
+  .navbar-inner { height: 60px; padding: .4rem 1rem; }
+  .navbar-inner .nav-logo-img { height: 50px; width: 50px; }
+  .about-project p { font-size: .88rem; }
+  .group-caption { font-size: .75rem; }
+
+  /* Acknowledgments */
+  .ack-list li { font-size: .8rem; }
+
+  /* Modal */
+  .modal-panel { padding: 1.4rem 1rem; width: 98%; border-radius: 8px; }
+
+  /* Footer */
+  footer { padding: 1.8rem 1rem; }
+  .footer-title { font-size: .9rem; }
+  .footer-sub { font-size: .7rem; }
+
+  /* dataviz button */
+  .dataviz-cta { font-size: .7rem; padding: .5rem 1.1rem; }
 }
