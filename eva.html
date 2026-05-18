@@ -117,7 +117,7 @@ a { color: inherit; text-decoration: none; }
 
 .photo-caption {
   font-size: .75rem; line-height: 1.6;
-  color: rgba(34,64,80,.52); font-style: regular;
+  color: rgba(34,64,80,.52);
   margin-top: .5rem;
   padding-left: .7rem;
   border-left: 2px solid var(--amber);
@@ -130,13 +130,17 @@ a { color: inherit; text-decoration: none; }
 }
 .story-img img { width: 100%; height: auto; display: block; border-radius: 10px; }
 
-/* Illustration float — smaller than photo float */
+/* Illustration floats */
 .illus-float {
   float: right; width: 28%;
   margin: .3rem 0 1.2rem 1.8rem;
   border-radius: 8px;
   box-shadow: 0 4px 16px rgba(34,64,80,.1);
   clear: right;
+}
+.illus-float.left {
+  float: left; width: 35%; margin: .3rem 1.8rem 1.2rem 0;
+  clear: left;
 }
 .illus-float img { width: 100%; height: auto; display: block; border-radius: 8px; }
 
@@ -155,9 +159,7 @@ a { color: inherit; text-decoration: none; }
   overflow: hidden;
   box-shadow: 0 8px 28px rgba(34,64,80,.12);
 }
-.story-video iframe {
-  width: 100%; height: 420px; display: block; border: none;
-}
+.story-video iframe { width: 100%; height: 420px; display: block; border: none; }
 
 .clearfix::after { content: ''; display: table; clear: both; }
 
@@ -171,56 +173,41 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
   .article-body { padding: 2.5rem 1.2rem 3rem; }
   .stat-band { margin: 2rem -.5rem; padding: 1.5rem 1rem; flex-direction: column; align-items: center; }
   .stat-item { max-width: 100%; }
-  .illus-float, .story-img-float { float: none; width: 100%; margin: 1.5rem 0; }
+  .illus-float, .illus-float.left, .story-img-float { float: none; width: 100%; margin: 1.5rem 0; }
   .story-video iframe { height: 240px; }
 }
 
 .soundscape-btn {
   display: inline-flex; align-items: center; gap: .6rem;
-  margin-top: 1.4rem;
-  padding: .55rem 1.4rem;
+  margin-top: 1.4rem; padding: .55rem 1.4rem;
   background: rgba(255,255,255,.08);
   border: 1px solid rgba(255,255,255,.22);
-  border-radius: 50px;
-  color: rgba(247,243,237,.9);
+  border-radius: 50px; color: rgba(247,243,237,.9);
   font-family: var(--font-body);
   font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
-  cursor: pointer;
-  backdrop-filter: blur(8px);
+  cursor: pointer; backdrop-filter: blur(8px);
   transition: background .3s, border-color .3s, box-shadow .3s, transform .2s;
   position: relative; z-index: 2;
   opacity: 0; animation: fadeUp .9s ease 1.1s forwards;
 }
 .soundscape-btn:hover {
-  background: rgba(2,100,90,.35);
-  border-color: rgba(159,225,203,.5);
+  background: rgba(2,100,90,.35); border-color: rgba(159,225,203,.5);
   box-shadow: 0 0 18px rgba(2,100,90,.5), 0 0 40px rgba(2,100,90,.2);
   transform: translateY(-1px);
 }
 .soundscape-btn.playing {
-  background: rgba(2,100,90,.4);
-  border-color: rgba(159,225,203,.7);
+  background: rgba(2,100,90,.4); border-color: rgba(159,225,203,.7);
   box-shadow: 0 0 22px rgba(2,100,90,.6), 0 0 50px rgba(2,100,90,.25);
   color: #9FE1CB;
 }
-.soundscape-btn .btn-bars {
-  display: flex; align-items: center; gap: 2px; height: 12px;
-}
-.soundscape-btn .btn-bars span {
-  display: block; width: 2px; background: #9FE1CB;
-  border-radius: 1px; animation: none;
-}
-.soundscape-btn.playing .btn-bars span {
-  animation: barDance 1s ease-in-out infinite alternate;
-}
+.soundscape-btn .btn-bars { display: flex; align-items: center; gap: 2px; height: 12px; }
+.soundscape-btn .btn-bars span { display: block; width: 2px; background: #9FE1CB; border-radius: 1px; animation: none; }
+.soundscape-btn.playing .btn-bars span { animation: barDance 1s ease-in-out infinite alternate; }
 .soundscape-btn.playing .btn-bars span:nth-child(1) { animation-delay: 0s; }
 .soundscape-btn.playing .btn-bars span:nth-child(2) { animation-delay: .15s; }
 .soundscape-btn.playing .btn-bars span:nth-child(3) { animation-delay: .3s; }
 .soundscape-btn.playing .btn-bars span:nth-child(4) { animation-delay: .45s; }
-@keyframes barDance {
-  0%   { height: 3px; }
-  100% { height: 12px; }
-}
+@keyframes barDance { 0% { height: 3px; } 100% { height: 12px; } }
 </style>
 </head>
 <body>
@@ -261,7 +248,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 
   <div class="illus-float">
     <img src="images/story/eva/2.jpeg" alt="Illustration of a freshwater mussel">
-    <p class="photo-caption">Freshwater mussels cluster in beds along creek bottoms throughout Western North Carolina. Some species are on the endangered list. Illustration credit: Beck Orten</p>
+    <p class="photo-caption">Freshwater mussels cluster in beds along creek bottoms throughout Western North Carolina. Some species are on the endangered list. Illustration: Beck Orten</p>
   </div>
 
   <p>The fallout for this largely unseen and unknown creature is just one example of the extent of damage the storm wrought in the natural world alongside the better-publicized human one. Mussels are one species that scientists and researchers are watching and worrying about. Another to take a hard hit was the famously (so-ugly-it's-cute) hellbender salamander, which can grow up to 2 feet long and live up to 30 years, and a couple of species of freshwater trout.</p>
@@ -276,7 +263,7 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 
   <div class="illus-float">
     <img src="images/story/eva/1.jpeg" alt="Hellbender salamander illustration">
-    <p class="photo-caption">The hellbender, North America's largest aquatic salamander, lives among rocks in fast-moving streams — putting it directly in Helene's path. Illustration credit: Beck Orten</p>
+    <p class="photo-caption">The hellbender, North America's largest aquatic salamander, lives among rocks in fast-moving streams — putting it directly in Helene's path. Illustration: Beck Orten</p>
   </div>
 
   <div class="section-divider"><span>A double whammy for river life</span></div>
@@ -307,11 +294,18 @@ footer { background: var(--navy); padding: 2.8rem 3rem; text-align: center; }
 
   <p>For example, some areas of the water were so muddy or "turbid" that fish were having trouble surviving it, Keever said as he drove his 4-wheel-drive gray ranger truck around the northern edge of Asheville. He also noted the dangerous debris littering the waterways including broken wood and rusty nails from the numerous structures that were swept into the water.</p>
 
+  <div class="illus-float left">
+    <img src="images/story/eva/trout.png" alt="Illustration of a freshwater trout">
+    <p class="photo-caption">There are three types of native trout in the state, all impacted in some way by tropical storm Helene. Illustration credit: Beck Orten</p>
+  </div>
+
   <p>"If you look on the side of that bridge, you can still see debris stuck under the bridge," he said, pointing to a disruption in the rushing water. "Y'all see that? Wow. So, I mean, like, that's going to be there for years, just about. It's just kind of normal now, the last thing on people's radar."</p>
 
   <p>Further up the French Broad, Mandy Wallace, artifact recovery technician working with the conservation non-profit MountainTrue, noted that thousands of pounds of plastic debris remain in the water, some of which is dissolving into microplastics to be ingested by fish and other creatures, and some of which is inhibiting wildlife movement.</p>
 
   <p>For example, thousands of sections of white plastic PVC pipe that were stored in a lot along the French Broad were flushed into the river during the flood and then transported miles in the current, some ending up as far as Tennessee. Not only is this hazardous for paddlers, she said, but Wallace and her crew found the pipes teeming with catfish as they tried to remove them. "It's just hard," Wallace said on a sunny weekday alongside a cleanup team of about 10 who were using canoes to retrieve the pipes. "They're going to adapt. I mean, we do what we can."</p>
+
+  <div class="clearfix"></div>
 
   <div class="story-video">
     <iframe src="https://drive.google.com/file/d/1lJ_ooTlKKlZ6LX4Ki6wry9ihQJ9Vzfm0/preview" allow="autoplay" allowfullscreen></iframe>
@@ -349,40 +343,33 @@ const soundscape = document.getElementById('soundscape');
 const btn = document.getElementById('soundscapeBtn');
 soundscape.loop = false;
 soundscape.volume = 0.4;
-
 let isPlaying = false;
 
 function toggleSound() {
   if (isPlaying) {
-    soundscape.pause();
-    soundscape.currentTime = 0;
-    isPlaying = false;
-    btn.classList.remove('playing');
+    soundscape.pause(); soundscape.currentTime = 0;
+    isPlaying = false; btn.classList.remove('playing');
     btn.querySelector('.btn-label').textContent = 'Listen to soundscape';
   } else {
     soundscape.play().then(() => {
-      isPlaying = true;
-      btn.classList.add('playing');
+      isPlaying = true; btn.classList.add('playing');
       btn.querySelector('.btn-label').textContent = 'Playing…';
     }).catch(() => {});
   }
 }
 
 soundscape.addEventListener('ended', () => {
-  isPlaying = false;
-  btn.classList.remove('playing');
+  isPlaying = false; btn.classList.remove('playing');
   btn.querySelector('.btn-label').textContent = 'Listen to soundscape';
 });
 
 soundscape.play().then(() => {
-  isPlaying = true;
-  btn.classList.add('playing');
+  isPlaying = true; btn.classList.add('playing');
   btn.querySelector('.btn-label').textContent = 'Playing…';
 }).catch(() => {
   document.addEventListener('click', function unlock() {
     soundscape.play().then(() => {
-      isPlaying = true;
-      btn.classList.add('playing');
+      isPlaying = true; btn.classList.add('playing');
       btn.querySelector('.btn-label').textContent = 'Playing…';
     }).catch(() => {});
     document.removeEventListener('click', unlock);
