@@ -565,8 +565,12 @@ document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal
         ctx.font = isAsheville ? `700 ${labelSize}px 'Lora',Georgia,serif` : `400 ${labelSize}px 'Lora',Georgia,serif`;
         ctx.fillStyle = isAsheville ? '#9FE1CB' : 'rgba(247,243,237,0.55)';
         ctx.textAlign = 'center';
-        const label = isMobile ? s.name.replace(/, (NC|GA|SC|FL|KY)$/,'').split(' ')[0] : s.name.replace(/, (NC|GA|SC|FL)$/,'');
-        ctx.fillText(label, x, baseY+14);
+        // On mobile skip alternate labels to prevent overlap, always show Asheville
+        const skipLabel = isMobile && !isAsheville && i % 2 !== 0;
+        if (!skipLabel) {
+          const label = isMobile ? s.name.replace(/, (NC|GA|SC|FL|KY)$/,'').split(' ')[0] : s.name.replace(/, (NC|GA|SC|FL)$/,'');
+          ctx.fillText(label, x, baseY+14);
+        }
         if (!isMobile) {
           ctx.font = "400 9px 'Lora',Georgia,serif";
           ctx.fillStyle = 'rgba(247,243,237,0.28)';

@@ -658,8 +658,9 @@ footer {
   #navbar { height: 60px; padding: .4rem 1rem; }
   .nav-logo-img { height: 50px; width: 50px; }
 
-  /* Hero */
+  /* Hero — fix video zoom on mobile */
   #hero { height: 100svh; }
+  #hero-video { object-position: center center; }
 
   /* Sections */
   section:not(#hero) { padding: 2.5rem 1rem; }
@@ -714,4 +715,29 @@ footer {
 
   /* dataviz button */
   .dataviz-cta { font-size: .7rem; padding: .5rem 1.1rem; }
+
+  /* Hero video wrap — prevent zoom crop on mobile Safari */
+  .hero-video-wrap {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+  }
+  .hero-video-wrap video,
+  .hero-video-wrap img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  /* Last row cards — full width on phone */
+  .stories-last-row {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+  }
+  .stories-last-row .story-card {
+    width: 100% !important;
+    flex: 0 0 auto !important;
+  }
 }
